@@ -1,5 +1,5 @@
 <?php
-    class products {
+    class product {
         private $id,$name,$category_id,$image,$gender,$price,$description,$status;
 
         public function __construct($id,$name,$category_id,$image,$gender,$price,$description,$status) {
@@ -13,7 +13,7 @@
             $this->status=$status;
         }
 
-        
+
     }
 
 ?>
