@@ -89,7 +89,7 @@ CREATE TABLE
         `gender` INT NOT NULL,
         `price` DOUBLE NOT NULL,
         `description` VARCHAR(100) NOT NULL,
-        `status` INT NOT NULL DEFAULT 1,
+        `status` ENUM ('active', 'soldout','banned') NOT NULL DEFAULT "active",
         PRIMARY KEY (`id`)
     );
 
@@ -108,7 +108,7 @@ CREATE TABLE
         `import_id` INT,
         `product_id` INT,
         `quantity` INT,
-`price` DOUBLE NOT NULL,
+        `price` DOUBLE NOT NULL,
         PRIMARY KEY (`id`)
     );
 
