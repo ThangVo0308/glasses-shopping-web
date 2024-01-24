@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <a href="">test</a>
-    </div>
+    <form action="">
+        <div id="nameShop">
+            <img src="../../images/logo.jpg" alt="" style="height: 80px; width: 80px">
+        </div>
+    </form>
 </body>
 </html>
