@@ -1,4 +1,5 @@
 <?php
+    require_once('ProductStatus.php');
     class product {
         private $id,$name,$category_id,$image,$gender,$price,$description,$status;
 
@@ -61,11 +62,13 @@
             $this->description = $description;
         }
 
-        public function getStatus() {
+        public function getStatus(): string
+        {
             return $this->status;
         }
-
-        public function setStatus($status) {
+    
+        public function setStatus(ProductStatus $status)
+        {
             $this->status = $status;
         }
 
@@ -76,6 +79,9 @@
         public function setGender($status) {
             $this->status = $status;
         }
+
+        
+        
     }
 
 ?>
