@@ -69,7 +69,7 @@
     
         public function setStatus(ProductStatus $status)
         {
-            $this->status = $status;
+            $this->status = $status ;
         }
 
         public function getGender() {

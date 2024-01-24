@@ -2,7 +2,7 @@
     class ProductStatus {
         const ACTIVE = 'active';
         const SOLDOUT = 'soldout';
-        const BANNED = "banned";
+        const BANNED = "banned" ;
     }
 
 ?>
