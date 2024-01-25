@@ -1,11 +1,11 @@
 <?php
     class payments{
         private $id,$order_id,$method_id,$payment_date,$price;
-        public function __constructor($id,$orderid,$methodid,$paymentdate,$price) { 
+        public function __constructor($id,$order_id,$method_id,$payment_date,$price) { 
             $this->id = $id; 
-            $this->order_id = $orderid; 
-            $this->method_id = $methodid; 
-            $this->payment_date = $paymentdate; 
+            $this->order_id = $order_id; 
+            $this->method_id = $method_id; 
+            $this->payment_date = $payment_date; 
             $this->price = $price; 
         }
         function getId() { 
@@ -13,15 +13,15 @@
         } 
     
         function getOrderid() { 
-             return $this->orderid; 
+             return $this->order_id; 
         } 
     
         function getMethodid() { 
-             return $this->methodid; 
+             return $this->method_id; 
         } 
     
         function getPaymentdate() { 
-             return $this->paymentdate; 
+             return $this->payment_date; 
         } 
     
         function getPrice() { 
