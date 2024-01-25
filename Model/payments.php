@@ -13,15 +13,15 @@
         } 
     
         function getOrderid() { 
-             return $this->orderid; 
+             return $this->order_id; 
         } 
     
         function getMethodid() { 
-             return $this->methodid; 
+             return $this->method_id; 
         } 
     
         function getPaymentdate() { 
-             return $this->paymentdate; 
+             return $this->payment_date; 
         } 
     
         function getPrice() { 
