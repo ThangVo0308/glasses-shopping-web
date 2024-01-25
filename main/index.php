@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="main">
-        <iframe src="../FE/html/homeScreen.php" frameborder="0" style="height:100px; width:max-content"></iframe>
+        <iframe src="../FE/html/homeScreen.php" frameborder="0" height="100%" width="100%"></iframe>
     </div>
 </body>
 </html>

@@ -14,7 +14,7 @@
                 $statement = $this->connection->query($query);
                 $statement->execute();
                 $listProduct = $statement->fetchAll(PDO::FETCH_ASSOC);
-                return true;
+                return $listProduct;
             }catch(PDOException $e) {
                 echo "Query failed: ".$e->getMessage();
                 return false;
@@ -74,7 +74,7 @@
 
         public function deleteProduct(Product $product) {
             try {
-                $query = "update products set status = 'banned' where products.id = ?";
+                $query = "update products set status = 'banned' where id = ?";
                 $statement = $this->connection->prepare($query);
 
                 $id = $product->getID();
@@ -106,7 +106,7 @@
             $statement = $this->connection->prepare($query);
             if($condition != null) {
                 $searchCondition = "%".$condition."%";
-                $statement->bindColumn(1,$condition);
+                $statement->bindColumn(1,$searchCondition);
             }
 
             $statement->execute();
