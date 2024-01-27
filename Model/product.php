@@ -1,9 +1,11 @@
 <?php
-    require_once('ProductStatus.php');
+    require("..\\enum\ProductStatus.php");
     class product {
         private $id,$name,$category_id,$image,$gender,$price,$description,$status;
 
-        public function __construct($id,$name,$category_id,$image,$gender,$price,$description,$status) {
+
+
+        public function __construct($id = null,$name = null,$category_id = null,$image = null,$gender = 1,$price = null,$description = null,$status='active') {
             $this->id= $id;
             $this->name=$name;
             $this->category_id=$category_id;
@@ -62,12 +64,12 @@
             $this->description = $description;
         }
 
-        public function getStatus(): string
+        public function getStatus()
         {
             return $this->status;
         }
     
-        public function setStatus(ProductStatus $status)
+        public function setStatus($status)
         {
             $this->status = $status ;
         }
@@ -80,7 +82,17 @@
             $this->status = $status;
         }
 
-        
+        public function __toString()
+    {
+        return "Product ID: {$this->id}\n" .
+               "Name: {$this->name}\n" .
+               "Category ID: {$this->category_id}\n" .
+               "Image: {$this->image}\n" .
+               "Gender: {$this->gender}\n" .
+               "Price: {$this->price}\n" .
+               "Description: {$this->description}\n" .
+               "Status: {$this->status}\n";
+    }
         
     }
 

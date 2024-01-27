@@ -25,7 +25,7 @@
             try{
                 $query = "insert into roles (name) 
                          values (:name)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':name',$role->getName());
 
                 $statement->execute();
@@ -55,14 +55,12 @@
             }
         }
 
-        public function deleteRole(roles $role) {
+        public function deleteRole($id) {
             try {
                 $query = "delete from roles where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $role->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

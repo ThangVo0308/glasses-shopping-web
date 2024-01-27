@@ -25,7 +25,7 @@
             try{
                 $query = "insert into discounts (name,discount_percent,start_day,end_day) 
                          values (:name,:discount_percent,:start_day,:end_day)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':name',$discount->getName());
                 $statement->bindParam(':discount_percent',$discount->getDiscountpercent());
                 $statement->bindParam(':start_day',$discount->getStartday());
@@ -63,14 +63,12 @@
             }
         }
 
-        public function deleteDiscount(discounts $discount) {
+        public function deleteDiscount($id) {
             try {
                 $query = "delete from discounts where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $discount->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

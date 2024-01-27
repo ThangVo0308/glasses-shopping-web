@@ -25,7 +25,7 @@
             try{
                 $query = "insert into users (username,password,email,name,phone,gender,image,role_id,address,status) 
                          values (:username,:password,:email,:name,:phone,:gender,:image,:role_id,:address,:status)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':username',$user->getUsername());
                 $statement->bindParam(':password',$user->getPassword());
                 $statement->bindParam(':email',$user->getEmail());
@@ -81,14 +81,12 @@
             }
         }
 
-        public function deleteUser(users $user) {
+        public function deleteUser($id) {
             try {
                 $query = "update users set status = 'banned' where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $user->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

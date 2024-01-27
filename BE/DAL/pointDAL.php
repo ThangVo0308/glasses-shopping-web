@@ -25,7 +25,7 @@
             try{
                 $query = "insert into points (user_id,transaction_date,points_earned,points_used) 
                          values (:user_id,:transaction_date,:points_earned,:points_used)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':user_id',$point->getUserid());
                 $statement->bindParam(':transaction_date',$point->getTransactiondate());
                 $statement->bindParam(':points_earned',$point->getPointsearned());
@@ -63,14 +63,11 @@
             }
         }
 
-        public function deletePoint(points $point) {
+        public function deletePoint($id) {
             try {
                 $query = "delete from points where id = ?";
                 $statement = $this->connection->prepare($query);
-
-                $id = $point->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

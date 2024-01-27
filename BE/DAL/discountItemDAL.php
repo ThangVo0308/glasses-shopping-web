@@ -25,7 +25,7 @@
             try{
                 $query = "insert into discount_items (category_id,discount_id) 
                          values (:category_id,:discount_id)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':category_id',$discountItem->getCategoryid());
                 $statement->bindParam(':discount_id',$discountItem->getDiscountid());
 
@@ -59,14 +59,12 @@
             }
         }
 
-        public function deleteDiscountItem(discount_item $discountItem) {
+        public function deleteDiscountItem($id) {
             try {
                 $query = "delete from discount_items where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $discountItem->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

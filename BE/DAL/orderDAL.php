@@ -25,7 +25,7 @@
             try{
                 $query = "insert into orders (user_id,order_date,total_price) 
                          values (:user_id,:product_id,:quantity,:price)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':user_id',$order->getUserid());
                 $statement->bindParam(':order_date',$order->getOderdate());
                 $statement->bindParam(':total_price',$order->getTotalprice());
@@ -60,14 +60,11 @@
             }
         }
 
-        public function deleteOrder(orders $order) {
+        public function deleteOrder($id) {
             try {
                 $query = "delete from orders where id = ?";
                 $statement = $this->connection->prepare($query);
-
-                $id = $order->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

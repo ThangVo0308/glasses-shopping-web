@@ -25,7 +25,7 @@
             try{
                 $query = "insert into payment_methods (method_name) 
                          values (:method_name)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':method_name',$paymentMethod->getMethodname());
 
                 $statement->execute();
@@ -56,14 +56,11 @@
             }
         }
 
-        public function deletePaymentMethod(payments_method $paymentMethod) {
+        public function deletePaymentMethod($id) {
             try {
                 $query = "delete from payment_methods where id = ?";
                 $statement = $this->connection->prepare($query);
-
-                $id = $paymentMethod->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

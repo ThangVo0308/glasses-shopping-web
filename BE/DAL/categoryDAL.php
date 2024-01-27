@@ -25,7 +25,7 @@
             try{
                 $query = "insert into categories (name) 
                          values (:name)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':name',$categories->getName());
                 $statement->execute();
                 return true;
@@ -55,14 +55,12 @@
             }
         }
 
-        public function deleteCategory(categories $categories) {
+        public function deleteCategory($id) {
             try {
                 $query = "delete from categories where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $categories->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

@@ -1,5 +1,5 @@
 <?php
-    require('./database.php');
+    require("..\BE\DAL\database.php");
     class ProductDAL {
         private $connection;
 
@@ -10,7 +10,7 @@
 
         public function getAllProducts() {
             try {
-                $query = "select * from product";
+                $query = "select * from products";
                 $statement = $this->connection->query($query);
                 $statement->execute();
                 $listProduct = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -23,9 +23,9 @@
 
         public function addProduct(Product $product) {
             try{
-                $query = "insert into product (name,category_id,image,gender,price,description,status) 
+                $query = "insert into products (name,category_id,image,gender,price,description,status) 
                          values (:name,:category_id,:image,:gender,:price,:description,:status)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':name',$product->getName());
                 $statement->bindParam(':category_id',$product->getCaterogyID());
                 $statement->bindParam(':image',$product->getImage());
@@ -43,7 +43,7 @@
 
         public function updateProduct(Product $product) {
             try {
-                $query = "update product set name=?, category_id = ?, image=?, gender=?, price=?, description=?, status=? where id=?";
+                $query = "update products set name=?, category_id = ?, image=?, gender=?, price=?, description=?, status=? where id=?";
                 $statement = $this->connection->prepare($query);
 
                 $name = $product->getName();
@@ -72,14 +72,12 @@
             }
         }
 
-        public function deleteProduct(Product $product) {
+        public function deleteProduct($id) {
             try {
                 $query = "update products set status = 'banned' where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $product->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

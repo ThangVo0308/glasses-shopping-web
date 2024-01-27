@@ -25,7 +25,7 @@
             try{
                 $query = "insert into import_items (import_id,product_id,quantity,price) 
                          values (:import_id,:product_id,:quantity,:price)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':import_id',$importItem->getImportid());
                 $statement->bindParam(':product_id',$importItem->getProductid());
                 $statement->bindParam(':quantity',$importItem->getQuantity());
@@ -63,14 +63,12 @@
             }
         }
 
-        public function deleteImportItem(imports_item $importItem) {
+        public function deleteImportItem($id) {
             try {
                 $query = "delete from import_items where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $importItem->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

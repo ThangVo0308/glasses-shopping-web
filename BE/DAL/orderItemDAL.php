@@ -25,7 +25,7 @@
             try{
                 $query = "insert into order_items (order_id,product_id,quantity,price) 
                          values (:order_id,:product_id,:quantity,:price)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':order_id',$orderItem->getOrderid());
                 $statement->bindParam(':product_id',$orderItem->getProductid());
                 $statement->bindParam(':quantity',$orderItem->getQuantity());
@@ -65,14 +65,12 @@
             }
         }
 
-        public function deleteOrderItem(order_items $orderItems) {
+        public function deleteOrderItem($id) {
             try {
                 $query = "delete from order_items where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $orderItems->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

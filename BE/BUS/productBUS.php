@@ -1,31 +1,41 @@
 <?php
-    require_once ('./BE/DAL/productDAL.php');
+    require("..\BE\DAL\productDAL.php");
     class productBUS {
         private $productList = array();
         private $productDAL;
 
-        public function __construct($productDAL) {
-            $this->productDAL = new productDAL();
+        public function __construct() {
+            $this->productDAL = new ProductDAL();
+            $this->productList = array_merge($this->productList, $this->productDAL->getAllProducts());
         }
-
+        
         public function getAllProduct() {
-            return $this->productDAL->getAllProducts();
+            return $this->productList;
         }
 
         public function refreshData() {
-            $this->productList = $this->productDAL->getAllProducts();
+            $this->productDAL = new ProductDAL();
+            $this->productList = array_merge($this->productList, $this->productDAL->getAllProducts());
         }
 
         public function getProductById($id) {
-            $this->refreshData();
-            foreach($this->productList as $product) {
-                if($product->getId() == $id) {
-                    return $id;
+            foreach ($this->productList as $product) {
+                if ($product['id'] == $id) {
+                    return $product;
                 }
             } 
             return null;
         }
+        
 
+        public function getMax() {
+            $max = 0;
+            foreach ($this->productList as $product) {
+                $max++;
+            }
+        
+            return $max + 1;
+        }
 
         public function addProduct(product $product) {
             if(empty($product->getName() || $product->getName() === null) 
@@ -37,8 +47,14 @@
             ){
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
+
             $newProduct = $this->productDAL->addProduct($product);
-            return $newProduct;
+
+            if($newProduct) {
+                $this->productList[] = $product;
+                return true;
+            }
+            return false;
         }
 
         public function updateProduct(product $product) {
@@ -56,11 +72,11 @@
         public function deleteProduct($id) {
             $product = $this->getProductById($id);
 
-            $check = $this->productDAL->deleteProduct($product);
+            $check = $this->productDAL->deleteProduct($product['id']);
 
             if($check) {
-                $result = array_search($product,$this->productList,true);
-                unset($this->productList[$result]);
+                $productId = $product['id'];
+                unset($this->productList[$productId]);
             }else {
                 throw new InvalidArgumentException('Invalid product');
             }
@@ -74,22 +90,27 @@
                         if(intval($value) === $product->getID()) {
                             return true;
                         }
+                        break;
                     case 'name':
                         if($value === $product->getName()) {
                             return true;
                         }
+                        break;
                     case 'category_id':
                         if(intval($value) === $product->getCaterogyID()) {
                             return true;
                         }
+                        break;
                     case 'price':
                         if(doubleval($value) === $product->getPrice()) {
                             return true;
                         }
+                        break;
                     default: 
                     if($this->checkAllColumns($product,$value)) {
                         return true;
                     }
+                    break;
                 }
             }
             return false;
@@ -97,9 +118,9 @@
 
         public function checkAllColumns(product $product,$value) {
             return (
-                $product->getId() == intval($value) ||
-                $product->getCaterogyID() == intval($value) ||
-                doubleval($product->getPrice()) == doubleval($value) ||
+                $product->getId() === intval($value) ||
+                $product->getCaterogyID() === intval($value) ||
+                doubleval($product->getPrice()) === doubleval($value) ||
                 stripos($product->getName(), $value) !== false // $ strtolower($product->getname)
             );
         }

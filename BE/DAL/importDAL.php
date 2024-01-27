@@ -25,7 +25,7 @@
             try{
                 $query = "insert into imports (user_id,import_date,total_price) 
                          values (:user_id,:import_date,:total_price)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':user_id',$import->getUserID());
                 $statement->bindParam(':import_date',$import->getImportdate());
                 $statement->bindParam(':total_price',$import->getPrice());
@@ -62,14 +62,13 @@
             }
         }
 
-        public function deleteImport(imports $import) {
+        public function deleteImport($id) {
             try {
                 $query = "delete from imports where id = ?";
                 $statement = $this->connection->prepare($query);
 
-                $id = $import->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
+                
                 $statement->execute();
 
                 return true;

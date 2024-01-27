@@ -25,7 +25,7 @@
             try{
                 $query = "insert into payments (order_id,method_id,payment_date,total_price) 
                          values (:order_id,:method_id,:payment_date,:total_price)";
-                $statement = $this->connection->query($query);
+                $statement = $this->connection->prepare($query);
                 $statement->bindParam(':order_id',$payment->getOrderid());
                 $statement->bindParam(':method_id',$payment->getMethodid());
                 $statement->bindParam(':payment_date',$payment->getPaymentdate());
@@ -63,14 +63,11 @@
             }
         }
 
-        public function deletePayment(payments $payment) {
+        public function deletePayment($id) {
             try {
                 $query = "delete from payments where id = ?";
                 $statement = $this->connection->prepare($query);
-
-                $id = $payment->getID();
-
-                $statement->bindParam(1,$id);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;
