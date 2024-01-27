@@ -4,16 +4,18 @@
         private $categoryList = array();
         private $categoryDAL;
 
-        public function __construct($categoryDAL) {
+        public function __construct() {
             $this->categoryDAL = new CategoryDAL();
+            $this->categoryList = array_merge($this->categoryList,$this->categoryDAL->getAllCategory());
         }
 
         public function getAllCategory() {
-            return $this->categoryDAL->getAllCategory();
+            return $this->categoryList;
         }
 
         public function refreshData() {
-            $this->categoryList = $this->categoryDAL->getAllCategory();
+            $this->categoryDAL = new CategoryDAL();
+            $this->categoryList = array_merge($this->categoryList,$this->categoryDAL->getAllCategory());
         }
 
         public function getCategoryById($id) {

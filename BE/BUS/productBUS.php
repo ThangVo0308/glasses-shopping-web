@@ -72,7 +72,7 @@
         public function deleteProduct($id) {
             $product = $this->getProductById($id);
 
-            $check = $this->productDAL->deleteProduct($product['id']);
+            $check = $this->productDAL->deleteProduct($product['']);
 
             if($check) {
                 $productId = $product['id'];

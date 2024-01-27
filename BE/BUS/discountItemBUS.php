@@ -4,16 +4,18 @@
         private $discountItemList = array();
         private $discountItemDAL;
 
-        public function __construct($discountItemDAL) {
+        public function __construct() {
             $this->discountItemDAL = new discountItemDAL();
+            $this->discountItemList = array_merge($this->discountItemList,$this->discountItemDAL->getAllDiscountItem());
         }
 
         public function getAlldiscountItem() {
-            return $this->discountItemDAL->getAlldiscountItem();
+            return $this->discountItemList;
         }
 
         public function refreshData() {
-            $this->discountItemList = $this->discountItemDAL->getAlldiscountItem();
+            $this->discountItemDAL = new discountItemDAL();
+            $this->discountItemList = array_merge($this->discountItemList,$this->discountItemDAL->getAllDiscountItem());
         }
 
         public function getdiscountItemById($id) {
