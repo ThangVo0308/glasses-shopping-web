@@ -8,82 +8,16 @@
     overflow: hidden;
 }
 
-
-#header {
-    width: "100%";
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
-    background-color: white;
-}
-#header.fixed {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #ffffff; 
-}
-
-.logo{
-    display: flex;
-    align-items: center;
-}
-.logo h2{
-    color: black;
-}
-#header .navigation{
-    display: flex;
-    background-color: white;
-    
-}
-#header .navigation a{
-    margin-left: 15px;
-    font-size: 18px;
-    cursor: pointer; 
-    padding: 5px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 20px;
-    color: black;
-}
-#header .hover:hover {
-    background-color: #e6f3ff;
-}
-#header .navigation div {
-    visibility:collapse;
-    display: flex;
-    margin-right: 18px;
-    align-items: center;
-}
-#header .navigation div img{
-    margin-right: 10px;
-    height: 20px;
-}
-#header .navigation input {
-    border-color: #2c85da;
-}
-#header .navigation input :focus{
-    border-color: #2c85da;
-}
-#header .navigation img {
-    margin-right: 20px;
-    height: 25px;
-    cursor: pointer;
-}
-
 #poster {
     display: flex;
-    width: 98%;
+    width: 96%;
     justify-content: space-between;
-    padding: 1%;
-    background-color: #ebfafa;
+    padding: 2%;
+    background-color: #eeeded;
 }
 
 #poster img {
-    width: 85%;
+    width: 83%;
     height: 480px;
     border-radius: 10px;
 }
@@ -94,7 +28,7 @@
 }
 #poster .images img {
     height: 150px;
-    width: 180px;
+    width: 220px;
     cursor: pointer;
 }
 #topic {
@@ -155,7 +89,7 @@
     width: 300px; 
     align-items: center;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   }
 
 #signature {
@@ -165,8 +99,6 @@
     width: 100%;
     align-self: center;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 #signature div{ 
     flex-direction: row;

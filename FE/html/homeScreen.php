@@ -10,34 +10,12 @@
 
 <body>
     <div id="homeScreen">
-        <div id="header" class="fixed" >
-            <div class="logo">
-                <img src="../../images/logo.png" alt="" style="width:100px; height:100px">
-                <h2>PreVision</h2>
-            </div>
-            <div class="navigation">
-                <a class="hover" href="">Trang Chủ</a>
-                <a class="hover" href="">Sản Phẩm</a>
-                <a class="hover" href="">Về Chúng Tôi</a>
-                <a class="hover" href="">Liên Hệ</a>
-            </div>
-            <div class="navigation">
-                <div class="searchInput">
-                    <img src="../../icons/setting.png" alt="">
-                    <input type="text">
-                </div>
-                <img src="../../icons/search.png" onclick="changeInput()" alt="">
-                <img src="../../icons/user.png" alt="">
-                <img src="../../icons/cart.png" alt="">
-            </div>
-        </div>
-
         <div id="poster">
             <img src="../../images/poster1.png" alt="" class="image-main">
             <div class="images">
-                <img src="../../images/logo.png" alt="" onclick="changeImage(this)">
+                <img src="../../images/poster2.png" alt="" onclick="changeImage(this)">
                 <img src="../../images/poster1.png" alt="" onclick="changeImage(this)">
-                <img src="../../images/poster1.png" alt="" onclick="changeImage(this)">
+                <img src="../../images/poster3.png" alt="" onclick="changeImage(this)">
             </div>
         </div>
 
