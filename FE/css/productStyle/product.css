@@ -9,12 +9,17 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
-
+    cursor: pointer;
 }
 #product .image {
     width: 250px;
     height: 200px;
+    transition: transform 0.3s ease-in-out;
 }
+#product .image:hover {
+    transform: scale(1.1); /* Increased scale on hover */
+}
+
 #product .id {
     color: rgb(148, 148, 133);
     margin: 0;

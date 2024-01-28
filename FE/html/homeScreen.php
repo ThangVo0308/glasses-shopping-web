@@ -10,7 +10,7 @@
 
 <body>
     <div id="homeScreen">
-        <div id="header">
+        <div id="header" class="fixed" >
             <div class="logo">
                 <img src="../../images/logo.png" alt="" style="width:100px; height:100px">
                 <h2>PreVision</h2>
@@ -41,31 +41,37 @@
             </div>
         </div>
 
-        <div id="slider-container">
-            <div class="selected slider-item">
-                <div onclick="selectSlider(1)">Sản phẩm mới nhất</div>
+        <div id="topic" >
+            <div id="slider-container">
+                <div class="selected slider-item">
+                    <div onclick="selectSlider(1)">Sản phẩm mới nhất</div>
+                </div>
+                <div class="slider-item">
+                    <div onclick="selectSlider(2)">Sản phẩm bán chạy</div>
+                </div>
+                <div class="slider-item">
+                    <div onclick="selectSlider(3)">Sản phẩm cửa hàng khuyên dùng</div>
+                </div>
             </div>
-            <div class="slider-item">
-                <div onclick="selectSlider(2)">Sản phẩm bán chạy</div>
-            </div>
-            <div class="slider-item">
-                <div onclick="selectSlider(3)">Sản phẩm cửa hàng khuyên dùng</div>
-            </div>
+            <div id="product"></div>
         </div>
-        <div id="product"></div>
 
+        
         <div id="signature" >
-            <div class="item" >
-                <img src="../../icons/premium.gif" alt="">
-                <div>Hàng chính hãng, chất lượng cao</div>
-            </div>
-            <div class="item" >
-                <img src="../../icons/cart.gif" alt="">
-                <div>Miễn phí giao hàng với đơn 200k</div>
-            </div>
-            <div class="item" >
-                <img src="../../icons/change.gif" alt="">
-                <div>Đổi hàng 7 ngày, thủ tục đơn giản</div>
+            <h2>Hãy đến với chúng tôi</h2>
+            <div>
+                <div class="item" >
+                    <img src="../../icons/premium.gif" alt="">
+                    <div>Hàng chính hãng, chất lượng cao</div>
+                </div>
+                <div class="item" >
+                    <img src="../../icons/cart.gif" alt="">
+                    <div>Miễn phí giao hàng với đơn 200k</div>
+                </div>
+                <div class="item" >
+                    <img src="../../icons/change.gif" alt="">
+                    <div>Đổi hàng 7 ngày, thủ tục đơn giản</div>
+                </div>
             </div>
         </div>
     </div>

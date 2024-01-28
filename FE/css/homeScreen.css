@@ -5,6 +5,7 @@
 #homeScreen {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 
@@ -16,7 +17,16 @@
     align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0;
+    background-color: white;
 }
+#header.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #ffffff; 
+}
+
 .logo{
     display: flex;
     align-items: center;
@@ -26,6 +36,7 @@
 }
 #header .navigation{
     display: flex;
+    background-color: white;
     
 }
 #header .navigation a{
@@ -86,20 +97,25 @@
     width: 180px;
     cursor: pointer;
 }
+#topic {
+    background-color: white;
+}
 #slider-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-self: center;
+    justify-content: center;
+    align-items: center;
     width: 60%;
     margin-top: 30px;
     margin-bottom: 20px;
+    padding-left: 20%;
 }
 .slider-item {
     cursor: pointer;
     flex: 1;
     text-align: center;
     transition: all 0.3s ease-in-out;
+    background-color: white;
+    
 }
 
 .slider-item div {
@@ -120,10 +136,18 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px
+    margin-bottom: 50px;
+    background-color: white;
+}
+#product {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
 
-  }
-  
+#product.fade-in {
+    opacity: 1;
+}
+
 #product iframe {
     border: 1px solid #ddd;
     margin: 10px;
@@ -136,16 +160,25 @@
 
 #signature {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    padding-bottom: 20px;
     width: 100%;
     align-self: center;
-    background-color: #e6ffff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }
+#signature div{ 
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    color: #2c85da;
+}
+#signature h2 {
+    align-self: center;
+    color: #051d1d;
+}
+
 #signature .item {
     border: 1px black solid;
     padding: 15px;
@@ -153,6 +186,8 @@
     margin: 5px;
     border-radius: 10px;
     width: 250px;
+    flex-direction: column;
+
 }
 #signature img {
     height: 50px;
