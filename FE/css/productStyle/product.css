@@ -1,0 +1,41 @@
+* {
+    font-family: neuzeit-grotesk;
+}
+body {
+    overflow: hidden;
+}
+#product {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+
+}
+#product .image {
+    width: 250px;
+    height: 200px;
+}
+#product .id {
+    color: rgb(148, 148, 133);
+    margin: 0;
+    size: 14px;
+}
+#product .name {
+    color: black;
+    margin: 0;
+    font-size: 22px;
+
+}
+#product .price {
+    color: rgb(148, 148, 133);
+    size: 12px;
+}
+.icon {
+    position: absolute;
+    top: 5px; 
+    right: 5px;
+    font-size: 24px; 
+    color: #555;
+    height: 50px;
+    width: 50px;
+}

@@ -1,5 +1,6 @@
-body {
-    overflow: hidden;
+* {
+    font-family: neuzeit-grotesk;
+    margin: 0;
 }
 #homeScreen {
     display: flex;
@@ -13,14 +14,15 @@ body {
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
-    border-bottom: 1px black solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
 }
 .logo{
     display: flex;
     align-items: center;
 }
 .logo h2{
-    color: #009999;
+    color: black;
 }
 #header .navigation{
     display: flex;
@@ -32,6 +34,9 @@ body {
     cursor: pointer; 
     padding: 5px;
     border-radius: 4px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
 }
 #header .hover:hover {
     background-color: #e6f3ff;
@@ -58,7 +63,102 @@ body {
     cursor: pointer;
 }
 
-#poster div {
+#poster {
     display: flex;
-    height: 60%;
+    width: 98%;
+    justify-content: space-between;
+    padding: 1%;
+    background-color: #ebfafa;
 }
+
+#poster img {
+    width: 85%;
+    height: 480px;
+    border-radius: 10px;
+}
+#poster .images {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#poster .images img {
+    height: 150px;
+    width: 180px;
+    cursor: pointer;
+}
+#slider-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+    width: 60%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.slider-item {
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.slider-item div {
+    font-size: 19px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.selected div {
+    border-bottom-color: red;
+}
+
+#product {
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px
+
+  }
+  
+#product iframe {
+    border: 1px solid #ddd;
+    margin: 10px;
+    height: 350px;
+    width: 300px; 
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+#signature {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    align-self: center;
+    background-color: #e6ffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+#signature .item {
+    border: 1px black solid;
+    padding: 15px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 10px;
+    width: 250px;
+}
+#signature img {
+    height: 50px;
+    width: 50px;
+}
+#signature div {
+    font-size: 17px;
+}
+  
