@@ -87,38 +87,59 @@
             }
         }
 
-        public function searchProduct($condition,$columnName) {
-           try {
-            $productList = array();
-
-            if($condition == null || strlen($columnName) == 0) {
-                $query = "select * from products where concat(id, name, category_id, image, gender, price, description, status) like ?";
-            }else if(strlen($columnName) == 1) {
-                $column = $columnName[0]; // selected column
-                $query = "select * from products where ".$column.+" like ?";
-            }else {
-                $columns = implode(",",$columnName);
-                $query = "select id, name, category_id, image, gender, price, description, status from products where ".$columns." like ?";
-            }
-
-            $statement = $this->connection->prepare($query);
-            if($condition != null) {
-                $searchCondition = "%".$condition."%";
-                $statement->bindColumn(1,$searchCondition);
-            }
-
-            $statement->execute();
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            foreach($result as $product) {
-                $productList[] = $product;
-            }
-            return $productList;
-           }catch(PDOException $e) {
-                echo "Search failed".$e->getMessage();
-                return array();
-           }
+        public function createProductFromRow($row) {
+            $product = new product();
+            $product->setId($row['id']);
+            $product->setName($row['name']);
+            $product->setCategoryId($row['category_id']);
+            $product->setCategoryId($row['image']);
+            $product->setCategoryId($row['gender']);
+            $product->setCategoryId($row['price']);
+            $product->setCategoryId($row['description']);
+            $product->setCategoryId($row['status']);
+    
+            return $product;
         }
 
+        public function searchProduct($condition, $columnName) {
+    try {
+        $productList = array();
+
+        if ($columnName == null || strlen($columnName) == 0) {
+            $query = "SELECT * FROM products WHERE CONCAT(id, name, category_id, image, gender, price, description, status) LIKE ?";
+        } else if (strlen($columnName) == 1) {
+            $column = $columnName[0]; // selected column
+            $query = "SELECT * FROM products WHERE " . $column . " LIKE ?";
+        } else {
+            if (!is_array($columnName)) {
+                $columnName = array($columnName);
+            }
+
+            $columns = implode(",", $columnName);
+            $query = "SELECT id, name, category_id, image, gender, price, description, status FROM products WHERE CONCAT(" . $columns . ") LIKE ?";
+        }
+
+        $statement = $this->connection->prepare($query);
+        if ($condition != null) {
+            $searchCondition = "%" . $condition . "%";
+            $statement->bindParam(1, $searchCondition);
+        }
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $product) {
+            $product1 = $this->createProductFromRow($product);
+            $productList[] = $product1;
+        }
+        return $productList;
+    } catch (PDOException $e) {
+        echo "Search failed" . $e->getMessage();
+        return array();
+    }
+}
+
+        
+        
     }    
 
 

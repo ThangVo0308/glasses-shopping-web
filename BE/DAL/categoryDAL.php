@@ -81,7 +81,7 @@
                 $query = "select * from categories where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, name from categories where ".$columns." like ?";
+                $query = "select id, name from categories where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

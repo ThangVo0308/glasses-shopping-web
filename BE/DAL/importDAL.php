@@ -89,7 +89,7 @@
                 $query = "select * from imports where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, user_id, import_date, total_price from imports where ".$columns." like ?";
+                $query = "select id, user_id, import_date, total_price from imports where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

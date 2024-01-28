@@ -89,7 +89,7 @@
                 $query = "select * from discounts where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, name, discount_percent, start_day, end_day from discounts where ".$columns." like ?";
+                $query = "select id, name, discount_percent, start_day, end_day from discounts where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

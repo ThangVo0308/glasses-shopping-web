@@ -81,7 +81,7 @@
                 $query = "select * from roles where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, name from roles where ".$columns." like ?";
+                $query = "select id, name from roles where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

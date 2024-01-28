@@ -81,7 +81,7 @@
                 $query = "select * from payment_methods where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, method_name from payment_methods where ".$columns." like ?";
+                $query = "select id, method_name from payment_methods where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

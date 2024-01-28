@@ -85,7 +85,7 @@
                 $query = "select * from discount_items where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, category_id, discount_id from discount_items where ".$columns." like ?";
+                $query = "select id, category_id, discount_id from discount_items where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

@@ -91,7 +91,7 @@
                 $query = "select * from order_items where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, order_id, product_id, quantity, price from order_items where ".$columns." like ?";
+                $query = "select id, order_id, product_id, quantity, price from order_items where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

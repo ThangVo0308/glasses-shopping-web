@@ -76,7 +76,7 @@
                         }
                         break;
                     case 'name':
-                        if($value === $category->getName()) {
+                        if(stripos($category->getName(), $value) !== false) {
                             return true;
                         }
                         break;
@@ -99,7 +99,9 @@
 
         public function searchCategory($value,$column) {
             $result = array();
-            $listCategory = $this->categoryDAL->searchCategory($value,$column);
+            $columnString = implode(",", $column);
+
+            $listCategory = $this->categoryDAL->searchCategory($value,$columnString);
             foreach($listCategory as $category) {
                 if($this->filter($category,$value,$column)) {
                     $result[] = $category;

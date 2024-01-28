@@ -1,5 +1,6 @@
 <?php
-    require("..\BE\DAL\productDAL.php");
+    // require("..\BE\DAL\productDAL.php");
+    require_once ("..\BE\DAL\productDAL.php");
     class productBUS {
         private $productList = array();
         private $productDAL;
@@ -92,7 +93,7 @@
                         }
                         break;
                     case 'name':
-                        if($value === $product->getName()) {
+                        if (stripos($product->getName(), $value) !== false) {
                             return true;
                         }
                         break;
@@ -127,7 +128,9 @@
 
         public function searchProduct($value,$column) {
             $results = array();
-            $listProduct = $this->productDAL->searchProduct($value,$column);
+            $columnString = implode(",", $column);
+
+            $listProduct = $this->productDAL->searchProduct($value,$columnString);
             foreach($listProduct as $product) {
                 if($this->filter($product,$value,$column)) {
                     $results[] = $product;
@@ -138,12 +141,6 @@
             }
             return $results;
         }
-
-
-
-
-
-
 
     }
 ?>

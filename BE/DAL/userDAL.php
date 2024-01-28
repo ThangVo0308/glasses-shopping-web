@@ -107,7 +107,7 @@
                 $query = "select * from users where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, username, password, email, name, phone, gender, image, role_id, address, status from users where ".$columns." like ?";
+                $query = "select id, username, password, email, name, phone, gender, image, role_id, address, status from users where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

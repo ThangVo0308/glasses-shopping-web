@@ -81,7 +81,7 @@
                         }
                         break;
                     case 'name':
-                        if($value === $discount->getName()) {
+                        if(stripos($discount->getName(), $value) !== false) {
                             return true;
                         }
                         break;
@@ -116,7 +116,9 @@
 
         public function searchDiscount($value,$column) {
             $result = array();
-            $listdiscount = $this->discountDAL->searchdiscount($value,$column);
+            $columnString = implode(",", $column);
+
+            $listdiscount = $this->discountDAL->searchdiscount($value,$columnString);
             foreach($listdiscount as $discount) {
                 if($this->filter($discount,$value,$column)) {
                     $result[] = $discount;

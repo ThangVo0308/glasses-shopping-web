@@ -89,7 +89,7 @@
                 $query = "select * from import_items where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, import_id, product_id, quantity, price from import_items where ".$columns." like ?";
+                $query = "select id, import_id, product_id, quantity, price from import_items where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);

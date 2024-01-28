@@ -108,7 +108,8 @@
 
         public function searchdiscountItem($value,$column) {
             $result = array();
-            $listdiscountItem = $this->discountItemDAL->searchdiscountItem($value,$column);
+            $columnString = implode(",", $column);
+            $listdiscountItem = $this->discountItemDAL->searchdiscountItem($value,$columnString);
             foreach($listdiscountItem as $discountItem) {
                 if($this->filter($discountItem,$value,$column)) {
                     $result[] = $discountItem;

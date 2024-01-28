@@ -88,7 +88,7 @@
                 $query = "select * from points where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, user_id, transaction_date, points_earned, points_used from points where ".$columns." like ?";
+                $query = "select id, user_id, transaction_date, points_earned, points_used from points where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);
