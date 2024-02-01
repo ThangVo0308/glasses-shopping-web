@@ -20,7 +20,7 @@
         function getOrderdate() { 
              return $this->order_date; 
         } 
-    
+     
         function getTotalprice() { 
              return $this->total_price; 
         } 

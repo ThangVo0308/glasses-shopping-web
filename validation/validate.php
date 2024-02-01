@@ -10,7 +10,7 @@ class Validate {
         $regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).+$";
         return $this->isMatch($password, $regex);
     }
-
+ 
     public function isValidPhoneNumber($number) {
         $regex = "(84|0[3|5|7|8|9])+([0-9]{8})";
         return $this->isMatch($number, $regex);
