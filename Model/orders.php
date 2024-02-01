@@ -1,11 +1,11 @@
 <?php
     class orders{
-        private $id,$user_id,$oder_date,$total_price,$status;
+        private $id,$user_id,$order_date,$total_price,$status;
         
-        public function __constructor($id,$user_id,$oder_date,$total_price,$status) { 
+        public function __constructor($id,$user_id,$order_date,$total_price,$status) { 
             $this->id = $id; 
             $this->user_id = $user_id; 
-            $this->oder_date = $oder_date; 
+            $this->order_date = $order_date; 
             $this->total_price = $total_price; 
             $this->status = $status; 
         }
@@ -17,8 +17,8 @@
              return $this->user_id; 
         } 
     
-        function getOderdate() { 
-             return $this->oder_date; 
+        function getOrderdate() { 
+             return $this->order_date; 
         } 
     
         function getTotalprice() { 
@@ -37,8 +37,8 @@
             $this->user_id = $userid; 
         } 
     
-        function setOderdate($oderdate) {  
-            $this->oder_date = $oderdate; 
+        function setOrderdate($orderdate) {  
+            $this->order_date = $orderdate; 
         } 
     
         function setTotalprice($totalprice) {  

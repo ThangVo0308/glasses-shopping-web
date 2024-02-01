@@ -1,6 +1,6 @@
 <?php
     require('./database.php');
-    class ImImport {
+    class importDAL {
         private $connection;
 
         public function __construct() {
