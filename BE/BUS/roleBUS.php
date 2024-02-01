@@ -39,7 +39,7 @@
         } 
 
         public function addRole(roles $role) {
-            if(empty($role->getName() || $role->getName() == null)
+            if(empty($role->getName() || $role->getName() == null) 
             ){
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }

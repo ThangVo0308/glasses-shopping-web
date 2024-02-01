@@ -223,7 +223,7 @@
                 }
             }
             if(count($results) <= 0) {
-                throw new InvalidArgumentException('No user found!!');
+                throw new InvalidArgumentException('No user found!!');  
             }
             return $results;
         }

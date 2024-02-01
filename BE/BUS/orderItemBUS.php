@@ -120,7 +120,7 @@
             return false;
         }
 
-        public function checkAllColumns(order_items $orderItem,$value) {
+        public function checkAllColumns(order_items $orderItem,$value) { 
             return (
                 $orderItem->getId() === intval($value) ||
                 $orderItem->getOrderid() === intval($value) ||

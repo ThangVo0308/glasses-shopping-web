@@ -119,7 +119,7 @@
                 $order->getId() === intval($value) ||
                 $order->getUserid() === intval($value) ||
                 $order->getOrderdate() === strtotime($value) ||
-                doubleval($order->getTotalprice()) === doubleval($value) 
+                doubleval($order->getTotalprice()) === doubleval($value)  
             );
         }
 

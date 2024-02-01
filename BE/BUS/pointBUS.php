@@ -141,7 +141,7 @@
                 } 
             }
             if(count($results) <= 0) {
-                throw new InvalidArgumentException('No point found!!');
+                throw new InvalidArgumentException('No point found!!'); 
             }
             return $results;
         }

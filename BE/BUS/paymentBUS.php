@@ -120,7 +120,7 @@
             return false;
         }
 
-        public function checkAllColumns(payments $payment,$value) {
+        public function checkAllColumns(payments $payment,$value) { 
             return (
                 $payment->getId() === intval($value) ||
                 $payment->getOrderid() === intval($value) ||
