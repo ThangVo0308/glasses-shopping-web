@@ -36,7 +36,7 @@
             }
         
             return $max + 1;
-        }
+        } 
 
         public function addRole(roles $role) {
             if(empty($role->getName() || $role->getName() == null)

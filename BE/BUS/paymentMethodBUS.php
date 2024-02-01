@@ -116,7 +116,7 @@
             foreach($listpaymentMethod as $paymentMethod) {
                 if($this->filter($paymentMethod,$value,$column)) {
                     $results[] = $paymentMethod;
-                }
+                } 
             }
             if(count($results) <= 0) {
                 throw new InvalidArgumentException('No paymentMethod found!!');

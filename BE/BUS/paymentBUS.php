@@ -126,7 +126,7 @@
                 $payment->getOrderid() === intval($value) ||
                 $payment->getMethodid() === intval($value) ||
                 $payment->getPaymentdate() === strtotime($value) ||
-                doubleval($payment->getPrice()) === doubleval($value)
+                doubleval($payment->getPrice()) === doubleval($value) 
             );
         }
 

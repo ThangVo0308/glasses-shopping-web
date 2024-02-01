@@ -120,7 +120,7 @@
                 $import->getId() === intval($value) ||
                 $import->getUserid() === intval($value) ||
                 $import->getImportdate() === strtotime($value) ||
-                doubleval($import->getPrice()) === doubleval($value)
+                doubleval($import->getPrice()) === doubleval($value) 
             );
         }
 

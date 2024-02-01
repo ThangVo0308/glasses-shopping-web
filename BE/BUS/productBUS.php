@@ -24,7 +24,7 @@
                 if ($product['id'] == $id) {
                     return $product;
                 }
-            } 
+            }  
             return null;
         }
         

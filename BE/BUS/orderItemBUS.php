@@ -125,7 +125,7 @@
                 $orderItem->getId() === intval($value) ||
                 $orderItem->getOrderid() === intval($value) ||
                 $orderItem->getProductid() === intval($value) || 
-                $orderItem->getQuantity() === intval($value) ||
+                $orderItem->getQuantity() === intval($value) || 
                 doubleval($orderItem->getPrice()) === doubleval($value)
             );
         }

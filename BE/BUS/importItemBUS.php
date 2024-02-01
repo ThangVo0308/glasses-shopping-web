@@ -126,7 +126,7 @@
                 $importItem->getImportid() === intval($value) ||
                 $importItem->getProductid() === intval($value) ||
                 $importItem->getQuantity() === intval($value) ||
-                doubleval($importItem->getPrice()) === doubleval($value)
+                doubleval($importItem->getPrice()) === doubleval($value) 
             );
         }
 

@@ -138,7 +138,7 @@
             foreach($listpoint as $point) {
                 if($this->filter($point,$value,$column)) {
                     $results[] = $point;
-                }
+                } 
             }
             if(count($results) <= 0) {
                 throw new InvalidArgumentException('No point found!!');
