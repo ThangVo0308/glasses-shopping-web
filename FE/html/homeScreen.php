@@ -52,6 +52,30 @@
                 </div>
             </div>
         </div>
+
+        <div id="service-intro" >
+            <div>
+                <h2>Dịch vụ của PreVision</h2>
+                <div>
+                    Tròng kính phi cầu dạng mỏng Phụ phí 0đ <br>
+                    Hoàn thành và giao kính tận tay quý khách trong vòng 20 phút <br>
+                    Giá thay tròng kính siêu ưu đãi, dù là gọng kính của PreVision hay của công ty khác <br>
+                </div>
+            </div>
+            <img src="../../images/glassIntro.png" alt="">
+        </div>
+
+        <div id="contact" >
+            <h2>Liên hệ</h2>
+            <div>
+                Hãy cho chúng tôi thông tin của bạn <br>
+                Để nhận được tư vấn và ưu đãi của chúng tôi
+            </div>
+            <div>
+                <input type="email" id="emailValue" >
+                <input type="submit" name="" value="Gửi" id="emailBtn">
+            </div>
+        </div>
     </div>
 </body>
 

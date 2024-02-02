@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PreVision Shop</title>
     <link rel="stylesheet" href="index.css">
+    <script>
+        function changeFrameProducts() {
+            var iframe = document.querySelector('iframe');
+            iframe.src = '../FE/html/product/products.php';
+        }
+        function changeFrameHomeScreeen() {
+            var iframe = document.querySelector('iframe');
+            iframe.src = '../FE/html/homeScreen.php';
+        }
+    </script>
 </head>
 
 <body>
@@ -15,8 +25,8 @@
             <h2>PreVision</h2>
         </div>
         <div class="navigation">
-            <a class="hover" href="">Trang Chủ</a>
-            <a class="hover" href="">Sản Phẩm</a>
+            <a class="hover" href="#" onclick="changeFrameHomeScreeen()">Trang Chủ</a>
+            <a class="hover" href="#" onclick="changeFrameProducts()">Sản Phẩm</a>
             <a class="hover" href="">Về Chúng Tôi</a>
             <a class="hover" href="">Liên Hệ</a>
         </div>

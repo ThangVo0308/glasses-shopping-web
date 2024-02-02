@@ -16,7 +16,7 @@
     background-color: #eeeded;
 }
 
-#poster img {
+#poster .image-main {
     width: 83%;
     height: 480px;
     border-radius: 10px;
@@ -31,6 +31,7 @@
     width: 220px;
     cursor: pointer;
 }
+
 #topic {
     background-color: white;
 }
@@ -108,7 +109,7 @@
 }
 #signature h2 {
     align-self: center;
-    color: #051d1d;
+    color: white;
 }
 
 #signature .item {
@@ -128,4 +129,64 @@
 #signature div {
     font-size: 17px;
 }
+#service-intro {
+    background-color:#eeeded;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+#service-intro h2 {
+    font-size: 32px;
+    font-family: cursive;
+    margin-bottom: 5px;
+}
+#service-intro div {
+    font-size: 22px;
+}
+#service-intro img {
+    height: 350px;
+    width: 400px;
+}
+#service-intro.fade-in {
+    opacity: 1;
+}
+
+#contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 15px;
+}
+#contact h2 {
+    font-size: 32px;
+
+}
+#contact div {
+    font-size: 22px;
+    text-align: center;
+    padding: 5px;
+
+}
+#contact input {
+    height: 40px;
+    width: 43px;
+    border-radius: 7px;
+    border-width: 0px;
+    font-size: 20px;
+}
+#contact  #emailBtn {
+    background-color: black;
+    color: white;
+}
+#contact  #emailValue{
+    height: 38px;
+    width: 350px;
+}
+
   

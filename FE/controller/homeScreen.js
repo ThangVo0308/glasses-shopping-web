@@ -50,50 +50,8 @@ function createProductFrames() {
         productContainer.appendChild(iframe);
     });
 }
-document.addEventListener('scroll', function () {
-    //giữ header
-    var header = document.getElementById('header');
-    var scrollTop = window.scrollY;
-
-    var threshold = 100;
-
-    if (scrollTop > threshold) {
-        header.classList.add('fixed');
-    } else {
-        header.classList.remove('fixed');
-    }
-
-    //tạo fade-in fade-out product
-    var productContainer = document.getElementById('product');
-    var windowHeight = window.innerHeight;
-    var productTop = productContainer.getBoundingClientRect().top;
-
-    // Điều chỉnh ngưỡng dựa trên sở thích của bạn
-    var threshold = 0.5;
-
-    if (productTop < windowHeight * threshold) {
-        productContainer.classList.add('fade-in');
-    }
-});
-
-document.addEventListener('scroll', function () {
-    var header = document.getElementById('header');
-    var scrollTop = window.scrollY;
-
-    // Đặt ngưỡng tùy thuộc vào sở thích của bạn
-    var threshold = 100;
-
-    if (scrollTop > threshold) {
-        header.classList.add('fixed');
-    } else {
-        header.classList.remove('fixed');
-    }
-});
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Đoạn mã hiện có của bạn ở đây
 
     // Thêm event listener scroll ở đây
     document.addEventListener('scroll', function () {
@@ -102,13 +60,20 @@ document.addEventListener('DOMContentLoaded', function () {
         var productTop = productContainer.getBoundingClientRect().top;
 
         // Điều chỉnh ngưỡng dựa trên sở thích của bạn
-        var threshold = 0.5;
+        var threshold = 0.8;
 
         if (productTop < windowHeight * threshold) {
             productContainer.classList.add('fade-in');
         }
-    });
 
+        var serviceContainer = document.getElementById('service-intro');
+        var serviceTop = serviceContainer.getBoundingClientRect().top;
+
+        if (serviceTop < windowHeight * threshold) {
+            serviceContainer.classList.add('fade-in');
+        }
+
+    });
     // Khởi tạo các khung sản phẩm
     createProductFrames();
 });
