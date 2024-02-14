@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/homeScreen.css">
-    <script src="../controller/homeScreen.js"></script>
-</head>
-
-<body>
-    <div id="homeScreen">
+    <div id="main">
         <div id="poster">
             <img src="../../images/poster1.png" alt="" class="image-main">
             <div class="images">
@@ -77,6 +67,6 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    
+    <link rel="stylesheet" href="../css/homeScreen.css">
+    <script src="../controller/homeScreen.js"></script>

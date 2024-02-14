@@ -2,7 +2,7 @@
     font-family: neuzeit-grotesk;
     margin: 0;
 }
-#homeScreen {
+#main {
     display: flex;
     flex-direction: column;
     overflow: hidden;

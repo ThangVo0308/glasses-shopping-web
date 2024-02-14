@@ -5,7 +5,7 @@ var productList = [
 ];
 
 function changeInput() {
-    var inputElement = document.querySelector('.searchInput');
+    var inputElement = document.querySelector('.searchvalue');
     if (inputElement.style.visibility === "collapse") {
         inputElement.style.visibility = "visible";
     } else {
@@ -34,11 +34,8 @@ function selectSlider(number) {
 }
 function createProductFrames() {
     var productContainer = document.getElementById('product');
-
     productContainer.innerHTML = '';
-
     var i = 0;
-
     productList.forEach(function (product) {
         var iframe = document.createElement('iframe');
         iframe.src = '../../FE/html/product/product.php'; 
@@ -78,3 +75,4 @@ document.addEventListener('DOMContentLoaded', function () {
     createProductFrames();
 });
 
+  

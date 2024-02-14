@@ -32,6 +32,6 @@
 
             productContainer.innerHTML = productHTML;
         }
-    </script>
+</script>
 
 </html>
