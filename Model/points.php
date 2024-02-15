@@ -2,7 +2,7 @@
     class points{
         private $id, $user_id, $transaction_date, $points_earned, $points_used;
         
-       public function __constructor($id,$user_id,$transaction_date,$points_earned,$points_used) { 
+       public function __constructor($id = null,$user_id = null,$transaction_date = null,$points_earned = null,$points_used = null) { 
             $this->id = $id; 
             $this->user_id = $user_id; 
             $this->transaction_date = $transaction_date; 

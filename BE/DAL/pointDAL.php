@@ -3,10 +3,31 @@
     class PointDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createPointFromRow($row)
+    {
+        $point = new points();
+        $point->setId($row['id']);
+        $point->setUserid($row['user_id']);
+        $point->setTransactiondate($row['transaction_date']);
+        $point->setPointsearned($row['points_earned']);
+        $point->setPointsused($row['points_used']);
+
+        return $point;
+    }
 
         public function getAllPoint() {
             try {
@@ -100,7 +121,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $pointList[] = $product;
+                $product1 = $this->createPointFromRow($product);
+                $pointList[] = $product1;
             }
             return $pointList;
            }catch(PDOException $e) {

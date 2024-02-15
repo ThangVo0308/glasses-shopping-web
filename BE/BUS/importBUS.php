@@ -2,11 +2,18 @@
     require_once ("..\BE\DAL\importDAL.php");
     class importBUS {
         private $importList = array();
-        private $importDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->importList = new importDAL();
-            $this->importList = array_merge($this->importList, $this->importDAL->getAllImport());
+            $this->importList = array_merge($this->importList, importDAL::getInstance()->getAllImport());
         }
         
         public function getAllImport() {
@@ -14,8 +21,7 @@
         }
 
         public function refreshData() {
-            $this->importDAL = new importDAL();
-            $this->importList = array_merge($this->importList, $this->importDAL->getAllImport());
+            $this->importList = array_merge($this->importList, importDAL::getInstance()->getAllImport());
         }
 
         public function getImportById($id) {
@@ -45,7 +51,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newimport = $this->importDAL->addimport($import);
+            $newimport = importDAL::getInstance()->addimport($import);
 
             if($newimport) {
                 $this->importList[] = $import;
@@ -55,7 +61,7 @@
         }
 
         public function updateImport(imports $import) {
-            $result = $this->importDAL->updateImport($import);
+            $result = importDAL::getInstance()->updateImport($import);
             if($result) {
                 foreach($this->importList as $index => $item) {
                     if($item['id'] == $import->getId()) {
@@ -71,7 +77,7 @@
         public function deleteimport($id) {
             $import = $this->getimportById($id);
 
-            $check = $this->importDAL->deleteimport($import['id']);
+            $check = importDAL::getInstance()->deleteimport($import['id']);
 
             if($check) {
                 $importId = $import['id'];
@@ -128,7 +134,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listimport = $this->importDAL->searchimport($value,$columnString);
+            $listimport = importDAL::getInstance()->searchimport($value,$columnString);
             foreach($listimport as $import) {
                 if($this->filter($import,$value,$column)) {
                     $results[] = $import;

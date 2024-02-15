@@ -2,7 +2,7 @@
     class order_items{
         private $id,$order_id,$product_id,$quantity,$price;
         
-        public function __constructor($id,$order_id,$product_id,$quantity,$price) { 
+        public function __constructor($id = null,$order_id = null,$product_id = null,$quantity = null,$price = null) { 
             $this->id = $id; 
             $this->order_id = $order_id; 
             $this->product_id = $product_id; 

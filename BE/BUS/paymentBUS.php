@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\paymentDAL.php");
     class paymentBUS {
         private $paymentList = array();
-        private $paymentDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->paymentDAL = new paymentDAL();
-            $this->paymentList = array_merge($this->paymentList, $this->paymentDAL->getAllPayment());
+            $this->paymentList = array_merge($this->paymentList, paymentDAL::getInstance()->getAllPayment());
         }
         
         public function getAllpayment() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->paymentDAL = new paymentDAL();
-            $this->paymentList = array_merge($this->paymentList, $this->paymentDAL->getAllPayment());
+            $this->paymentList = array_merge($this->paymentList, paymentDAL::getInstance()->getAllPayment());
         }
 
         public function getPaymentById($id) {
@@ -47,7 +53,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newpayment = $this->paymentDAL->addPayment($payment);
+            $newpayment = paymentDAL::getInstance()->addPayment($payment);
 
             if($newpayment) {
                 $this->paymentList[] = $payment;
@@ -57,7 +63,7 @@
         }
 
         public function updatePayment(payments $payment) {
-            $result = $this->paymentDAL->updatePayment($payment);
+            $result = paymentDAL::getInstance()->updatePayment($payment);
             if($result) {
                 $index = array_search($payment,$this->paymentList,true);
                 if($index !== false) {
@@ -71,7 +77,7 @@
         public function deletePayment($id) {
             $payment = $this->getPaymentById($id);
 
-            $check = $this->paymentDAL->deletePayment($payment['id']);
+            $check = paymentDAL::getInstance()->deletePayment($payment['id']);
 
             if($check) {
                 $paymentId = $payment['id'];
@@ -134,7 +140,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listpayment = $this->paymentDAL->searchPayment($value,$columnString);
+            $listpayment = paymentDAL::getInstance()->searchPayment($value,$columnString);
             foreach($listpayment as $payment) {
                 if($this->filter($payment,$value,$column)) {
                     $results[] = $payment;

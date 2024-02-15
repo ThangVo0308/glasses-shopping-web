@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\orderItemDAL.php");
     class orderItemBUS {
         private $orderItemList = array();
-        private $orderItemDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->orderItemDAL = new orderItemDAL();
-            $this->orderItemList = array_merge($this->orderItemList, $this->orderItemDAL->getAllOrderItem());
+            $this->orderItemList = array_merge($this->orderItemList, orderItemDAL::getInstance()->getAllOrderItem());
         }
         
         public function getAllorderItem() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->orderItemDAL = new orderItemDAL();
-            $this->orderItemList = array_merge($this->orderItemList, $this->orderItemDAL->getAllOrderItem());
+            $this->orderItemList = array_merge($this->orderItemList, orderItemDAL::getInstance()->getAllOrderItem());
         }
 
         public function getorderItemById($id) {
@@ -47,7 +53,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $neworderItem = $this->orderItemDAL->addOrderItem($orderItem);
+            $neworderItem = orderItemDAL::getInstance()->addOrderItem($orderItem);
 
             if($neworderItem) {
                 $this->orderItemList[] = $orderItem;
@@ -57,7 +63,7 @@
         }
 
         public function updateOrderItem(order_items $orderItem) {
-            $result = $this->orderItemDAL->updateOrderItem($orderItem);
+            $result = orderItemDAL::getInstance()->updateOrderItem($orderItem);
             if($result) {
                 $index = array_search($orderItem,$this->orderItemList,true);
                 if($index !== false) {
@@ -71,7 +77,7 @@
         public function deleteOrderItem($id) {
             $orderItem = $this->getorderItemById($id);
 
-            $check = $this->orderItemDAL->deleteOrderItem($orderItem['id']);
+            $check = orderItemDAL::getInstance()->deleteOrderItem($orderItem['id']);
 
             if($check) {
                 $orderItemId = $orderItem['id'];
@@ -134,7 +140,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listorderItem = $this->orderItemDAL->searchOrderItem($value,$columnString);
+            $listorderItem = orderItemDAL::getInstance()->searchOrderItem($value,$columnString);
             foreach($listorderItem as $orderItem) {
                 if($this->filter($orderItem,$value,$column)) {
                     $results[] = $orderItem;

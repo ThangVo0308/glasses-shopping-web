@@ -2,7 +2,7 @@
     class orders{
         private $id,$user_id,$order_date,$total_price,$status;
         
-        public function __constructor($id,$user_id,$order_date,$total_price,$status) { 
+        public function __constructor($id = null,$user_id = null,$order_date = null,$total_price = null,$status = null) { 
             $this->id = $id; 
             $this->user_id = $user_id; 
             $this->order_date = $order_date; 

@@ -3,10 +3,31 @@
     class OrderItemDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createOrderItemFromRow($row)
+    {
+        $orderItem = new order_items();
+        $orderItem->setId($row['id']);
+        $orderItem->setOrderid($row['order_id']);
+        $orderItem->setProductid($row['product_id']);
+        $orderItem->setQuantity($row['quantity']);
+        $orderItem->setPrice($row['price']);
+
+        return $orderItem;
+    }
 
         public function getAllOrderItem() {
             try {
@@ -103,7 +124,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $orderItemList[] = $product;
+                $product1 = $this->createOrderItemFromRow($product);
+                $orderItemList[] = $product1;
             }
             return $orderItemList;
            }catch(PDOException $e) {

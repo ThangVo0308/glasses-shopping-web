@@ -2,7 +2,7 @@
     class imports{
         private $id,$import_date,$user_id,$price;
         
-        public function __constructor($id,$import_date,$user_id,$price) { 
+        public function __constructor($id = null,$import_date = null,$user_id = null,$price = null) { 
             $this->id = $id; 
             $this->import_date = $import_date; 
             $this->user_id = $user_id; 

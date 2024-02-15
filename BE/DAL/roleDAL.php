@@ -3,10 +3,29 @@
     class RoleDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createRoleFromRow($row)
+    {
+        $role = new roles();
+        $role->setId($row['id']);
+        $role->setName($row['name']);
+       
+
+        return $role;
+    }
 
         public function getAllRole() {
             try {
@@ -93,7 +112,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $roleList[] = $product;
+                $product1 = $this->createRoleFromRow($product);
+                $roleList[] = $product1;
             }
             return $roleList;
            }catch(PDOException $e) {

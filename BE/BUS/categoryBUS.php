@@ -2,11 +2,18 @@
     require_once ('./BE/DAL/categoryDAL.php');
     class CategoryBUS {
         private $categoryList = array();
-        private $categoryDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->categoryDAL = new CategoryDAL();
-            $this->categoryList = array_merge($this->categoryList,$this->categoryDAL->getAllCategory());
+            $this->categoryList = array_merge($this->categoryList,CategoryDAL::getInstance()->getAllCategory());
         }
 
         public function getAllCategory() {
@@ -14,26 +21,42 @@
         }
 
         public function refreshData() {
-            $this->categoryDAL = new CategoryDAL();
-            $this->categoryList = array_merge($this->categoryList,$this->categoryDAL->getAllCategory());
+            // $this->categoryDAL = new CategoryDAL();
+            $this->categoryList = array_merge($this->categoryList,CategoryDAL::getInstance()->getAllCategory());
         }
 
         public function getCategoryById($id) {
             $this->refreshData();
             foreach($this->categoryList as $category) {
                 if($category->getId() == $id) {
-                    return $id;
+                    return $category;
                 }
             }
             return null;
         }
+
+        public function getCategoryByName($name) {
+            $this->refreshData();
+            foreach($this->categoryList as $category) {
+                if($category->getName() == $name) {
+                    return $category->getId();
+                }
+            }
+            return null;
+        }
+
+            public function getListCategoryById($id) {
+                return CategoryDAL::getInstance()->getCategoryByID($id);
+            }
+
+
 
         public function addCategory(categories $category) {
             if(empty($category->getName())) {
                 throw new InvalidArgumentException('Invalid information, check your input!!');
             }
 
-            $newCategory = $this->categoryDAL->addCategory($category);
+            $newCategory = CategoryDAL::getInstance()->addCategory($category);
             if($newCategory) {
                 $this->categoryList[] = $category;
                 return true;
@@ -42,7 +65,7 @@
         }
 
         public function updateCategory(categories $category) {
-            $result = $this->categoryDAL->updateCategory($category);
+            $result = CategoryDAL::getInstance()->updateCategory($category);
             if($result) {
                 $index = array_search($category,$this->categoryList,true);
                 if($index !== false) {
@@ -56,7 +79,7 @@
         public function deleteCategory($id) {
             $category = $this->getCategoryById($id);
 
-            $check = $this->categoryDAL->deleteCategory($category['id']);
+            $check = CategoryDAL::getInstance()->deleteCategory($category['id']);
 
             if($check) {
                 $categoryId = $category['id'];
@@ -101,7 +124,7 @@
             $result = array();
             $columnString = implode(",", $column);
 
-            $listCategory = $this->categoryDAL->searchCategory($value,$columnString);
+            $listCategory = CategoryDAL::getInstance()->searchCategory($value,$columnString);
             foreach($listCategory as $category) {
                 if($this->filter($category,$value,$column)) {
                     $result[] = $category;

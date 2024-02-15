@@ -1,7 +1,7 @@
 <?php
     class imports_item{
         private $id,$import_id,$product_id,$quantity,$price;
-        public function __constructor($id,$import_id,$product_id,$quantity,$price) { 
+        public function __constructor($id = null,$import_id = null,$product_id = null,$quantity = null,$price = null) { 
             $this->id = $id; 
             $this->import_id = $import_id; 
             $this->product_id = $product_id; 

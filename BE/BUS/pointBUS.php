@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\pointDAL.php");
     class pointBUS {
         private $pointList = array();
-        private $pointDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->pointDAL = new pointDAL();
-            $this->pointList = array_merge($this->pointList, $this->pointDAL->getAllPoint());
+            $this->pointList = array_merge($this->pointList, pointDAL::getInstance()->getAllPoint());
         }
         
         public function getAllpoint() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->pointDAL = new pointDAL();
-            $this->pointList = array_merge($this->pointList, $this->pointDAL->getAllPoint());
+            $this->pointList = array_merge($this->pointList, pointDAL::getInstance()->getAllPoint());
         }
 
         public function getPointById($id) {
@@ -47,7 +53,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newpoint = $this->pointDAL->addPoint($point);
+            $newpoint = pointDAL::getInstance()->addPoint($point);
 
             if($newpoint) {
                 $this->pointList[] = $point;
@@ -57,7 +63,7 @@
         }
 
         public function updatePoint(points $point) {
-            $result = $this->pointDAL->updatePoint($point);
+            $result = pointDAL::getInstance()->updatePoint($point);
             if($result) {
                 $index = array_search($point,$this->pointList,true);
                 if($index !== false) {
@@ -71,7 +77,7 @@
         public function deletePoint($id) {
             $point = $this->getpointById($id);
 
-            $check = $this->pointDAL->deletePoint($point['id']);
+            $check = pointDAL::getInstance()->deletePoint($point['id']);
 
             if($check) {
                 $pointId = $point['id'];
@@ -134,7 +140,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listpoint = $this->pointDAL->searchPoint($value,$columnString);
+            $listpoint = pointDAL::getInstance()->searchPoint($value,$columnString);
             foreach($listpoint as $point) {
                 if($this->filter($point,$value,$column)) {
                     $results[] = $point;

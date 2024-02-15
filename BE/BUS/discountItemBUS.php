@@ -2,11 +2,18 @@
     require_once ('./BE/DAL/discountItemDAL.php');
     class discountItemItemBUS {
         private $discountItemList = array();
-        private $discountItemDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->discountItemDAL = new discountItemDAL();
-            $this->discountItemList = array_merge($this->discountItemList,$this->discountItemDAL->getAllDiscountItem());
+            $this->discountItemList = array_merge($this->discountItemList,DiscountItemDAL::getInstance()->getAllDiscountItem());
         }
 
         public function getAlldiscountItem() {
@@ -14,8 +21,7 @@
         }
 
         public function refreshData() {
-            $this->discountItemDAL = new discountItemDAL();
-            $this->discountItemList = array_merge($this->discountItemList,$this->discountItemDAL->getAllDiscountItem());
+            $this->discountItemList = array_merge($this->discountItemList,DiscountItemDAL::getInstance()->getAllDiscountItem());
         }
 
         public function getdiscountItemById($id) {
@@ -36,7 +42,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input!!');
             }
 
-            $newdiscountItem = $this->discountItemDAL->adddiscountItem($discountItem);
+            $newdiscountItem = DiscountItemDAL::getInstance()->adddiscountItem($discountItem);
             if($newdiscountItem) {
                 $this->discountItemList[] = $discountItem;
                 return true;
@@ -45,7 +51,7 @@
         }
 
         public function updatediscountItem(discount_item $discountItem) {
-            $result = $this->discountItemDAL->updatediscountItem($discountItem);
+            $result = DiscountItemDAL::getInstance()->updatediscountItem($discountItem);
             if($result) {
                 $index = array_search($discountItem,$this->discountItemList,true);
                 if($index !== false) {
@@ -59,7 +65,7 @@
         public function deletediscountItem($id) {
             $discountItem = $this->getdiscountItemById($id);
 
-            $check = $this->discountItemDAL->deletediscountItem($discountItem['id']);
+            $check = DiscountItemDAL::getInstance()->deletediscountItem($discountItem['id']);
 
             if($check) {
                 $discountItemId = $discountItem['id'];
@@ -109,7 +115,7 @@
         public function searchdiscountItem($value,$column) {
             $result = array();
             $columnString = implode(",", $column);
-            $listdiscountItem = $this->discountItemDAL->searchdiscountItem($value,$columnString);
+            $listdiscountItem = DiscountItemDAL::getInstance()->searchdiscountItem($value,$columnString);
             foreach($listdiscountItem as $discountItem) {
                 if($this->filter($discountItem,$value,$column)) {
                     $result[] = $discountItem;

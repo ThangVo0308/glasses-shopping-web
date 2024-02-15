@@ -3,10 +3,30 @@
     class importDAL { 
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createImportFromRow($row)
+    {
+        $import = new imports();
+        $import->setId($row['id']);
+        $import->setUserid($row['user_id']);
+        $import->setImportdate($row['import_date']);
+        $import->setPrice($row['total_price']);
+
+        return $import;
+    }
 
         public function getAllImport() {
             try {
@@ -101,7 +121,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $importList[] = $product;
+                $product1 = $this->createImportFromRow($product);
+                $importList[] = $product1;
             }
             return $importList;
            }catch(PDOException $e) {

@@ -2,7 +2,7 @@
 
     class payments_method{
         private $id,$method_name;
-       public function __constructor($id,$method_name) { 
+       public function __constructor($id = null,$method_name = null) { 
             $this->id = $id; 
             $this->method_name = $method_name; 
         }

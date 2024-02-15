@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\productDAL.php");
     class productBUS {
         private $productList = array();
-        private $productDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->productDAL = new ProductDAL();
-            $this->productList = array_merge($this->productList, $this->productDAL->getAllProducts());
+            $this->productList = array_merge($this->productList, productDAL::getInstance()->getAllProducts());
         }
         
         public function getAllProduct() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->productDAL = new ProductDAL();
-            $this->productList = array_merge($this->productList, $this->productDAL->getAllProducts());
+            $this->productList = array_merge($this->productList, productDAL::getInstance()->getAllProducts());
         }
 
         public function getProductById($id) {
@@ -38,9 +44,13 @@
             return $max + 1;
         }
 
+        public function getPage($limit,$offset) {
+            return productDAL::getInstance()->pageProducts($limit,$offset);
+        }
+
         public function addProduct(product $product) {
             if(empty($product->getName() || $product->getName() === null) 
-                || $product->getCaterogyID() <= 0
+                || $product->getCategoryID() <= 0
                 || empty($product->getImage()) || $product->getImage() === null
                 || ($product->getGender() != 0 && $product->getGender() != 1)
                 || $product->getPrice() <= 0
@@ -49,7 +59,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newProduct = $this->productDAL->addProduct($product);
+            $newProduct = productDAL::getInstance()->addProduct($product);
 
             if($newProduct) {
                 $this->productList[] = $product;
@@ -59,7 +69,7 @@
         }
 
         public function updateProduct(product $product) {
-            $result = $this->productDAL->updateProduct($product);
+            $result = productDAL::getInstance()->updateProduct($product);
             if($result) {
                 $index = array_search($product,$this->productList,true);
                 if($index !== false) {
@@ -73,7 +83,7 @@
         public function deleteProduct($id) {
             $product = $this->getProductById($id);
 
-            $check = $this->productDAL->deleteProduct($product['id']);
+            $check = productDAL::getInstance()->deleteProduct($product['id']);
 
             if($check) {
                 $productId = $product['id'];
@@ -98,7 +108,7 @@
                         }
                         break;
                     case 'category_id':
-                        if(intval($value) === $product->getCaterogyID()) {
+                        if(intval($value) === $product->getCategoryID()) {
                             return true;
                         }
                         break;
@@ -120,17 +130,17 @@
         public function checkAllColumns(product $product,$value) {
             return (
                 $product->getId() === intval($value) ||
-                $product->getCaterogyID() === intval($value) ||
+                $product->getCategoryID() === intval($value) ||
                 doubleval($product->getPrice()) === doubleval($value) ||
                 stripos($product->getName(), $value) !== false // $ strtolower($product->getname)
             );
         }
 
-        public function searchProduct($value,$column) {
+        public function searchProductByName($value,$column) {
             $results = array();
             $columnString = implode(",", $column);
 
-            $listProduct = $this->productDAL->searchProduct($value,$columnString);
+            $listProduct = productDAL::getInstance()->searchProductByName($value,$columnString);
             foreach($listProduct as $product) {
                 if($this->filter($product,$value,$column)) {
                     $results[] = $product;
@@ -142,5 +152,11 @@
             return $results;
         }
 
+        public function searchProduct($gender, $category_id, $min, $max) {
+            return ProductDAL::getInstance()->searchProductWithConditions($gender, $category_id, $min, $max);
+        }
+        
     }
+
+
 ?>

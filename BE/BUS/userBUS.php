@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\userDAL.php");
     class userBUS {
         private $userList = array();
-        private $userDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->userDAL = new userDAL();
-            $this->userList = array_merge($this->userList, $this->userDAL->getAllUser());
+            $this->userList = array_merge($this->userList, userDAL::getInstance()->getAllUser());
         }
         
         public function getAlluser() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->userDAL = new userDAL();
-            $this->userList = array_merge($this->userList, $this->userDAL->getAllUser());
+            $this->userList = array_merge($this->userList, userDAL::getInstance()->getAllUser());
         }
 
         public function getUserById($id) {
@@ -78,7 +84,7 @@
                 throw new InvalidArgumentException('Invalid email');
             }
 
-            $newuser = $this->userDAL->addUser($user);
+            $newuser = userDAL::getInstance()->addUser($user);
 
             if($newuser) {
                 $this->userList[] = $user;
@@ -126,7 +132,7 @@
                 throw new InvalidArgumentException('Invalid email');
             }
 
-            $result = $this->userDAL->updateUser($user);
+            $result = userDAL::getInstance()->updateUser($user);
             if($result) {
                 $index = array_search($user,$this->userList,true);
                 if($index !== false) {
@@ -140,7 +146,7 @@
         public function deleteUser($id) {
             $user = $this->getuserById($id);
 
-            $check = $this->userDAL->deleteUser($user['id']);
+            $check = userDAL::getInstance()->deleteUser($user['id']);
 
             if($check) {
                 $userId = $user['id'];
@@ -216,7 +222,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listuser = $this->userDAL->searchUser($value,$columnString);
+            $listuser = userDAL::getInstance()->searchUser($value,$columnString);
             foreach($listuser as $user) {
                 if($this->filter($user,$value,$column)) {
                     $results[] = $user;

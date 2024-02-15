@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\paymentMethodDAL.php");
     class paymentMethodBUS {
         private $paymentMethodList = array();
-        private $paymentMethodDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->paymentMethodDAL = new paymentMethodDAL();
-            $this->paymentMethodList = array_merge($this->paymentMethodList, $this->paymentMethodDAL->getAllPaymentMethod());
+            $this->paymentMethodList = array_merge($this->paymentMethodList,paymentMethodDAL::getInstance()->getAllPaymentMethod());
         }
         
         public function getAllpaymentMethod() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->paymentMethodDAL = new paymentMethodDAL();
-            $this->paymentMethodList = array_merge($this->paymentMethodList, $this->paymentMethodDAL->getAllPaymentMethod());
+            $this->paymentMethodList = array_merge($this->paymentMethodList,paymentMethodDAL::getInstance()->getAllPaymentMethod());
         }
 
         public function getPaymentMethodById($id) {
@@ -44,7 +50,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newpaymentMethod = $this->paymentMethodDAL->addPaymentMethod($paymentMethod);
+            $newpaymentMethod =paymentMethodDAL::getInstance()->addPaymentMethod($paymentMethod);
 
             if($newpaymentMethod) {
                 $this->paymentMethodList[] = $paymentMethod;
@@ -54,7 +60,7 @@
         }
 
         public function updatePaymentMethod(payments_method $paymentMethod) {
-            $result = $this->paymentMethodDAL->updatePaymentMethod($paymentMethod);
+            $result =paymentMethodDAL::getInstance()->updatePaymentMethod($paymentMethod);
             if($result) {
                 $index = array_search($paymentMethod,$this->paymentMethodList,true);
                 if($index !== false) {
@@ -68,7 +74,7 @@
         public function deletePaymentMethod($id) {
             $paymentMethod = $this->getPaymentMethodById($id);
 
-            $check = $this->paymentMethodDAL->deletePaymentMethod($paymentMethod['id']);
+            $check =paymentMethodDAL::getInstance()->deletePaymentMethod($paymentMethod['id']);
 
             if($check) {
                 $paymentMethodId = $paymentMethod['id'];
@@ -112,7 +118,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listpaymentMethod = $this->paymentMethodDAL->searchPaymentMethod($value,$columnString);
+            $listpaymentMethod =paymentMethodDAL::getInstance()->searchPaymentMethod($value,$columnString);
             foreach($listpaymentMethod as $paymentMethod) {
                 if($this->filter($paymentMethod,$value,$column)) {
                     $results[] = $paymentMethod;

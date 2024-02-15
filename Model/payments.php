@@ -1,7 +1,7 @@
 <?php
     class payments{
         private $id,$order_id,$method_id,$payment_date,$price;
-        public function __constructor($id,$order_id,$method_id,$payment_date,$price) { 
+        public function __constructor($id = null,$order_id = null,$method_id = null,$payment_date = null,$price = null) { 
             $this->id = $id; 
             $this->order_id = $order_id; 
             $this->method_id = $method_id; 

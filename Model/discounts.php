@@ -2,7 +2,7 @@
     class discounts {
         private $id,$name,$discount_percent,$start_day,$end_day;
         
-            public function __constructor($id,$name,$discount_percent,$start_day,$end_day) { 
+            public function __constructor($id = null,$name = null,$discount_percent = null,$start_day = null,$end_day = null) { 
                 $this->id = $id; 
                 $this->name = $name; 
                 $this->discount_percent = $discount_percent; 

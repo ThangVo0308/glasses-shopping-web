@@ -3,10 +3,31 @@
     class PaymentDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createPaymentFromRow($row)
+    {
+        $payment = new payments();
+        $payment->setId($row['id']);
+        $payment->setOrderid($row['order_id']);
+        $payment->setMethodid($row['method_id']);
+        $payment->setPaymentdate($row['payment_date']);
+        $payment->setPrice($row['total_price']);
+
+        return $payment;
+    }
 
         public function getAllPayment() {
             try {
@@ -100,7 +121,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $paymentList[] = $product;
+                $product1 = $this->createPaymentFromRow($product);
+                $paymentList[] = $product1;
             }
             return $paymentList;
            }catch(PDOException $e) {

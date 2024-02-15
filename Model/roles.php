@@ -1,7 +1,7 @@
 <?php
     class roles{
         private $id,$name;
-        public function __constructor($id,$name) { 
+        public function __constructor($id = null,$name = null) { 
             $this->id = $id; 
             $this->name = $name; 
         }

@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\roleDAL.php");
     class roleBUS {
         private $roleList = array();
-        private $roleDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->roleDAL = new roleDAL();
-            $this->roleList = array_merge($this->roleList, $this->roleDAL->getAllRole());
+            $this->roleList = array_merge($this->roleList, roleDAL::getInstance()->getAllRole());
         }
         
         public function getAllrole() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->roleDAL = new roleDAL();
-            $this->roleList = array_merge($this->roleList, $this->roleDAL->getAllRole());
+            $this->roleList = array_merge($this->roleList, roleDAL::getInstance()->getAllRole());
         }
 
         public function getRoleById($id) {
@@ -44,7 +50,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newrole = $this->roleDAL->addRole($role);
+            $newrole = roleDAL::getInstance()->addRole($role);
 
             if($newrole) {
                 $this->roleList[] = $role;
@@ -54,7 +60,7 @@
         }
 
         public function updateRole(roles $role) {
-            $result = $this->roleDAL->updateRole($role);
+            $result = roleDAL::getInstance()->updateRole($role);
             if($result) {
                 $index = array_search($role,$this->roleList,true);
                 if($index !== false) {
@@ -68,7 +74,7 @@
         public function deleteRole($id) {
             $role = $this->getroleById($id);
 
-            $check = $this->roleDAL->deleteRole($role['id']);
+            $check = roleDAL::getInstance()->deleteRole($role['id']);
 
             if($check) {
                 $roleId = $role['id'];
@@ -113,7 +119,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listrole = $this->roleDAL->searchRole($value,$columnString);
+            $listrole = roleDAL::getInstance()->searchRole($value,$columnString);
             foreach($listrole as $role) {
                 if($this->filter($role,$value,$column)) {
                     $results[] = $role;

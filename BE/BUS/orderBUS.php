@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\orderDAL.php");
     class orderBUS {
         private $orderList = array();
-        private $orderDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->orderDAL = new orderDAL();
-            $this->orderList = array_merge($this->orderList, $this->orderDAL->getAllOrder());
+            $this->orderList = array_merge($this->orderList, orderDAL::getInstance()->getAllOrder());
         }
         
         public function getAllorder() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->orderDAL = new orderDAL();
-            $this->orderList = array_merge($this->orderList, $this->orderDAL->getAllOrder());
+            $this->orderList = array_merge($this->orderList, orderDAL::getInstance()->getAllOrder());
         }
 
         public function getOrderById($id) {
@@ -46,7 +52,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $neworder = $this->orderDAL->addOrder($order);
+            $neworder = orderDAL::getInstance()->addOrder($order);
 
             if($neworder) {
                 $this->orderList[] = $order;
@@ -56,7 +62,7 @@
         }
 
         public function updateOrder(orders $order) {
-            $result = $this->orderDAL->updateOrder($order);
+            $result = orderDAL::getInstance()->updateOrder($order);
             if($result) {
                 $index = array_search($order,$this->orderList,true);
                 if($index !== false) {
@@ -70,7 +76,7 @@
         public function deleteOrder($id) {
             $order = $this->getorderById($id);
 
-            $check = $this->orderDAL->deleteOrder($order['id']);
+            $check = orderDAL::getInstance()->deleteOrder($order['id']);
 
             if($check) {
                 $orderId = $order['id'];
@@ -127,7 +133,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listorder = $this->orderDAL->searchOrder($value,$columnString);
+            $listorder = orderDAL::getInstance()->searchOrder($value,$columnString);
             foreach($listorder as $order) {
                 if($this->filter($order,$value,$column)) {
                     $results[] = $order;

@@ -3,6 +3,27 @@
     class orderDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
+        public function createOrderFromRow($row)
+    {
+        $order = new orders();
+        $order->setId($row['id']);
+        $order->setUserid($row['user_id']);
+        $order->setOrderdate($row['order_date']);
+        $order->setTotalprice($row['total_price']);
+
+
+        return $order;
+    }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
@@ -27,7 +48,7 @@
                          values (:user_id,:product_id,:quantity,:price)";
                 $statement = $this->connection->prepare($query);
                 $statement->bindParam(':user_id',$order->getUserid());
-                $statement->bindParam(':order_date',$order->getOderdate());
+                $statement->bindParam(':order_date',$order->getOrderdate());
                 $statement->bindParam(':total_price',$order->getTotalprice());
                 $statement->execute();
                 return true;
@@ -43,7 +64,7 @@
                 $statement = $this->connection->prepare($query);
 
                 $user_id = $order->getUserid();
-                $order_date = $order->getOderdate();
+                $order_date = $order->getOrderdate();
                 $total_price = $order->getTotalprice();     
                 $id = $order->getID();
 
@@ -97,7 +118,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $orderList[] = $product;
+                $product1 = $this->createOrderFromRow($product);
+                $orderList[] = $product1;
             }
             return $orderList;
            }catch(PDOException $e) {

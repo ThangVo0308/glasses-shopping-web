@@ -2,11 +2,28 @@
     require('./database.php');
     class DiscountItemDAL {
         private $connection;
+        private static $instance;
 
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createDiscountItemFromRow($row)
+    {
+        $discountItem = new discount_item();
+        $discountItem->setId($row['id']);
+        $discountItem->setCategoryId($row['category_id']);
+        $discountItem->setDiscountid($row['discount_id']);
+
+        return $discountItem;
+    }
 
         public function getAllDiscountItem() {
             try {
@@ -97,7 +114,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $discountItemList[] = $product;
+                $product1 = $this->createDiscountItemFromRow($product);
+                $discountItemList[] = $product1;
             }
             return $discountItemList;
            }catch(PDOException $e) {

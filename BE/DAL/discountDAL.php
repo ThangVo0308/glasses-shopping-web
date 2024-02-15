@@ -3,10 +3,31 @@
     class DiscountDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createDiscountFromRow($row)
+    {
+        $discount = new discounts();
+        $discount->setId($row['id']);
+        $discount->setName($row['name']);
+        $discount->setDiscountpercent($row['discount_percent']);
+        $discount->setStartday($row['start_day']);
+        $discount->setEndday($row['end_day']);
+    
+        return $discount;
+    }
 
         public function getAllDiscount() {
             try {
@@ -101,7 +122,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $discountList[] = $product;
+                $product1 = $this->createDiscountFromRow($product);
+                $discountList[] = $product1;
             }
             return $discountList;
            }catch(PDOException $e) {

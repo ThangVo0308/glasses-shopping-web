@@ -3,15 +3,48 @@
     class CategoryDAL {
         private $connection;
 
+        private static $instance;
+
+        
         public function __construct() {
             global $connection;
             $this->connection = $connection;
+        }
+
+        public function createCategoryFromRow($row)
+        {
+            $category = new Categories();
+            $category->setId($row['id']);
+            $category->setName($row['name']);
+    
+            return $category;
+        }
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
         }
 
         public function getAllCategory() {
             try {
                 $query = "select * from categories";
                 $statement = $this->connection->query($query);
+                $statement->execute();
+                $listCategory = $statement->fetchAll(PDO::FETCH_ASSOC);
+                return $listCategory;
+            }catch(PDOException $e) {
+                echo "Query failed: ".$e->getMessage();
+                return false;
+            }
+        }
+
+        public function getCategoryByID($id) {
+            try {
+                $query = "select * from categories where id = ?";
+                $statement = $this->connection->prepare($query);
+                $statement->bindParam(1,$id);
                 $statement->execute();
                 $listCategory = $statement->fetchAll(PDO::FETCH_ASSOC);
                 return $listCategory;
@@ -93,7 +126,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $categoryList[] = $product;
+                $product1 = $this->createCategoryFromRow($product);
+                $categoryList[] = $product1;
             }
             return $categoryList;
            }catch(PDOException $e) {

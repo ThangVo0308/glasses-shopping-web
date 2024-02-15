@@ -3,10 +3,28 @@
     class PaymentMethodDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createPaymentMethodFromRow($row)
+    {
+        $paymentMethod = new payments_method();
+        $paymentMethod->setId($row['id']);
+        $paymentMethod->setMethodname($row['method_name']);
+
+        return $paymentMethod;
+    }
 
         public function getAllPaymentMethod() {
             try {
@@ -93,7 +111,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $paymentMethodList[] = $product;
+                $product1 = $this->createPaymentMethodFromRow($product);
+                $paymentMethodList[] = $product1;
             }
             return $paymentMethodList;
            }catch(PDOException $e) {

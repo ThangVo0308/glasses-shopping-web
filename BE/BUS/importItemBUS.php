@@ -3,11 +3,18 @@
     require_once ("..\BE\DAL\importItemDAL.php");
     class importItemBUS {
         private $importItemList = array();
-        private $importItemDAL;
+
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
         public function __construct() {
-            $this->importItemDAL = new importItemDAL();
-            $this->importItemList = array_merge($this->importItemList, $this->importItemDAL->getAllImportItem());
+            $this->importItemList = array_merge($this->importItemList, importItemDAL::getInstance()->getAllImportItem());
         }
         
         public function getAllimportItem() {
@@ -15,8 +22,7 @@
         }
 
         public function refreshData() {
-            $this->importItemDAL = new importItemDAL();
-            $this->importItemList = array_merge($this->importItemList, $this->importItemDAL->getAllImportItem());
+            $this->importItemList = array_merge($this->importItemList, importItemDAL::getInstance()->getAllImportItem());
         }
 
         public function getimportItemById($id) {
@@ -47,7 +53,7 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            $newimportItem = $this->importItemDAL->addImportItem($importItem);
+            $newimportItem = importItemDAL::getInstance()->addImportItem($importItem);
 
             if($newimportItem) {
                 $this->importItemList[] = $importItem;
@@ -57,7 +63,7 @@
         }
 
         public function updateimportItem(imports_item $importItem) {
-            $result = $this->importItemDAL->updateImportItem($importItem);
+            $result = importItemDAL::getInstance()->updateImportItem($importItem);
             if($result) {
                 $index = array_search($importItem,$this->importItemList,true);
                 if($index !== false) {
@@ -71,7 +77,7 @@
         public function deleteimportItem($id) {
             $importItem = $this->getimportItemById($id);
 
-            $check = $this->importItemDAL->deleteImportItem($importItem['id']);
+            $check = importItemDAL::getInstance()->deleteImportItem($importItem['id']);
 
             if($check) {
                 $importItemId = $importItem['id'];
@@ -134,7 +140,7 @@
             $results = array();
             $columnString = implode(",", $column);
 
-            $listimportItem = $this->importItemDAL->searchimportItem($value,$columnString);
+            $listimportItem = importItemDAL::getInstance()->searchimportItem($value,$columnString);
             foreach($listimportItem as $importItem) {
                 if($this->filter($importItem,$value,$column)) {
                     $results[] = $importItem;

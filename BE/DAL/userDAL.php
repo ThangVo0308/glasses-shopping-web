@@ -3,10 +3,37 @@
     class UserDAL {
         private $connection;
 
+        private static $instance;
+
+        public static function getInstance() {
+            if (!isset(self::$instance)) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+
         public function __construct() {
             global $connection;
             $this->connection = $connection;
         }
+
+        public function createUserFromRow($row)
+    {
+        $user = new users();
+        $user->setId($row['id']);
+        $user->setUsername($row['username']);
+        $user->setPassword($row['password']);
+        $user->setEmail($row['email']);
+        $user->setName($row['name']);
+        $user->setPhone($row['phone']);
+        $user->setGender($row['gender']);
+        $user->setImage($row['image']);
+        $user->setRoleid($row['role_id']);
+        $user->setAddress($row['address']);
+        $user->setStatus($row['status']);
+
+        return $user;
+    }
 
         public function getAllUser() {
             try {
@@ -119,7 +146,8 @@
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $product) {
-                $userList[] = $product;
+                $product1 = $this->createUserFromRow($product);
+                $userList[] = $product1;
             }
             return $userList;
            }catch(PDOException $e) {
