@@ -54,23 +54,6 @@ body {
     height: 38px;
 }
 
-#products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-#products iframe {
-    border: 1px solid #ddd;
-    margin: 10px;
-    height: 320px;
-    width: 280px; 
-    align-items: center;
-    border-radius: 12px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-}
 #filter {
     width: 280px;
 }

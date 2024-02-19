@@ -63,43 +63,13 @@
 .selected div {
     border-bottom-color: red;
 }
-
-#product {
-    width: 90%;
-    margin-left: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-    background-color: white;
-}
-#product {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-#product.fade-in {
-    opacity: 1;
-}
-
-#product iframe {
-    border: 1px solid #ddd;
-    margin: 10px;
-    height: 350px;
-    width: 300px; 
-    align-items: center;
-    border-radius: 12px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  }
-
 #signature {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
-    width: 100%;
     align-self: center;
     padding: 20px;
+    overflow: hidden;
 }
 #signature div{ 
     flex-direction: row;
