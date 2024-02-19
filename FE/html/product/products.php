@@ -37,17 +37,40 @@
                 <div>Tìm kiếm </div>
                 <button id="delete-btn" >Xóa</button>
             </div>
-            <div id="type" >
-                <div id="type-btn"  >
+            <div id="type" class="option-filter" >
+                <div class="btn" >
                     <h3>Danh mục</h3>
-                    <img src="../../../icons/menu_off.png" id="icon-menu" alt="" onclick="toggleDropdown()" >
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('type-value',0)" >
                 </div>
-                <div id="type-value" >
-                    <div class="value" >Option1</div>
-                    <div class="value" >Option2</div>
-                    <div class="value" >Option3</div>
+                <div id="type-value" class="value-filter">
+                    <div class="value" >Mắt Kính</div>
+                    <div class="value" >Giọng Kính</div>
+                    <div class="value" >Phụ Kiện</div>
                 </div>
             </div>
+
+            <div id="gender" class="option-filter" >
+                <div class="btn" >
+                    <h3>Giới tính</h3>
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('gender-value',1)" >
+                </div>
+                <div id="gender-value" class="value-filter" >
+                    <div class="value" >Nam</div>
+                    <div class="value" >Nữ</div>
+                </div>
+            </div>
+
+            <div id="price" class="option-filter" >
+                <div class="btn" >
+                    <h3>Giá tiền</h3>
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('price-value',2)" >
+                </div>
+                <div id="price-value" class="value-filter" >
+                    <input type="range" min="0" max="100" value="0" class="range-slider-input" id="start">
+                    <input type="range" min="0" max="100" value="100" class="range-slider-input" id="end">
+                </div>
+            </div>
+
         </div>
         <div id="products">
 

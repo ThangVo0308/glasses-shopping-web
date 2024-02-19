@@ -75,12 +75,12 @@ body {
     width: 280px;
 }
 #filter div {
-    display: flex;
     margin-bottom: 15px;
 }
 #filter-header {
     justify-content: space-between;
     align-items: center;
+    display: flex;
 }
 #filter-header div {
     font-size: 20px;
@@ -89,26 +89,36 @@ body {
 #delete-btn {
     height: 20px;
     width: 50px;
+    transition: color 0.8s ease-in-out, transform 0.8s ease-in-out,
+    background-color 0.8s ease-in-out ;
 }
-#filter #type {
+#delete-btn:hover {
+    color: #2c85da;
+    background-color: black;
+    transform: scale(1.1);
+}
+
+.option-filter {
     display: flex;
     flex-direction: column;
     cursor: pointer;
 }
-#filter #type-value {
+.value-filter {
     display: none;
 }
 .value {
     padding-left: 40px;
 }
-#type-btn {
+.btn {
     justify-content: space-around;
     align-items: center;
+    display: flex;
 }
-#type-btn h3 {
+.btn h3 {
     font-size: 18px;
 }
-#type-btn img {
+.btn .icon-menu {
     height: 15px;
     width: 15px;
+    transform: rotate(-90deg);
 }

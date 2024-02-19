@@ -1,12 +1,12 @@
-function toggleDropdown() {
-    var typeValue = document.getElementById("type-value");
-    var icon = document.getElementById('icon-menu');
+function toggleDropdown(element, index) {
+    var typeValue = document.getElementById(element);
+    var icon = document.getElementsByClassName('icon-menu');
 
     if (typeValue.style.display === "block") {
         typeValue.style.display = "none";
-        icon.src = '../../../icons/menu_off.png'
+        icon[index].style.transform = 'rotate(-90deg)';
     } else {
-        typeValue.style.display = "block";
-        icon.src = '../../../icons/menu_on.png'
+        typeValue.style.display = "block"
+        icon[index].style.transform = 'rotate(0deg)';
     }
 }

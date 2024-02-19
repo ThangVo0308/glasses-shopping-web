@@ -21,7 +21,7 @@
         function generateProductUI(productData) {
             var productContainer = document.getElementById('product');
             var productHTML = `
-                <div class="product">
+                <div>
                     <img src="../../../images/${productData.image}" alt="" class="image" >
                     <h3 class="id" >${productData.id}</h3>
                     <h3 class="name" >${productData.name}</h3>
