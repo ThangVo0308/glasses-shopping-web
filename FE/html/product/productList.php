@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản Phẩm</title>
-    <link rel="stylesheet" href="../../css/productStyle/products.css">
+    <link rel="stylesheet" href="../../css/productStyle/productList.css">
     <link rel="stylesheet" href="../../css/productStyle/product.css">
-    <script src="../../controller/product/products.js"></script>
 </head>
 
 <body>
@@ -44,9 +43,15 @@
                     <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('type-value',0)">
                 </div>
                 <div id="type-value" class="value-filter">
-                    <div class="value">Mắt Kính</div>
-                    <div class="value">Giọng Kính</div>
-                    <div class="value">Phụ Kiện</div>
+                    <label>
+                        <input type="radio" name="type">Mắt kính
+                    </label>
+                    <label>
+                        <input type="radio" name="type">Gọng kính
+                    </label>
+                    <label>
+                        <input type="radio" name="type">Phụ kiện
+                    </label>
                 </div>
             </div>
 
@@ -56,8 +61,12 @@
                     <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('gender-value',1)">
                 </div>
                 <div id="gender-value" class="value-filter">
-                    <div class="value">Nam</div>
-                    <div class="value">Nữ</div>
+                    <label>
+                        <input type="radio" name="gender">Nam
+                    </label>
+                    <label>
+                        <input type="radio" name="gender">Nữ
+                    </label>
                 </div>
             </div>
 
@@ -67,8 +76,8 @@
                     <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('price-value',2)">
                 </div>
                 <div id="price-value" class="value-filter">
-                    <input type="range" min="0" max="100" value="0" class="range-slider-input" id="start">
-                    <input type="range" min="0" max="100" value="100" class="range-slider-input" id="end">
+                    <input type="range" min="0" max="5000000" step="250000" value="0" id="myRange" >
+                    <h3 id="result" >0</h3>
                 </div>
             </div>
 
@@ -92,5 +101,5 @@
 
     </div>
 </body>
-
+<script src="../../controller/product/productList.js"></script>
 </html>

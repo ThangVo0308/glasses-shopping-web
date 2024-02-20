@@ -28,7 +28,6 @@ function selectSlider(number) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
     // Thêm event listener scroll ở đây
     document.addEventListener('scroll', function () {
         var windowHeight = window.innerHeight;
@@ -42,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (serviceTop < windowHeight * threshold) {
             serviceContainer.classList.add('fade-in');
         }
+
 
     });
 });

@@ -11,3 +11,4 @@ $product = json_decode($_GET['data'], true);
 </div>
 
 <link rel="stylesheet" href="../../css/productStyle/product.css">
+<script src="../../controller/product/product.js"></script>

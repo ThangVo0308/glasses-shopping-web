@@ -14,17 +14,23 @@
     align-items: center;
     border-radius: 12px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    transition: border 0.8s ease-in-out;
+}
+#products iframe:hover {
+    border: #81b1e8 1.5px solid;
 }
 .product {
     position: relative;
     cursor: pointer;
     justify-content: center;
     text-align: center;
+    transition: trans;
 }
+
 .product .image {
     width: 250px;
     height: 200px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.8s ease-in-out;
 }
 .product .image:hover {
     transform: scale(1.1); /* Increased scale on hover */

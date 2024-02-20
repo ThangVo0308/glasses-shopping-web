@@ -84,5 +84,6 @@ $productList = [
 
     <link rel="stylesheet" href="../css/homeScreen.css">
     <link rel="stylesheet" href="../css/productStyle/product.css">
-    <script src="../controller/homeScreen.js"></script>
+    <script src="../controller/homeScreen.js"></script>\
+    <script src="../controller/product/product.js"></script>
 </body>

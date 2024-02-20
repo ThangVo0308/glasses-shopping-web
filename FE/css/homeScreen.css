@@ -63,6 +63,9 @@
 .selected div {
     border-bottom-color: red;
 }
+#products {
+    padding-bottom: 45px;
+}
 #signature {
     display: flex;
     flex-direction: column;

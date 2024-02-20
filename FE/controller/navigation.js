@@ -1,6 +1,6 @@
 function changIframeProducts() {
     var homeScreen = parent.document.getElementById("homeScreen");
-    homeScreen.src = '../FE/html/product/products.php';
+    homeScreen.src = '../FE/html/product/productList.php';
     homeScreen.name = 'product';
 }
 function changIframeHomeScreen() {
