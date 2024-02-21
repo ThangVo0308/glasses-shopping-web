@@ -82,6 +82,47 @@ $productList = [
     </div>
     </div>
 
+    <!-- <div class="modalPlus" id="modalLogin">
+        <div class="modalContainer">
+
+            <div class="modal_close">
+                <i class='fa fa-close'></i>
+            </div>
+    
+            <header class="modal-header">
+                <div class="modal-param">
+                    Đăng nhập
+                </div>
+            </header>
+
+            <div class="modal-body">
+                <label for="add" class="modal-label">
+                    <div><img src="../../icons/user.png" alt=""></div>
+                    <p class="title">Tên đăng nhập</p>
+                    <input id="add" type="text" class="modal-add" name="txtUsername">
+                </label>
+           
+                <label for="name" class="modal-label">
+                <div><img src="../../icons/password.png" alt=""></div>
+                    <p class="title">Mật khẩu</p>
+                    <input id="name" type="text" class="modal-add" name="txtPassword">
+                </label>
+
+                <a href="signup.php" class="signUp" name="signUp">Chưa có tài khoản? Hãy đăng ký</a>
+                <button class="modal-submit" onclick="themsp()" name="loginBtn">
+                    Đăng nhập
+                    <i class='fa fa-check'></i>
+                </button>
+                
+            </div>
+
+            
+        </div>
+
+    </div> -->
+
+    <link rel="stylesheet" href="../css/login/login.css">
+
     <link rel="stylesheet" href="../css/homeScreen.css">
     <link rel="stylesheet" href="../css/productStyle/product.css">
     <script src="../controller/homeScreen.js"></script>\
