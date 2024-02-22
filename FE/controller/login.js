@@ -10,11 +10,17 @@ loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
 
+const input = document.querySelector('.txtPasswordLogin');
+const eyeOpen= document.querySelector('.eye-open');
+const eyeClose = document.querySelector('.eye-close');
 
-document.addEventListener("DOMContentLoaded", function() {
-    const imgUser = document.getElementById('login');
-    const formContainer = document.getElementById('container');
-    imgUser.addEventListener('click', function() {
-        formContainer.classList.add(formContainer);
-    });
+eyeOpen.addEventListener("click", function() {
+    eyeOpen.classList.add("hide");
+    eyeClose.classList.remove("hide");
+    input.setAttribute("type","password");    
+});
+eyeClose.addEventListener("click", function() {
+    eyeOpen.classList.remove("hide");
+    eyeClose.classList.add("hide");
+    input.setAttribute("type","text");    
 });
