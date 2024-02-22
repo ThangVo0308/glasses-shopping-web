@@ -14,6 +14,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
+    display: flex;
 }
 
 .container-move{
@@ -172,7 +173,7 @@
 .toggle{
     background-color: #512da8;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to top, #009688, #35a79c, #54b2a9, #65c3ba, #83d0c9);
     color: #fff;
     position: relative;
     left: -100%;
@@ -238,3 +239,69 @@ h1{
 .hide{
     display: none;
 }
+
+.button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: #313133;
+    background: #4FD1C5;
+    background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+    border: none;
+    border-radius: 100px;
+    box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    }
+  
+  .button:hover, .button:focus {
+    color: #313133;
+    transform: translateY(-6px);
+  }
+  
+  button:hover::before, button:focus::before {
+    opacity: 1;
+  }
+
+  button:hover::after, button:focus::after {
+    animation: none;
+    display: none;
+  }
+
+  .hidden {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: #313133;
+    background: #4FD1C5;
+    background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+    border: none;
+    border-radius: 100px;
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    }
+
+
+  .hidden:hover, .hidden:focus {
+    color: #313133;
+    transform: translateY(-6px);
+  }
+  
+  hidden:hover::before, hidden:focus::before {
+    opacity: 1;
+  }
+
+  hidden:hover::after, hidden:focus::after {
+    animation: none;
+    display: none;
+  }

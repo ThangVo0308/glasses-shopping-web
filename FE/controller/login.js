@@ -24,3 +24,11 @@ eyeClose.addEventListener("click", function() {
     eyeClose.classList.add("hide");
     input.setAttribute("type","text");    
 });
+
+function changeLogin() {
+    var containerMove= document.querySelector(".container-move");
+    container.classList.add("show-form")
+    console.log(container.style);
+    console.log('Login image clicked');
+
+}
