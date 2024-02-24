@@ -9,3 +9,9 @@ function changIframeHomeScreen() {
     homeScreen.src = '../FE/html/homeScreen.php'
     homeScreen.name = 'homeScreen'
 }
+function changIframeCart() {
+    var parentWindow = parent;
+    var homeScreen = parentWindow.document.getElementById("homeScreen");
+    homeScreen.src = '../FE/html/cart/cart.php'
+    homeScreen.name = 'cart'
+}

@@ -38,9 +38,9 @@
                 <button id="delete-btn">Xóa</button>
             </div>
             <div id="type" class="option-filter">
-                <div class="btn">
+                <div class="btn" onclick="toggleDropdown('type-value',0)">
                     <h3>Danh mục</h3>
-                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('type-value',0)">
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="type-value" class="value-filter">
                     <label>
@@ -56,9 +56,9 @@
             </div>
 
             <div id="gender" class="option-filter">
-                <div class="btn">
+                <div class="btn" onclick="toggleDropdown('gender-value',1)" >
                     <h3>Giới tính</h3>
-                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('gender-value',1)">
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" >
                 </div>
                 <div id="gender-value" class="value-filter">
                     <label>
@@ -71,9 +71,9 @@
             </div>
 
             <div id="price" class="option-filter">
-                <div class="btn">
+                <div class="btn" onclick="toggleDropdown('price-value',2)">
                     <h3>Giá tiền</h3>
-                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" onclick="toggleDropdown('price-value',2)">
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="price-value" class="value-filter">
                     <input type="range" min="0" max="5000000" step="250000" value="0" id="myRange" >

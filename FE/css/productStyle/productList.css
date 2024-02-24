@@ -12,6 +12,10 @@ body {
     padding-right: 10px;
     background-color: white;
 }
+#path {
+    width: 100%;
+    height: 38px;
+}
 #title {
     padding-top: 5px;
     color: #2c85da;
@@ -49,11 +53,6 @@ body {
     font-size: 17px;
 }
 
-#path {
-    width: 100%;
-    height: 38px;
-}
-
 #filter {
     width: 280px;
 }
@@ -85,8 +84,8 @@ body {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    margin-left: 14px;
-    margin-right: 14px;
+    margin-left: 17px;
+    margin-right: 17px;
     padding-top: 20px;
     border-bottom: none;
 }

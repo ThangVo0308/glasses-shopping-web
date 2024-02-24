@@ -15,11 +15,40 @@
     padding: 2%;
     background-color: #eeeded;
 }
-
-#poster .image-main {
-    width: 83%;
+#image-slider {
+    display: flex;
     height: 480px;
     border-radius: 10px;
+}
+.poster-main {
+    width: 97%;
+    animation-name: imageMain;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+.poster-next {
+    width: 0%;
+    animation-name: imageNext;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+#poster .image-main {
+    height: 100%;
+    width: 100%;
+    
+}
+@keyframes imageMain {
+    0%   {width: 97%; right:0px; top:0px;}
+    100%  {width: 0%; right:200px; top:0px;}
+}
+#poster .image-next {
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes imageNext {
+    0%   {width: 0%; right:0px; top:0px;}
+    100%  {width: 97%; right:200px; top:0px;}
 }
 #poster .images {
     display: flex;

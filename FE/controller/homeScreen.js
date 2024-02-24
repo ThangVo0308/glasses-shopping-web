@@ -45,5 +45,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 });
+var mainImage = document.querySelector('.image-main');
+var nextImage = document.querySelector('.image-next');
 
-  
+const data = [
+    'poster2.png',
+    'poster3.png',
+    'poster1.png',
+]
+
+let currentIndex = 0;
+
+setInterval(() => {
+    mainImage.src = nextImage.src;
+    currentIndex = (currentIndex + 1) % data.length; 
+    nextImage.src = '../../images/' + data[currentIndex];
+
+}, 3000);
+
+
+

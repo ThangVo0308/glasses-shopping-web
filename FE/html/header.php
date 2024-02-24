@@ -13,7 +13,7 @@
         <input type="text" class="searchvalue">
         <img src="../../icons/search.png" onclick="changeInput()" alt="">
         <img src="../../icons/user.png" alt="">
-        <img src="../../icons/cart.png" alt="">
+        <img src="../../icons/cart.png" onclick="changIframeCart()" alt="">
     </div>
 </div>
 <link rel="stylesheet" href="../css/header.css">

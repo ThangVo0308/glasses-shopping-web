@@ -9,10 +9,17 @@ $productList = [
 <body>
     <div id="main">
         <div id="poster">
-            <img src="../../images/poster1.png" alt="" class="image-main">
+            <div id="image-slider" >
+                <div class="poster-main" >
+                    <img src="../../images/poster1.png" alt="" class="image-main">
+                </div>
+                <div class="poster-next" >
+                    <img src="../../images/poster2.png" alt="" class="image-next">
+                </div>
+            </div>
             <div class="images">
-                <img src="../../images/poster2.png" alt="" onclick="changeImage(this)">
                 <img src="../../images/poster1.png" alt="" onclick="changeImage(this)">
+                <img src="../../images/poster2.png" alt="" onclick="changeImage(this)">
                 <img src="../../images/poster3.png" alt="" onclick="changeImage(this)">
             </div>
         </div>
