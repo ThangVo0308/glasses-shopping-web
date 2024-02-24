@@ -1,0 +1,11 @@
+#supply {
+    width: 95%;
+    margin: 0 auto;
+}
+#supply h2 {
+    margin-bottom: 2vh;
+    margin-top: 0;
+}
+#supply h2 span {
+    margin-left: 5px;
+}

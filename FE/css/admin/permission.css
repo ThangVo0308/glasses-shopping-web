@@ -1,0 +1,11 @@
+#permission {
+    width: 95%;
+    margin: 0 auto;
+}
+#permission h2 {
+    margin-bottom: 2vh;
+    margin-top: 0;
+}
+#permission h2 span {
+    margin-left: 5px;
+}

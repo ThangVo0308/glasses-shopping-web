@@ -1,0 +1,12 @@
+#statistic {
+    width: 95%;
+    margin: 0 auto;
+}
+#statistic h2 {
+    margin-bottom: 2vh;
+    margin-top: 0;
+    
+}
+#statistic h2 span {
+    margin-left: 5px;
+}
