@@ -12,15 +12,10 @@
     <div class="navigation">
         <input type="text" class="searchvalue">
         <img src="../../icons/search.png" onclick="changeInput()" alt="">
-        <img src="../../icons/user.png" alt="" id="Userlogin" onclick="changeLogin()">
+        <img src="../../icons/user.png" alt="" id="Userlogin" onclick="parent.openLoginForm()">
         <img src="../../icons/cart.png" alt="">
     </div>
 </div>
-
-<script>
-
-</script>
-
 
 <link rel="stylesheet" href="../css/header.css">
 <script src="../controller/login.js"></script>
