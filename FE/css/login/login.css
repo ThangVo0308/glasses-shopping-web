@@ -7,6 +7,52 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.input-control{
+    width: 100%;
+}
+
+.input-control input{
+    /* border: 2px solid #f0f0f0; */
+    margin: 8px 0;
+    padding: 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+}
+
+.input-control input:focus{
+        outline: 0;
+}
+
+.input-control.success input {
+    border-color: #009688;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 10px;
+    height: 14px;
+}
+
+.container input {
+    background-color: #eee;
+    border: 2px solid #f0f0f0;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.container input:focus {
+    outline: 0;
+}
 
 .login-modal {
     display: none;
@@ -46,6 +92,7 @@
     transform: translate(-50%, -50%);
     position: fixed;
     display: flex;
+    height: 80%;
 }
 
 .container-move {
@@ -115,21 +162,6 @@
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
-}
-
-.container input {
-    background-color: #eee;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    width: 100%;
-    outline: none;
-}
-
-.container input:focus {
-    outline: 0;
 }
 
 .form-container {
@@ -271,7 +303,7 @@ h1 {
 .eye {
     position: absolute;
     right: 50px;
-    top: 54%;
+    top: 53.5%;
     transform: translateY(-50%);
     cursor: pointer;
     max-width: 20px;
@@ -352,18 +384,3 @@ hidden:focus::after {
     animation: none;
     display: none;
 }
-
-/* 
-  .form-container .sign-in .error input{
-        border-color: red;
-  }
-
-  .form-container .sign-in .error{
-    color: red;
-    font-size: 9px;
-    height: 13px;
-}
-
-  .form-container .sign-in .success input{
-        border-color: green;
-  } */
