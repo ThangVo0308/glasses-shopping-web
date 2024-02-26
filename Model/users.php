@@ -2,7 +2,7 @@
     class users{
         private $id, $username, $password, $email, $name, $phone, $gender, $image, $role_id, $address, $status;
     
-        public function __constructor($id = null,$username = null,$password = null,$email = null,$name = null,$phone = null,$gender = null,$image = null,$role_id = null,$address = null,$status = null) { 
+        public function __construct($id = null,$username = null,$password = null,$email = null,$name = null,$phone = null,$gender = 1,$image = null,$role_id = null,$address = null,$status = null) { 
             $this->id = $id; 
             $this->username = $username; 
             $this->password = $password; 
@@ -106,9 +106,5 @@
         } 
     
     }
-
-
-
-
 
 ?>

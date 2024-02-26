@@ -1,6 +1,7 @@
 <?php
     // require("..\BE\DAL\userDAL.php");
-    require_once ("..\BE\DAL\userDAL.php");
+    require_once ("../../BE/DAL/userDAL.php");
+    require_once ("../../validation/validate.php");
     class userBUS {
         private $userList = array();
 
@@ -57,15 +58,17 @@
             }
 
             foreach($this->userList as $curUser) {
-                if(strcmp($curUser->getUsername(),$user->getUsername()) == 0) {
-                    throw new InvalidArgumentException('Username existed');          
+                // echo "<script>console.log(" . json_encode($curUser) . ")</script>";
+                $jsonUser = json_decode(json_encode($curUser));
+                if ($user->getUsername() === $jsonUser->username) {
+                    throw new InvalidArgumentException('Username existed');
                 }
-
-                if(strcmp($curUser->getEmail(),$user->getEmail()) == 0) {
+            
+                if($user->getEmail() === $jsonUser->email) {
                     throw new InvalidArgumentException('Email existed');          
                 }
-
-                if(strcmp($curUser->getPhone(),$user->getPhone()) == 0) {
+            
+                if($user->getPhone() === $jsonUser->phone) {
                     throw new InvalidArgumentException('Phone existed');          
                 }
             }
@@ -236,5 +239,3 @@
 
     }
 ?>
-
- 

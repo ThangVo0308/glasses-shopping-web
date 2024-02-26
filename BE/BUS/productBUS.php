@@ -34,6 +34,14 @@
             return null;
         }
         
+        public function getTotal() {
+            $count = 0;
+            foreach ($this->productList as $product) {
+                $count++;
+            }
+        
+            return $count;
+        }
 
         public function getMax() {
             $max = 0;

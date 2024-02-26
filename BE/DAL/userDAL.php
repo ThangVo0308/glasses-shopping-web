@@ -1,5 +1,5 @@
 <?php
-    require('./database.php');
+    require('../../BE/DAL/database.php');
     class UserDAL {
         private $connection;
 
@@ -160,6 +160,3 @@
 
 
 ?>
-
-
-
