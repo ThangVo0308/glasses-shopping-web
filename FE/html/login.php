@@ -3,44 +3,44 @@
     <div class="container" id="container">
         <div class="container-move">
             <div class="form-container sign-up">
-                <form id="form">
+                <form id="form" name="signup">
                     <h1>Đăng ký</h1>
                     <div class="input-control">
-                        <input type="text" placeholder="Username" class="txtUsernameSignUp" id="usernameSignUp">
+                        <input type="text" placeholder="Username" class="txtUsernameSignUp" id="usernameSignUp" name="username">
                         <div class="error" id="error"></div>
                     </div>
                     <div class="input-control">
-                        <input type="password" placeholder="Password" class="txtPasswordSignUp" id="passwordSignUp">
+                        <input type="password" placeholder="Password" class="txtPasswordSignUp" id="passwordSignUp" name="password">
                         <div class="error" id="error"></div>
                     </div>
                     <div class="input-control">
-                        <input type="text" placeholder="Họ Tên" class="txtName" id="name">
+                        <input type="text" placeholder="Họ Tên" class="txtName" id="name" name="name">
                         <div class="error" id="error"></div>
                     </div>
                     <div class="input-control">
-                        <input type="text" placeholder="Email" class="txtEmail" id="email">
+                        <input type="text" placeholder="Email" class="txtEmail" id="email" name="email" >
                         <div class="error" id="error"></div>
                     </div>
                     <div class="input-control">
-                        <input type="text" placeholder="Số điện thoại" class="txtPhone" id="phone">
+                        <input type="text" placeholder="Số điện thoại" class="txtPhone" id="phone" name="phone">
                         <div class="error" id="error"></div>
                     </div>
                     <div class="input-control">
-                        <input type="text" placeholder="Địa chỉ" class="txtAddress" id="address">
+                        <input type="text" placeholder="Địa chỉ" class="txtAddress" id="address" name="address">
                         <div class="error" id="error"></div>
                     </div>
-                    <button class="button" type="submit">Đăng ký</button>
+                    <button class="button" type="submit" id="btnRegister">Đăng ký</button>
                 </form>
             </div>
             <div class="form-container sign-in">
                 <form id="form">
                     <h1>Đăng nhập</h1>
                     <div class= "input-control">
-                        <input type="text" placeholder="Username" id="username" class="txtUsernameLogin">
+                        <input type="text" placeholder="Username" id="username" class="txtUsernameLogin" name="username">
                         <div class="error" id="error"></div>
                     </div>
                     <div class="input-control">
-                        <input type="password" placeholder="Password" id="password" class="txtPasswordLogin">
+                        <input type="password" placeholder="Password" id="password" class="txtPasswordLogin" name="password">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="eye eye-close">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
                         </svg>
@@ -88,12 +88,13 @@ $(document).ready(function() {
         })
         .done(function(res) {
             console.log("test res: "+res.response.name);
-            if (res.check === true) {
-                alert("Xin chào " + res.response.name);
-            } else {
-                // Xử lý nếu có lỗi
-                alert("Đã có lỗi xảy ra: " + res.error);
-            }
+            console.log("test cai auth: "+res.response.auth);
+            // if (res.response.auth === true) {
+            //     alert("Xin chào " + res.response.name);
+            // } else {
+            //     // Xử lý nếu có lỗi
+            //     alert("Đã có lỗi xảy ra: " + res.error);
+            // }
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText)
@@ -107,7 +108,7 @@ $(document).ready(function() {
 
         var formData = $(this).serialize();
         console.log("hehe: " + formData);
-
+        
         signupHandle('../../main/handler/signupHandle.php', 'POST', formData);
     });
 });
