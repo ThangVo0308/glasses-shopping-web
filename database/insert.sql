@@ -11,7 +11,7 @@ INSERT INTO `roles` (`name`) VALUES
 ('employee'),
 ('manager'),
 ('customer'),
-('admin');
+('admin'); 
 
 INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `description`, `status`) VALUES
 ('moriyama', 1, 'moriyama.webp', 1, 2980000, 'Vuông-Chữ Nhật', 'active'),
