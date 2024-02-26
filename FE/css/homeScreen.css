@@ -10,7 +10,7 @@
 
 #poster {
     display: flex;
-    width: 96%;
+    width: 100%;
     justify-content: space-between;
     padding: 2%;
     background-color: #eeeded;
@@ -23,13 +23,13 @@
 .poster-main {
     width: 97%;
     animation-name: imageMain;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
 }
 .poster-next {
     width: 0%;
     animation-name: imageNext;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
 }
 #poster .image-main {
@@ -68,10 +68,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 100%;
     margin-top: 30px;
     margin-bottom: 20px;
     padding-left: 20%;
+    padding-right: 20%;
 }
 .slider-item {
     cursor: pointer;

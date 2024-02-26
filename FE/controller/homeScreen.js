@@ -11,7 +11,17 @@ function changeInput() {
 
 function changeImage(clickedImage) {
     var mainImage = document.querySelector('.image-main');
+    var nextImage = document.querySelector('.image-next');
+    var posterMain = document.querySelector('.poster-main');
+    var posterNext = document.querySelector('.poster-next');
+    posterMain.style.animationIterationCount = 0;
+    posterNext.style.animationIterationCount = 0;
+    setTimeout(() => {
+        posterMain.style.animationIterationCount = 'infinite';
+        posterNext.style.animationIterationCount = 'infinite';
+    }, 4000);
     mainImage.src = clickedImage.src;
+
 }
 
 function selectSlider(number) {
@@ -56,12 +66,12 @@ const data = [
 
 let currentIndex = 0;
 
-setInterval(() => {
+var interval = setInterval(() => {
     mainImage.src = nextImage.src;
     currentIndex = (currentIndex + 1) % data.length; 
     nextImage.src = '../../images/' + data[currentIndex];
 
-}, 3000);
+}, 4000);
 
 
 

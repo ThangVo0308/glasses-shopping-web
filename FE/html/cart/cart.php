@@ -11,12 +11,6 @@
 $productList = [
     ['id' => '01', 'name' => 'Sản phẩm 1', 'price' => '1000000', 'image' => 'productDemo.png', 'quantity' => '4'],
     ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
-    ['id' => '03', 'name' => 'Sản phẩm 1', 'price' => '300000', 'image' => 'productDemo.png', 'quantity' => '4'],
-    ['id' => '04', 'name' => 'Sản phẩm 1', 'price' => '400000', 'image' => 'productDemo.png', 'quantity' => '4'],
-    ['id' => '05', 'name' => 'Sản phẩm 1', 'price' => '500000', 'image' => 'productDemo.png', 'quantity' => '4'],
-    ['id' => '06', 'name' => 'Sản phẩm 1', 'price' => '600000', 'image' => 'productDemo.png', 'quantity' => '4'],
-    ['id' => '07', 'name' => 'Sản phẩm 1', 'price' => '700000', 'image' => 'productDemo.png', 'quantity' => '4'],
-    ['id' => '08', 'name' => 'Sản phẩm 1', 'price' => '800000000', 'image' => 'productDemo.png', 'quantity' => '4'],
 ];
 ?>
 
@@ -29,7 +23,7 @@ $productList = [
         </div>
         <div class="header section">
             <div>
-                <input type="checkbox" name="" id="allChecked">
+                <input type="checkbox" name="allChecked" id="allChecked">
                 <span>Tên sản phẩm</span>
             </div>
             <div class="item">
@@ -66,11 +60,21 @@ $productList = [
         </div>
     </div>
     <div id="statistical" >
-        <div>
-
+        <div id="voucherForm" >
+            <img src="../../../icons/coupon.png" alt="">
+            <span id="selectStatus" >Bạn chưa chọn sản phẩm</span>
+            <span id="valueVoucher" >0đ</span>
         </div>
-        <div>
-
+        <div id="payForm" >
+            <div>
+                <input type="checkbox" name="allChecked" id="allChecked">
+                <span>Sản phẩm đã chọn (11 Sản phẩm)</span>
+            </div>
+            <div class="pay">
+                <span>Tổng thanh toán</span>
+                <h3 id="valuePay" >0</h3>
+                <button id="payBtn" >Thanh Toán</button>
+            </div>
         </div>
     </div>
 </body>
