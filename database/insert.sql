@@ -50,7 +50,6 @@ INSERT INTO `users` (`username`, `password`, `email`, `name`, `phone`, `gender`,
 ('Cong12', 'Cong12122', 'Cong12@gmail.com', 'Thái Công', '998877669', 1, null, 3, '12 Hai Bà Trưng', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:52'),
 ('Hung13', 'Hung13133', 'Hung13@gmail.com', 'Hùng', '543219876', 1, null, 3, '13 Phong Phú', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:05'),
 ('Kiet14', 'Kiet14144', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, null, 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14'),
-('Tai15', 'Tai15155', 'Tai15@gmail.com', 'Thành Tài', '909597799', 1, null, 3, '15 Nguyễn Kim', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:24');
 
 INSERT INTO `imports` (`user_id`, `import_date`, `total_price`) VALUES
 (2, '2024-02-25', 14900000),

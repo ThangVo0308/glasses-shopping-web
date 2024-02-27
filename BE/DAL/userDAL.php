@@ -49,27 +49,42 @@
         }
 
         public function addUser(users $user) {
-            try{
-                $query = "insert into users (username,password,email,name,phone,gender,image,role_id,address,status) 
-                         values (:username,:password,:email,:name,:phone,:gender,:image,:role_id,:address,:status)";
+            try {
+                $username = $user->getUsername();
+                $password = $user->getPassword();
+                $email = $user->getEmail();
+                $name = $user->getName();
+                $phone = $user->getPhone();
+                $gender = $user->getGender();
+                $image = $user->getImage();
+                $role_id = $user->getRoleid();
+                $address = $user->getAddress();
+                $status = $user->getStatus();
+        
+                $query = "INSERT INTO users (username, password, email, name, phone, gender, image, role_id, address, status) 
+                         VALUES (:username, :password, :email, :name, :phone, :gender, :image, :role_id, :address, :status)";
+                
                 $statement = $this->connection->prepare($query);
-                $statement->bindParam(':username',$user->getUsername());
-                $statement->bindParam(':password',$user->getPassword());
-                $statement->bindParam(':email',$user->getEmail());
-                $statement->bindParam(':name',$user->getName());;
-                $statement->bindParam(':phone',$user->getPhone());
-                $statement->bindParam(':gender',$user->getGender());
-                $statement->bindParam(':image',$user->getImage());
-                $statement->bindParam(':role_id',$user->getRoleid());
-                $statement->bindParam(':address',$user->getAddress());
-                $statement->bindParam(':status',$user->getStatus());
+        
+                $statement->bindParam(':username', $username);
+                $statement->bindParam(':password', $password);
+                $statement->bindParam(':email', $email);
+                $statement->bindParam(':name', $name);
+                $statement->bindParam(':phone', $phone);
+                $statement->bindParam(':gender', $gender);
+                $statement->bindParam(':image', $image);
+                $statement->bindParam(':role_id', $role_id);
+                $statement->bindParam(':address', $address);
+                $statement->bindParam(':status', $status);
+        
                 $statement->execute();
                 return true;
-            }catch(PDOException $e) {
-                echo "Add failed: ".$e->getMessage();
+            } catch(PDOException $e) {
+                echo "Add failed: " . $e->getMessage();
                 return false;
             }
         }
+///        
 
         public function updateUser(users $user) {
             try {
