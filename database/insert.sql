@@ -5,8 +5,8 @@ INSERT INTO `categories` (`name`) VALUES
 INSERT INTO `discounts` (`name`, `discount_percent`, `start_day`, `end_day`) VALUES
 ('Khai Xuân', 15, '2024-01-01', '2024-01-31'),
 ('Chào Hè', 20, '2024-06-01', '2024-08-31'),
-('Sale to cuối năm ', 50, '2024-10-01', '2024-12-31'),
-('TuanAnh');
+('Sale to cuối năm ', 50, '2024-10-01', '2024-12-31');
+
 INSERT INTO `roles` (`name`) VALUES
 ('employee'),
 ('manager'),
