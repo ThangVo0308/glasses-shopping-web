@@ -28,7 +28,7 @@
                         <input type="text" placeholder="Địa chỉ" class="txtAddress" id="address" name="address">
                         <div class="error" id="error"></div>
                     </div>
-                    <button class="button" type="submit" id="btnRegister">Đăng ký</button>
+                    <button class="button" type="button" id="btnRegister" onclick="validateInputSignUp()">Đăng ký</button>
                 </form>
             </div>
             <div class="form-container sign-in">
@@ -50,7 +50,7 @@
                         </svg>
                         <div class="error" id="error"></div>
                     </div>
-                    <button class="button" type="submit">Đăng nhập</button>
+                    <button class="button" type="button" onclick="validateInputLogin()">Đăng nhập</button>
                 </form>
             </div>
             <div class="toggle-container">
@@ -114,5 +114,10 @@
 });
 
 </script>
+
+<script>
+
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="stylesheet" href="../css/login/login.css">

@@ -12,12 +12,35 @@ const emailSignUp = document.getElementById('email');
 const phoneSignUp = document.getElementById('phone');
 const addressSignUp = document.getElementById('address');
 
+let isSuccessSet = false;
+let isSuccesSet1 = false;
 registerBtn.addEventListener('click', () => {
+    isSuccesSet1 = false;
     container.classList.add("active");
+    if (!isSuccessSet) {
+        setTimeout(() => {
+            setSuccess(usernameLogin);
+            setSuccess(passwordLogin);
+            isSuccessSet = true;
+        }, 200);
+    }
 });
 
+
 loginBtn.addEventListener('click', () => {
+    isSuccessSet = false;
     container.classList.remove("active");
+    if (!isSuccesSet1) {
+        setTimeout(() => {
+            setSuccess(usernameSignUp);
+            setSuccess(passwordSignUp);
+            setSuccess(nameSignUp);
+            setSuccess(emailSignUp);
+            setSuccess(phoneSignUp);
+            setSuccess(addressSignUp);
+            isSuccesSet1 = true;
+        }, 200);
+    }
 });
 
 const input = document.querySelector('.txtPasswordLogin');
@@ -35,11 +58,12 @@ eyeClose.addEventListener("click", function() {
     input.setAttribute("type","text");    
 });
 
-container.addEventListener('submit', e => {
-    e.preventDefault();
+// container.addEventListener('submit', e => {
+//     e.preventDefault();
     
-    validateInput();
-})
+//     validateInputLogin();
+//     validateInputSignUp();
+// })
 
 const setError = (element, message) => {
     const inputControl = element.parentElement;
@@ -65,15 +89,9 @@ const isValidEmail = email => {
 }
 
 
-const validateInput = () => {
+const validateInputLogin = () => {
     const usernameLoginValue = usernameLogin.value.trim();
     const passwordLoginValue = passwordLogin.value.trim();
-    const usernameSignUpValue = usernameSignUp.value.trim();
-    const passwordSignUpValue = passwordSignUp.value.trim();
-    const nameValue = nameSignUp.value.trim();
-    const emailValue = emailSignUp.value.trim();
-    const phoneValue = phoneSignUp.value.trim();
-    const addressValue = addressSignUp.value.trim();
     
     if (usernameLoginValue === '') {
         setError(usernameLogin, 'Username is required');
@@ -89,12 +107,21 @@ const validateInput = () => {
         setSuccess(passwordLogin);
     }
 
+};
+
+const validateInputSignUp = () =>{
+    const usernameSignUpValue = usernameSignUp.value.trim();
+    const passwordSignUpValue = passwordSignUp.value.trim();
+    const nameValue = nameSignUp.value.trim();
+    const emailValue = emailSignUp.value.trim();
+    const phoneValue = phoneSignUp.value.trim();
+    const addressValue = addressSignUp.value.trim();
     if(usernameSignUpValue === ''){
         setError(usernameSignUp,'Username is required');
     }else{
         setSuccess(usernameSignUp);
     }
-
+    
     if (passwordSignUpValue === '') {
         setError(passwordSignUp, 'Password is required');
     } else if (passwordSignUpValue.length < 8) {
@@ -108,7 +135,7 @@ const validateInput = () => {
     } else {
         setSuccess(nameSignUp);
     }
-
+    
     if (emailValue === '') {
         setError(emailSignUp, 'Email is required');
     } else if (!isValidEmail(emailValue)) {
@@ -117,17 +144,18 @@ const validateInput = () => {
      else {
         setSuccess(emailSignUp);
     }
-
+    
     if (phoneValue === '') {
         setError(phoneSignUp, 'Phone is required');
     } else {
         setSuccess(phoneSignUp);
     }
-
+    
     if(addressValue === ''){
         setError(addressSignUp,'Address is required');
     }else {
         setSuccess(addressSignUp)
     }
-};
+    
+}
 
