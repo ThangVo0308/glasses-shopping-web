@@ -1,4 +1,3 @@
-signupHandle.php
 <?php
 header('Content-Type: application/json');
 require_once("../../BE/BUS/userBUS.php");
@@ -28,16 +27,19 @@ if ($auth) {
     
     echo json_encode(['response' => $response]);
     
-    try {
-        $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, 1, "../../icons/whiteUser.png", 2, $address, UserStatus::ACTIVE);
-        $userBus = userBUS::getInstance();
-        $userBus->addUser($newUser);
-        echo json_encode(['success' => 'User added successfully', 'check' => true]);
-    } catch (InvalidArgumentException $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    } catch (Exception $e) {
-        echo json_encode(['error' => 'An error occurred']);
-    }
+    // try {
+    //     $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, 1, "../../icons/whiteUser.png", 2, $address, UserStatus::ACTIVE);
+    //     $userBus = userBUS::getInstance();
+    //     $userBus->addUser($newUser);
+    //     echo json_encode(['response' => $response]);
+    //     echo json_encode(['success' => 'User added successfully', 'check' => true]);
+    // } catch (InvalidArgumentException $e) {
+    //     echo json_encode(['error' => $e->getMessage()]);
+    // } catch (Exception $e) {
+    //     error_log($e->getMessage());
+
+    //     echo json_encode(['error' => 'An error occurred']);
+    // }
 } else {
     echo json_encode(['error' => 'Invalid request method']);
 }
