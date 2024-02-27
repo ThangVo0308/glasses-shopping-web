@@ -14,7 +14,7 @@ INSERT INTO `roles` (`name`) VALUES
 ('admin'); 
 
 INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `description`, `status`) VALUES
-('moriyama', 1, 'moriyama.webp', 1, 2980000, 'Vuông-Chữ Nhật', 'active'),
+('Moriyama', 1, 'Moriyama.webp', 1, 2980000, 'Vuông-Chữ Nhật', 'active'),
 ('Graph Belle', 1, 'Graph Belle.webp', 0, 2580000, 'Đa giác', 'active'),
 ('AIR FIT', 1, 'AIR FIT.webp', 1, 2780000, 'Chữ Nhật', 'active'),
 ('OWNDAYS', 2, 'OWNDAYS.webp', 2, 1980000, 'Vuông-Chữ Nhật', 'active'),
@@ -36,21 +36,21 @@ INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `desc
 ('BlackPink', 2, 'BlackPink.webp', 0, 1780000, 'Bầu dục', 'active');
 
 INSERT INTO `users` (`username`, `password`, `email`, `name`, `phone`, `gender`, `image`, `role_id`, `address`, `status`, `created_at`, `updated_at`) VALUES
-('Huy1234', '1111', 'Huy2003@gmail.com', 'Thiệu Huy', '1234567890', 1, null, 1, '123 Trần Hưng Đạo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:06'),
-('Trieu222', '2222', 'Trieu22@gmail.com', 'Ngọc Triều', '0987654321', 1, null, 2, '456 Đồng Khởi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:18'),
-('TuanAnh333', '3333', 'Tuananh33@gmail.com', 'Tuấn Anh', '0937971799', 1, null, 1, '51 Ngô Quyền', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:29'),
-('Thang444', '4444', 'ThangVo44@email.com', 'Thắng', '9876543210', 1, null, 4, '246 Nguyễn Trãi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:10'),
-('Cuong555', '5555', 'QuocCuong55@email.com', 'Quốc Cường', '096543219', 1, null, 3, '357 Hòa Hảo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:18'),
-('Nghiem666', '6666', 'nghiem66@gmail.com', 'Nghiêm', '937971788', 0, null, 3, '66 An Dương Vương', 'active', '2024-02-24 14:43:55', '2024-02-24 14:48:28'),
-('Toan777', '7777', 'Toan77@gmail.com', 'Toàn', '937975398', 0, null, 3, '77 Nguyễn Chí Thanh', 'active', '2024-02-24 14:44:57', '2024-02-24 14:48:41'),
-('Han88', '8888', 'Han88@gmail.com', 'Hân', '937275398', 0, null, 1, '88 Hòa Bình', 'active', '2024-02-24 14:45:44', '2024-02-24 14:49:00'),
-('Tram99', '9999', 'Tram99@gmail.com', 'Ngọc Trâm', '797275398', 0, null, 3, '99 Tân Phước', 'active', '2024-02-24 14:46:51', '2024-02-24 14:49:11'),
-('Trinh10', '1010', 'Trinh10@gmail.com', 'Ngọc Trinh', '797575398', 0, null, 3, '10 Trần Cung', 'active', '2024-02-24 14:47:39', '2024-02-24 14:49:21'),
-('Hai11', 'hai111', 'Hai11@gmail.com', 'Hải', '798651423', 1, null, 3, '11 Tân Kỳ Tân Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:43'),
-('Cong12', '1212', 'Cong12@gmail.com', 'Thái Công', '998877669', 1, null, 3, '12 Hai Bà Trưng', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:52'),
-('Hung13', '1313', 'Hung13@gmail.com', 'Hùng', '543219876', 1, null, 3, '13 Phong Phú', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:05'),
-('Kiet14', '1414', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, null, 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14'),
-('Tai15', '1515', 'Tai15@gmail.com', 'Thành Tài', '909597799', 1, null, 3, '15 Nguyễn Kim', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:24');
+('Huy1234', 'Huy11111', 'Huy2003@gmail.com', 'Thiệu Huy', '1234567890', 1, null, 1, '123 Trần Hưng Đạo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:06'),
+('Trieu222', 'Trieu2222', 'Trieu22@gmail.com', 'Ngọc Triều', '0987654321', 1, null, 2, '456 Đồng Khởi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:18'),
+('TuanAnh333', 'TuanAnh3333', 'Tuananh33@gmail.com', 'Tuấn Anh', '0937971799', 1, null, 1, '51 Ngô Quyền', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:29'),
+('Thang444', 'Thang4444', 'ThangVo44@email.com', 'Thắng', '9876543210', 1, null, 4, '246 Nguyễn Trãi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:10'),
+('Cuong555', 'Cuong5555', 'QuocCuong55@email.com', 'Quốc Cường', '096543219', 1, null, 3, '357 Hòa Hảo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:18'),
+('Nghiem666', 'Nghiem6666', 'nghiem66@gmail.com', 'Nghiêm', '937971788', 0, null, 3, '66 An Dương Vương', 'active', '2024-02-24 14:43:55', '2024-02-24 14:48:28'),
+('Toan777', 'Toan7777', 'Toan77@gmail.com', 'Toàn', '937975398', 0, null, 3, '77 Nguyễn Chí Thanh', 'active', '2024-02-24 14:44:57', '2024-02-24 14:48:41'),
+('Han88', 'Han8888', 'Han88@gmail.com', 'Hân', '937275398', 0, null, 1, '88 Hòa Bình', 'active', '2024-02-24 14:45:44', '2024-02-24 14:49:00'),
+('Tram99', 'Tram9999', 'Tram99@gmail.com', 'Ngọc Trâm', '797275398', 0, null, 3, '99 Tân Phước', 'active', '2024-02-24 14:46:51', '2024-02-24 14:49:11'),
+('Trinh10', 'Trinh1010', 'Trinh10@gmail.com', 'Ngọc Trinh', '797575398', 0, null, 3, '10 Trần Cung', 'active', '2024-02-24 14:47:39', '2024-02-24 14:49:21'),
+('Hai11', 'Hai11111', 'Hai11@gmail.com', 'Hải', '798651423', 1, null, 3, '11 Tân Kỳ Tân Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:43'),
+('Cong12', 'Cong12122', 'Cong12@gmail.com', 'Thái Công', '998877669', 1, null, 3, '12 Hai Bà Trưng', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:52'),
+('Hung13', 'Hung13133', 'Hung13@gmail.com', 'Hùng', '543219876', 1, null, 3, '13 Phong Phú', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:05'),
+('Kiet14', 'Kiet14144', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, null, 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14'),
+('Tai15', 'Tai15155', 'Tai15@gmail.com', 'Thành Tài', '909597799', 1, null, 3, '15 Nguyễn Kim', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:24');
 
 INSERT INTO `imports` (`user_id`, `import_date`, `total_price`) VALUES
 (2, '2024-02-25', 14900000),
