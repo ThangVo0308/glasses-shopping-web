@@ -7,7 +7,7 @@
         <a href="#" onclick=changIframeHomeScreen()>Trang Chủ</a>
         <a href="#" onclick=changIframeProducts()>Sản Phẩm</a>
         <a href="">Về Chúng Tôi</a>
-        <a href="">Liên Hệ</a>
+        <a href="" onclick=changIframeContact()>Liên Hệ</a>
     </div>
     <div class="navigation">
         <input type="text" class="searchvalue">
@@ -16,6 +16,7 @@
         <img src="../../icons/cart.png" onclick="changIframeCart()" alt="">
     </div>
 </div>
+<iframe src="./productDetail.php" id="productDetail" frameborder="0"></iframe>
 
 <link rel="stylesheet" href="../css/header.css">
 <script src="../controller/login.js"></script>

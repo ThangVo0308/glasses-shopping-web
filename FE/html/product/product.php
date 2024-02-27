@@ -9,6 +9,5 @@ $product = json_decode($_GET['data'], true);
     <i class="price"><?php echo $product['price']; ?></i>
     <img class="icon" src="../../../icons/<?php echo $product['logo']; ?>" alt="">
 </div>
-
 <link rel="stylesheet" href="../../css/productStyle/product.css">
 <script src="../../controller/product/product.js"></script>

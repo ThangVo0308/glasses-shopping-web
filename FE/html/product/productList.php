@@ -56,9 +56,9 @@
             </div>
 
             <div id="gender" class="option-filter">
-                <div class="btn" onclick="toggleDropdown('gender-value',1)" >
+                <div class="btn" onclick="toggleDropdown('gender-value',1)">
                     <h3>Giới tính</h3>
-                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="" >
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="gender-value" class="value-filter">
                     <label>
@@ -76,8 +76,8 @@
                     <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="price-value" class="value-filter">
-                    <input type="range" min="0" max="5000000" step="250000" value="0" id="myRange" >
-                    <h3 id="result" >0</h3>
+                    <input type="range" min="0" max="5000000" step="250000" value="0" id="myRange">
+                    <h3 id="result">0</h3>
                 </div>
             </div>
 
@@ -98,8 +98,25 @@
                 <iframe src="./product.php?data=<?php echo urlencode(json_encode($product)); ?>" frameborder="0"></iframe>
             <?php endforeach; ?>
         </div>
-
     </div>
+    <iframe src="./productDetail.php" frameborder="0" id="productDetail"></iframe>
 </body>
 <script src="../../controller/product/productList.js"></script>
+
 </html>
+<script>
+    // Lấy phần tử iframe
+    var iframe = document.querySelectorAll('iframe')[2];
+
+    // Kiểm tra xem iframe đã tải xong chưa
+    iframe.onload = function() {
+        // Lấy tài liệu (document) bên trong iframe
+        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Truy cập đến phần tử div có class là "product"
+        var productDiv = iframeDocument.querySelector('div.product');
+
+        // Log ra phần tử div
+        console.log(productDiv);
+    };
+</script>

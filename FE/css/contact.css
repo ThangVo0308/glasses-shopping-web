@@ -1,0 +1,98 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+
+}
+body {
+    background-color: white;
+}
+#contact {
+    display: flex;
+    margin-left: 16%;
+    margin-right: 16%;
+    margin-top: 30px;
+    background-color: white;
+    padding: 10px;
+}
+#information {
+    width: 40%;
+    height: 315px;
+    margin-right: 15px;
+    background: rgba(238, 238, 238, 1);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+}
+#information span:nth-child(1){
+    color: red;
+    transition: all 0.8s ease;
+}
+#information span:nth-child(1):hover {
+    color:#8ddad3;
+}
+#information span:nth-child(2){
+    font-size: 13px;
+    color: rgba(139, 145, 152, 1);
+}
+#information img {
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+}
+.section {
+    display: flex;
+    border-bottom: rgba(221, 221, 221, 1) 1px solid;
+    height: 80px;
+    align-items: center;
+    padding-left: 45px;
+    cursor: pointer;
+}
+.section div {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+#emailContact {
+    height: 315px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+#emailContact span {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #216e67;
+    align-self: center;
+}
+#emailContact input{
+    margin-bottom: 12px;
+    height: 38px;
+    font-size: 16px;
+    padding-left: 5px;
+}
+#emailContact textarea{
+    height: 110px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-top: 5px;
+    resize: none;
+}
+#emailContact button {
+    height: 36px;
+    width: 136px;
+    background-color: #8ddad3;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 3px 2px 3px rgba(79, 209, 197, .64);
+    margin-top: 6px;
+    transition: all 0.8s ease;
+}
+#emailContact button:hover {
+    margin-top: 0px;
+}

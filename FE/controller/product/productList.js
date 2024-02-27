@@ -21,3 +21,5 @@ var resultDisplay = document.getElementById("result");
 rangeInput.addEventListener("input", function () {
     resultDisplay.textContent = rangeInput.value.replace(/(.)(?=(\d{3})+$)/g,'$1,')
 });
+
+

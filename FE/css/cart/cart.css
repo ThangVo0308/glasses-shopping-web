@@ -19,9 +19,9 @@ body {
     margin-bottom: 150px;
 }
 .section {
-    width: 70%;
-    align-self: center;
+    width: 60%;
     padding: 5px;
+    margin-left: 10%;
 }
 
 .title {
@@ -123,35 +123,48 @@ body {
     cursor: pointer;
 }
 #statistical {
-    width: 70%;
-    height: 135px;
+    width: 365px;
+    height: 166px;
     position: fixed;
-    background-color: white;
-    bottom: 0;
+    background-color: #8ddad3;
     display: flex;
     flex-direction: column;
     padding: 15px;
-    left: 50%; 
-    transform: translateX(-50%); 
-    box-shadow: 0px -1px 3px rgb(137 194 189 / 64%);
+    top: 64px;
+    right: 26px;
+    box-shadow: 3px 11px 14px rgb(137 194 189 / 64%);}
+.pinImage{
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    animation-name: pinImage;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+@keyframes pinImage {
+    0%   {right:-12px; top:-12px;}
+    100%  {right:-18px; top:-18px;}
 }
 #voucherForm {
     display: flex;
     height: 50%;
     align-items: center;
     border-bottom: #8bcddd 2px dashed;
-    padding-left: 50%;
 }
 #voucherForm span {
     font-size: 16px;
 }
 #valueVoucher {
-    width: 235px;
+    width: 130px;
     text-align: right;
 }
 #voucherForm img {
     padding-right: 15px;
 }
+
+
 #selectStatus {
     color: #929292;
 }
@@ -163,20 +176,15 @@ body {
 #payForm div {
     display: flex;
     align-items: center;
-    width: 50%;
-}
-#payForm input {
-    margin-right: 15px;
-    width: 15px;
 }
 .pay {
     justify-content: space-around;
 }
 .pay span {
-    font-size: 21px;
+    font-size: 16px;
 }
 #valuePay{
-    width: 135px;
+    width: 100px;
     text-align: right;
     color: red;
     font-size: 20px;
@@ -187,6 +195,7 @@ body {
     border: 0;
     box-shadow: 0px 2px 4px rgba(79, 209, 197, .64);
     cursor: pointer;
+    margin-left: 17px;
 }
 #payBtn:hover {
     color: rgb(78, 87, 87);

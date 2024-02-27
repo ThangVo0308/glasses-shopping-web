@@ -11,6 +11,11 @@
 $productList = [
     ['id' => '01', 'name' => 'Sản phẩm 1', 'price' => '1000000', 'image' => 'productDemo.png', 'quantity' => '4'],
     ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
+    ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
+    ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
+    ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
+    ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
+    ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
 ];
 ?>
 
@@ -60,16 +65,13 @@ $productList = [
         </div>
     </div>
     <div id="statistical" >
+        <img class="pinImage" src="../../../icons/pin.png" alt="">
         <div id="voucherForm" >
             <img src="../../../icons/coupon.png" alt="">
             <span id="selectStatus" >Bạn chưa chọn sản phẩm</span>
             <span id="valueVoucher" >0đ</span>
         </div>
         <div id="payForm" >
-            <div>
-                <input type="checkbox" name="allChecked" id="allChecked">
-                <span>Sản phẩm đã chọn (11 Sản phẩm)</span>
-            </div>
             <div class="pay">
                 <span>Tổng thanh toán</span>
                 <h3 id="valuePay" >0</h3>
