@@ -32,7 +32,7 @@
                 </form>
             </div>
             <div class="form-container sign-in">
-                <form id="form" name="signin">
+                <form id="form">
                     <h1>Đăng nhập</h1>
                     <div class="input-control">
                         <input type="text" placeholder="Username" id="username" class="txtUsernameLogin" name="username">
@@ -78,67 +78,41 @@
 <script src="../controller/login.js"></script>
 <script>
     $(document).ready(function() {
-        function signupHandle(url, method, data1) {
-            $.ajax({
+    function signupHandle(url, method, data1) {
+        $.ajax({
                 type: method,
                 url: url,
                 data: data1,
                 dataType: "json",
                 success: function(res) {
-                    if (res.response.check === true) {
+                    if (res.response.auth === true) {
+                        // alert("Xin chào " + res.response.name);
                         confirm("Bạn có muốn đăng nhập tài khoản ngay lập tức?");
                         if(confirm("Bạn có muốn đăng nhập tài khoản ngay lập tức?")) {
                             alert("Xin chào: "+res.response.username);
-
-                            // TODO1: replace by php code with succesful login
-                            // Note: can get user contribute by res.response.name_contribute(res.response.username,....)
-                            // window.location.href() // replace by php code with succesful login
+                            // window.location.href 
                         }
                     } else {
                         alert("Đã có lỗi xảy ra: " + res.error);
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {       
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("lalalala: "+jqXHR.responseText);
                     console.error("AJAX request failed:", textStatus, errorThrown);
                 }
             });
-        }
+    }
 
-        function signinHandle(url, method, data1) {
-            $.ajax({
-                type: method,
-                url: url,
-                data: data1,
-                dataType: "json",
-                success: function(res) {
-                    if(res.response.check == true) {
-                        alert("Xin chào: "+res.response.username);
-                    }else if(res.response.check == false) {
-                        alert("Sai tài khoản hoặc mật khẩu");
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {   
-                    console.error("AJAX request failed o form Signin:", textStatus, errorThrown);
-                }
-            }) 
-        }
+    $("form[name='signup']").submit(function(e) {
+        e.preventDefault();
 
-        $("form[name='signup']").submit(function(e) {
-            e.preventDefault(); 
+        var formData = $(this).serialize();
+        console.log("KAKAKAKA");
 
-            var formData = $(this).serialize();
-
-            signupHandle('../../main/handler/signupHandle.php', 'POST', formData);
-        });
-
-        $("form[name='signin']").submit(function(e) {
-            e.preventDefault();
-
-            var formData = $(this).serialize();
-
-            signinHandle('../../main/handler/signinHandle.php', 'POST', formData);
-        });
+        signupHandle('../../main/handler/signupHandle.php', 'POST', formData);
     });
+});
+
 </script>
 
 <script>
