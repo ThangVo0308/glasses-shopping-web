@@ -120,11 +120,11 @@
                 error: function(jqXHR, textStatus, errorThrown) {   
                     console.error("AJAX request failed o form Signin:", textStatus, errorThrown);
                 }
-            })
+            }) 
         }
 
         $("form[name='signup']").submit(function(e) {
-            e.preventDefault();
+            e.preventDefault(); 
 
             var formData = $(this).serialize();
 
