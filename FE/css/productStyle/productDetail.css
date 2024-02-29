@@ -1,27 +1,142 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
 }
 #product-detail {
     display: flex;
-    height: 60%;
-    width: 60%;
-    background-color: aqua;
+    height: 57%;
+    width: 50%;
+    background-color: white;
     position: fixed;
     top: 50%;
     left: 50%;
     right: 50%;
     transform: translate(-50%,-50%);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 }
 img {
     width: 300px;
-    background-color: antiquewhite;
-    margin: 20px;
+    margin: 10px;
 }
 #infor {
-    width: 100%;
-    background-color: aliceblue;
+    background: linear-gradient(to top, #009688, #35a79c, #54b2a9, #65c3ba, #83d0c9);
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-left: 50px;
+    padding-right: 25px;
+    position: absolute;
+    height: 100%;
+    right: 0px;
+    width: 50%;
+    padding-top: 6px;
+    bottom: -3;
+}
+#name-product {
+    font-size: 28px;
+    color: #409c94;
+    margin-bottom: 5px;
+    padding-top: 18px;
+    text-transform: uppercase;
+}
+#id-product {
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+#infor div:nth-child(3) {
+    display: flex;
+    align-items: end;
+    padding-bottom: 5px;
+}
+#discout-time {
+    padding-bottom: 20px;
+    color: #929376;
+    font-style: italic;
+}
+#price {
+    font-size: 24px;
+    color: red;
+}
+#price-real {
+    text-decoration:line-through;
+    font-size: 18px;
+    padding-left: 10px;
+}
+.status {
+    color: #929292;
+    font-size: 16px;
+}
+.section {
+    font-size: 15px;
+}
+.quantity-form{
+    display: flex;
+    align-items: center;
+}
+#decrease, #increase {
+    height: 33px;
+    width: 25px;
+    font-size: 21px;
+    background: transparent;
+    border: black 1px solid;
+    cursor: pointer;
+    background-color: white;
+}
+#quantity {
+    width: 30px;
+    height: 33px;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    border-top: black 1px solid;
+    border-bottom: black 1px solid;
+    text-align: center;
+}
+.quantity-form img {
+    height: 16px;
+    width: 16px;
+    opacity: 0.8;
+    margin-left: 20px;
+
+}
+.quantity-form span {
+    color: #929292;
+    font-size: 16px;
+}
+textarea {
+    padding-top: 5px;
+    padding-left: 5px;
+    resize: none;
+    border: white 1px solid;
+    font-size: 16px;
+    height: 100px;
+    margin-bottom: 15px;
+    background-color: #83d0c9;
+}
+#infor div:nth-child(7){
+    display: flex;
+    bottom: 0;
+    justify-content: center;
+}
+#infor div:nth-child(7) button {
+    height: 35px;
+    width: 120px;
+    margin: 20px;
+    margin-top: 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+#infor div:nth-child(7) button:hover {
+    margin-top: 14px;
 }
