@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản Phẩm</title>
-    <link rel="stylesheet" href="../../css/productStyle/productList.css">
-    <link rel="stylesheet" href="../../css/productStyle/product.css">
 </head>
 
 <body>
@@ -86,10 +84,6 @@
         $productList = [
             ['id' => '01', 'name' => 'Sản phẩm 12', 'price' => '100000', 'image' => 'logo.png', 'logo' => 'new.gif'],
             ['id' => '02', 'name' => 'Sản phẩm 2', 'price' => '150000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-            ['id' => '01', 'name' => 'Sản phẩm 12', 'price' => '100000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-            ['id' => '02', 'name' => 'Sản phẩm 2', 'price' => '150000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-            ['id' => '01', 'name' => 'Sản phẩm 12', 'price' => '100000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-            ['id' => '02', 'name' => 'Sản phẩm 2', 'price' => '150000', 'image' => 'logo.png', 'logo' => 'new.gif'],
             ['id' => '03', 'name' => 'Sản phẩm 3', 'price' => '120000', 'image' => 'logo.png', 'logo' => 'star.gif']
         ];
         ?>
@@ -99,24 +93,15 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <iframe src="./productDetail.php" frameborder="0" id="productDetail"></iframe>
+    <iframe src="./productDetail.php" frameborder="0" id="product-detail"></iframe>
+    
+    <link rel="stylesheet" href="../../css/productStyle/productList.css">
+    <link rel="stylesheet" href="../../css/productStyle/product.css">
 </body>
 <script src="../../controller/product/productList.js"></script>
+<script src="../../controller/product/product.js"></script>
 
 </html>
 <script>
-    // Lấy phần tử iframe
-    var iframe = document.querySelectorAll('iframe')[2];
 
-    // Kiểm tra xem iframe đã tải xong chưa
-    iframe.onload = function() {
-        // Lấy tài liệu (document) bên trong iframe
-        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-        // Truy cập đến phần tử div có class là "product"
-        var productDiv = iframeDocument.querySelector('div.product');
-
-        // Log ra phần tử div
-        console.log(productDiv);
-    };
 </script>

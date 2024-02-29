@@ -12,16 +12,25 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    padding: 2%;
     background-color: #eeeded;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
 }
 #image-slider {
     display: flex;
     height: 480px;
     border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+#image-select {
+    height: 480px;
+    width: 100%;
+    position: absolute;
+    display: none;
 }
 .poster-main {
-    width: 97%;
+    width: 100%;
     animation-name: imageMain;
     animation-duration: 4s;
     animation-iteration-count: infinite;
@@ -38,7 +47,7 @@
     
 }
 @keyframes imageMain {
-    0%   {width: 97%; right:0px; top:0px;}
+    0%   {width: 100%; right:0px; top:0px;}
     100%  {width: 0%; right:200px; top:0px;}
 }
 #poster .image-next {
@@ -48,17 +57,19 @@
 
 @keyframes imageNext {
     0%   {width: 0%; right:0px; top:0px;}
-    100%  {width: 97%; right:200px; top:0px;}
+    100%  {width: 100%; right:200px; top:0px;}
 }
-#poster .images {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.images {
+    position: absolute;
+    bottom: 120px;
+    right: 50px;
 }
 #poster .images img {
-    height: 150px;
-    width: 220px;
+    height: 120px;
+    width: 190px;
     cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 #topic {

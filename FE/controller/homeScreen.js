@@ -10,18 +10,12 @@ function changeInput() {
 }
 
 function changeImage(clickedImage) {
-    var mainImage = document.querySelector('.image-main');
-    var nextImage = document.querySelector('.image-next');
-    var posterMain = document.querySelector('.poster-main');
-    var posterNext = document.querySelector('.poster-next');
-    posterMain.style.animationIterationCount = 0;
-    posterNext.style.animationIterationCount = 0;
-    setTimeout(() => {
-        posterMain.style.animationIterationCount = 'infinite';
-        posterNext.style.animationIterationCount = 'infinite';
+    var imageSelect = document.getElementById('image-select');
+    imageSelect.src = clickedImage.src;
+    imageSelect.style.display = 'flex';
+    setTimeout(function() {
+        imageSelect.style.display = 'none';
     }, 4000);
-    mainImage.src = clickedImage.src;
-
 }
 
 function selectSlider(number) {

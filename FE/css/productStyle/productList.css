@@ -124,7 +124,7 @@ label input {
     padding-left: 20px;
     color: rgb(144, 144, 21);
 }
-#productDetail {
+#product-detail {
     position: fixed;
     display: none;
     top: 0;

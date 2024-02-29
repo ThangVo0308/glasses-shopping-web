@@ -10,6 +10,7 @@ $productList = [
     <div id="main">
         <div id="poster">
             <div id="image-slider" >
+                <img src="../../images/poster1.png" alt="" id="image-select">
                 <div class="poster-main" >
                     <img src="../../images/poster1.png" alt="" class="image-main">
                 </div>
