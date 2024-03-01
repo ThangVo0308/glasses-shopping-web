@@ -3,7 +3,7 @@
     $product = json_decode($_GET['data'], true);
 ?>
 
-<div id="product-detail">
+<div id="product-detail" >
     <img src="../../../images/products/productDemo.png" alt="">
     <div id="infor">
         <h3 id="name-product"><?php echo $product['name']; ?></h3>
@@ -28,4 +28,13 @@
     </div>
     <link rel="stylesheet" href="../../css/productStyle/productDetail.css">
 </div>
+<script>
+    var productDetailIframe = parent.document.getElementById('product-detail');
+    var productDetailForm =document.getElementById('product-detail');
+    window.onclick =function(e) {
+        if(e.target==productDetailForm.parentElement){
+            productDetailIframe.style.display='none';
+        }
+    }
+</script>
 <script src="../../controller/product/productDetail.js"></script>

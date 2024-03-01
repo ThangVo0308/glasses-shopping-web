@@ -135,8 +135,13 @@
             signinHandle('../../main/handler/signinHandle.php', 'POST', formData);
         });
     });
+
+    var loginIframe = parent.document.getElementById('login');
+    var loginForm =document.getElementById('myModal');
+    window.onclick = function(e) {
+        if(e.target==loginForm){
+            loginIframe.style.display='none';
+        }
+    }
 </script>
 
-<script>
-
-</script>

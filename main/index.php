@@ -18,35 +18,31 @@
 
 </html>
 <script>
-     const loginForm = document.getElementById('login');
+    const loginForm = parent.document.getElementById('login');
+    function openLoginForm() {
+        if (loginForm) {
+            loginForm.style.display = "block";
+            const usernameLogin = document.getElementById('username');
+            const passwordLogin = document.getElementById('password');
+            const usernameSignUp = document.getElementById('usernameSignUp');
+            const passwordSignUp = document.getElementById('passwordSignUp');
+            const nameSignUp = document.getElementById('name');
+            const emailSignUp = document.getElementById('email');
+            const phoneSignUp = document.getElementById('phone');
+            const addressSignUp = document.getElementById('address');
 
-
-function openLoginForm() {
-    if (loginForm) {
-        loginForm.style.display = "block";
-        const usernameLogin = document.getElementById('username');
-        const passwordLogin = document.getElementById('password');
-        const usernameSignUp = document.getElementById('usernameSignUp');
-        const passwordSignUp = document.getElementById('passwordSignUp');
-        const nameSignUp = document.getElementById('name');
-        const emailSignUp = document.getElementById('email');
-        const phoneSignUp = document.getElementById('phone');
-        const addressSignUp = document.getElementById('address');
-
-        usernameLogin.value = "";
-        passwordLogin.value = "";
-        usernameSignUp.value = "";
-        passwordSignUp.value = "";
-        nameSignUp.value = "";
-        emailSignUp.value = "";
-        phoneSignUp.value = "";
-        addressSignUp.value = "";
+            usernameLogin.value = "";
+            passwordLogin.value = "";
+            usernameSignUp.value = "";
+            passwordSignUp.value = "";
+            nameSignUp.value = "";
+            emailSignUp.value = "";
+            phoneSignUp.value = "";
+            addressSignUp.value = "";
+        }
     }
-}
 </script>
 
-<script src="../FE/controller/login.js"></script>
 <script src="../FE/controller/navigation.js"></script>
 <script src="../FE/controller/path.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<script src="./main.js"></script>

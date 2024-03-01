@@ -12,13 +12,19 @@
     <div class="navigation">
         <input type="text" class="searchvalue">
         <img src="../../icons/search.png" onclick="changeInput()" alt="">
-        <img src="../../icons/user.png" alt="" id="Userlogin" onclick="parent.openLoginForm()">
+        <img src="../../icons/user.png" alt="" id="Userlogin" onclick="openLoginForm()">
         <img src="../../icons/cart.png" onclick="changIframeCart()" alt="">
     </div>
 </div>
-<iframe src="./productDetail.php" id="productDetail" frameborder="0"></iframe>
 
 <link rel="stylesheet" href="../css/header.css">
-<script src="../controller/login.js"></script>
 <script src="../controller/homeScreen.js"></script>
 <script src="../controller/navigation.js"></script>
+<script>
+    const loginForm = parent.document.getElementById('login');
+    function openLoginForm() {
+        if (loginForm) {
+            loginForm.style.display = "block";
+        }
+    }
+</script>

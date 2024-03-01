@@ -13,13 +13,12 @@
 <script src="../../controller/product/product.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    var productDetail = parent.document.getElementById('product-detail');
     $(document).ready(function() {
         $('.product').click(function() {
     
-            var productDetail = parent.document.getElementById('product-detail');
             productDetail.style.display = 'block';
             productDetail.src="./productDetail.php?data=<?php echo urlencode(json_encode($product)); ?>"
         });
-
     });
 </script>

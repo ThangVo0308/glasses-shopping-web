@@ -49,8 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 });
-var mainImage = document.querySelector('.image-main');
-var nextImage = document.querySelector('.image-next');
+
 
 const data = [
     'poster2.png',
@@ -61,9 +60,14 @@ const data = [
 let currentIndex = 0;
 
 var interval = setInterval(() => {
-    mainImage.src = nextImage.src;
-    currentIndex = (currentIndex + 1) % data.length; 
-    nextImage.src = '../../images/' + data[currentIndex];
+    var mainImage = document.querySelector('.image-main');
+    var nextImage = document.querySelector('.image-next');
+    if(mainImage!=null && nextImage!=null){
+
+        mainImage.src = nextImage.src;
+        currentIndex = (currentIndex + 1) % data.length; 
+        nextImage.src = '../../images/' + data[currentIndex];
+    }
 
 }, 4000);
 
