@@ -5,8 +5,8 @@
 }
 #product-detail {
     display: flex;
-    height: 57%;
-    width: 50%;
+    height: 380px;
+    width: 800px;
     background-color: white;
     position: fixed;
     top: 50%;
@@ -15,6 +15,12 @@
     transform: translate(-50%,-50%);
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    animation-name: product-detail;
+    animation-duration: 1s;
+}
+@keyframes product-detail {
+    0%   {top: 0%;}
+    100%  {top: 50%;}
 }
 img {
     width: 300px;

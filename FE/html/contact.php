@@ -1,4 +1,5 @@
 <body>
+    <iframe src="./path.php" frameborder="0" id="pathContact"></iframe>
     <div id="contact" >
         <div id="information" >
             <div class="section">

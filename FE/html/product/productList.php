@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <iframe src="../path.php" frameborder="0" id="path"></iframe>
+    <iframe src="../path.php" frameborder="0" id="pathProducts"></iframe>
 
     <h3 id="title">Mắt kính chính hãng PreVision</h3>
 

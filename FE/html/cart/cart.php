@@ -20,7 +20,7 @@ $productList = [
 ?>
 
 <body>
-    <iframe src="../path.php" frameborder="0" id="path"></iframe>
+    <iframe src="../path.php" frameborder="0" id="pathCart"></iframe>
     <div id="cart">
         <div class="title section">
             <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/cart/d9e992985b18d96aab90.png" alt="">

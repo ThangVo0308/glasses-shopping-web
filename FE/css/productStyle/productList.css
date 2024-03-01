@@ -12,7 +12,7 @@ body {
     padding-right: 10px;
     background-color: white;
 }
-#path {
+#pathProducts {
     width: 100%;
     height: 38px;
 }
@@ -93,6 +93,13 @@ body {
 .value-filter {
     display: none;
     flex-direction: column;
+    opacity: 1;
+    animation-name: value;
+    animation-duration: 1s
+}
+@keyframes value {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 label {
     padding-left: 40px;
