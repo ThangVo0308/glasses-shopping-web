@@ -3,7 +3,7 @@ $product = json_decode($_GET['data'], true);
 ?>
 
 <div id="product-detail">
-    <img src="../../../images/products/productDemo.png" alt="">
+    <img src="../../../images/glasses/<?php echo $product['image']; ?>" alt="">
     <div id="infor">
         <h3 id="name-product"><?php echo $product['name']; ?></h3>
         <span id="id-product">Mã sản phẩm: <?php echo $product['id']; ?></span>
