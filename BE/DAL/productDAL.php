@@ -1,6 +1,6 @@
 <?php
-require("..\BE\DAL\database.php");
-class ProductDAL
+    require_once(__DIR__ . '/../DAL/database.php');
+    class ProductDAL
 {
     private $connection;
 
@@ -54,8 +54,8 @@ class ProductDAL
     public function addProduct(Product $product)
     {
         try {
-            $query = "insert into products (name,category_id,image,gender,price,description,status) 
-                         values (:name,:category_id,:image,:gender,:price,:description,:status)";
+            $query = "insert into products (name,category_id,image,gender,price,description,quantity,status) 
+                         values (:name,:category_id,:image,:gender,:price,:description,:quantity,:status)";
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':name', $product->getName());
             $statement->bindParam(':category_id', $product->getCategoryID());
@@ -63,6 +63,7 @@ class ProductDAL
             $statement->bindParam(':gender', $product->getGender());
             $statement->bindParam(':price', $product->getPrice());
             $statement->bindParam(':description', $product->getDescription());
+            $statement->bindParam(':quantity', $product->getQuantity());
             $statement->bindParam(':status', $product->getStatus());
             $statement->execute();
             return true;
@@ -75,7 +76,7 @@ class ProductDAL
     public function updateProduct(Product $product)
     {
         try {
-            $query = "update products set name=?, category_id = ?, image=?, gender=?, price=?, description=?, status=? where id=?";
+            $query = "update products set name=?, category_id = ?, image=?, gender=?, price=?, description=?, quantity=?, status=? where id=?";
             $statement = $this->connection->prepare($query);
 
             $name = $product->getName();
@@ -84,6 +85,7 @@ class ProductDAL
             $gender = $product->getGender();
             $price = $product->getPrice();
             $description = $product->getDescription();
+            $quantity = $product->getQuantity();
             $status = $product->getStatus();
             $id = $product->getID();
 
@@ -93,8 +95,9 @@ class ProductDAL
             $statement->bindParam(4, $gender);
             $statement->bindParam(5, $price);
             $statement->bindParam(6, $description);
-            $statement->bindParam(7, $status);
-            $statement->bindParam(8, $id);
+            $statement->bindParam(7, $quantity);
+            $statement->bindParam(8, $status);
+            $statement->bindParam(9, $id);
 
             $statement->execute();
             return true;
@@ -130,6 +133,7 @@ class ProductDAL
         $product->setGender($row['gender']);
         $product->setPrice($row['price']);
         $product->setDescription($row['description']);
+        $product->setQuantity($row['quantity']);
         $product->setStatus($row['status']);
 
         return $product;
@@ -141,7 +145,7 @@ class ProductDAL
             $productList = array();
 
             if ($columnName == null || strlen($columnName) == 0) {
-                $query = "SELECT * FROM products WHERE CONCAT(id, name, category_id, image, gender, price, description, status) LIKE ?";
+                $query = "SELECT * FROM products WHERE CONCAT(id, name, category_id, image, gender, price, description, quantity, status) LIKE ?";
             } else if (strlen($columnName) == 1) {
                 $column = $columnName[0]; // selected column
                 $query = "SELECT * FROM products WHERE " . $column . " LIKE ?";
@@ -151,7 +155,7 @@ class ProductDAL
                 }
 
                 $columns = implode(",", $columnName);
-                $query = "SELECT id, name, category_id, image, gender, price, description, status FROM products WHERE CONCAT(" . $columns . ") LIKE ?";
+                $query = "SELECT id, name, category_id, image, gender, price, description,quantity, status FROM products WHERE CONCAT(" . $columns . ") LIKE ?";
             }
 
             $statement = $this->connection->prepare($query);

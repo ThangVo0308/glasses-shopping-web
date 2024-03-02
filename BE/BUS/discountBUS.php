@@ -1,5 +1,5 @@
 <?php
-    require_once ('./BE/DAL/discountDAL.php');
+    require_once(__DIR__ . '/../DAL/discountDAL.php');
     class discountBUS {
         private $discountList = array();
 

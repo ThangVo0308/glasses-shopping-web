@@ -80,15 +80,23 @@
             </div>
 
         </div>
+
         <?php
-        $productList = [
-            ['id' => '01', 'name' => 'Sản phẩm 12', 'price' => '100000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-            ['id' => '02', 'name' => 'Sản phẩm 2', 'price' => '150000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-            ['id' => '03', 'name' => 'Sản phẩm 3', 'price' => '120000', 'image' => 'logo.png', 'logo' => 'star.gif']
-        ];
+        require_once("../../../BE/BUS/productBUS.php");
+        $productList = productBUS::getInstance()->getAllProduct()
+
         ?>
         <div id="products">
-            <?php foreach ($productList as $product) : ?>
+            <?php foreach ($productList as $product) : 
+                if($product['gender'] == 2) {
+                    $product['logo'] = 'cart.gif'; // add another logo for both gender(0,1)
+                }else if($product['gender'] == 1) {
+                    $product['logo'] = 'new.gif';
+                }else {
+                    $product['logo'] = 'star.gif';
+                }
+                
+                ?>
                 <iframe src="./product.php?data=<?php echo urlencode(json_encode($product)); ?>" frameborder="0"></iframe>
             <?php endforeach; ?>
         </div>

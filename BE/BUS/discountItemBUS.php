@@ -1,6 +1,6 @@
 <?php
-    require_once ('./BE/DAL/discountItemDAL.php');
-    class discountItemItemBUS {
+    require_once(__DIR__ . '/../DAL/discountItemDAL.php');
+    class discountItemBUS {
         private $discountItemList = array();
 
         private static $instance;

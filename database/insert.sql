@@ -13,27 +13,27 @@ INSERT INTO `roles` (`name`) VALUES
 ('customer'),
 ('admin'); 
 
-INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `description`, `status`) VALUES
-('Moriyama', 1, 'Moriyama.webp', 1, 2980000, 'Vuông-Chữ Nhật', 'active'),
-('Graph Belle', 1, 'Graph Belle.webp', 0, 2580000, 'Đa giác', 'active'),
-('AIR FIT', 1, 'AIR FIT.webp', 1, 2780000, 'Chữ Nhật', 'active'),
-('OWNDAYS', 2, 'OWNDAYS.webp', 2, 1980000, 'Vuông-Chữ Nhật', 'active'),
-('AIR Ultem', 1, 'AIR Ultem.webp', 2, 2350000, 'Vuông', 'active'),
-('John Dillinger', 1, 'John Dillinger.webp', 2, 2700000, 'Tròn', 'active'),
-('OWNDAYS SNAP', 2, 'OWNDAYS SNAP.webp', 2, 2780000, 'Vuông', 'active'),
-('SKY', 2, 'sky.webp', 0, 1980000, 'Bầu dục', 'active'),
-('Model', 1, 'Model.webp', 1, 2590000, 'Nhựa dẻo Thép không rỉ', 'active'),
-('UFO', 1, 'UFO.webp', 2, 2600000, 'Vuông-Chữ nhật', 'active'),
-('NICHE', 1, 'NICHE.webp', 0, 3500000, 'Nhựa trong', 'active'),
-('White', 1, 'White.webp', 2, 1500000, 'Tròn', 'active'),
-('Teen', 1, 'Teen.webp', 2, 1450000, 'Tròn', 'active'),
-('lillybell', 1, 'lillybell.webp', 0, 2450000, 'Vuông-Chữ nhật', 'active'),
-('lilly', 1, 'lilly.webp', 1, 1450000, 'Đa giác', 'active'),
-('Sun', 2, 'Sun.webp', 0, 1980000, 'Đa giác', 'active'),
-('Monday', 2, 'Monday.webp', '0', 2980000, 'Mắt mèo', 'active'),
-('Cute', 2, 'Cute.webp', 0, 2980000, 'Vuông-Chữ nhật', 'active'),
-('Junni', 2, 'Junni.webp', 1, 1880000, 'Vuông-Chữ nhật', 'active'),
-('BlackPink', 2, 'BlackPink.webp', 0, 1780000, 'Bầu dục', 'active');
+INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `description`, `quantity`,`status`) VALUES
+('Moriyama', 1, 'moriyama.webp', 1, 2980000, 'Vuông-Chữ Nhật', 5,'active'),
+('Graph Belle', 1, 'Graph Belle.webp', 0, 2580000, 'Đa giác', 5,'active'),
+('AIR FIT', 1, 'AIR FIT.webp', 1, 2780000, 'Chữ Nhật', 5,'active'),
+('OWNDAYS', 2, 'OWNDAYS.webp', 2, 1980000, 'Vuông-Chữ Nhật',6, 'active'),
+('AIR Ultem', 1, 'AIR Ultem.webp', 2, 2350000, 'Vuông', 10,'active'),
+('John Dillinger', 1, 'John Dillinger.webp', 2, 2700000, 'Tròn', 4,'active'),
+('OWNDAYS SNAP', 2, 'OWNDAYS SNAP.webp', 2, 2780000, 'Vuông', 5,'active'),
+('SKY', 2, 'sky.webp', 0, 1980000, 'Bầu dục',5, 'active'),
+('Model', 1, 'Model.webp', 1, 2590000, 'Nhựa dẻo Thép không rỉ', 5,'active'),
+('UFO', 1, 'UFO.webp', 2, 2600000, 'Vuông-Chữ nhật', 5,'active'),
+('NICHE', 1, 'NICHE.webp', 0, 3500000, 'Nhựa trong', 5,'active'),
+('White', 1, 'White.webp', 2, 1500000, 'Tròn', 5,'active'),
+('Teen', 1, 'Teen.webp', 2, 1450000, 'Tròn', 5,'active'),
+('lillybell', 1, 'lillybell.webp', 0, 2450000, 'Vuông-Chữ nhật', 5,'active'),
+('lilly', 1, 'lilly.webp', 1, 1450000, 'Đa giác', 5,'active'),
+('Sun', 2, 'Sun.webp', 0, 1980000, 'Đa giác', 5,'active'),
+('Monday', 2, 'Monday.webp', '0', 2980000, 'Mắt mèo', 5,'active'),
+('Cute', 2, 'Cute.webp', 0, 2980000, 'Vuông-Chữ nhật', 5,'active'),
+('Junni', 2, 'Junni.webp', 1, 1880000, 'Vuông-Chữ nhật', 5,'active'),
+('BlackPink', 2, 'BlackPink.webp', 0, 1780000, 'Bầu dục',5,'active');
 
 INSERT INTO `users` (`username`, `password`, `email`, `name`, `phone`, `gender`, `image`, `role_id`, `address`, `status`, `created_at`, `updated_at`) VALUES
 ('Huy1234', 'Huy11111', 'Huy2003@gmail.com', 'Thiệu Huy', '1234567890', 1, null, 1, '123 Trần Hưng Đạo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:06'),

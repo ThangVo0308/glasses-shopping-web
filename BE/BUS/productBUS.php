@@ -1,6 +1,5 @@
 <?php
-    // require("..\BE\DAL\productDAL.php");
-    require_once ("..\BE\DAL\productDAL.php");
+    require_once(__DIR__ . '/../DAL/productDAL.php');
     class productBUS {
         private $productList = array();
 

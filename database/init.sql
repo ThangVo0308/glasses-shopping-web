@@ -89,7 +89,8 @@ CREATE TABLE
         `gender` INT NOT NULL,
         `price` DOUBLE NOT NULL,
         `description` VARCHAR(100) NOT NULL,
-        `status` ENUM ('active', 'soldout','banned') NOT NULL DEFAULT "active",
+        `quantity` int not null,
+        `status` enum('active','soldout','banned') not null default "active",
         PRIMARY KEY (`id`)
     );
 

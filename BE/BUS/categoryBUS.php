@@ -1,5 +1,5 @@
 <?php
-    require_once ('./BE/DAL/categoryDAL.php');
+    require_once(__DIR__ . '/../DAL/categoryDAL.php');
     class CategoryBUS {
         private $categoryList = array();
 
