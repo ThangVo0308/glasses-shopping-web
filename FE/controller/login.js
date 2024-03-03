@@ -94,15 +94,15 @@ const validateInputLogin = () => {
     const passwordLoginValue = passwordLogin.value.trim();
     
     if (usernameLoginValue === '') {
-        setError(usernameLogin, 'Username is required');
+        setError(usernameLogin, 'Tên đăng nhập không được bỏ trống');
     } else {
         setSuccess(usernameLogin);
     }
     
     if (passwordLoginValue === '') {
-        setError(passwordLogin, 'Password is required');
+        setError(passwordLogin, 'Mật khẩu không được bỏ trống');
     } else if (passwordLoginValue.length < 8) {
-        setError(passwordLogin, 'Password must be at least 8 characters');
+        setError(passwordLogin, 'Mật khẩu cần dài ít nhất 8 ký tự');
     } else {
         setSuccess(passwordLogin);
     }
@@ -117,42 +117,42 @@ const validateInputSignUp = () =>{
     const phoneValue = phoneSignUp.value.trim();
     const addressValue = addressSignUp.value.trim();
     if(usernameSignUpValue === ''){
-        setError(usernameSignUp,'Username is required');
+        setError(usernameSignUp,'Tên đăng nhập không được bỏ trống');
     }else{
         setSuccess(usernameSignUp);
     }
     
     if (passwordSignUpValue === '') {
-        setError(passwordSignUp, 'Password is required');
+        setError(passwordSignUp, 'Mật khẩu không được bỏ trống');
     } else if (passwordSignUpValue.length < 8) {
-        setError(passwordSignUp, 'Password must be at least 8 characters');
+        setError(passwordSignUp, 'Mật khẩu cần dài ít nhất 8 ký tự');
     } else {
         setSuccess(passwordSignUp);
     }
     
     if (nameValue === '') {
-        setError(nameSignUp, 'Name is required');
+        setError(nameSignUp, 'Tên không được bỏ trống');
     } else {
         setSuccess(nameSignUp);
     }
     
     if (emailValue === '') {
-        setError(emailSignUp, 'Email is required');
+        setError(emailSignUp, 'Email không được bỏ trống');
     } else if (!isValidEmail(emailValue)) {
-        setError(emailSignUp, 'Provide a valid email address');
+        setError(emailSignUp, 'Địa chỉ email phải hợp lệ');
     }
      else {
         setSuccess(emailSignUp);
     }
     
     if (phoneValue === '') {
-        setError(phoneSignUp, 'Phone is required');
+        setError(phoneSignUp, 'Số điện thoại không được bỏ trống');
     } else {
         setSuccess(phoneSignUp);
     }
     
     if(addressValue === ''){
-        setError(addressSignUp,'Address is required');
+        setError(addressSignUp,'Địa chỉ không được bỏ trống');
     }else {
         setSuccess(addressSignUp)
     }
