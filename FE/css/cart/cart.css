@@ -200,3 +200,11 @@ body {
 #payBtn:hover {
     color: rgb(78, 87, 87);
 }
+#payment {
+    position: fixed;
+    display: flex;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}

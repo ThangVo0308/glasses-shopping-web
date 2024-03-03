@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+}
+#paymentForm {
+    display: flex;
+    position: fixed;
+    height: 380px;
+    width: 800px;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    flex-direction: column;
+    background-color: #e5eef9;
+    padding: 5px;
+}
+#paymentForm h3{
+    color: red;
+    margin-bottom: 5px;
+}
+#header {
+    background-color: #6695d0;
+}
+.section{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.section div{
+    display: flex;
+}
+.name-product {
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+.item {
+    justify-content: space-around;
+    display: flex;
+    width: 60%;
+}
+.item span,.item div {
+    width: 33%;
+}
+.item div {
+    display: flex;
+    flex-direction: column;
+}
+#price-real{
+    text-decoration:line-through;
+}
+#products {
+    display: flex;
+    flex-direction: column;
+}
+.product{
+    height: 80px;
+}
+img {
+    height: 65px;
+    width: 65px;
+}

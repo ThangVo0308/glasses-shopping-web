@@ -79,6 +79,7 @@ $productList = [
             </div>
         </div>
     </div>
+    <iframe src="./payment.php" frameborder="0" id="payment" ></iframe>
 </body>
 <link rel="stylesheet" href="../../css/cart/cart.css">
 

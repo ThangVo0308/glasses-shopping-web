@@ -42,6 +42,15 @@ img {
     width: 50%;
     padding-top: 6px;
     bottom: -3;
+    animation-name: product-infor;
+    animation-duration: 1.2s;
+}
+
+@keyframes product-infor {
+    0% {bottom: 1000;}
+    40% {bottom: -3;}
+    65% {bottom: 55;}
+    100% {bottom: -3;}
 }
 #name-product {
     font-size: 28px;
