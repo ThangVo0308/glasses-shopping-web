@@ -64,23 +64,29 @@ $productList = [
 
         </div>
     </div>
-    <div id="statistical" >
+    <div id="statistical">
         <img class="pinImage" src="../../../icons/pin.png" alt="">
-        <div id="voucherForm" >
+        <div id="voucherForm">
             <img src="../../../icons/coupon.png" alt="">
-            <span id="selectStatus" >Bạn chưa chọn sản phẩm</span>
-            <span id="valueVoucher" >0đ</span>
+            <span id="selectStatus">Bạn chưa chọn sản phẩm</span>
+            <span id="valueVoucher">0đ</span>
         </div>
-        <div id="payForm" >
+        <div id="payForm">
             <div class="pay">
                 <span>Tổng thanh toán</span>
-                <h3 id="valuePay" >0</h3>
-                <button id="payBtn" >Thanh Toán</button>
+                <h3 id="valuePay">0</h3>
+                <button id="payBtn">Thanh Toán</button>
             </div>
         </div>
     </div>
-    <iframe src="./payment.php" frameborder="0" id="payment" ></iframe>
+    <iframe src="./payment.php?data=<?php echo urlencode(json_encode($productList)); ?>" frameborder="0" id="payment"></iframe>
 </body>
 <link rel="stylesheet" href="../../css/cart/cart.css">
 
 </html>
+<script>
+    var payBtn =document.getElementById('payBtn');
+    payBtn.onclick = function() {
+        document.getElementById('payment').style.display='flex';
+    }
+</script>
