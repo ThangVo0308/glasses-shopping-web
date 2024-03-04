@@ -3,7 +3,7 @@ INSERT INTO `categories` (`name`) VALUES
 ('Kính mát');
 
 INSERT INTO `discounts` (`name`, `discount_percent`, `start_day`, `end_day`) VALUES
-('Khai Xuân', 15, '2024-01-01', '2024-01-31'),
+('Khai Xuân', 15, '2024-01-01', '2024-07-31'),
 ('Chào Hè', 20, '2024-06-01', '2024-08-31'),
 ('Sale to cuối năm ', 50, '2024-10-01', '2024-12-31');
 
@@ -49,7 +49,7 @@ INSERT INTO `users` (`username`, `password`, `email`, `name`, `phone`, `gender`,
 ('Hai11', 'Hai11111', 'Hai11@gmail.com', 'Hải', '798651423', 1, null, 3, '11 Tân Kỳ Tân Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:43'),
 ('Cong12', 'Cong12122', 'Cong12@gmail.com', 'Thái Công', '998877669', 1, null, 3, '12 Hai Bà Trưng', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:52'),
 ('Hung13', 'Hung13133', 'Hung13@gmail.com', 'Hùng', '543219876', 1, null, 3, '13 Phong Phú', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:05'),
-('Kiet14', 'Kiet14144', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, null, 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14'),
+('Kiet14', 'Kiet14144', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, null, 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14');
 
 INSERT INTO `imports` (`user_id`, `import_date`, `total_price`) VALUES
 (2, '2024-02-25', 14900000),
@@ -133,8 +133,4 @@ INSERT INTO `points` (`user_id`, `transaction_date`, `points_earned`, `points_us
 
 INSERT INTO `discount_items` (`category_id`, `discount_id`) VALUES
 (1, 1),
-(1, 3),
-(1, 2),
-(2, 2),
-(2, 1),
 (2, 3);
