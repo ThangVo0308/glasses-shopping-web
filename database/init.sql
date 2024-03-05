@@ -164,7 +164,7 @@ ADD
     
 ALTER TABLE `role_permission`
 ADD
-    FOREIGN KEY (`permission_id`) REFERENCES `roles` (`id`);
+    FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`);
 
 ALTER TABLE `users`
 ADD
@@ -212,4 +212,4 @@ ADD
 
 ALTER TABLE `imports`
 ADD
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`); 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
