@@ -1,6 +1,8 @@
+-- Active: 1709478063233@@127.0.0.1@3306@glassesshopping
 INSERT INTO `categories` (`name`) VALUES
 ('Gọng kính'),
-('Kính mát');
+('Kính mát'),
+('Phụ Kiện');
 
 INSERT INTO `discounts` (`name`, `discount_percent`, `start_day`, `end_day`) VALUES
 ('Khai Xuân', 15, '2024-01-01', '2024-07-31'),
@@ -14,42 +16,42 @@ INSERT INTO `roles` (`name`) VALUES
 ('admin'); 
 
 INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `description`, `quantity`,`status`) VALUES
-('Moriyama', 1, 'moriyama.webp', 1, 2980000, 'Vuông-Chữ Nhật', 5,'active'),
-('Graph Belle', 1, 'Graph Belle.webp', 0, 2580000, 'Đa giác', 5,'active'),
-('AIR FIT', 1, 'AIR FIT.webp', 1, 2780000, 'Chữ Nhật', 5,'active'),
-('OWNDAYS', 2, 'OWNDAYS.webp', 2, 1980000, 'Vuông-Chữ Nhật',6, 'active'),
-('AIR Ultem', 1, 'AIR Ultem.webp', 2, 2350000, 'Vuông', 10,'active'),
-('John Dillinger', 1, 'John Dillinger.webp', 2, 2700000, 'Tròn', 4,'active'),
-('OWNDAYS SNAP', 2, 'OWNDAYS SNAP.webp', 2, 2780000, 'Vuông', 5,'active'),
-('SKY', 2, 'sky.webp', 0, 1980000, 'Bầu dục',5, 'active'),
-('Model', 1, 'Model.webp', 1, 2590000, 'Nhựa dẻo Thép không rỉ', 5,'active'),
-('UFO', 1, 'UFO.webp', 2, 2600000, 'Vuông-Chữ nhật', 5,'active'),
-('NICHE', 1, 'NICHE.webp', 0, 3500000, 'Nhựa trong', 5,'active'),
-('White', 1, 'White.webp', 2, 1500000, 'Tròn', 5,'active'),
-('Teen', 1, 'Teen.webp', 2, 1450000, 'Tròn', 5,'active'),
-('lillybell', 1, 'lillybell.webp', 0, 2450000, 'Vuông-Chữ nhật', 5,'active'),
-('lilly', 1, 'lilly.webp', 1, 1450000, 'Đa giác', 5,'active'),
-('Sun', 2, 'Sun.webp', 0, 1980000, 'Đa giác', 5,'active'),
-('Monday', 2, 'Monday.webp', '0', 2980000, 'Mắt mèo', 5,'active'),
-('Cute', 2, 'Cute.webp', 0, 2980000, 'Vuông-Chữ nhật', 5,'active'),
-('Junni', 2, 'Junni.webp', 1, 1880000, 'Vuông-Chữ nhật', 5,'active'),
-('BlackPink', 2, 'BlackPink.webp', 0, 1780000, 'Bầu dục',5,'active');
+('Moriyama', 1, 'moriyama.webp', 1, 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ Nhật', 5,'active'),
+('Graph Belle', 1, 'Graph Belle.webp', 0, 2580000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
+('AIR FIT', 1, 'AIR FIT.webp', 1, 2780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Chữ Nhật', 5,'active'),
+('OWNDAYS', 2, 'OWNDAYS.webp', 1, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ Nhật',6, 'active'),
+('AIR Ultem', 1, 'AIR Ultem.webp', 0, 2350000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông', 10,'active'),
+('John Dillinger', 1, 'John Dillinger.webp', 1, 2700000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 4,'active'),
+('OWNDAYS SNAP', 2, 'OWNDAYS SNAP.webp', 0, 2780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông', 5,'active'),
+('SKY', 2, 'sky.webp', 0, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Bầu dục',5, 'active'),
+('Model', 1, 'Model.webp', 1, 2590000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Nhựa dẻo Thép không rỉ', 5,'active'),
+('UFO', 1, 'UFO.webp', 1, 2600000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('NICHE', 1, 'NICHE.webp', 0, 3500000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Nhựa trong', 5,'active'),
+('White', 1, 'White.webp', 0, 1500000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 5,'active'),
+('Teen', 1, 'Teen.webp', 1, 1450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 5,'active'),
+('lillybell', 1, 'lillybell.webp', 0, 2450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('lilly', 1, 'lilly.webp', 1, 1450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
+('Sun', 2, 'Sun.webp', 0, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
+('Monday', 2, 'Monday.webp', '0', 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Mắt mèo', 5,'active'),
+('Cute', 2, 'Cute.webp', 0, 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('Junni', 2, 'Junni.webp', 1, 1880000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('BlackPink', 2, 'BlackPink.webp', 0, 1780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Bầu dục',5,'active');
 
 INSERT INTO `users` (`username`, `password`, `email`, `name`, `phone`, `gender`, `image`, `role_id`, `address`, `status`, `created_at`, `updated_at`) VALUES
-('Huy1234', 'Huy11111', 'Huy2003@gmail.com', 'Thiệu Huy', '1234567890', 1, 'ff.jpg', 1, '123 Trần Hưng Đạo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:06'),
-('Trieu222', 'Trieu2222', 'Trieu22@gmail.com', 'Ngọc Triều', '0987654321', 1, 'cc.jpg', 2, '456 Đồng Khởi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:18'),
-('TuanAnh333', 'TuanAnh3333', 'Tuananh33@gmail.com', 'Tuấn Anh', '0937971799', 1, 'dd.jpg', 1, '51 Ngô Quyền', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:29'),
-('Thang444', 'Thang4444', 'ThangVo44@email.com', 'Thắng', '9876543210', 1, 'aa.jpg', 4, '246 Nguyễn Trãi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:10'),
-('Cuong555', 'Cuong5555', 'QuocCuong55@email.com', 'Quốc Cường', '096543219', 1, 'ff.jpg', 3, '357 Hòa Hảo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:18'),
-('Nghiem666', 'Nghiem6666', 'nghiem66@gmail.com', 'Nghiêm', '937971788', 0, 'ee.jpg', 3, '66 An Dương Vương', 'active', '2024-02-24 14:43:55', '2024-02-24 14:48:28'),
-('Toan777', 'Toan7777', 'Toan77@gmail.com', 'Toàn', '937975398', 0, 'gg.jpg', 3, '77 Nguyễn Chí Thanh', 'active', '2024-02-24 14:44:57', '2024-02-24 14:48:41'),
-('Han88', 'Han8888', 'Han88@gmail.com', 'Hân', '937275398', 0, 'hh.jpg', 1, '88 Hòa Bình', 'active', '2024-02-24 14:45:44', '2024-02-24 14:49:00'),
-('Tram99', 'Tram9999', 'Tram99@gmail.com', 'Ngọc Trâm', '797275398', 0, 'oo.jpg', 3, '99 Tân Phước', 'active', '2024-02-24 14:46:51', '2024-02-24 14:49:11'),
-('Trinh10', 'Trinh1010', 'Trinh10@gmail.com', 'Ngọc Trinh', '797575398', 0, 'yy.jpg', 3, '10 Trần Cung', 'active', '2024-02-24 14:47:39', '2024-02-24 14:49:21'),
-('Hai11', 'Hai11111', 'Hai11@gmail.com', 'Hải', '798651423', 1, 'bb.jpg', 3, '11 Tân Kỳ Tân Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:43'),
-('Cong12', 'Cong12122', 'Cong12@gmail.com', 'Thái Công', '998877669', 1,'OIP.jpg' , 3, '12 Hai Bà Trưng', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:52'),
-('Hanh13', 'Hanh13133', 'Hanh13@gmail.com', 'Hạnh', '543219876', 0, 'Nu~.jpg', 3, '13 Phong Phú', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:05'),
-('Kiet14', 'Kiet14144', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, 'aa.jpg', 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14');
+('Huy1234', 'Huy11111', 'Huy2003@gmail.com', 'Thiệu Huy', '1234567890', 1, null, 1, '123 Trần Hưng Đạo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:06'),
+('Trieu222', 'Trieu2222', 'Trieu22@gmail.com', 'Ngọc Triều', '0987654321', 1, null, 2, '456 Đồng Khởi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:18'),
+('TuanAnh333', 'TuanAnh3333', 'Tuananh33@gmail.com', 'Tuấn Anh', '0937971799', 1, null, 1, '51 Ngô Quyền', 'active', '2024-02-20 10:08:11', '2024-02-23 14:57:29'),
+('Thang444', 'Thang4444', 'ThangVo44@email.com', 'Thắng', '9876543210', 1, null, 4, '246 Nguyễn Trãi', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:10'),
+('Cuong555', 'Cuong5555', 'QuocCuong55@email.com', 'Quốc Cường', '096543219', 1, null, 3, '357 Hòa Hảo', 'active', '2024-02-20 10:08:11', '2024-02-23 14:59:18'),
+('Nghiem666', 'Nghiem6666', 'nghiem66@gmail.com', 'Nghiêm', '937971788', 0, null, 3, '66 An Dương Vương', 'active', '2024-02-24 14:43:55', '2024-02-24 14:48:28'),
+('Toan777', 'Toan7777', 'Toan77@gmail.com', 'Toàn', '937975398', 0, null, 3, '77 Nguyễn Chí Thanh', 'active', '2024-02-24 14:44:57', '2024-02-24 14:48:41'),
+('Han88', 'Han8888', 'Han88@gmail.com', 'Hân', '937275398', 0, null, 1, '88 Hòa Bình', 'active', '2024-02-24 14:45:44', '2024-02-24 14:49:00'),
+('Tram99', 'Tram9999', 'Tram99@gmail.com', 'Ngọc Trâm', '797275398', 0, null, 3, '99 Tân Phước', 'active', '2024-02-24 14:46:51', '2024-02-24 14:49:11'),
+('Trinh10', 'Trinh1010', 'Trinh10@gmail.com', 'Ngọc Trinh', '797575398', 0, null, 3, '10 Trần Cung', 'active', '2024-02-24 14:47:39', '2024-02-24 14:49:21'),
+('Hai11', 'Hai11111', 'Hai11@gmail.com', 'Hải', '798651423', 1, null, 3, '11 Tân Kỳ Tân Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:43'),
+('Cong12', 'Cong12122', 'Cong12@gmail.com', 'Thái Công', '998877669', 1, null, 3, '12 Hai Bà Trưng', 'active', '2024-02-26 06:33:00', '2024-02-26 06:33:52'),
+('Hung13', 'Hung13133', 'Hung13@gmail.com', 'Hùng', '543219876', 1, null, 3, '13 Phong Phú', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:05'),
+('Kiet14', 'Kiet14144', 'Kiet14@gmail.com', 'Tuấn Kiệt', '708776762', 1, null, 3, '14 Trần Quý', 'active', '2024-02-26 06:33:00', '2024-02-26 06:34:14');
 
 INSERT INTO `imports` (`user_id`, `import_date`, `total_price`) VALUES
 (2, '2024-02-25', 14900000),

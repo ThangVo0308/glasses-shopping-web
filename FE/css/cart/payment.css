@@ -16,7 +16,8 @@
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     flex-direction: column;
-    background: linear-gradient(to top, #51bbb1, #57d1c5, #67c3ba, #65c3ba, #83d0c9);}
+    background-color: #83d0c9;}
+
 #paymentForm h3{
     color: red;
     margin-bottom: 5px;
@@ -60,7 +61,7 @@
 }
 #name {
     font-size: 18px;
-    color: #13312e;
+    color: #34817a;
     text-transform: uppercase;
     font-weight: bold;
     padding-left: 5px;
@@ -87,6 +88,7 @@
 .product{
     overflow: hidden;
     height: 80px;
+    border-bottom: #78b3c2 1px dashed;
 }
 img {
     height: 81px;
@@ -102,7 +104,7 @@ img {
     padding-right: 15px;
 }
 .total span:nth-child(1){
-    font-weight: bold;
+    color: #565252;
 }
 .total span:nth-child(2){
     color: red;
@@ -125,4 +127,7 @@ button {
     box-shadow: 3px 2px 3px rgba(79, 209, 197, .64);
     transition: all 0.8s ease;
     margin: 5px;
+}
+button:hover {
+    color: black;
 }
