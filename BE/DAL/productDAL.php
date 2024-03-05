@@ -139,45 +139,7 @@
         return $product;
     }
 
-    public function searchProductByName($condition, $columnName)
-    {
-        try {
-            $productList = array();
-
-            if ($columnName == null || strlen($columnName) == 0) {
-                $query = "SELECT * FROM products WHERE CONCAT(id, name, category_id, image, gender, price, description, quantity, status) LIKE ?";
-            } else if (strlen($columnName) == 1) {
-                $column = $columnName[0]; // selected column
-                $query = "SELECT * FROM products WHERE " . $column . " LIKE ?";
-            } else {
-                if (!is_array($columnName)) {
-                    $columnName = array($columnName);
-                }
-
-                $columns = implode(",", $columnName);
-                $query = "SELECT id, name, category_id, image, gender, price, description,quantity, status FROM products WHERE CONCAT(" . $columns . ") LIKE ?";
-            }
-
-            $statement = $this->connection->prepare($query);
-            if ($condition != null) {
-                $searchCondition = "%" . $condition . "%";
-                $statement->bindParam(1, $searchCondition);
-            }
-
-            $statement->execute();
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($result as $product) {
-                $product1 = $this->createProductFromRow($product);
-                $productList[] = $product1;
-            }
-            return $productList;
-        } catch (PDOException $e) {
-            echo "Search failed" . $e->getMessage();
-            return array();
-        }
-    }
-
-    public function searchProductWithConditions($gender, $category_id, $min, $max)
+    public function searchProductWithConditions($searchValue,$gender, $category_id, $min, $max)
     {
         try {
             $productList = array();
@@ -185,11 +147,14 @@
     
             $conditions = array();
     
-            if ($gender !== null) {
-                $conditions[] = "gender = :gender";
+            if ($searchValue !== null) {
+                $conditions[] = "name LIKE :searchValue";
             }
             if ($category_id !== null) {
                 $conditions[] = "category_id = :category_id";
+            }
+            if ($gender !== null) {
+                $conditions[] = "gender = :gender";
             }
             if ($min !== null && $max !== null) {
                 $conditions[] = "price BETWEEN :min AND :max";
@@ -203,6 +168,9 @@
     
             $statement = $this->connection->prepare($query);
     
+            if ($searchValue !== null) {
+                $statement->bindValue(':searchValue', "%$searchValue%", PDO::PARAM_STR);
+            }
             if ($gender !== null) {
                 $statement->bindParam(':gender', $gender, PDO::PARAM_INT);
             }
@@ -230,3 +198,4 @@
     }
     
 }
+

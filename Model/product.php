@@ -1,10 +1,10 @@
 <?php
-require("..\\enum\\ProductStatus.php");
+    require_once(__DIR__ . '/../enum/ProductStatus.php');
 
 class Product {
     private $id, $name, $category_id, $image, $gender, $price, $description, $quantity, $status;
 
-    public function __construct($id = null, $name = null, $category_id = null, $image = null, $gender = 1, $price = null, $description = null, $quantity = 0, $status = 'active') {
+    public function __construct($id = null, $name = null, $category_id = null, $image = null, $gender = null, $price = null, $description = null, $quantity = 0, $status = 'active') {
         $this->id = $id;
         $this->name = $name;
         $this->category_id = $category_id;
@@ -89,7 +89,7 @@ class Product {
     }
 
     public function __toString() {
-        return "Product ID: {$this->getID()}\n" .
+        return "ID: {$this->getID()}\n" .
             "Name: {$this->getName()}\n" .
             "Category ID: {$this->getCategoryID()}\n" .
             "Image: {$this->getImage()}\n" .

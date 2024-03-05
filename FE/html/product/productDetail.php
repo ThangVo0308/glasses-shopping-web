@@ -73,7 +73,6 @@ $product = json_decode($_GET['data'], true);
             <img src="../../../icons/tick.png" alt="">
             <span class="status">
                 <?php
-                    require_once("../../../BE/BUS/productBUS.php");
                     echo 'Còn ' . $product['quantity'] . ' sản phẩm';
                 ?>
             </span>

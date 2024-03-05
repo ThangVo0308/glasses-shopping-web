@@ -101,66 +101,9 @@
             return $check;
         }
 
-        public function filter(product $product,$value,$columns) {
-            foreach($columns as $column) {
-                switch(strtolower($column)) {
-                    case 'id':
-                        if(intval($value) === $product->getID()) {
-                            return true;
-                        }
-                        break;
-                    case 'name':
-                        if (stripos($product->getName(), $value) !== false) {
-                            return true;
-                        }
-                        break;
-                    case 'category_id':
-                        if(intval($value) === $product->getCategoryID()) {
-                            return true;
-                        }
-                        break;
-                    case 'price':
-                        if(doubleval($value) === $product->getPrice()) {
-                            return true;
-                        }
-                        break;
-                    default: 
-                    if($this->checkAllColumns($product,$value)) {
-                        return true;
-                    }
-                    break;
-                }
-            }
-            return false;
-        }
 
-        public function checkAllColumns(product $product,$value) {
-            return (
-                $product->getId() === intval($value) ||
-                $product->getCategoryID() === intval($value) ||
-                doubleval($product->getPrice()) === doubleval($value) ||
-                stripos($product->getName(), $value) !== false // $ strtolower($product->getname)
-            );
-        }
-
-        public function searchProductByName($value,$column) {
-            $results = array();
-            $columnString = implode(",", $column);
-
-            $listProduct = productDAL::getInstance()->searchProductByName($value,$columnString);
-            foreach($listProduct as $product) {
-                if($this->filter($product,$value,$column)) {
-                    $results[] = $product;
-                }
-            }
-            if(count($results) <= 0) {
-                throw new InvalidArgumentException('No product found!!');
-            }
-            return $results;
-        }
-
-        public function searchProduct($gender, $category_id, $min, $max) {
-            return ProductDAL::getInstance()->searchProductWithConditions($gender, $category_id, $min, $max);
+        public function searchProduct($searchValue,$gender, $category_id, $min, $max) {
+            return ProductDAL::getInstance()->searchProductWithConditions($searchValue,$gender, $category_id, $min, $max);
         }
         
     }
