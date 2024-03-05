@@ -23,30 +23,7 @@ $product = [
         'image'=>'productDemo.png',
         'describe'=>'tròn',
     ],
-    [
-        'id'=>3,
-        'name' => 'Sản phẩm 2',
-        'category' => 'Kính mát',
-        'gender' => 'Nữ',
-        'price' => 30000,
-        'quantity' => 75,
-        'status' => 'Inactive',
-        'image'=>'productDemo.png',
-        'describe'=>'tròn',
-    ],
-    [
-        'id'=>4,
-        'name' => 'Sản phẩm 2',
-        'category' => 'Kính mát',
-        'gender' => 'Nữ',
-        'price' => 30000,
-        'quantity' => 75,
-        'status' => 'Inactive',
-        'image'=>'productDemo.png',
-        'describe'=>'tròn',
-    ]
-
-];
+    ];
 $category = [
     [
         'category_id' => 1,
