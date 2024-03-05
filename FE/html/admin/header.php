@@ -63,7 +63,6 @@ function getFunction()
         ['tenChucNang' => 'Đơn hàng', 'icon' => 'fa-solid fa-cart-shopping'],
         ['tenChucNang' => 'Tài khoản', 'icon' => 'fa-regular fa-user'],
         ['tenChucNang' => 'Nhập hàng', 'icon' => 'fa-solid fa-plus'],
-        ['tenChucNang' => 'Giao diện', 'icon' => 'fa-regular fa-image'],
         ['tenChucNang' => 'Phân quyền', 'icon' => 'fa-solid fa-user-pen'],
     ];
     return $functions;
