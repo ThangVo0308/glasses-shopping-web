@@ -29,6 +29,7 @@ body, html {
 #header .navigation{
     display: flex;
     background-color: #8ddad3;
+    align-items: center;
 }
 #header .navigation a{
     margin-left: 15px;
@@ -45,15 +46,40 @@ body, html {
     transform: translateY(-6px);
     transition: transform 0.6s ease-in-out;
 }
-#header .navigation input {
-    border-color: #2c85da;
-    visibility:collapse;
-}
-#header .navigation input :focus{
-    border-color: #2c85da;
-}
 #header .navigation img {
     margin-right: 20px;
     height: 25px;
     cursor: pointer;
+}
+#header div:nth-child(3) {
+    width: 300px;
+    display: flex;
+    justify-content: right;
+}
+.navigation div {
+    height: 32px;
+    width: fit-content;
+    overflow: hidden;
+    margin-right: 25px;
+    width: 27px;
+}
+#imgSearch {
+    display: flex;
+    position: absolute;
+    top: 38px;
+    padding-right: 25px;
+}
+button {
+    height: 50px;
+    width: 50px;
+    border: none;
+    background-color: #8ddad3;
+}
+input {
+    display: none;
+    height: 32px;
+    width: 27px;
+    opacity: 1;
+    text-align: end;
+    padding: 2px;
 }

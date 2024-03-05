@@ -1,14 +1,3 @@
-
-
-function changeInput() {
-    var inputElement = document.querySelector('.searchvalue');
-    if (inputElement.style.visibility === "collapse") {
-        inputElement.style.visibility = "visible";
-    } else {
-        inputElement.style.visibility = "collapse";
-    }
-}
-
 function changeImage(clickedImage) {
     var imageSelect = document.getElementById('image-select');
     imageSelect.src = clickedImage.src;
