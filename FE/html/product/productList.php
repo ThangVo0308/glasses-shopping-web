@@ -36,7 +36,7 @@
                         <input type="radio" name="categoryId" value="1">Gọng kính
                     </label>
                     <label>
-                        <input type="radio" name="categoryId" value="2">Kính mát
+                        <input type="radio" name="categoryId" value="2">Tròng kính
                     </label>
                     <label>
                         <input type="radio" name="categoryId" value="3">Phụ kiện

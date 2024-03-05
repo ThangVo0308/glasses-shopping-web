@@ -50,6 +50,12 @@ CREATE TABLE
         `user_id` INT,
         `order_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `total_price` DOUBLE NOT NULL,
+        `points_earned` int,
+        `points_used` int,
+        `address` varchar(100),
+        `name_received` varchar(100),
+        `phone_received` varchar(100),
+        `status` enum ('pending', 'confirm', 'ordered') not null default "pending",
         PRIMARY KEY (`id`)
     );
 
@@ -127,16 +133,38 @@ CREATE TABLE
         `discount_percent` INT,
         `start_day` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `end_day` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `product_id` integer,
         PRIMARY KEY (`id`)
     );
 
 CREATE TABLE
     `discount_items` (
         `id` INT NOT NULL AUTO_INCREMENT,
-        `category_id` INT NOT NULL,
+        `product_id` INT NOT NULL,
         `discount_id` INT NOT NULL,
         PRIMARY KEY (`id`)
     );
+
+CREATE TABLE
+    `permission` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `name` INT NOT NULL,
+        PRIMARY KEY (`id`)
+    );
+    
+CREATE TABLE
+    `role_permission` (
+        `role_id` INT NOT NULL,
+        `permission_id` INT NOT NULL
+    );
+    
+ALTER TABLE `role_permission`
+ADD
+    FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+    
+ALTER TABLE `role_permission`
+ADD
+    FOREIGN KEY (`permission_id`) REFERENCES `roles` (`id`);
 
 ALTER TABLE `users`
 ADD
@@ -174,13 +202,9 @@ ALTER TABLE `import_items`
 ADD
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
-ALTER TABLE `discount_items`
+ALTER TABLE `discounts`
 ADD
-    FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`id`);
-
-ALTER TABLE `discount_items`
-ADD
-    FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 ALTER TABLE `products`
 ADD
