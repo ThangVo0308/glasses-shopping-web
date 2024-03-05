@@ -26,3 +26,14 @@ $(document).ready(async () => {
     selectedTab.classList.add("active");
     loadPageByAjax(pageTarget);
   }
+const loadModalBoxByAjax = (modalBoxTarget, id) => {
+    $.ajax({
+      url: "../../html/admin/modalBox.php",
+      type: "POST",
+      data: { modalBox: modalBoxTarget, id: id },
+      dataType: "html",
+      success: function (data) {
+        document.querySelector("#modal-box").innerHTML = data;
+      },
+    });
+  };
