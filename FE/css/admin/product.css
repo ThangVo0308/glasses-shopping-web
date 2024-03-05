@@ -1,11 +1,470 @@
 #product {
+    font-family: "Dosis", sans-serif;
     width: 95%;
     margin: 0 auto;
+    height: 90vh;;
 }
-#product h2 {
+#product ,header h2 i {
     margin-bottom: 2vh;
     margin-top: 0;
 }
-#product h2 span {
-    margin-left: 5px;
+#product .button_placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#product .header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+    align-items: center;
+    column-gap: 10px;
+}
+#product .new-button{
+    padding: 5px 10px;
+    flex-direction: row;
+    display: flex;
+    margin: auto;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #8ddad3;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+#product .new-button:active{
+    transform: translateY(3px);
+    transition: 0.1s;
+}
+.icon-placeholder{
+    margin-right: 10px;
+}
+#product .title-list{
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(12px + 0.5vw);
+    background-color: white;
+    border-radius: 20px 20px 0 0;
+    color : #8ddad3;
+    border-bottom: 3px solid;
+    text-align: center;
+}
+#product .title-list .title-placeholder{
+    width: 97%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.5fr 2fr 2fr 2fr 2fr 1.5fr 1.5fr 0.5fr;
+    justify-content: center;
+    margin: auto;
+}
+#product .title-list .button_placeholder.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+#product .list{
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 0.5vw);
+    background-color: white;
+    height: 84.5vh;
+    overflow-y: scroll;
+}
+#product .placeholder{
+    width: 98%;
+    margin: 0 1%;
+    color: black;
+    position: relative;
+    padding: 13px 0;
+    border-bottom: 2px solid #8ddad3 ;
+}
+#product .placeholder .info{
+    display: grid;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.5fr 2fr 2fr 2fr 2fr 1.5fr 1.5fr 0.5fr;
+    justify-content: center;
+}
+#product .placeholder .info .item{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  border-right: #8ddad3 solid 2px;
+  height: 100%;
+  width: 100%;
+  padding: 0% 5%;
+  margin: auto;
+  overflow: hidden;
+}
+#product .placeholder .info .item:last-child{
+    border: none;
+    cursor: pointer;
+}
+#product .search-bar {
+    background-color: white;
+    display: grid;
+    justify-self: center;
+    height: 40px;
+    grid-template-columns: 5fr 2fr 2fr 2fr;
+    border-radius: 10px;
+}
+#product .search-bar .search-input,
+#product .search-bar .filter-input,
+#product .search-bar .date-begin,
+#product .search-bar .date-end {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#product .search-bar .search-input {
+    width: 90%;
+    background-color: #e9e9e9;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    height: 70%;
+    margin: auto;
+  }
+  #product .search-bar .search-input i {
+    color: #a1a0a0;
+  }
+  #product .search-bar .search-input input {
+    width: 90%;
+    background-color: #e9e9e9;
+    color: black;
+    font-family: "Dosis", sans-serif;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    font-size: calc(10px + 0.1vw);
+  }
+#product .search-bar .filter-input {
+    width: 90%;
+    background-color: #e9e9e9;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #a1a0a0;
+    height: 70%;
+    margin: auto;
+  }
+#product .search-bar .filter-input select {
+    background-color: #e9e9e9;
+    color: black;
+    width: 65%;
+    font-family: "Dosis", sans-serif;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    font-size: calc(10px + 0.1vw);
+    -moz-appearance: none;
+    appearance: none;
+    padding-left: 10px;
+}
+#product .search-bar .date-begin,
+#product .search-bar .date-end {
+  width: 90%;
+  background-color: #e9e9e9;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 5%;
+  align-items: center;
+  color: #a1a0a0;
+  height: 70%;
+  margin: auto;
+}
+#product .search-bar .date-begin img{
+    height: 16px;
+    width: 16px;
+}
+#product .search-bar .date-begin input,
+#product .search-bar .date-end input {
+  background-color: #e9e9e9;
+  color: black;
+  width: 70%;
+  font-family: "Dosis", sans-serif;
+  font-size: calc(10px + 0.1vw);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+    #product {
+      width: 615px;
+      margin-left: 25px;
+    }
+    #product .title-list {
+      font-size: 15px;
+      width: 615px;
+    }
+  
+    #product .list {
+      font-size: 12px;
+      width: 615px;
+    }
+    #product .search-bar .date-begin input,
+    #product .search-bar .date-end input {
+      font-size: 10px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    #product .header h2 {
+      display: none;
+    }
+  
+    #product .header {
+      column-gap: 20px;
+    }
+}
+#product .modal-placeholder {
+  background-color: rgba(0,0,0,0.3);
+  backdrop-filter: opacity(50%);
+  height: 100vh;
+  width: 90vw;
+  position: fixed;
+  bottom: 0;
+  right:0;
+}
+#product .modal-box{
+  background-color: white;
+  border-radius: 10px;
+  width: 40%;
+  min-width: 800px;
+  height: 85vh;
+  margin: 10vh auto;
+  display: grid;
+  color:#8ddad3;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 6fr 1fr;
+  animation: loader 0.4s;
+  animation-iteration-count:1 ;
+}
+@keyframes loader{
+  form{
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes back{
+  from{
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+#product .modal-box .modal-header{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(2px+1vw);
+  grid-column: 1 / span 2;
+  width: 40%;
+  margin: 0% 30%;
+  margin-bottom: 1%;
+}
+#product .modal-box .modal-left {
+  width: 100%;
+  border-right: #8ddad3 solid 3px;
+}
+#product .modal-box .modal-left .modal.info {
+  display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: 1fr 1fr 1fr 3fr;
+  height: 100%;
+}
+#product .modal-box .modal-info .modal-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1fr 2fr;
+  width: 80%;
+  margin: 0 10%;
+  font-size: calc(12px + 1vw);
+}
+#product .modal-box .modal-info .modal-item .item-header {
+  padding: 0 5%;
+  width: 90%;
+  font-size: calc(12px +1vw);
+  
+}
+
+#product .modal-box .modal-info .modal-item .item-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% 0;
+}
+
+#product .modal-box .modal-info .modal-item .item-input input {
+  width: 100%;
+  height: 90%;
+  border-radius: 10px;
+  border: none;
+  background-color: #e9e9e9;
+  color: black;
+  padding: 0 5%;
+  font-weight: 600;
+  font-family: "Dosis", sans-serif;
+  font-size: calc(8px + 1vw);
+  cursor: pointer;
+}
+#product .modal-box .modal-right {
+  width: 100%;
+}
+#product .modal-box .modal-right .list .add-button {
+  cursor: pointer;
+  height: 3.5vw;
+  padding-top: 1vw;
+  color: #f2623e;
+}
+#product .modal-box .modal-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column: 1 / span 2;
+  width:95%;
+}
+#product .modal-box .button-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  width: 55%;
+  color: white;
+  margin-left: 35%;
+  column-gap: 20px;
+}
+#product .modal-box .edit-button,
+#product .modal-box .back-button,
+#product .modal-box .delete-button,
+#product .modal-box .save-button {
+  flex-direction: row;
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #8ddad3;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+   font-size: calc(5px + 1vw); 
+   box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+#product .modal-box .back-button {
+  background-color: black;
+  color: white;
+}
+#product .modal-box .delete-button {
+  background-color: #8ddad3;
+  color: black;
+}
+
+#product #edit-product .img-container,
+#product #new-product .img-container {
+  position: relative;
+
+}
+#product .modal-box .modal-info .modal-item .item-input select {
+  width: 100%;
+  height: 90%;
+  border-radius: 10px;
+  border: none;
+  background-color: #e9e9e9;
+  color: black;
+  padding: 0 5%;
+  font-weight: 600;
+  font-family: "Dosis", sans-serif;
+   font-size: calc(8px + 1vw); 
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+.product_describe {
+  width: 90%;
+  height: 80%;
+  border-radius: 10px;
+  border: none;
+  background-color: #e9e9e9;
+  color: black;
+  padding: 4% 10%;
+  font-weight: 600;
+  font-family: "Dosis", sans-serif;
+  font-size: calc(8px + 1vw); 
+  resize: none; 
+  overflow-y: auto;
+  margin-left: 15px;
+}
+#product #edit-product .img-container input,
+#product #new-product .img-container input{
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  padding: 7px;
+  font-size: medium;
+  display: none;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#product #edit-product .img-container input,
+#product #new-product .img-container input {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  padding: 7px;
+  font-size: medium;
+  display: none;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#product #edit-product .img-container input:nth-of-type(1),
+#product #new-product .img-container input:nth-of-type(1){
+  top: 30%;
+  background-color: #8ddad3;
+}
+
+#product #edit-product .img-container input:nth-of-type(2),
+#product #new-product .img-container input:nth-of-type(2){
+  bottom: 30%;
+  background-color:#8ddad3;
+}
+#product #edit-product .img-container:hover input,
+#product #new-product .img-container:hover input {
+  animation: fadeIn 0.5s ease-in-out;
+  display: block;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
