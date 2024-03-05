@@ -3,6 +3,15 @@ INSERT INTO `categories` (`name`) VALUES
 ('Tròng kính'),
 ('Phụ kiện');
 
+INSERT INTO `permission` (`name`) VALUES
+('Thống kê'),
+('Sản phẩm'),
+('Đơn hàng'),
+('Tài khoản'),
+('Nhập hàng'),
+('Giảm giá'),
+('Điểm tích lũy'),
+('Phân quyền');
 
 INSERT INTO `roles` (`name`) VALUES
 ('employee'),
@@ -108,3 +117,23 @@ INSERT INTO `points` (`user_id`, `transaction_date`, `points_earned`, `points_us
 (3, '2024-02-27 09:21:31', 259, 0),
 (4, '2024-02-27 11:35:31', 700, 0),
 (5, '2024-02-28 16:29:31', 596, 0);
+
+INSERT INTO `discount_items`(`product_id`,`discount_id`) VALUES
+(1,1),
+(4,3);
+
+
+INSERT INTO `role_permission`(`role_id`,`permission_id`) VALUES
+(4,1),
+(4,2),
+(4,3),
+(4,4),
+(4,5),
+(4,6),
+(4,7),
+(4,8),
+(2,4),
+(2,8),
+(3,3),
+(3,5);
+
