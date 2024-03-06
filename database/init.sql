@@ -64,6 +64,7 @@ CREATE TABLE
         `id` INT NOT NULL AUTO_INCREMENT,
         `order_id` INT,
         `product_id` INT,
+        `discount_id` int,
         `quantity` INT,
         `price` DOUBLE NOT NULL,
         PRIMARY KEY (`id`)
@@ -193,6 +194,10 @@ ADD
 ALTER TABLE `order_items`
 ADD
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+    
+ALTER TABLE `order_items`
+ADD
+    FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`id`);
 
 ALTER TABLE `import_items`
 ADD

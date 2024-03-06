@@ -93,12 +93,12 @@ INSERT INTO `orders` (`user_id`, `order_date`, `total_price`,`points_earned`,`po
 (4, '2024-02-27 11:34:16', 4000000,40000,0,'TPHCM','Teo','0974254189','ordered'),
 (5, '2024-02-28 14:37:06', 5000000,50000,0,'TPHCM','Teo','0974254189','ordered');
 
-INSERT INTO `order_items` (`order_id`, `product_id`, `quantity`, `price`) VALUES
-(1, 2, 1, 2580000),
-(2, 4, 1, 1980000),
-(3, 9, 1, 2590000),
-(4, 11, 2, 7000000),
-(5, 13, 3, 1450000);
+INSERT INTO `order_items` (`order_id`, `product_id`, `discount_id`,`quantity`, `price`) VALUES
+(1, 2, 1,1, 2580000),
+(2, 4, 2,1, 1980000),
+(3, 9, 3,1, 2590000),
+(4, 11, 3,2, 7000000),
+(5, 13, 2,3, 1450000);
 
 INSERT INTO `payment_methods` (`method_name`) VALUES
 ('Tiền mặt'),
@@ -122,7 +122,6 @@ INSERT INTO `discount_items`(`product_id`,`discount_id`) VALUES
 (1,1),
 (4,3);
 
-
 INSERT INTO `role_permission`(`role_id`,`permission_id`) VALUES
 (4,1),
 (4,2),
@@ -136,4 +135,5 @@ INSERT INTO `role_permission`(`role_id`,`permission_id`) VALUES
 (2,8),
 (3,3),
 (3,5);
+
 
