@@ -79,14 +79,11 @@
         ?>
         <div id="products">
             <?php foreach ($productList as $product) :
-                if ($product['gender'] == 2) {
-                    $product['logo'] = 'cart.gif'; // add another logo for both gender(0,1)
-                } else if ($product['gender'] == 1) {
+            if ($product['gender'] == 1) {
                     $product['logo'] = 'new.gif';
                 } else {
                     $product['logo'] = 'star.gif';
                 }
-
             ?>
                 <iframe src="./product.php?data=<?php echo urlencode(json_encode($product)); ?>" frameborder="0"></iframe>
             <?php endforeach; ?>

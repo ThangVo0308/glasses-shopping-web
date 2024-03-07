@@ -19,7 +19,7 @@
     {
         $discountItem = new discount_item();
         $discountItem->setId($row['id']);
-        $discountItem->setCategoryId($row['category_id']);
+        $discountItem->setProductID($row['product_id']);
         $discountItem->setDiscountid($row['discount_id']);
 
         return $discountItem;
@@ -40,10 +40,10 @@
 
         public function addDiscountItem(discount_item $discountItem) {
             try{
-                $query = "insert into discount_items (category_id,discount_id) 
+                $query = "insert into discount_items (product_id,discount_id) 
                          values (:category_id,:discount_id)";
                 $statement = $this->connection->prepare($query);
-                $statement->bindParam(':category_id',$discountItem->getCategoryid());
+                $statement->bindParam(':product_id',$discountItem->getProductID());
                 $statement->bindParam(':discount_id',$discountItem->getDiscountid());
 
                 $statement->execute();
@@ -56,10 +56,10 @@
 
         public function updateDiscountItem(discount_item $discountItem) {
             try {
-                $query = "update discount_items set category_id=?, discount_id = ? where id=?";
+                $query = "update discount_items set product_id=?, discount_id = ? where id=?";
                 $statement = $this->connection->prepare($query);
 
-                $category_id = $discountItem->getCategoryid();
+                $category_id = $discountItem->getProductID();
                 $discount_id = $discountItem->getDiscountid();
 
                 $id = $discountItem->getID();

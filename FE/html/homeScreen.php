@@ -1,20 +1,38 @@
 <?php
-$productList = [
-    ['id' => '01', 'name' => 'Sản phẩm 12', 'price' => '100000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-    ['id' => '02', 'name' => 'Sản phẩm 2', 'price' => '150000', 'image' => 'logo.png', 'logo' => 'new.gif'],
-    ['id' => '03', 'name' => 'Sản phẩm 3', 'price' => '120000', 'image' => 'logo.png', 'logo' => 'star.gif']
-];
+require_once('../../BE/BUS/productBUS.php');
+require_once('../../BE/BUS/orderItemBUS.php');
+
+$productListDatabase = productBUS::getInstance()->getAllProduct();
+$listNewestProduct = productBUS::getInstance()->getNewestProducts();
+$listSoldOutProduct = orderItemBUS::getInstance()->getSoldOutProducts();
+$listAdviceProduct = productBUS::getInstance()->getAdviceProducts();
+
+$newestProductList = [];
+
+foreach ($productListDatabase as $product) {
+    $logo = ($product['gender'] == 1) ? "new.gif" : "star.gif";
+
+    $newestProductList[] = [
+        'id'    => $product['id'],
+        'name'  => $product['name'],
+        'price' => $product['price'],
+        'image' => $product['image'],
+        'logo'  => $logo
+    ];
+}
+
 ?>
+
 
 <body>
     <div id="main">
         <div id="poster">
-            <div id="image-slider" >
+            <div id="image-slider">
                 <img src="../../images/poster1.png" alt="" id="image-select">
-                <div class="poster-main" >
+                <div class="poster-main">
                     <img src="../../images/poster1.png" alt="" class="image-main">
                 </div>
-                <div class="poster-next" >
+                <div class="poster-next">
                     <img src="../../images/poster2.png" alt="" class="image-next">
                 </div>
             </div>
@@ -39,9 +57,16 @@ $productList = [
             </div>
 
             <div id="products">
-                <?php foreach ($productList as $product) : ?>
-                    <iframe src="./product/product.php?data=<?php echo urlencode(json_encode($product)); ?>" frameborder="0"></iframe>
-                <?php endforeach; ?>
+            <?php
+            foreach ($newestProductList as $product) {
+                foreach($listSoldOutProduct as $value) {
+                    if($product['id'] == $value) {
+                        echo '<iframe src="./product/product.php?data=' . urlencode(json_encode($product)) . '" frameborder="0"></iframe>';
+                    }
+                }
+                
+            }
+            ?>
             </div>
         </div>
     </div>

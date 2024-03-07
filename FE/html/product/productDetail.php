@@ -23,7 +23,7 @@ $product = json_decode($_GET['data'], true);
 
             foreach ($discountItemList as $discountItem) {
                 foreach ($discountList as $discount) {
-                    if ($product['category_id'] == $discountItem['category_id'] && $discountItem['discount_id'] == $discount['id']
+                    if ($product['id'] == $discountItem['product_id'] && $discountItem['discount_id'] == $discount['id']
                         && $currentDate >= $discount['start_day'] && $currentDate <= $discount['end_day']) {
 
                         $discountedPrice = $product['price'] - ($discount['discount_percent'] / 100) * $product['price'];
@@ -49,7 +49,7 @@ $product = json_decode($_GET['data'], true);
 
                 foreach ($discountItemList as $discountItem) {
                     foreach ($discountList as $discount) {
-                        if ($product['category_id'] == $discountItem['category_id'] && $discountItem['discount_id'] == $discount['id']
+                        if ($product['id'] == $discountItem['product_id'] && $discountItem['discount_id'] == $discount['id']
                             && $currentDate >= $discount['start_day'] && $currentDate <= $discount['end_day']
                         ) {
                             $startDay = date_format(date_create($discount['start_day']), 'd-m-Y');

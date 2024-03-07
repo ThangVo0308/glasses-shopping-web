@@ -1,6 +1,6 @@
 <?php
     // require("..\BE\DAL\orderItemDAL.php");
-    require_once ("..\BE\DAL\orderItemDAL.php");
+    require_once(__DIR__ . '/../DAL/orderItemDAL.php');
     class orderItemBUS {
         private $orderItemList = array();
 
@@ -151,6 +151,85 @@
             }
             return $results;
         }
+
+        public function getTotal() {
+            $count = 0;
+            foreach ($this->orderItemList as $product) {
+                $count++;
+            }
+        
+            return $count;
+        }
+
+        public function getSoldOutProducts() {
+            $max1 = 0; $result1 = 0;$idCount_1 = [];
+            $listSoldOut = [];
+        
+            // top 1
+            foreach($this->getAllorderItem() as $item) {
+                $itemId = $item['product_id'];
+        
+                if (!isset($idCount_1[$itemId])) {
+                    $idCount_1[$itemId] = 1;
+                } else {
+                    $idCount_1[$itemId]++;
+                }
+
+                if($idCount_1[$itemId] > $max1) {
+                    $max1 = $idCount_1[$itemId];
+                    $result1 = $itemId;
+                }else if($idCount_1[$itemId] == $max1) {
+                    if($itemId > $result1) {
+                        $result1 = $itemId;
+                    }
+                }
+            }
+            $listSoldOut[] = $result1;
+
+            // top 2
+            $max2 = 0; $result2 = 0;$idCount_2 = [];
+
+            foreach($this->getAllorderItem() as $item) {
+                $itemId = $item['product_id'];
+        
+                if (!isset($idCount_2[$itemId])) {
+                    $idCount_2[$itemId] = 1;
+                } else {
+                    $idCount_2[$itemId]++;
+                }
+
+                if($idCount_2[$itemId] > $max2 && $idCount_2[$itemId] < $idCount_1[$listSoldOut[0]]) {
+                    $max2 = $idCount_2[$itemId];
+                    $result2 = $itemId;
+                }else if($idCount_2[$itemId] == $max2 && $idCount_2[$itemId] < $idCount_1[$listSoldOut[0]]) {
+                    if($itemId < $result2) {
+                        $result2 = $itemId;
+                    }
+                }
+            }
+            $listSoldOut[] = $result2;
+
+            // top 3
+            $max3 = 0; $result3 = 0;$idCount_3 = [];
+
+            foreach($this->getAllorderItem() as $item) {
+                $itemId = $item['product_id'];
+                if (!isset($idCount_3[$itemId])) {
+                    $idCount_3[$itemId] = 1;
+                } else {
+                    $idCount_3[$itemId]++;
+                }
+
+                if($idCount_3[$itemId] >= $max3 && ($itemId != $result1 && $itemId != $result2) && $idCount_3[$itemId] < $idCount_1[$listSoldOut[0]] && $idCount_3[$itemId] < $idCount_2[$listSoldOut[1]]) {
+                    $max3 = $idCount_3[$itemId];
+                    $result3 = $itemId;
+                }
+            }
+            $listSoldOut[] = $result3;
+
+            return $listSoldOut;
+        }
+        
 
     }
 ?>

@@ -1,17 +1,17 @@
 <?php
     class discount_item{
-        private $id,$category_id,$discount_id;
-        public function __constructor($id = null,$category_id = null,$discount_id = null) { 
+        private $id,$product_id,$discount_id;
+        public function __constructor($id = null,$product_id = null,$discount_id = null) { 
             $this->id = $id; 
-            $this->category_id = $category_id; 
+            $this->product_id = $product_id; 
             $this->discount_id = $discount_id; 
         }
         function getId() { 
              return $this->id; 
         } 
     
-        function getCategoryid() { 
-             return $this->category_id; 
+        function getProductID() { 
+             return $this->product_id; 
         } 
     
         function getDiscountid() { 
@@ -22,8 +22,8 @@
             $this->id = $id; 
         } 
     
-        function setCategoryid($categoryid) {  
-            $this->category_id = $categoryid; 
+        function setProductID($product_id) {  
+            $this->product_id = $product_id; 
         } 
     
         function setDiscountid($discountid) {  

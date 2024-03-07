@@ -1,5 +1,5 @@
 <?php
-    require('./database.php');
+    require_once(__DIR__ . '/../DAL/database.php');
     class OrderItemDAL {
         private $connection;
 
@@ -138,6 +138,3 @@
 
 
 ?>
-
-
-
