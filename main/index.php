@@ -30,7 +30,6 @@
             const emailSignUp = document.getElementById('email');
             const phoneSignUp = document.getElementById('phone');
             const addressSignUp = document.getElementById('address');
-
             usernameLogin.value = "";
             passwordLogin.value = "";
             usernameSignUp.value = "";

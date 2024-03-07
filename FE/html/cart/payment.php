@@ -17,7 +17,6 @@
         <?php foreach ($productList as $product) : ?>
             <div class="product section" >
                 <div class="name-product" >
-                    <!-- <img src="../../../images/products/productDemo.png" alt=""> -->
                     <span id="name" ><?php echo $product['name']; ?></span>
                 </div>
                 <div class="item" >

@@ -7,19 +7,6 @@ function changeImage(clickedImage) {
     }, 4000);
 }
 
-function selectSlider(number) {
-    var items = document.querySelectorAll('.slider-item');
-    items.forEach(function (item) {
-        item.classList.remove('selected');
-    });
-
-    var selectedSlider = document.querySelector('.slider-item:nth-child(' + number + ')');
-    selectedSlider.classList.add('selected');
-
-    var container = document.getElementById('slider-container');
-    container.scrollLeft = selectedSlider.offsetLeft - (container.offsetWidth - selectedSlider.offsetWidth) / 2;
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     // Thêm event listener scroll ở đây
     document.addEventListener('scroll', function () {
