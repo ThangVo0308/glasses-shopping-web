@@ -217,4 +217,4 @@ ADD
 
 ALTER TABLE `imports`
 ADD
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`); 
