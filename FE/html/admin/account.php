@@ -17,14 +17,14 @@ $account = [
         'role' => 1,
         'status' => 'Inactive',
     ],
-
 ];
+$c=count($account);
 ?>
 <div id="account">
     <div class="header">
         <h2><i class="fa-regular fa-user"></i> Tài khoản </h2>
         <div class="button-placeholder">
-            <div class="new-button">
+            <div class="new-button" onclick="loadModalBoxByAjax('newAccount',<?=$c?>)">
                 <div class="icon-placeholder"><i class="fa-solid fa-user-plus fa-sm"></i></div>
                 <div class="info-placeholder">Thêm</div>
             </div>
@@ -62,11 +62,12 @@ $account = [
                 <div class="item">
                     <?= $account[$i]['status']?>
                 </div>
-                <div class="item">
+                <div class="item"onclick="loadModalBoxByAjax('detailAccount',<?=$i?>)">
                     <i class="fa-solid fa-circle-info"></i>
                 </div>
             </div>
         </div>
         <?php endfor; ?>
 </div>
+<div id="modal-box"></div>
 </div>
