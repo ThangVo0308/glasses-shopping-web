@@ -7,7 +7,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-family: "Dosis", sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial;
   justify-content: space-between;
   float: left;
 }
@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
   justify-content: left;
-  font-family: "Dosis", sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial;
 }
 
 #header .tab-title:hover .tab-icon i,
@@ -79,7 +79,7 @@
 
 #header .tab-title.active .tab-icon i,
 #header .tab-title.active .tab-info {
-  color: orangered;
+  color: #8ddad3;
 }
 #header .info-placeholder input:active {
   transform: translateY(2px);
@@ -94,13 +94,14 @@
   align-items: center;
   color: white;
   height: auto;
-  background: orangered;
+  background: #8ddad3;
   border-radius: 10px;
   margin: 0px 10%;
   cursor: pointer;
   font-size: calc(10px + 0.3vw);
   padding: 3%;
   transition: 0.2s ease-in-out;
+  font-family: "Helvetica Neue",Helvetica,Arial;
 }
 #header .info-placeholder:hover,
 #header .info-placeholder:hover h3,
@@ -111,6 +112,8 @@
 
 #header .info-placeholder h3 {
   text-align: center;
+  font-family: "Helvetica Neue",Helvetica,Arial;
+  
 }
 @media screen and (max-width: 880px) {
   #header .tab-icon {
