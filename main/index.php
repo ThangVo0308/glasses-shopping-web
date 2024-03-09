@@ -8,17 +8,25 @@
     <title>PreVision Shop</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="../FE/css/login/login.css">
+    <link rel="stylesheet" href="../FE/css/userOptions.css">
 </head>
 
 <body>
     <iframe src="../FE/html/header.php" frameborder="0" id="header"></iframe>
     <iframe src="../FE/html/homeScreen.php" frameborder="0" id="homeScreen" name="homeScreen"></iframe>
     <iframe src="../FE/html/login.php" frameborder="0" id="login" name="login"></iframe>
+    <div id="userOptions">
+        <div class="ic"></div>
+        <span>Tài khoản của tao</span>
+        <span>Đơn hàng</span>
+        <span>Đăng xuất</span>
+    </div>
 </body>
 
 </html>
 <script>
     const loginForm = parent.document.getElementById('login');
+
     function openLoginForm() {
         if (loginForm) {
             loginForm.style.display = "block";
@@ -44,6 +52,3 @@
 
 <script src="../FE/controller/navigation.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-
-

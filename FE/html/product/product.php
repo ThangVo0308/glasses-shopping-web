@@ -6,7 +6,7 @@
     <img src="../../../images/glasses/<?php echo $product['image']; ?>" alt="" class="image">
     <h3 class="id"><?php echo $product['id']; ?></h3>
     <h3 class="name"><?php echo $product['name']; ?></h3>
-    <i class="price"><?php echo number_format($product['price'],0,',','.') . ' VNĐ'?></i>
+    <i class="price"><?php echo number_format($product['price'],0,',','.') . ' đ'?></i>
     <!-- <img class="icon" src="../../../icons/<?php echo $product['logo']; ?>" alt=""> -->
 
 </div>

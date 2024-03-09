@@ -9,7 +9,7 @@
 
 <?php
 $productList = [
-    ['id' => '01', 'name' => 'Sản phẩm 1', 'price' => '1000000', 'image' => 'productDemo.png', 'quantity' => '4'],
+    ['id' => '01', 'name' => 'Sản phẩm 1', 'price' => '10000000', 'image' => 'productDemo.png', 'quantity' => '4'],
     ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
     ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
     ['id' => '02', 'name' => 'Sản phẩm 1', 'price' => '200000', 'image' => 'productDemo.png', 'quantity' => '4'],
@@ -47,7 +47,7 @@ $productList = [
                         <img src="../../../images/products/<?php echo $product['image']; ?>" alt="">
                     </div>
                     <div class="item">
-                        <span><?php echo number_format(intval($product['price'])); ?></span>
+                        <span><?php echo number_format(intval($product['price'])); ?> đ</span>
                         <div>
                             <button id="decrease">-</button>
                             <input id="quantity" type="text" value="<?php echo $product['quantity']; ?>">
@@ -56,7 +56,7 @@ $productList = [
                         <?php
                         $totalPrice = intval(str_replace('.', '', $product['price'])) * intval($product['quantity']);
                         ?>
-                        <span id="totalPrice"><?php echo number_format($totalPrice); ?></span>
+                        <span id="totalPrice"><?php echo number_format($totalPrice); ?> đ</span>
                         <span id="deleteBtn">Xóa</span>
                     </div>
                 </div>
@@ -64,6 +64,7 @@ $productList = [
 
         </div>
     </div>
+
     <div id="statistical">
         <img class="pinImage" src="../../../icons/pin.png" alt="">
         <div id="addressForm">
@@ -88,7 +89,7 @@ $productList = [
         <div id="pointForm">
             <div>
                 <input type="checkbox">
-                <span>Point: 1000</span>
+                <span>Point: <?php echo number_format(1000); ?></span>
             </div>
             <span id="pointValue">0</span>
         </div>
@@ -96,21 +97,22 @@ $productList = [
             <div class="pay">
                 <span>Tổng thanh toán</span>
                 <div>
-                    <h3 id="valuePay">60,00,000 đ</h3>
-                    <h3 id="valueReal">10.000 đ</h3>
+                    <h3 id="valuePay"><?php echo number_format(6000000); ?> đ</h3>
+                    <h3 id="valueReal"><?php echo number_format(100000); ?> đ</h3>
                 </div>
                 <button id="payBtn">Thanh Toán</button>
             </div>
         </div>
     </div>
+
     <div id="newAddessContainer" >
         <div id="newAddressForm">
             <span>Địa chỉ mới</span>
             <div>
-                <input id="newName" class="ip" type="text">
-                <input id="newPhone" class="ip" type="text">
+                <input id="newName" class="ip" type="text" placeholder="Tên" >
+                <input id="newPhone" class="ip" type="text" placeholder="Số tiện thoại" >
             </div>
-            <input id="newAddress" class="ip" type="text">
+            <input id="newAddress" class="ip" type="text" placeholder="Địa chỉ" >
             <div>
                 <input type="checkbox" id="defaultAddress">
                 <span>Đặt làm địa chỉ mặc định</span>

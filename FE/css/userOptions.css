@@ -1,0 +1,31 @@
+#userOptions {
+    display: none;
+    flex-direction: column;
+    right: 61px;
+    top: 80px;
+    position: absolute;
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    padding-right: 20px;
+    padding-top: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 3px;
+}
+#userOptions span {
+    height: 42px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.ic {
+    height: 19px;
+    width: 17px;
+    background-color: white;
+    position: absolute;
+    top: -9px;
+    right: 16px;
+    transform: rotate(50deg);
+}

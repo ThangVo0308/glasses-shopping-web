@@ -65,6 +65,7 @@ body {
 }
 .item {
     justify-content: space-around;
+    width: 60%;
 }
 #products {
     width: 100%;
@@ -96,7 +97,7 @@ body {
     margin-left: 9px;
 }
 .item span, .item div {
-    width: 80px;
+    width: 100px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -156,7 +157,7 @@ body {
     height: 35%;
 }
 #addressForm div div:nth-child(1) { /*img, span*/
-    color: red;
+    color: blue;
     display: flex;
     align-items: center;
 }
@@ -169,7 +170,7 @@ body {
 }
 #addressForm div div:nth-child(2) { /*span*3*/
     font-size: 15px;
-    color: #00979e;
+    color: #00000091;
 }
 #address {
     color: #00000091;
@@ -177,7 +178,7 @@ body {
 #btnChangeAddress {
     width: 60px;
     font-size: 14px;
-    color: blue;
+    color: rgba(0, 0, 255, 0.597);
     padding: 5px;
     cursor: pointer;
 }
@@ -218,7 +219,8 @@ body {
     margin-right: 20px;
 }
 #pointForm div span {
-    color: #868603;
+    color: red;
+    font-style: italic;
 }
 #pointValue {
     font-size: 16px;
@@ -343,6 +345,7 @@ body {
     width: 116px;
     font-size: 14px;
     cursor: pointer;
+    border-radius: 3px;
 }
 #buttonAccept {
     border: none;

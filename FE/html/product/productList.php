@@ -65,7 +65,7 @@
                     <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="price-value" class="value-filter">
-                    <input type="range" min="0" max="50000000" step="250000" value="0" id="myRange" name="price">
+                    <input type="range" min="0" max="5000000" step="250000" value="0" id="myRange" name="price">
                     <h3 id="result">0</h3>
                 </div>
             </div>

@@ -33,10 +33,10 @@ $product = json_decode($_GET['data'], true);
             }
 
             if ($discountedPrice !== null) {
-                echo '<span id="price">' . number_format($discountedPrice, 0, ',', '.') . ' VNĐ</span>';
-                echo '<span id="price-real">' . number_format($product['price'], 0, ',', '.') . ' VNĐ</span>';
+                echo '<span id="price">' . number_format($discountedPrice, 0, ',', '.') . ' đ</span>';
+                echo '<span id="price-real">' . number_format($product['price'], 0, ',', '.') . ' đ</span>';
             } else {
-                echo '<span id="price-real-2">' . number_format($product['price'], 0, ',', '.') . ' VNĐ</span>';
+                echo '<span id="price-real-2">' . number_format($product['price'], 0, ',', '.') . ' đ</span>';
             }
             ?>
         </div>
