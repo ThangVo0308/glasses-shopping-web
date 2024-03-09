@@ -39,7 +39,24 @@ INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `desc
 ('Monday', 1, 'Monday.webp', '0', 2980000, 'Mắt mèo', 5,'active'),
 ('Cute', 1, 'Cute.webp', 0, 2980000, 'Vuông-Chữ nhật', 5,'active'),
 ('Junni', 1, 'Junni.webp', 1, 1880000, 'Vuông-Chữ nhật', 5,'active'),
-('BlackPink', 1, 'BlackPink.webp', 0, 1780000, 'Bầu dục',5,'active');
+('BlackPink', 1, 'BlackPink.webp', 0, 1780000, 'Bầu dục',5,'active'),
+('Chemi U2 ASP Photogray',2,'TrongKinh/Chemi.jpg',1,660000,'Khi tiếp xúc với tia UV, tròng kính sẽ chuyển từ trong suốt sang màu tối',5,'active'),
+('Chemi Perfect UV Crystal U6',2,'TrongKinh/crytal.jpg',1,700000,'Ngăn ánh sáng xanh có hại, Phản quang, hạn chế chói',5,'active'),
+('Essilor Crizal Rock',2,'TrongKinh/Rock.jpg',1,1200000,'Lọc ánh sáng xanh, Siêu mỏng',5,'active'),
+('Chemi Tint',2,'TrongKinh/Tint.jpg',1,650000,'Siêu mỏng, Tròng kính mát',5,'active'),
+('Essilor Transitions Classic',2,'TrongKinh/classic.jpg',1,1780000,'trong suốt trong nhà và tự động đổi màu khi tiếp xúc với ánh nắng',5,'active'),
+('Essilor Crizal Sapphire 360 UV',2,'TrongKinh/sapphire.jpg',1,2550000,'giảm tối đa độ chói do ánh sáng gây ra từ mọi hướng',5,'active'),
+('Chemi A-One Plus Rx',2,'TrongKinh/RX.jpg',1,1800000,'Tầm nhìn rõ nét ở mọi khoảng cách, Thiết kế độc đáo và thoải mái',5,'active'),
+('ZEISS Office Superb',2,'TrongKinh/office.jpg',1,4590000,'Lọc ánh sáng xanh, Siêu mỏng, Tròng đặt đánh',5,'active'),
+('PARFOIS',3,'PhuKien/parfois.jpg',1,250000,'Body: 5% Rubber, 95% Iron',10,'active'),
+('RAINBOW',3,'PhuKien/rainbow.jpg',1,300000,'General: 20% Brass, 80% Thermoplastic Polyurethane',10,'active'),
+('CASE002',3,'PhuKien/002.webp',1,200000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
+('CASE003',3,'PhuKien/003.jpg',1,220000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
+('CLOTH004',3,'PhuKien/004.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
+('CLOTH005',3,'PhuKien/005.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
+('Strawberry',3,'PhuKien/dau.jpg',1,330000,'Bộ sản phẩm vệ sinh kính chuyên dụng và tiện lợi',5,'active'),
+('Duo Sac Hot Chocolate',3,'PhuKien/nau.webp',1,250000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active');
+
 
 INSERT INTO `discounts` (`name`, `discount_percent`, `start_day`, `end_day`,`product_id`) VALUES
 ('Khai Xuân', 15, '2024-01-01', '2024-07-31',1),
