@@ -25,6 +25,12 @@ if (isset($_POST["modalBox"])) {
         case 'newAccount':
             include("modalBox/newAccount.php");
             break;
+        case 'detailPermission':
+            include("modalBox/detailPermission.php");
+            break;
+        case 'newPermission':
+            include("modalBox/newPermission.php");
+            break;
             default:
         echo `<h1>Page not found 404</h1>`;
     }
