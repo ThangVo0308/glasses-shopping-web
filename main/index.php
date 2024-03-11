@@ -19,6 +19,7 @@
         <div class="ic"></div>
         <span>Tài khoản của tao</span>
         <span>Đơn hàng</span>
+        <span onclick="changIframeHistoryCart()" >Lịch sử đơn hàng</span>
         <span>Đăng xuất</span>
     </div>
 </body>

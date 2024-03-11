@@ -1,0 +1,82 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+}
+#main {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 15%;
+    padding-right: 15%;
+    overflow: hidden;
+    height: 100%;
+    background-color: #3aa298;
+    border-bottom-right-radius: 80px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    /* background: linear-gradient(to right, #3aa298, #76a5a1, #75ada8, #88bcb7, #92cac5); */
+}
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+}
+.title {
+    font-size: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    color: white;
+}
+.section div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section div span {
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.section div div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#logoShop {
+    height: 145px;
+    width: 145px;
+}
+.address img {
+    height: 25px;
+    padding-right: 8px;
+    width: 25px;
+}
+.address span {
+    color: #0d5750;
+    font-style: italic;
+}
+#linkAddress {
+    padding-top: 20px;
+    text-decoration: underline;
+    align-self: center;
+}
+.contact {
+    padding-top: 16px;
+    align-self: center;
+}
+.contact img {
+    padding: 5px;
+    cursor: pointer;
+}
+#btnSignIn{
+    color: red;
+    padding-right: 15px;
+    font-weight: 400;
+    font-style: italic;
+}
+#btnCreateAccount {
+    font-weight: 400;
+    color: blue;
+    padding-left: 15px;
+    font-style: italic;
+}
