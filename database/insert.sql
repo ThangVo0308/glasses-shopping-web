@@ -54,7 +54,7 @@ INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `desc
 ('CASE003',3,'../PhuKien/003.jpg',1,220000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
 ('CLOTH004',3,'../PhuKien/004.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
 ('CLOTH005',3,'../PhuKien/005.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
-('Strawberry',3,'../PhuKien/dau.jpg',1,330000,'Bộ sản phẩm vệ sinh kính chuyên dụng và tiện lợi',5,'active'),
+('Strawberry',3,'../PhuKien/dau.webp',1,330000,'Bộ sản phẩm vệ sinh kính chuyên dụng và tiện lợi',5,'active'),
 ('Duo Sac Hot Chocolate',3,'../PhuKien/nau.webp',1,250000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active');
 
 
