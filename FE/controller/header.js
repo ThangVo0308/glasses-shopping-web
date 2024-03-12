@@ -2,13 +2,13 @@ var btnSearch = document.getElementById('btnSearch');
 var searchValue = document.getElementById('searchValue');
 var searchParent = searchValue.parentElement;
 
-btnSearch.onclick = function() {
+btnSearch.onclick = function () {
     var computedStyle = window.getComputedStyle(searchValue);
     var searchDisplayStyle = computedStyle.getPropertyValue('display');
 
     if (searchDisplayStyle === 'none') {
         searchValue.style.display = 'block';
-        setTimeout(function() {
+        setTimeout(function () {
             searchValue.style.width = '170px';
             searchValue.style.opacity = '1';
             searchValue.style.transition = 'all 0.5s ease';
@@ -23,7 +23,7 @@ btnSearch.onclick = function() {
 
         searchParent.style.width = '27px';
         searchParent.style.transition = 'all 0.5s ease';
-        setTimeout(function() {
+        setTimeout(function () {
             searchValue.style.display = 'none';
         }, 500);
     }

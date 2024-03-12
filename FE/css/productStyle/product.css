@@ -2,9 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
 }
 #products iframe {
     border: 1px solid #ddd;
@@ -59,4 +56,14 @@
     color: #555;
     height: 50px;
     width: 50px;
+}
+#switchPage {
+    display: flex;
+    justify-content: center;
+}
+#switchPage span {
+    cursor: pointer;
+    margin: 10px;
+    border: #555 1px solid;
+    padding: 5px;
 }

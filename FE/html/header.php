@@ -4,10 +4,10 @@
         <h2>PreVision</h2>
     </div>
     <div class="navigation">
-        <a href="#" onclick=changIframeHomeScreen()>Trang Chủ</a>
-        <a href="#" onclick=changIframeProducts()>Sản Phẩm</a>
+        <a href="#" onclick=changeIframeHomeScreen()>Trang Chủ</a>
+        <a href="#" onclick=changeIframeProducts()>Sản Phẩm</a>
         <a href="">Về Chúng Tôi</a>
-        <a href="" onclick=changIframeContact()>Liên Hệ</a>
+        <a href="" onclick=changeIframeContact()>Liên Hệ</a>
     </div>
     <div class="navigation">
         <div>
@@ -15,7 +15,7 @@
             <button id="btnSearch"><img src="../../icons/search.png" id="imgSearch" alt=""></button>
         </div>
         <img src="../../icons/user.png" alt="" id="userLogin" onclick="openLoginForm()">
-        <img src="../../icons/cart.png" onclick="changIframeCart()" alt="">
+        <img src="../../icons/cart.png" onclick="changeIframeCart()" alt="">
     </div>
 </div>
 
@@ -46,7 +46,7 @@
                 flag = false;
             }
             setTimeout(() => {
-                if (flag==true) {
+                if (flag == true) {
                     userOptions.style.display = "none";
                 }
             }, 300);
@@ -56,4 +56,10 @@
         };
 
     });
+    
+    function openLoginForm() {
+        if (loginForm) {
+            loginForm.style.display = "block";
+        }
+    }
 </script>

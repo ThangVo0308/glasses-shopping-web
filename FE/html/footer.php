@@ -15,10 +15,10 @@
     <div class="section">
         <span class="title">Link</span>
         <div>
-            <span onclick="changIframeHomeScreen()" >Trang chủ</span>
-            <span onclick="changIframeProducts()" >Sản phẩm</span>
+            <span onclick="changeIframeHomeScreen()" >Trang chủ</span>
+            <span onclick="changeIframeProducts()" >Sản phẩm</span>
             <span onclick="" >Về chúng tôi</span>
-            <span onclick="changIframeContact()" >Liên hệ</span>
+            <span onclick="changeIframeContact()" >Liên hệ</span>
         </div>
     </div>
     <div class="section">
