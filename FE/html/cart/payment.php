@@ -1,5 +1,11 @@
 <?php
 $productList = json_decode($_GET['data'], true);
+
+$total = 0;
+
+foreach ($productList as $product) {
+    $total += intval(str_replace('.', '', $product['discountPrice'])) * $product['quantity'];
+}
 ?>
 <div id="paymentForm">
     <h3>Xác nhận thanh toán</h3>
@@ -22,10 +28,10 @@ $productList = json_decode($_GET['data'], true);
                 <div class="item">
                     <span id="quantity"><?php echo $product['quantity']; ?></span>
                     <div>
-                        <span id="price"><?php echo number_format(700000); ?></span>
-                        <span id="price-real"><?php echo $product['price']; ?> đ</span>
+                        <span id="price"><?php echo $product['currentPrice'] ?></span>
+                        <span id="price-real"><?php echo $product['discountPrice']; ?> đ</span>
                     </div>
-                    <span id="total"><?php echo number_format(700000); ?> đ</span>
+                    <span id="total"><?php echo number_format(intval(str_replace('.', '', $product['discountPrice'])) * $product['quantity']); ?> đ</span>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -33,8 +39,8 @@ $productList = json_decode($_GET['data'], true);
     <div class="total">
         <span>Tổng thanh toán:</span>
         <div>
-            <span><?php echo number_format(300000); ?> đ</span>
-            <span id="valueReal" ><?php echo number_format(100000); ?> đ</span>
+            <span><?php echo number_format($total); ?> đ</span>
+            <span id="valueReal"><?php echo number_format($total); ?> đ</span>
         </div>
     </div>
     <div class="buttons">
@@ -51,4 +57,9 @@ $productList = json_decode($_GET['data'], true);
             paymentIframe.style.display = 'none';
         }
     }
+
+    var exitBtn = document.getElementById('btnExit');
+    exitBtn.addEventListener('click',() => {
+
+    })
 </script>

@@ -106,7 +106,6 @@
             data: data,
             dataType: 'json',
             success: function(res) {
-                console.log("test: " + res.result);
                 var productList = document.getElementById('products');
                 productList.innerHTML = '';
 
