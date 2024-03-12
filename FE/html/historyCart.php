@@ -5,20 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch sử mua hàng</title>
+    <link rel="stylesheet" href="../css/historyCart.css">
+
 </head>
-
-<?php
-$productList = [
-    // ['id' => 'HD01', 'user' => 'Quoc Cuong', 'price' => '1000000','quantity' => '4'],
-    // ['id' => 'HD02', 'user' => 'Quoc Cuong', 'price' => '200000','quantity' => '4'],
-    // ['id' => 'HD02', 'user' => 'Quoc Cuong', 'price' => '200000','quantity' => '4'],
-    // ['id' => 'HD02', 'user' => 'Quoc Cuong', 'price' => '200000','quantity' => '4'],
-    // ['id' => 'HD02', 'user' => 'Quoc Cuong', 'price' => '200000','quantity' => '4'],
-    // ['id' => 'HD02', 'user' => 'Quoc Cuong', 'price' => '200000','quantity' => '4'],
-    // ['id' => 'HD02', 'user' => 'Quoc Cuong', 'price' => '200000','quantity' => '4'],
-];
-
-?>
 
 <body>
     <div id="cart">
@@ -35,43 +24,47 @@ $productList = [
                 <span>Mã hóa đơn</span>
             </div>
             <div class="item">
-                <span>Khách Hàng</span>
+                <span>Nhân viên</span>
+                <span>Ngày đặt</span>
                 <span>Số tiền</span>
                 <span>Thao tác</span>
             </div>
         </div>
+        <?php
+        require_once("../../BE/BUS/orderBUS.php");
+        $orderList = orderBUS::getInstance()->getAllorder();
+        ?>
         <div id="products">
-            <?php foreach ($productList as $product) : ?>
+            <?php foreach ($orderList as $order) : ?>
                 <div class="product section">
                     <div>
-                        <span><?php echo $product['id']; ?></span>
+                        <span><?php echo $order['id']; ?></span>
                     </div>
                     <div class="item">
-                        <span class="user"><?php echo $product['user']; ?></span>
-                        <?php
-                        $totalPrice = intval(str_replace('.', '', $product['price'])) * intval($product['quantity']);
-                        ?>
-                        <span id="totalPrice"><?php echo number_format($totalPrice); ?></span>
+                        <span class="user"><?php echo $order['user_id']; ?></span>
+                        <span class="date"><?php echo $order['order_date']; ?></span>
+                        <span id="totalPrice"><?php echo number_format('total_price'); ?></span>
                         <span id="deleteBtn">Xem chi tiết</span>
                     </div>
                 </div>
             <?php endforeach; ?>
-
         </div>
     </div>
     </div>
     </div>
+
+    <iframe src="./detailsHistory.php?data=<?php echo urlencode(json_encode($orderList)); ?>" frameborder="0" id="details-history"></iframe>
+
 </body>
-<link rel="stylesheet" href="../css/historyCart.css">
 
 </html>
 
 <?php
-if (empty($productList)) {
+if (empty($orderList)) {
     echo '  <div class="history-table">
     <div class="data-empty">
-        <div class="icon-empty">
-            <svg width="132" height="170" viewBox="0 0 132 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="icon-empty">
+    <svg width="132" height="170" viewBox="0 0 132 170" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_6133_13905)">
                     <path d="M125.486 120.371H113.585V91.6562H132V113.845C132 117.451 129.086 120.371 125.486 120.371Z" fill="#A1AAAF"></path>
                     <path d="M99.3294 167.226C95.6392 170.922 89.6482 170.922 85.949 167.226L50.2828 131.497C46.5926 127.801 46.5926 121.799 50.2828 118.094C53.973 114.397 59.964 114.397 63.6633 118.094L99.3294 153.822C103.029 157.528 103.029 163.529 99.3294 167.226Z" fill="#E1E4E6"></path>
@@ -85,21 +78,28 @@ if (empty($productList)) {
                     <path d="M104.445 25.7136C108.207 25.7136 111.807 22.4056 111.636 18.5101C111.464 14.6056 108.478 11.3066 104.445 11.3066C100.683 11.3066 97.0825 14.6146 97.2539 18.5101C97.4344 22.4146 100.421 25.7136 104.445 25.7136Z" fill="white"></path>
                     <path d="M108.28 44.9557H51.1307C49.678 44.9557 48.4961 43.7717 48.4961 42.3165V40.8071C48.4961 39.352 49.678 38.168 51.1307 38.168H108.28C109.732 38.168 110.914 39.352 110.914 40.8071V42.3165C110.914 43.7717 109.732 44.9557 108.28 44.9557Z" fill="white"></path>
                     <path d="M108.343 61.6042H51.0585C49.642 61.6042 48.4961 60.4563 48.4961 59.0373V57.7358C48.4961 56.3168 49.642 55.1689 51.0585 55.1689H108.343C109.759 55.1689 110.905 56.3168 110.905 57.7358V59.0373C110.914 60.4473 109.759 61.6042 108.343 61.6042Z" fill="white"></path>
-                </g>
-                <defs>
+                    </g>
+                    <defs>
                     <clipPath id="clip0_6133_13905">
-                        <rect width="132" height="170" fill="white"></rect>
+                    <rect width="132" height="170" fill="white"></rect>
                     </clipPath>
-                </defs>
-            </svg>
-            <p class="alert-empty">Quý khách chưa có đơn hàng nào.</p>
-            <div><a href="../../main/index.php  " class="button-continue">
+                    </defs>
+                    </svg>
+                    <p class="alert-empty">Quý khách chưa có đơn hàng nào.</p>
+                    <div><a href="/main/index.php" class="button-continue">
                     Tiếp tục mua hàng
-                </a></div>
-        </div>
-    </div>';
+                    </a></div>
+                    </div>
+                    </div>';
 } else {
     echo '<div id="products">';
     echo '</div>';
 }
 ?>
+
+<script>
+    var detailsForm = document.getElementById('deleteBtn');
+        detailsForm.onclick = function() {
+            document.getElementById('details-history').style.display = 'block';
+            }
+</script>

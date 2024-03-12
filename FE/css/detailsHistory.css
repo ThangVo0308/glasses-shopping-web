@@ -1,0 +1,238 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+}
+
+
+/* Modal thêm sp */
+.activeModal {
+    display: flex;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    height: 50px;
+    background-color: #e5eef9;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.header div{
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+.header input {
+    height: 15px;
+    width: 15px;
+    margin-right: 9px;
+}
+.item {
+    justify-content: space-around;
+    width: 60%;
+}
+#products {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.product{
+    display: flex;
+    justify-content: center;
+    height: 95px;
+    background-color: #f9f8f8;
+    border-radius: 5px;
+    margin-bottom: 3px;
+}
+.product div{
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+.product input {
+    height: 15px;
+    width: 15px;
+    margin-right: 9px;
+}
+.product img {
+    width: 65px;
+    height: 65px;
+    margin-left: 9px;
+}
+.item span, .item div {
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.item button {
+    height: 33px;
+    width: 25px;
+    font-size: 21px;
+    background: transparent;
+    border: black 1px solid;
+    cursor: pointer;
+}
+.item input {
+    width: 30px;
+    height: 33px;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    border-top: black 1px solid;
+    border-bottom: black 1px solid;
+    text-align: center;
+}
+
+.modalPlus,
+.modalEdit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
+}
+
+
+
+.modalContainer,
+.modalEditor {
+    background-color: #fff;
+    width: 900px;
+    min-height: 600px;
+    position: relative;
+    animation: modalMove ease 0.5s;
+}
+
+@keyframes modalMove {
+    from {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.wc-box {
+    position: absolute;
+    top: calc(50% - 15px);
+    right: calc(50% - 45px);
+  }
+  
+  .wc-box div {
+    position: relative;
+    float: left;
+    width: 40px;
+    height: 45px;
+    bottom: 285px;
+    left: 405px;
+}
+  
+  .wc-box div:before,
+  .wc-box div:after {
+    top: 30%;
+    right: 30%;
+    bottom: 30%;
+    left: 30%;
+    content: " ";
+    position: absolute;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+  }
+  
+  
+  .wc-box .close:before,
+  .wc-box .close:after {
+    bottom: 50%;
+    top: 50%;
+  }
+  
+  .wc-box .close:before {
+    transform: rotate(45deg);
+  }
+  
+  .wc-box .close:after {
+    transform: rotate(-45deg);
+  }
+  
+  .wc-box .close:hover {
+    background-color: #E04343;
+  }
+  
+  .wc-box .close:hover:after,
+  .wc-box .close:hover:before {
+    border-color: #FFFFFF;
+  }
+.modal-header {
+    background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fff;
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+.modal-label {
+    display: flex;
+    font-size: 15px;
+    padding: 16px 0;
+}
+
+.modal-label p {
+    width: 40%;
+}
+
+.modal-label input {
+    width: 60%;
+}
+
+.modal-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 15px;
+}
+
+.modal-submit,
+.modal-submit1 {
+    margin-top: 48px;
+    width: 100%;
+    padding: 16px;
+    background-color: #404258;
+    border: 1px solid #ccc;
+    color: #fff;
+    font-size: 15px;
+}
+
+.modal-submit:hover {
+    cursor: pointer;
+    background-color: #ccc;
+    color: #000;
+}
+
+.modal-submit1:hover {
+    cursor: pointer;
+    background-color: #ccc;
+    color: #000;
+}
+
+.modal-add {
+    padding: 8px;
+}
+
+.modal-param{
+    color:#000;
+}
