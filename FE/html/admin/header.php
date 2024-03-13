@@ -61,6 +61,8 @@ function getFunction()
         ['tenChucNang' => 'Thống kê', 'icon' => 'fa-solid fa-chart-column'],
         ['tenChucNang' => 'Sản phẩm', 'icon' => 'fa-solid fa-warehouse'],
         ['tenChucNang' => 'Đơn hàng', 'icon' => 'fa-solid fa-cart-shopping'],
+        ['tenChucNang' => 'Giảm giá', 'icon' => 'fa-solid fa-percent'],
+        ['tenChucNang' => 'Điểm tích lũy', 'icon' => 'fa-solid fa-ticket'],
         ['tenChucNang' => 'Tài khoản', 'icon' => 'fa-regular fa-user'],
         ['tenChucNang' => 'Nhập hàng', 'icon' => 'fa-solid fa-plus'],
         ['tenChucNang' => 'Phân quyền', 'icon' => 'fa-solid fa-user-pen'],
