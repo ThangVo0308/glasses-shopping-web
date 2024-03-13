@@ -1,5 +1,5 @@
 <?php
-    require('./database.php');
+    require_once(__DIR__ . '/../DAL/database.php');
     class PointDAL {
         private $connection;
 
@@ -22,7 +22,6 @@
         $point = new points();
         $point->setId($row['id']);
         $point->setUserid($row['user_id']);
-        $point->setTransactiondate($row['transaction_date']);
         $point->setPointsearned($row['points_earned']);
         $point->setPointsused($row['points_used']);
 
@@ -44,11 +43,10 @@
 
         public function addPoint(points $point) {
             try{
-                $query = "insert into points (user_id,transaction_date,points_earned,points_used) 
-                         values (:user_id,:transaction_date,:points_earned,:points_used)";
+                $query = "insert into points (user_id,points_earned,points_used) 
+                         values (:user_id,:points_earned,:points_used)";
                 $statement = $this->connection->prepare($query);
                 $statement->bindParam(':user_id',$point->getUserid());
-                $statement->bindParam(':transaction_date',$point->getTransactiondate());
                 $statement->bindParam(':points_earned',$point->getPointsearned());
                 $statement->bindParam(':points_used',$point->getPointsused());;
                 $statement->execute();
@@ -61,20 +59,19 @@
 
         public function updatePoint(points $point) {
             try {
-                $query = "update points set user_id=?, transaction_date = ?, points_earned=?, points_used=? where id=?";
+                $query = "update points set user_id=?, points_earned=?, points_used=? where id=?";
                 $statement = $this->connection->prepare($query);
 
                 $user_id = $point->getUserid();
-                $transaction_date = $point->getTransactiondate();
+
                 $points_earned = $point->getPointsearned();     
                 $points_used =$point->getPointsused();
                 $id = $point->getID();
 
                 $statement->bindParam(1,$user_id);
-                $statement->bindParam(2,$transaction_date);
-                $statement->bindParam(3,$points_earned);
-                $statement->bindParam(4,$points_used);
-                $statement->bindParam(5,$id);
+                $statement->bindParam(2,$points_earned);
+                $statement->bindParam(3,$points_used);
+                $statement->bindParam(4,$id);
 
                 $statement->execute();
                 return true;
@@ -103,13 +100,13 @@
             $pointList = array();
 
             if($condition == null || strlen($columnName) == 0) {
-                $query = "select * from points where concat(id, user_id, transaction_date, points_earned, points_used) like ?";
+                $query = "select * from points where concat(id, user_id, points_earned, points_used) like ?";
             }else if(strlen($columnName) == 1) {
                 $column = $columnName[0]; // selected column
                 $query = "select * from points where ".$column.+" like ?";
             }else {
                 $columns = implode(",",$columnName);
-                $query = "select id, user_id, transaction_date, points_earned, points_used from points where concat(".$columns.") like ?";
+                $query = "select id, user_id, points_earned, points_used from points where concat(".$columns.") like ?";
             }
 
             $statement = $this->connection->prepare($query);
@@ -135,6 +132,3 @@
 
 
 ?>
-
-
-

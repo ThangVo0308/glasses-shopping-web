@@ -38,7 +38,6 @@ CREATE TABLE
     `points` (
         `id` INT NOT NULL AUTO_INCREMENT,
         `user_id` INT,
-        `transaction_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `points_earned` INT NOT NULL DEFAULT 0,
         `points_used` INT NOT NULL DEFAULT 0,
         PRIMARY KEY (`id`)

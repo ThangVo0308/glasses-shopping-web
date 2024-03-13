@@ -79,14 +79,7 @@
 
         public function updateProduct(product $product) {
             $result = productDAL::getInstance()->updateProduct($product);
-            if($result) {
-                $index = array_search($product,$this->productList,true);
-                if($index !== false) {
-                    $this->productList[$index] = $product;
-                    return $index;
-                }
-            }
-            return -1;
+            return $result;
         }
 
         public function deleteProduct($id) {

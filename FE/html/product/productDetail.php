@@ -19,6 +19,8 @@ require_once("../../../BE/BUS/discountBUS.php");
             $currentDate = date('Y-m-d');
 
             $discountedPrice = null;
+            $discountAmount = null;
+            $discountID = null;
 
             foreach ($discountItemList as $discountItem) {
                 foreach ($discountList as $discount) {
@@ -26,7 +28,8 @@ require_once("../../../BE/BUS/discountBUS.php");
                         $product['id'] == $discountItem['product_id'] && $discountItem['discount_id'] == $discount['id']
                         && $currentDate >= $discount['start_day'] && $currentDate <= $discount['end_day']
                     ) {
-
+                        $discountID = $discount['id'];
+                        $discountAmount = ($discount['discount_percent'] / 100) * $product['price'];
                         $discountedPrice = $product['price'] - ($discount['discount_percent'] / 100) * $product['price'];
                         break 2;
                     }
@@ -124,20 +127,27 @@ require_once("../../../BE/BUS/discountBUS.php");
         var nameProduct = "<?php echo addslashes($product['name']); ?>";
         var imageProduct = "<?php echo addslashes($product['image']); ?>";
         var currentPrice = parseInt(<?php echo $product['price']?>);
+        var discountID = <?php echo (is_numeric($discountID)) ? $discountID : 'null'; ?>;
         var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
+        var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0?>)
         var firstQuantity =parseInt(<?php echo $product['quantity']?>);
-        var quantity = parseInt(quantityValue.value);
-        // var totalPrice = currentPrice * quantity;
-
+        
+        if(quantityValue.value == 0) {
+            alert('Sản phẩm đã hết hàng');
+            return;
+        }else {
+            var quantity = parseInt(quantityValue.value);
+        }
         var data = {
             id: idProduct,
             name: nameProduct,
             image: imageProduct,
             currentPrice: currentPrice,
             discountPrice: discountPrice,
+            discountAmount:discountAmount,
+            discountID:discountID,
             firstQuantity: firstQuantity,
             quantity: quantity,
-            // totalPrice: totalPrice,
         }
 
         $.ajax({

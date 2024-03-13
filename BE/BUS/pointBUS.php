@@ -1,6 +1,7 @@
 <?php
     // require("..\BE\DAL\pointDAL.php");
-    require_once ("..\BE\DAL\pointDAL.php");
+    require_once(__DIR__ . '/../DAL/pointDAL.php');
+    require_once(__DIR__ . '/../DAL/userDAL.php');
     class pointBUS {
         private $pointList = array();
 
@@ -33,6 +34,15 @@
             } 
             return null;
         }
+
+        public function getPointByUserID($userID) {
+            foreach ($this->pointList as $point) {
+                if ($point['user_id'] == $userID) {
+                    return $point;
+                }
+            } 
+            return null;
+        }
         
 
         public function getMax() {
@@ -46,7 +56,6 @@
 
         public function addPoint(points $point) {
             if($point->getUserid() <= 0
-                || $point->getTransactiondate() <= 0 && strtotime($point->getTransactiondate()) > time()
                 || $point->getPointsearned() < 0
                 || $point->getPointsused() < 0
             ){
@@ -64,14 +73,7 @@
 
         public function updatePoint(points $point) {
             $result = pointDAL::getInstance()->updatePoint($point);
-            if($result) {
-                $index = array_search($point,$this->pointList,true);
-                if($index !== false) {
-                    $this->pointList[$index] = $point;
-                    return $index;
-                }
-            }
-            return -1;
+            return $result;
         }
 
         public function deletePoint($id) {
@@ -101,11 +103,6 @@
                             return true;
                         }
                         break;
-                    case 'transaction_date':
-                        if(strtotime($value) === $point->getTransactiondate()) {
-                            return true;
-                        }
-                        break;
                     case 'points_earned':
                         if(intval($value) === $point->getPointsearned()) {
                             return true;
@@ -130,7 +127,6 @@
             return (
                 $point->getId() === intval($value) ||
                 $point->getUserid() === intval($value) ||
-                strtotime($point->getTransactiondate()) === strtotime($value) || 
                 $point->getPointsearned() === intval($value) ||
                 $point->getPointsused() === intval($value)
             );

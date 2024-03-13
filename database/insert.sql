@@ -128,12 +128,12 @@ INSERT INTO `payments` (`order_id`, `method_id`, `payment_date`, `total_price`) 
 (4, 2, '2024-02-27 11:35:31', 7000000),
 (5, 1, '2024-02-28 14:37:31', 4350000);
 
-INSERT INTO `points` (`user_id`, `transaction_date`, `points_earned`, `points_used`) VALUES
-(1, '2024-02-26 15:21:31', 258, 0),
-(2, '2024-02-26 16:25:31', 198, 0),
-(3, '2024-02-27 09:21:31', 259, 0),
-(4, '2024-02-27 11:35:31', 700, 0),
-(5, '2024-02-28 16:29:31', 596, 0);
+INSERT INTO `points` (`user_id`, `points_earned`, `points_used`) VALUES
+(1, 258, 0),
+(2, 198, 0),
+(3, 259, 0),
+(4, 700, 0),
+(5, 596, 0);
 
 INSERT INTO `discount_items`(`product_id`,`discount_id`) VALUES
 (1,1),

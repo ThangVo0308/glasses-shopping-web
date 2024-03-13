@@ -1,7 +1,7 @@
 <?php
     // require("..\BE\DAL\userDAL.php");
-    require_once ("../../BE/DAL/userDAL.php");
-    require_once ("../../validation/validate.php");
+    require_once(__DIR__ . '/../DAL/userDAL.php');
+    require_once(__DIR__ . '/../../validation/validate.php');
     class userBUS {
         private $userList = array();
 

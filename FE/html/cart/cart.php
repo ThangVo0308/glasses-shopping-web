@@ -1,25 +1,28 @@
 <?php
 session_start();
-
+require_once("../../../BE/BUS/userBUS.php");
+require_once("../../../BE/BUS/pointBUS.php");
+require_once("../../../BE/BUS/discountBUS.php");
 $productList = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $product = array(
-        'id' => $_POST['id'] ?? null,
-        'name' => $_POST['name'] ?? null,
-        'image' => $_POST['image'] ?? null,
-        'currentPrice' => $_POST['currentPrice'] ?? null,
-        'discountPrice' => $_POST['discountPrice'] ?? null,
-        'firstQuantity' => $_POST['firstQuantity'] ?? null,
-        'quantity' => $_POST['quantity'] ?? null, // number product user choose
-        'totalPrice' => $_POST['totalPrice'] ?? null
-    );
-
-    echo $_POST['id'];
-
+    if($_POST['quantity'] > 0) {
+        $product = array(
+            'id' => $_POST['id'] ?? null,
+            'name' => $_POST['name'] ?? null,
+            'image' => $_POST['image'] ?? null,
+            'currentPrice' => $_POST['currentPrice'] ?? null,
+            'discountPrice' => $_POST['discountPrice'] ?? null,
+            'firstQuantity' => $_POST['firstQuantity'] ?? null,
+            'discountAmount' => $_POST['discountAmount'] ?? null,
+            'discountID' => $_POST['discountID'] ?? null,
+            'quantity' => $_POST['quantity'], // number product user choose
+            'totalPrice' => $_POST['totalPrice'] ?? null
+        );
+    }
     if (!isset($_SESSION['productList'])) {
         $_SESSION['productList'] = array();
     }
-
+    
     $_SESSION['productList'][] = $product;
 }
 
@@ -28,9 +31,6 @@ if (!empty($_SESSION['productList'])) {
 }
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +78,7 @@ if (!empty($_SESSION['productList'])) {
                         <?php
                         $totalPrice = intval(str_replace('.', '', $product['discountPrice'])) * $product['quantity'];
                         ?>
-                        <span id="totalPrice"><?php echo number_format($totalPrice); ?></span>
+                        <span id="totalPrice"><?php echo number_format($totalPrice) ?></span>
                         <span id="deleteBtn">Xóa</span>
                     </div>
                 </div>
@@ -93,23 +93,23 @@ if (!empty($_SESSION['productList'])) {
                         <img src="../../../icons/address.png" alt="">
                         <span>Địa chỉ giao hàng</span>
                     </div>
-                    <div>
-                        <span>Huỳnh Ngọc Triều,</span>
-                        <span>0374834753,</span>
-                        <span id="address">210 Hưng Phú</span>
+                    <div id="detail">
+                        <span><?php echo userBUS::getInstance()->getUserById(4)['name'] ?>,</span> <!-- 4: will be user_id when users login, will replace with $_SESSION['userID']-->
+                        <span><?php echo userBUS::getInstance()->getUserById(4)['phone'] ?>,</span>
+                        <span id="address"><?php echo userBUS::getInstance()->getUserById(4)['address'] ?></span>
                     </div>
                 </div>
                 <span id="btnChangeAddress">Thay đổi</span>
             </div>
             <div id="voucherForm">
                 <img src="../../../icons/coupon.png" alt="">
-                <span id="selectStatus">Bạn chưa chọn sản phẩm</span>
+                <span id="selectStatus">Bạn đã chọn 0 sản phẩm</span>
                 <span id="valueVoucher">0đ</span>
             </div>
             <div id="pointForm">
                 <div>
-                    <input type="checkbox">
-                    <span>Point: <?php echo number_format(1000); ?></span>
+                    <input type="checkbox" id="pointCb">
+                    <span>Point: <?php echo pointBUS::getInstance()->getPointByUserID(4)['points_earned'] ?></span>
                 </div>
                 <span id="pointValue">0</span>
             </div>
@@ -150,10 +150,34 @@ if (!empty($_SESSION['productList'])) {
 
 </html>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 <script>
+    document.getElementById('buttonAccept').addEventListener('click', function() {
+        var newName = document.getElementById('newName').value;
+        var newPhone = document.getElementById('newPhone').value;
+        var newAddress = document.getElementById('newAddress').value;
+
+        if (newName === '' || newPhone === '' || newAddress === '') {
+            var detail = document.getElementById('detail');
+            detail.innerHTML = `
+            <span><?php echo userBUS::getInstance()->getUserById(4)['name'] ?>,</span>
+            <span><?php echo userBUS::getInstance()->getUserById(4)['phone'] ?>,</span>
+            <span id="address"><?php echo userBUS::getInstance()->getUserById(4)['address'] ?></span>
+        `;
+        } else {
+            var detail = document.getElementById('detail');
+            detail.innerHTML = `
+        <span>${newName},</span>
+        <span>${newPhone},</span>
+        <span id="address">${newAddress}</span>
+        `;
+        }
+        document.getElementById('newAddessContainer').style.display = 'none';
+    });
+
+
     var btnPay = document.getElementById('payBtn');
     btnPay.onclick = function() {
-        var toRemove = [];
         var productList1 = [];
         for (var i = 0; i < checkedBoxes.length; i++) {
             var checkedBox = checkedBoxes[i];
@@ -166,9 +190,18 @@ if (!empty($_SESSION['productList'])) {
                         'id': <?php echo $product['id']; ?>,
                         'name': '<?php echo $product['name']; ?>',
                         'image': '<?php echo $product['image']; ?>',
+                        'userID': parseInt(4), // replace with $_SESSION['userID']
                         'currentPrice': <?php echo $product['currentPrice']; ?>,
                         'discountPrice': <?php echo $product['discountPrice']; ?>,
                         'quantity': quantityValue,
+                        'discountID': <?php echo (is_numeric($product['discountID'])) ? $product['discountID'] : 'null'; ?>,
+                        'pointEarned': parseInt(<?php echo pointBUS::getInstance()->getPointByUserID(4)['points_earned'] ?>),
+                        'pointUsed': parseInt(pointValue.innerHTML),
+                        'total': parseInt(total),
+                        'name_received': document.getElementById('newName').value,
+                        'phone_received': document.getElementById('newPhone').value,
+                        'address': document.getElementById('newAddress').value,
+
                     };
 
                     productList1.push(product1);
@@ -176,8 +209,6 @@ if (!empty($_SESSION['productList'])) {
 
             <?php endforeach; ?>
         }
-
-
 
         var productList1JSON = JSON.stringify(productList1);
         document.getElementById('payment').src = './payment.php?data=' + encodeURIComponent(productList1JSON);
@@ -199,6 +230,23 @@ if (!empty($_SESSION['productList'])) {
     var totalPrices = document.querySelectorAll('#totalPrice');
     var currentPrices = document.querySelectorAll('#discountPrice');
     var allChecked = document.getElementById('allChecked');
+    var selectStatus = document.getElementById('selectStatus');
+    var valueVoucher = document.getElementById('valueVoucher');
+    var pointCb = document.getElementById('pointCb');
+    var pointValue = document.getElementById('pointValue');
+    var defaultAddress = document.getElementById('defaultAddress');
+
+    defaultAddress.onchange = () => {
+        if (defaultAddress.checked) {
+            document.getElementById('newName').value = "<?php echo userBUS::getInstance()->getUserById(4)['name'] ?>";
+            document.getElementById('newPhone').value = "<?php echo userBUS::getInstance()->getUserById(4)['phone'] ?>";
+            document.getElementById('newAddress').value = "<?php echo userBUS::getInstance()->getUserById(4)['address'] ?>";
+        } else {
+            document.getElementById('newName').value = '';
+            document.getElementById('newPhone').value = '';
+            document.getElementById('newAddress').value = '';
+        }
+    }
 
     var checkedBoxes = document.querySelectorAll('#checkBox');
     var valuePay = document.getElementById('valuePay');
@@ -237,7 +285,7 @@ if (!empty($_SESSION['productList'])) {
 
             var convertCurrentPrice = currentPriceElement.innerText.replace(/,/g, '');
 
-            var quantity = <?php echo $product['quantity'] ?>;
+            var quantity = <?php echo isset($product['quantity']) ? $product['quantity'] : 1 ?>;
             if (quantityValue.value == parseInt(quantity)) {
                 quantityValue.value = parseInt(quantity);
             } else {
@@ -258,6 +306,11 @@ if (!empty($_SESSION['productList'])) {
         checkedBoxes.forEach((checkBox, index) => {
             checkBox.checked = allChecked.checked;
 
+            if (checkBox.checked == true) {
+                selectStatus.innerText = `Bạn đã chọn ${++count} sản phẩm`;
+            } else {
+                selectStatus.innerText = `Bạn đã chọn ${--count} sản phẩm`;
+            }
             var clickedValue = checkBox.value;
 
             var convertCurrentPrice = currentPrices[index].innerText.replace(/,/g, '');
@@ -269,8 +322,14 @@ if (!empty($_SESSION['productList'])) {
                 if (clickedValue === productId) {
                     if (checkBox.checked) {
                         total += parseInt(convertCurrentPrice) * parseInt(quantityValue);
+                        var discount = parseInt(<?php echo json_encode($product['discountAmount']); ?>);
+                        discountTotal += discount;
+                        valueVoucher.innerText = discountTotal.toLocaleString('en-US');
                     } else {
                         total -= parseInt(convertCurrentPrice) * parseInt(quantityValue);
+                        var discount = parseInt(<?php echo json_encode($product['discountAmount']); ?>);
+                        discountTotal -= discount;
+                        valueVoucher.innerText = discountTotal.toLocaleString('en-US');
                     }
                 }
             <?php endforeach; ?>
@@ -278,8 +337,30 @@ if (!empty($_SESSION['productList'])) {
         })
     })
 
+    pointCb.addEventListener('change', () => {
+        if (pointCb.checked) {
+            pointValue.innerText = parseInt(<?php echo pointBUS::getInstance()->getPointByUserID(4)['points_earned'] ?>);
+            total -= parseInt(<?php echo pointBUS::getInstance()->getPointByUserID(4)['points_earned'] ?>) * 10;
+            valuePay.innerText = number_format(total);
+        } else {
+            pointValue.innerText = '0';
+            total += parseInt(<?php echo pointBUS::getInstance()->getPointByUserID(4)['points_earned'] ?>) * 10;
+            valuePay.innerText = number_format(total);
+        }
+    })
+
+    var count = 0;
+    var discountTotal = 0;
     checkedBoxes.forEach((checkBox, index) => {
         checkBox.addEventListener('click', () => {
+            // handle log amount of products clicked
+            if (checkBox.checked == true) {
+                selectStatus.innerText = `Bạn đã chọn ${++count} sản phẩm`;
+            } else {
+                selectStatus.innerText = `Bạn đã chọn ${--count} sản phẩm`;
+            }
+
+            // handle total price when clicking checkBox
             var clickedValue = checkBox.value;
 
             var convertCurrentPrice = currentPrices[index].innerText.replace(/,/g, '');
@@ -290,19 +371,35 @@ if (!empty($_SESSION['productList'])) {
             }
 
             <?php foreach ($productList as $product) : ?>
+                console.log(<?php echo json_encode($product) ?>);
                 if (checkBox.checked) {
                     var productId = '<?php echo $product['id']; ?>';
-
                     if (clickedValue === productId) {
+                        // handle discount price
+                        var discount = parseInt(<?php echo json_encode($product['discountAmount']); ?>);
+                        discountTotal += discount;
+                        valueVoucher.innerText = discountTotal.toLocaleString('en-US');
+
+                        // handle total price
                         if (checkBox.checked) {
                             total += parseInt(convertCurrentPrice) * parseInt(quantityValue);
                         }
+                    }
+                } else {
+                    var productId = '<?php echo $product['id']; ?>';
+                    if (clickedValue === productId) {
+                        // handle discount price
+                        var discount = parseInt(<?php echo json_encode($product['discountAmount']); ?>);
+                        discountTotal -= discount;
+                        valueVoucher.innerText = discountTotal.toLocaleString('en-US');
                     }
                 }
             <?php endforeach; ?>
             valuePay.innerText = number_format(total);
         });
     });
+
+
 
     // Function to format the number with commas
     function number_format(number) {
@@ -319,7 +416,8 @@ if (!empty($_SESSION['productList'])) {
             <?php foreach ($productList as $product) : ?>
                 if (checkBox.checked) {
                     var productId = '<?php echo $product['id']; ?>';
-
+                    var test = '<?php echo $product['discountAmount']; ?>';
+                    console.log(test);
                     if (clickedValue === productId) {
                         total += parseInt(convertCurrentPrice) * parseInt(quantityValue);
                     }

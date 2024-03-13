@@ -64,14 +64,7 @@
 
         public function updateOrderItem(order_items $orderItem) {
             $result = orderItemDAL::getInstance()->updateOrderItem($orderItem);
-            if($result) {
-                $index = array_search($orderItem,$this->orderItemList,true);
-                if($index !== false) {
-                    $this->orderItemList[$index] = $orderItem;
-                    return $index;
-                }
-            }
-            return -1;
+            return $result;
         }
 
         public function deleteOrderItem($id) {

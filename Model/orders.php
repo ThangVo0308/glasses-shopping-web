@@ -1,7 +1,7 @@
 <?php
     class orders{
         private $id,$user_id,$order_date,$total_price,$points_earned,$point_used,$address,$name_received,$phone_received,$status;
-        public function __constructor($id,$userid,$orderdate,$totalprice,$pointsearned,$pointused,$address,$namereceived,$phonereceived,$status) { 
+        public function __construct($id = null, $userid = null, $orderdate = null, $totalprice = null, $pointsearned = null, $pointused = null, $address = null, $namereceived = null, $phonereceived = null, $status = null) { 
             $this->id = $id; 
             $this->user_id = $userid; 
             $this->order_date = $orderdate; 
@@ -13,6 +13,7 @@
             $this->phone_received = $phonereceived; 
             $this->status = $status; 
         }
+        
         function getId() { 
              return $this->id; 
         } 

@@ -43,30 +43,38 @@
         }
 
         public function addOrderItem(order_items $orderItem) {
-            try{
-                $query = "insert into order_items (order_id,product_id,quantity,price) 
-                         values (:order_id,:product_id,:quantity,:price)";
+            try {
+                $query = "INSERT INTO order_items (order_id, product_id, discount_id, quantity, price) 
+                          VALUES (:order_id, :product_id, :discount_id, :quantity, :price)";
                 $statement = $this->connection->prepare($query);
-                $statement->bindParam(':order_id',$orderItem->getOrderid());
-                $statement->bindParam(':product_id',$orderItem->getProductid());
-                $statement->bindParam(':quantity',$orderItem->getQuantity());
-                $statement->bindParam(':price',$orderItem->getPrice());
-
+                $order_id = $orderItem->getOrderid();
+                $product_id = $orderItem->getProductid();
+                $discount_id = is_numeric($orderItem->getDiscountId()) ? $orderItem->getDiscountId() : null;
+                $quantity = $orderItem->getQuantity();
+                $price = $orderItem->getPrice();
+                $statement->bindParam(':order_id', $order_id);
+                $statement->bindParam(':product_id', $product_id);
+                $statement->bindParam(':discount_id', $discount_id);
+                $statement->bindParam(':quantity', $quantity);
+                $statement->bindParam(':price', $price);
+                
                 $statement->execute();
                 return true;
-            }catch(PDOException $e) {
+            } catch(PDOException $e) {
                 echo "Add failed: ".$e->getMessage();
                 return false;
             }
         }
+        
 
         public function updateOrderItem(order_items $orderItems) {
             try {
-                $query = "update orderItems set order_id=?, product_id = ?, quantity=?, price=? where id=?";
+                $query = "update orderItems set order_id=?, product_id = ?, discount_id = ?, quantity=?, price=? where id=?";
                 $statement = $this->connection->prepare($query);
 
                 $order_id = $orderItems->getOrderid();
                 $product_id = $orderItems->getProductid();
+                $discount_id = $orderItems->getDiscountId();
                 $quantity = $orderItems->getQuantity();
                 $price = $orderItems->getPrice();
                 $id = $orderItems->getId();   
@@ -74,9 +82,10 @@
 
                 $statement->bindParam(1,$order_id);
                 $statement->bindParam(2,$product_id);
-                $statement->bindParam(3,$quantity);
-                $statement->bindParam(4,$price);
-                $statement->bindParam(5,$id);
+                $statement->bindParam(3,$discount_id);
+                $statement->bindParam(4,$quantity);
+                $statement->bindParam(5,$price);
+                $statement->bindParam(6,$id);
 
                 $statement->execute();
                 return true;

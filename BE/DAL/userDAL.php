@@ -1,5 +1,5 @@
 <?php
-    require('../../BE/DAL/database.php');
+    require_once(__DIR__ . '/../DAL/database.php');
     class UserDAL {
         private $connection;
 

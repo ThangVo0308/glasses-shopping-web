@@ -1,5 +1,4 @@
 <?php
-    // require("..\BE\DAL\orderDAL.php");
     require_once(__DIR__ . '/../DAL/orderDAL.php');
     class orderBUS {
         private $orderList = array();
@@ -147,4 +146,3 @@
 
     }
 ?>
-S

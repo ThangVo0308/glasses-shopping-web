@@ -73,7 +73,7 @@
         }
     }
 
-    public function updateProduct(Product $product)
+    public function updateProduct(product $product)
     {
         try {
             $query = "update products set name=?, category_id = ?, image=?, gender=?, price=?, description=?, quantity=?, status=? where id=?";
@@ -198,4 +198,3 @@
     }
     
 }
-

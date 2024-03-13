@@ -1,11 +1,11 @@
 <?php
     class points{
-        private $id, $user_id, $transaction_date, $points_earned, $points_used;
+        private $id, $user_id, $points_earned, $points_used;
         
-       public function __constructor($id = null,$user_id = null,$transaction_date = null,$points_earned = null,$points_used = null) { 
+       public function __construct($id = null,$user_id = null,$points_earned = null,$points_used = null) { 
             $this->id = $id; 
             $this->user_id = $user_id; 
-            $this->transaction_date = $transaction_date; 
+
             $this->points_earned = $points_earned; 
             $this->points_used = $points_used; 
         }
@@ -17,9 +17,6 @@
              return $this->user_id; 
         } 
     
-        function getTransactiondate() { 
-             return $this->transaction_date; 
-        } 
     
         function getPointsearned() { 
              return $this->points_earned; 
@@ -37,9 +34,6 @@
             $this->user_id = $userid; 
         } 
     
-        function setTransactiondate($transactiondate) {  
-            $this->transaction_date = $transactiondate; 
-        } 
     
         function setPointsearned($pointsearned) {  
             $this->points_earned = $pointsearned; 

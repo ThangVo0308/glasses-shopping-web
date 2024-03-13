@@ -43,20 +43,38 @@
         }
 
         public function addOrder(orders $order) {
-            try{
-                $query = "insert into orders (user_id,order_date,total_price) 
-                         values (:user_id,:product_id,:quantity,:price)";
+            try {
+                $user_id = $order->getUserid();
+                $order_date = $order->getOrderdate();
+                $total_price = $order->getTotalprice();
+                $points_earned = $order->getPointsearned();
+                $points_used = $order->getPointused();
+                $address = $order->getAddress();
+                $name_received = $order->getNamereceived();
+                $phone_received = $order->getPhonereceived();
+                $status = $order->getStatus();
+        
+                $query = "INSERT INTO orders (user_id, order_date, total_price, points_earned, points_used, address, name_received, phone_received, status) 
+                          VALUES (:user_id, :order_date, :total_price, :points_earned, :points_used, :address, :name_received, :phone_received, :status)";
                 $statement = $this->connection->prepare($query);
-                $statement->bindParam(':user_id',$order->getUserid());
-                $statement->bindParam(':order_date',$order->getOrderdate());
-                $statement->bindParam(':total_price',$order->getTotalprice());
+                $statement->bindParam(':user_id', $user_id);
+                $statement->bindParam(':order_date', $order_date);
+                $statement->bindParam(':total_price', $total_price);
+                $statement->bindParam(':points_earned', $points_earned);
+                $statement->bindParam(':points_used', $points_used);
+                $statement->bindParam(':address', $address);
+                $statement->bindParam(':name_received', $name_received);
+                $statement->bindParam(':phone_received', $phone_received);
+                $statement->bindParam(':status', $status);
                 $statement->execute();
                 return true;
-            }catch(PDOException $e) {
+            } catch(PDOException $e) {
                 echo "Add failed: ".$e->getMessage();
                 return false;
             }
         }
+        
+        
 
         public function updateOrder(orders $order) {
             try {
