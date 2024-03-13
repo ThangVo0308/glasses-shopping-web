@@ -19,8 +19,9 @@
   <link rel="stylesheet" href="../../css/admin/order.css">
   <link rel="stylesheet" href="../../css/admin/account.css">
   <link rel="stylesheet" href="../../css/admin/supply.css">
-  <link rel="stylesheet" href="../../css/admin/interface.css">
   <link rel="stylesheet" href="../../css/admin/permission.css">
+  <link rel="stylesheet" href="../../css/admin/point.css">
+  <link rel="stylesheet" href="../../css/admin/discount.css">
   <!-- js -->
   <script src="../../controller/admin/loadPage.js"></script>
   <title>Administrator</title>
