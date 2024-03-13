@@ -11,7 +11,9 @@ $order=[
         'date'=>'27/02/2024',
         'total'=>100000,
         'discount'=>0,
-        'status'=>'Shipped'
+        'status'=>'Shipped',
+        'pointearn'=>100,
+        'pointuse'=>0
     ],
     [
         'id'=>2,
@@ -19,7 +21,9 @@ $order=[
         'date'=>'24/02/2024',
         'total'=>50000,
         'discount'=>0,
-        'status'=>'Pending'
+        'status'=>'Pending',
+        'pointearn'=>200,
+        'pointuse'=>50
     ],
     ];
 $detailOrder=[1];
@@ -49,6 +53,14 @@ $detailOrder=[1];
                 <div class="item-input"><input type="text" class="discount_id" value="<?= $order[$id]['discount']?>" disabled></div>
             </div>
             <div class="modal-item">
+                <div class="item-header">Điểm tích lũy nhận</div>
+                <div class="item-input"><input type="text" class="order_pointearn" value="<?= $order[$id]['pointearn']?>" disabled></div>
+            </div>
+            <div class="modal-item">
+                <div class="item-header">Điểm tích lũy sử dụng</div>
+                <div class="item-input"><input type="text" class="order_pointuse" value="<?= $order[$id]['pointuse']?>" disabled></div>
+            </div>
+            <div class="modal-item">
                 <div class="item-header">Tổng tiền</div>
                 <div class="item-input"><input type="text" class="order_total" value="<?= $order[$id]['total']?>" disabled></div>
             </div>
@@ -66,7 +78,7 @@ $detailOrder=[1];
     <div class="modal-right">
         <div class="title-list">
             <div class="title-placeholder">
-                <div class="title">Mã sản phẩm</div>
+                <div class="title">Mã s.phẩm</div>
                 <div class="title">Tên sản phẩm</div>
                 <div class="title">Giá</div>
                 <div class="title">Số lượng</div>
