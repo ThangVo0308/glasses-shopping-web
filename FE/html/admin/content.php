@@ -22,6 +22,12 @@ if (isset($_POST["page"])) {
     case "Phân quyền":
       include("permission.php");
       break;
+    case "Giảm giá":
+      include("discount.php");
+      break;
+    case "Điểm tích lũy":
+      include("point.php");
+      break;
     default:
       echo `<h1>Page not found 404</h1>`;    
   }
