@@ -59,7 +59,11 @@
                 </div>
             </div>
             <?php endfor; ?>
+            
     </div>
+    <div class="btnAdd">
+            <input type="button" value="+" onclick="openAddproduct()">
+        </div>
     </div>
     <div class="modal-button">
     <div class="button-layout"></div>
@@ -75,6 +79,19 @@
         </div>
     </div>
 </div>
+</div>
+<div class="modal-placeholder" id="add_exist_product">
+    <div class="modal-box">
+        <h1><i class="fa-regular fa-pen-to-square"></i>Thêm sản phẩm giảm giá</h1>
+        <div id="suggestion-container">
+            <label for="my-input">Nhập mã hoặc tên sản phẩm:</label> <br> <br>
+            <input type="text" id="my-input" name="my-input">
+        </div><br>
+        <div class="modal-button">
+            <input type="button" class="btn-add" value="Thêm" >
+            <input type="button" class="btn-cancel" value="Hủy" onclick="closeAddproduct()" >
+        </div>
+    </div>
 </div>
 <?php
 function formatdate($date) {
