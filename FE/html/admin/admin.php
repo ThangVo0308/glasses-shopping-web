@@ -24,9 +24,9 @@
   <link rel="stylesheet" href="../../css/admin/discount.css">
   <!-- js -->
   <script src="../../controller/admin/loadPage.js"></script>
+  <script src="../../controller/admin/modalBox.js"></script>
   <title>Administrator</title>
 </head>
-<!-- style=" width:99% ;height:97%; float: right;background-image: url('../../../images/background.png');background-repeat: no-repeat;background-position: center;background-size: 97% 98%;background-attachment:fixed ; " -->
 <body > 
   <div id="warrper">
     <header id="header">
