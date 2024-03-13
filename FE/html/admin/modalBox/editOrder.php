@@ -11,7 +11,9 @@ $order=[
         'date'=>'27/02/2024',
         'total'=>100000,
         'discount'=>0,
-        'status'=>'Shipped'
+        'status'=>'Shipped',
+        'pointearn'=>100,
+        'pointuse'=>0
     ],
     [
         'id'=>2,
@@ -19,9 +21,11 @@ $order=[
         'date'=>'24/02/2024',
         'total'=>50000,
         'discount'=>0,
-        'status'=>'Pending'
+        'status'=>'Pending',
+        'pointearn'=>200,
+        'pointuse'=>50
     ],
-    ];
+];
     $status=[
         [
             'status'=>'Pending'
@@ -35,7 +39,7 @@ $order=[
         ];
 $detailOrder=[1];
 ?>
-<div class="modal-placeholder" id="detail-order">
+<div class="modal-placeholder" id="edit-order">
     <div class="modal-box">
         <div class="modal-header">
             <h1><i class="fa-solid fa-list"></i> Chỉnh sửa đơn hàng</h1>
@@ -58,6 +62,14 @@ $detailOrder=[1];
             <div class="modal-item">
                 <div class="item-header">Giảm giá</div>
                 <div class="item-input"><input type="text" class="discount_id" value="<?= $order[$id]['discount']?>" disabled></div>
+            </div>
+            <div class="modal-item">
+                <div class="item-header">Điểm tích lũy nhận</div>
+                <div class="item-input"><input type="text" class="order_pointearn" value="<?= $order[$id]['pointearn']?>" disabled></div>
+            </div>
+            <div class="modal-item">
+                <div class="item-header">Điểm tích lũy sử dụng</div>
+                <div class="item-input"><input type="text" class="order_pointuse" value="<?= $order[$id]['pointuse']?>" disabled></div>
             </div>
             <div class="modal-item">
                 <div class="item-header">Tổng tiền</div>
@@ -117,11 +129,11 @@ $detailOrder=[1];
     <div class="modal-button">
     <div class="button-layout"></div>
         <div class="button-layout">
-            <div class="edit-button" onclick="loadModalBoxByAjax('editOrder',<?=$id?>)">
+            <div class="edit-button">
                 <div class="icon-placeholder"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="info-placeholder">Sửa</div>
+                <div class="info-placeholder">Lưu</div>
             </div>
-                <div class="back-button" onclick="closeDetailorder()">
+                <div class="back-button" onclick="loadModalBoxByAjax('detailOrder',<?=$id?>)">
                 <div class="icon-placeholder"><i class="fa-solid fa-angle-left"></i></div>
                 <div class="info-placeholder">Back</div>
                 </div>
