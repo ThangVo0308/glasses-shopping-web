@@ -1,4 +1,5 @@
 <?php
+session_start();
 $product = json_decode($_GET['data'], true);
 require_once("../../../BE/BUS/productBUS.php");
 require_once("../../../BE/BUS/discountItemBUS.php");
@@ -124,37 +125,54 @@ require_once("../../../BE/BUS/discountBUS.php");
 
     addToCartBtn.addEventListener('click', () => {
         var idProduct = parseInt(<?php echo $product['id']; ?>);
+        var checkName = "<?php echo addslashes($product['name']); ?>";
+        var productList = <?php echo empty($_SESSION['productList']) ? '[]' : json_encode($_SESSION['productList']); ?>;
+        console.log(productList);
         var nameProduct = "<?php echo addslashes($product['name']); ?>";
+        if (productList.length == 0) {  
+            productList.length++;
+        } else {
+            productList.forEach((product) => {  
+                if (checkName.localeCompare(product.name) === 0) {
+                    alert('Sản phẩm đã có trong giỏ hàng');
+                    return;
+                }
+            })
+        }
+
         var imageProduct = "<?php echo addslashes($product['image']); ?>";
-        var currentPrice = parseInt(<?php echo $product['price']?>);
+        var currentPrice = parseInt(<?php echo $product['price'] ?>);
         var discountID = <?php echo (is_numeric($discountID)) ? $discountID : 'null'; ?>;
         var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
-        var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0?>)
-        var firstQuantity =parseInt(<?php echo $product['quantity']?>);
-        
-        if(quantityValue.value == 0) {
+        var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0 ?>)
+        var firstQuantity = parseInt(<?php echo $product['quantity'] ?>);
+
+        if (quantityValue.value == 0) {
             alert('Sản phẩm đã hết hàng');
             return;
-        }else {
+        } else {
             var quantity = parseInt(quantityValue.value);
         }
+
         var data = {
             id: idProduct,
             name: nameProduct,
             image: imageProduct,
             currentPrice: currentPrice,
             discountPrice: discountPrice,
-            discountAmount:discountAmount,
-            discountID:discountID,
+            discountAmount: discountAmount,
+            discountID: discountID,
             firstQuantity: firstQuantity,
             quantity: quantity,
         }
+        console.log(data);
 
         $.ajax({
             type: 'POST',
-            url: '../cart/cart.php',    
+            url: '../cart/cart.php',
             data: data,
         });
+        productDetailIframe.style.display = 'none';
     });
 </script>
 <script src="../../controller/product/productDetail.js"></script>

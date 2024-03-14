@@ -22,8 +22,8 @@ $productList = json_decode($_GET['data'], true);
                 <div class="item">
                     <span id="quantity"><?php echo $product['quantity']; ?></span>
                     <div>
-                        <span id="price"><?php echo $product['currentPrice'] ?></span>
-                        <span id="price-real"><?php echo $product['discountPrice']; ?> đ</span>
+                        <span id="price"><?php echo number_format($product['currentPrice']) ?> đ</span>
+                        <span id="price-real"><?php echo number_format($product['discountPrice']) ?> đ</span>
                     </div>
                     <span id="total"><?php echo number_format(intval(str_replace('.', '', $product['discountPrice'])) * $product['quantity']); ?> đ</span>
                 </div>

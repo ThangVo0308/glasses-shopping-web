@@ -4,6 +4,7 @@ require_once("../../../BE/BUS/userBUS.php");
 require_once("../../../BE/BUS/pointBUS.php");
 require_once("../../../BE/BUS/discountBUS.php");
 $productList = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($_POST['quantity'] > 0) {
         $product = array(
@@ -19,12 +20,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'totalPrice' => $_POST['totalPrice'] ?? null
         );
     }
-    if (!isset($_SESSION['productList'])) {
-        $_SESSION['productList'] = array();
+
+    $nameExist = false;
+    foreach($_SESSION['productList'] as $existingProduct) {
+        if($_POST['name'] == $existingProduct['name']) {
+            $nameExist = true;
+            break;
+        }
     }
-    
-    $_SESSION['productList'][] = $product;
+
+    if(!$nameExist) {
+        if (!isset($_SESSION['productList'])) {
+            $_SESSION['productList'] = array();
+        }
+        
+        $_SESSION['productList'][] = $product;
+        echo json_encode(['session' => $_SESSION['productList']]);
+    }
 }
+
 
 if (!empty($_SESSION['productList'])) {
     $productList = $_SESSION['productList'];

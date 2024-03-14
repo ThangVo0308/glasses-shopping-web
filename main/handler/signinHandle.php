@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 require_once("../../BE/BUS/userBUS.php");
 require_once("../../model/users.php");
@@ -13,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         'username' => $username,
         'password' => $password,
     ];
+
 
     foreach(userBUS::getInstance()->getAlluser() as $user) {
         $jsonUser = json_decode(json_encode($user), true);
