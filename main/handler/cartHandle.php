@@ -15,7 +15,7 @@ require_once("../../enum/OrderStatus.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $productList = $_POST['productList'] ?? null;
     $productListArray = array_map('json_decode', $productList);
-    
+
     $userID = $productListArray[0]->userID ?? null;
     $allTotal = $productListArray[0]->allTotal ?? null;
     $pointEarned = $productListArray[0]->pointEarned ?? null;
@@ -56,18 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
                 }
             }
+        }
+    }
 
-            $pointList = pointBUS::getInstance()->getAllpoint();
-            foreach ($pointList as $point) {
-                if ($point['user_id'] == $userID) {
-                    $newPointUsed += intval($pointEarned);
-                    $newPointEarned = intval($point['points_earned'] - $pointEarned) + (1 / 100) * intval($allTotal);
-                    $updateValuePoint = new points($point['id'], $point['user_id'], $newPointEarned, $newPointUsed);
-                    $updatePoint = pointBUS::getInstance()->updatePoint($updateValuePoint);
-                    break;
-                }
-            }
-
+    $pointList = pointBUS::getInstance()->getAllpoint();
+    foreach ($pointList as $point) {
+        if ($point['user_id'] == $userID) {
+            $newPointUsed += intval($pointEarned);
+            $newPointEarned = intval($point['points_earned'] - $pointEarned) + (1 / 100) * intval($allTotal);
+            $updateValuePoint = new points($point['id'], $point['user_id'], $newPointEarned, $newPointUsed);
+            $updatePoint = pointBUS::getInstance()->updatePoint($updateValuePoint);
+            break;
         }
     }
 

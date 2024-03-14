@@ -37,13 +37,11 @@
     public function pageProducts($limit, $offset)
     {
         try {
-            $query = "SELECT * FROM products ORDER BY id ASC LIMIT ? OFFSET ?";
+            $query = "SELECT * FROM products ORDER BY id ASC LIMIT $limit OFFSET $offset";
             $statement = $this->connection->prepare($query);
-            $statement->bindParam(1, $limit);
-            $statement->bindParam(2, $offset);
             $statement->execute();
             $listProduct = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return $listProduct;
+            return $listProduct;;
         } catch (PDOException $e) {
             echo "Query failed: " . $e->getMessage();
             return false;
