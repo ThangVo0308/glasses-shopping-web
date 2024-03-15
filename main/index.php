@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,12 +22,13 @@
         <div class="ic"></div>
         <span>Tài khoản của tao</span>
         <span>Đơn hàng</span>
-        <span onclick="changIframeHistoryCart()" >Lịch sử đơn hàng</span>
-        <span>Đăng xuất</span>
+        <span onclick="changeIframeHistoryCart()">Lịch sử đơn hàng</span>
+        <span onclick="logout()">Đăng xuất</span>
     </div>
 </body>
 
 </html>
+<script src="../FE/controller/navigation.js"></script>
 <script>
     const loginForm = parent.document.getElementById('login');
 
@@ -49,7 +53,26 @@
             addressSignUp.value = "";
         }
     }
+
+    function logout() {
+        $.ajax({
+            type: "POST",
+            url: "../main/handler/logoutHandle.php",
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    window.location.reload();
+                } else {
+                    console.log("Đã có lỗi khi đăng xuất");
+                }
+            },
+            error: function() {
+                console.log("Có lỗi khi gửi yêu cầu đến máy chủ");
+            }
+        });
+    }
 </script>
 
 <script src="../FE/controller/navigation.js"></script>
+<script src="../FE/controller/userOptions.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

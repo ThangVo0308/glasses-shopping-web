@@ -1,5 +1,9 @@
 <?php
 $productList = json_decode($_GET['data'], true);
+session_start();
+if (!isset($_SESSION['currentUser'])) {
+    $_SESSION['currentUser'] = array();
+}
 ?>
 <div id="paymentForm">
     <h3>Xác nhận thanh toán</h3>
@@ -57,6 +61,9 @@ $productList = json_decode($_GET['data'], true);
     var exitBtn = document.getElementById('btnExit');
     var payBtn = document.getElementById('btnPay');
 
+    var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
+
+
     window.onclick = function(e) {
         if (e.target == paymentForm.parentElement) {
             paymentIframe.style.display = 'none';
@@ -87,7 +94,7 @@ $productList = json_decode($_GET['data'], true);
         });
 
         cartHandle('../../../main/handler/cartHandle.php', 'POST', {
-            productList: list
+            productList: list,
         });
     });
 
@@ -100,7 +107,7 @@ $productList = json_decode($_GET['data'], true);
             success: function(res) {
                 if (res.success == true) {
                     alert("Thanh toán thành công");
-                    window.location.replace('../../../main/index.php');
+                    parent.document.location.reload();
                 } else {
                     alert("Thanh toán thất bại");
                 }

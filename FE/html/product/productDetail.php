@@ -1,6 +1,9 @@
 <?php
 session_start();
 $product = json_decode($_GET['data'], true);
+if (!isset($_SESSION['currentUser'])) {
+    $_SESSION['currentUser'] = array();
+}
 require_once("../../../BE/BUS/productBUS.php");
 require_once("../../../BE/BUS/discountItemBUS.php");
 require_once("../../../BE/BUS/discountBUS.php");
@@ -93,6 +96,9 @@ require_once("../../../BE/BUS/discountBUS.php");
 <script>
     var productDetailIframe = parent.document.getElementById('product-detail');
     var productDetailForm = document.getElementById('product-detail');
+
+    var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
+
     window.onclick = function(e) {
         if (e.target == productDetailForm.parentElement) {
             productDetailIframe.style.display = 'none';
@@ -122,57 +128,65 @@ require_once("../../../BE/BUS/discountBUS.php");
         }
         quantityValue.innerText = quantityValue.value;
     })
+    if (!Array.isArray(currentUser) && currentUser.length !== 0) {
 
-    addToCartBtn.addEventListener('click', () => {
-        var idProduct = parseInt(<?php echo $product['id']; ?>);
-        var checkName = "<?php echo addslashes($product['name']); ?>";
-        var productList = <?php echo empty($_SESSION['productList']) ? '[]' : json_encode($_SESSION['productList']); ?>;
-        console.log(productList);
-        var nameProduct = "<?php echo addslashes($product['name']); ?>";
-        if (productList.length == 0) {  
-            productList.length++;
-        } else {
-            productList.forEach((product) => {  
-                if (checkName.localeCompare(product.name) === 0) {
-                    alert('Sản phẩm đã có trong giỏ hàng');
-                    return;
+        $(document).ready(function() {
+            addToCartBtn.addEventListener('click', () => {
+                var idProduct = parseInt(<?php echo $product['id']; ?>);
+                var checkName = "<?php echo addslashes($product['name']); ?>";
+                var productList = <?php echo empty($_SESSION['productList']) ? '[]' : json_encode($_SESSION['productList']); ?>;
+                var nameProduct = "<?php echo addslashes($product['name']); ?>";
+                if (productList.length == 0) {
+                    productList.length++;
+                } else {
+                    productList.forEach((product) => {
+                        if (checkName.localeCompare(product.name) === 0) {
+                            alert('Sản phẩm đã có trong giỏ hàng');
+                            return;
+                        }
+                    })
                 }
-            })
-        }
 
-        var imageProduct = "<?php echo addslashes($product['image']); ?>";
-        var currentPrice = parseInt(<?php echo $product['price'] ?>);
-        var discountID = <?php echo (is_numeric($discountID)) ? $discountID : 'null'; ?>;
-        var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
-        var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0 ?>)
-        var firstQuantity = parseInt(<?php echo $product['quantity'] ?>);
+                var imageProduct = "<?php echo addslashes($product['image']); ?>";
+                var currentPrice = parseInt(<?php echo $product['price'] ?>);
+                var discountID = <?php echo (is_numeric($discountID)) ? $discountID : 'null'; ?>;
+                var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
+                var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0 ?>)
+                var firstQuantity = parseInt(<?php echo $product['quantity'] ?>);
 
-        if (quantityValue.value == 0) {
-            alert('Sản phẩm đã hết hàng');
-            return;
-        } else {
-            var quantity = parseInt(quantityValue.value);
-        }
+                if (quantityValue.value == 0) {
+                    alert('Sản phẩm đã hết hàng');
+                    return;
+                } else {
+                    var quantity = parseInt(quantityValue.value);
+                }
 
-        var data = {
-            id: idProduct,
-            name: nameProduct,
-            image: imageProduct,
-            currentPrice: currentPrice,
-            discountPrice: discountPrice,
-            discountAmount: discountAmount,
-            discountID: discountID,
-            firstQuantity: firstQuantity,
-            quantity: quantity,
-        }
-        console.log(data);
+                var data = {
+                    id: idProduct,
+                    name: nameProduct,
+                    image: imageProduct,
+                    currentPrice: currentPrice,
+                    discountPrice: discountPrice,
+                    discountAmount: discountAmount,
+                    discountID: discountID,
+                    firstQuantity: firstQuantity,
+                    quantity: quantity,
+                }
+                console.log(data);
 
-        $.ajax({
-            type: 'POST',
-            url: '../cart/cart.php',
-            data: data,
+                $.ajax({
+                    type: 'POST',
+                    url: '../cart/cart.php',
+                    data: data,
+                });
+                productDetailIframe.style.display = 'none';
+            });
+        })
+    } else {
+        addToCartBtn.addEventListener('click', () => {
+
+            alert('Vui lòng đăng nhập để mua hàng')
         });
-        productDetailIframe.style.display = 'none';
-    });
+    }
 </script>
 <script src="../../controller/product/productDetail.js"></script>

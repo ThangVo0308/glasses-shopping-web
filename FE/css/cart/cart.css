@@ -155,11 +155,13 @@ body {
     align-items: center;
     border-bottom: #8bcddd 2px dashed;
     height: 35%;
+    justify-content: space-between;
 }
 #addressForm div div:nth-child(1) { /*img, span*/
     color: blue;
     display: flex;
     align-items: center;
+    padding-bottom: 5px;
 }
 #addressForm div div img:nth-child(1) {
     height: 18px;

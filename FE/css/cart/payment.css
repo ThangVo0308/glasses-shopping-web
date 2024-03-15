@@ -83,6 +83,7 @@
 #products {
     overflow-y:scroll;
     border-bottom: black 0.8px solid;
+    height: 400px;
 }
 #products::-webkit-scrollbar {
     width: 5px;

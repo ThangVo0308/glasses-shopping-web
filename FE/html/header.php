@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['currentUser'])) {
+    $_SESSION['currentUser'] = array();
+}
+?>
 <div id="header">
     <div class="logo">
         <img src="../../images/logo.png" alt="" style="width:100px; height:100px">
@@ -14,8 +20,8 @@
             <input type="text" class="searchvalue" id="searchValue">
             <button id="btnSearch"><img src="../../icons/search.png" id="imgSearch" alt=""></button>
         </div>
-        <img src="../../icons/user.png" alt="" id="userLogin" onclick="openLoginForm()">
-        <img src="../../icons/cart.png" onclick="changeIframeCart()" alt="">
+        <img src="../../icons/user.png" alt="" id="btnLogin">
+        <img src="../../icons/cart.png" id="btnCart" alt="">
     </div>
 </div>
 
@@ -28,38 +34,47 @@
     const loginForm = parent.document.getElementById('login');
     var userOptions = parent.document.getElementById('userOptions');
 
+    var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
+
+    if (!Array.isArray(currentUser) && currentUser.length !== 0) { //kiểm tra đã đăng nhập
+        $(document).ready(function() {
+            $('#btnLogin').mouseenter(function() {
+                userOptions.style.display = "block";
+            });
+            $('#btnLogin').mouseleave(function() {
+                var flag = true;
+                userOptions.onmouseenter = function() {
+                    flag = false;
+                }
+                setTimeout(() => {
+                    if (flag == true) {
+                        userOptions.style.display = "none";
+                    }
+                }, 300);
+            });
+            userOptions.onmouseleave = function() {
+                userOptions.style.display = "none";
+            };
+
+            $('#btnCart').click(function() {
+                changeIframeCart();
+            })
+        });
+    } else {
+        $('#btnLogin').click(function() {
+            loginForm.style.display = "block";
+        })
+
+        $('#btnCart').click(function() {
+            alert('Vui lòng dăng nhập để mua hàng')
+        })
+    }
+
     $('#searchValue').on('keydown', function(event) {
         if (event.key === "Enter") {
             var searchValue = $('#searchValue').val();
             var homeScreen = parent.document.getElementById('homeScreen');
-            homeScreen.src = "../FE/html/product/productList.php?searchValue=" + encodeURIComponent(searchValue);
+            homeScreen.src = "../FE/html/products.php?searchValue=" + encodeURIComponent(searchValue);
         }
     });
-
-    $(document).ready(function() {
-        $('#userLogin').mouseenter(function() {
-            userOptions.style.display = "block";
-        });
-        $('#userLogin').mouseleave(function() {
-            var flag = true;
-            userOptions.onmouseenter = function() {
-                flag = false;
-            }
-            setTimeout(() => {
-                if (flag == true) {
-                    userOptions.style.display = "none";
-                }
-            }, 300);
-        });
-        userOptions.onmouseleave = function() {
-            userOptions.style.display = "none";
-        };
-
-    });
-    
-    function openLoginForm() {
-        if (loginForm) {
-            loginForm.style.display = "block";
-        }
-    }
 </script>

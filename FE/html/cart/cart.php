@@ -5,6 +5,10 @@ require_once("../../../BE/BUS/pointBUS.php");
 require_once("../../../BE/BUS/discountBUS.php");
 $productList = [];
 
+if (!isset($_SESSION['currentUser'])) {
+    $_SESSION['currentUser'] = array();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($_POST['quantity'] > 0) {
         $product = array(
@@ -108,9 +112,9 @@ if (!empty($_SESSION['productList'])) {
                         <span>Địa chỉ giao hàng</span>
                     </div>
                     <div id="detail">
-                        <span><?php echo userBUS::getInstance()->getUserById(4)['name'] ?>,</span> <!-- 4: will be user_id when users login, will replace with $_SESSION['userID']-->
-                        <span><?php echo userBUS::getInstance()->getUserById(4)['phone'] ?>,</span>
-                        <span id="address"><?php echo userBUS::getInstance()->getUserById(4)['address'] ?></span>
+                        <span><?php echo userBUS::getInstance()->getUserById(json_encode($_SESSION['currentUser']['id']))['name'] ?>,</span> <!-- 4: will be user_id when users login, will replace with $_SESSION['userID']-->
+                        <span><?php echo userBUS::getInstance()->getUserById(json_encode($_SESSION['currentUser']['id']))['phone'] ?>,</span>
+                        <span id="address"><?php echo userBUS::getInstance()->getUserById(json_encode($_SESSION['currentUser']['id']))['address'] ?></span>
                     </div>
                 </div>
                 <span id="btnChangeAddress">Thay đổi</span>
@@ -166,6 +170,9 @@ if (!empty($_SESSION['productList'])) {
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 <script>
+    var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
+
+
     document.getElementById('buttonAccept').addEventListener('click', function() {
         var newName = document.getElementById('newName').value;
         var newPhone = document.getElementById('newPhone').value;

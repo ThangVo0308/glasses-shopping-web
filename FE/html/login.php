@@ -95,7 +95,6 @@
                 dataType: "json",
                 success: function(res) {
                     if (res.response.check == true) {
-
                         alert("Xin chào: " + res.response.username);
                     } else if (res.response.check == false) {
                         alert("Sai tài khoản hoặc mật khẩu");
@@ -117,6 +116,8 @@
                 success: function(res) {
                     if (res.response.check == true) {
                         alert("Xin chào: " + res.response.username);
+                        parent.window.location.reload();
+
                     } else if (res.response.check == false) {
                         alert("Sai tài khoản hoặc mật khẩu");
                     }
