@@ -10,34 +10,35 @@ if (!isset($_SESSION['currentUser'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if($_POST['quantity'] > 0) {
+    if ($_POST['quantity'] > 0) {
         $product = array(
             'id' => $_POST['id'] ?? null,
             'name' => $_POST['name'] ?? null,
             'image' => $_POST['image'] ?? null,
+            'category_id' => $_POST['category_id'] ?? null,
             'currentPrice' => $_POST['currentPrice'] ?? null,
             'discountPrice' => $_POST['discountPrice'] ?? null,
             'firstQuantity' => $_POST['firstQuantity'] ?? null,
             'discountAmount' => $_POST['discountAmount'] ?? null,
             'discountID' => $_POST['discountID'] ?? null,
             'quantity' => $_POST['quantity'], // number product user choose
-            'totalPrice' => $_POST['totalPrice'] ?? null
+            'totalPrice' => $_POST['totalPrice'] ?? null,
         );
     }
 
     $nameExist = false;
-    foreach($_SESSION['productList'] as $existingProduct) {
-        if($_POST['name'] == $existingProduct['name']) {
+    foreach ($_SESSION['productList'] as $existingProduct) {
+        if ($_POST['name'] == $existingProduct['name']) {
             $nameExist = true;
             break;
         }
     }
 
-    if(!$nameExist) {
+    if (!$nameExist) {
         if (!isset($_SESSION['productList'])) {
             $_SESSION['productList'] = array();
         }
-        
+
         $_SESSION['productList'][] = $product;
         echo json_encode(['session' => $_SESSION['productList']]);
     }
@@ -84,7 +85,15 @@ if (!empty($_SESSION['productList'])) {
                     <div>
                         <input type="checkbox" name="checked" id="checkBox" value="<?= $product['id'] ?>">
                         <span><?php echo $product['name']; ?></span>
-                        <img src="../../../images/glasses/<?php echo $product['image']; ?>" alt="">
+                        <?php
+                        if ($product['category_id'] == 1) {
+                            echo "<img src='../../../images/glasses/" . $product['image'] . "' alt=''>";
+                        } else if ($product['category_id'] == 2) {
+                            echo "<img src='../../../images/lens/" . $product['image'] . "' alt=''>";
+                        } else {
+                            echo "<img src='../../../images/glasses_accessories/" . $product['image'] . "' alt=''>";
+                        }
+                        ?>
                     </div>
                     <div class="item">
                         <span id="discountPrice"><?php echo number_format(intval($product['discountPrice'])); ?></span>
@@ -112,9 +121,9 @@ if (!empty($_SESSION['productList'])) {
                         <span>Địa chỉ giao hàng</span>
                     </div>
                     <div id="detail">
-                        <span><?php echo userBUS::getInstance()->getUserById(json_encode($_SESSION['currentUser']['id']))['name'] ?>,</span> <!-- 4: will be user_id when users login, will replace with $_SESSION['userID']-->
-                        <span><?php echo userBUS::getInstance()->getUserById(json_encode($_SESSION['currentUser']['id']))['phone'] ?>,</span>
-                        <span id="address"><?php echo userBUS::getInstance()->getUserById(json_encode($_SESSION['currentUser']['id']))['address'] ?></span>
+                        <span><?php echo userBUS::getInstance()->getUserById($_SESSION['currentUser']['id'])['name'] ?>,</span> <!-- 4: will be user_id when users login, will replace with $_SESSION['userID']-->
+                        <span><?php echo userBUS::getInstance()->getUserById($_SESSION['currentUser']['id'])['phone'] ?>,</span>
+                        <span id="address"><?php echo userBUS::getInstance()->getUserById($_SESSION['currentUser']['id'])['address'] ?></span>
                     </div>
                 </div>
                 <span id="btnChangeAddress">Thay đổi</span>
@@ -127,7 +136,7 @@ if (!empty($_SESSION['productList'])) {
             <div id="pointForm">
                 <div>
                     <input type="checkbox" id="pointCb">
-                    <span>Point: <?php echo pointBUS::getInstance()->getPointByUserID(4)['points_earned'] ?></span>
+                    <span>Point: <?php echo pointBUS::getInstance()->getPointByUserID($_SESSION['currentUser']['id'])['points_earned'] ?></span>
                 </div>
                 <span id="pointValue">0</span>
             </div>
@@ -170,8 +179,7 @@ if (!empty($_SESSION['productList'])) {
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 <script>
-    var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
-
+    var currentUser = <?php echo json_encode($_SESSION['currentUser']['id']); ?>;
 
     document.getElementById('buttonAccept').addEventListener('click', function() {
         var newName = document.getElementById('newName').value;

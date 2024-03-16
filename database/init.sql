@@ -1,5 +1,3 @@
--- Active: 1700452364000@@127.0.0.1@3306@clothingstore
-
 DROP DATABASE IF EXISTS glassesshopping;
 
 SET GLOBAL max_allowed_packet = 16777216;
@@ -51,9 +49,7 @@ CREATE TABLE
         `total_price` DOUBLE NOT NULL,
         `points_earned` int,
         `points_used` int,
-        `address` varchar(100),
-        `name_received` varchar(100),
-        `phone_received` varchar(100),
+		`address_id` int,
         `status` enum ('pending', 'confirm', 'ordered') not null default "pending",
         PRIMARY KEY (`id`)
     );
@@ -157,6 +153,24 @@ CREATE TABLE
         `role_id` INT NOT NULL,
         `permission_id` INT NOT NULL
     );
+
+CREATE TABLE
+    `address` (
+       `id` INT NOT NULL auto_increment,
+       `user_id` integer,
+       `address_received` varchar(1000),
+       `name_received` varchar(1000),
+       `phone_received` varchar(1000),
+       PRIMARY KEY(`id`)
+    );
+    
+ALTER TABLE `orders`
+ADD
+    FOREIGN KEY (`address_id`) REFERENCES `address` (`id`);
+    
+ALTER TABLE `address`
+ADD
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
     
 ALTER TABLE `role_permission`
 ADD
@@ -216,4 +230,4 @@ ADD
 
 ALTER TABLE `imports`
 ADD
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`); 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);

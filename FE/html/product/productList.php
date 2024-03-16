@@ -83,9 +83,6 @@ $productList = json_decode($_GET['data'], true);
     }
 
 
-
-
-
     // search product
     function selectHandle(url, method, data) {
         $.ajax({

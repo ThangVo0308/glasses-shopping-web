@@ -10,7 +10,15 @@ require_once("../../../BE/BUS/discountBUS.php");
 ?>
 
 <div id="product-detail">
-    <img src="../../../images/glasses/<?php echo $product['image']; ?>" alt="">
+    <?php 
+        if($product['category_id'] == 1){
+            echo "<img src='../../../images/glasses/" .$product['image']. "' alt=''>";
+        }else if($product['category_id'] == 2) {
+            echo "<img src='../../../images/lens/" .$product['image']. "' alt=''>";
+        }else {
+            echo "<img src='../../../images/glasses_accessories/" .$product['image']. "' alt=''>";
+        }
+    ?>
     <div id="infor">
         <h3 id="name-product"><?php echo $product['name']; ?></h3>
         <span id="id-product">Mã sản phẩm: <?php echo $product['id']; ?></span>
@@ -153,6 +161,7 @@ require_once("../../../BE/BUS/discountBUS.php");
                 var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
                 var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0 ?>)
                 var firstQuantity = parseInt(<?php echo $product['quantity'] ?>);
+                var category_id = parseInt(<?php echo $product['category_id']?>)
 
                 if (quantityValue.value == 0) {
                     alert('Sản phẩm đã hết hàng');
@@ -171,8 +180,8 @@ require_once("../../../BE/BUS/discountBUS.php");
                     discountID: discountID,
                     firstQuantity: firstQuantity,
                     quantity: quantity,
+                    category_id: category_id
                 }
-                console.log(data);
 
                 $.ajax({
                     type: 'POST',

@@ -20,42 +20,42 @@ INSERT INTO `roles` (`name`) VALUES
 ('admin'); 
 
 INSERT INTO `products` (`name`, `category_id`, `image`, `gender`, `price`, `description`, `quantity`,`status`) VALUES
-('Moriyama', 1, '../glasses/moriyama.webp', 1, 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ Nhật', 5,'active'),
-('Graph Belle', 1, '../glasses/Graph Belle.webp', 0, 2580000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
-('AIR FIT', 1, '../glasses/AIR FIT.webp', 1, 2780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Chữ Nhật', 5,'active'),
-('OWNDAYS', 1, '../glasses/OWNDAYS.webp', 1, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ Nhật',6, 'active'),
-('AIR Ultem', 1, '../glasses/AIR Ultem.webp', 0, 2350000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông', 10,'active'),
-('John Dillinger', 1, '../glasses/John Dillinger.webp', 1, 2700000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 4,'active'),
-('OWNDAYS SNAP', 1, '../glasses/OWNDAYS SNAP.webp', 0, 2780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông', 5,'active'),
-('SKY', 1, '../glasses/sky.webp', 0, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Bầu dục',5, 'active'),
-('Model', 1, '../glasses/Model.webp', 1, 2590000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Nhựa dẻo Thép không rỉ', 5,'active'),
-('UFO', 1, '../glasses/UFO.webp', 1, 2600000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
-('NICHE', 1, '../glasses/NICHE.webp', 0, 3500000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Nhựa trong', 5,'active'),
-('White', 1, '../glasses/White.webp', 0, 1500000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 5,'active'),
-('Teen', 1, '../glasses/Teen.webp', 1, 1450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 5,'active'),
-('lillybell', 1, '../glasses/lillybell.webp', 0, 2450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
-('lilly', 1, '../glasses/lilly.webp', 1, 1450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
-('Sun', 1, '../glasses/Sun.webp', 0, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
-('Monday', 1, '../glasses/Monday.webp', '0', 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Mắt mèo', 5,'active'),
-('Cute', 1, '../glasses/Cute.webp', 0, 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
-('Junni', 1, '../glasses/Junni.webp', 1, 1880000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
-('BlackPink', 1, '../glasses/BlackPink.webp', 0, 1780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Bầu dục',5,'active'),
-('Chemi U2 ASP Photogray',2,'../lens/Chemi.jpg',1,660000,'Khi tiếp xúc với tia UV, tròng kính sẽ chuyển từ trong suốt sang màu tối',5,'active'),
-('Chemi Perfect UV Crystal U6',2,'../lens/crytal.jpg',1,700000,'Ngăn ánh sáng xanh có hại, Phản quang, hạn chế chói',5,'active'),
-('Essilor Crizal Rock',2,'../lens/Rock.jpg',1,1200000,'Lọc ánh sáng xanh, Siêu mỏng',5,'active'),
-('Chemi Tint',2,'../lens/Tint.jpg',1,650000,'Siêu mỏng, Tròng kính mát',5,'active'),
-('Essilor Transitions Classic',2,'../lens/classic.jpg',1,1780000,'trong suốt trong nhà và tự động đổi màu khi tiếp xúc với ánh nắng',5,'active'),
-('Essilor Crizal Sapphire 360 UV',2,'../lens/sapphire.jpg',1,2550000,'giảm tối đa độ chói do ánh sáng gây ra từ mọi hướng',5,'active'),
-('Chemi A-One Plus Rx',2,'../lens/RX.jpg',1,1800000,'Tầm nhìn rõ nét ở mọi khoảng cách, Thiết kế độc đáo và thoải mái',5,'active'),
-('ZEISS Office Superb',2,'../lens/office.jpg',1,4590000,'Lọc ánh sáng xanh, Siêu mỏng, Tròng đặt đánh',5,'active'),
-('PARFOIS',3,'../glasses_accessories/parfois.jpg',1,250000,'Body: 5% Rubber, 95% Iron',10,'active'),
-('RAINBOW',3,'../glasses_accessories/rainbow.jpg',1,300000,'General: 20% Brass, 80% Thermoplastic Polyurethane',10,'active'),
-('CASE002',3,'../glasses_accessories/002.webp',1,200000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
-('CASE003',3,'../glasses_accessories/003.jpg',1,220000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
-('CLOTH004',3,'../glasses_accessories/004.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
-('CLOTH005',3,'../glasses_accessories/005.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
-('Strawberry',3,'../glasses_accessories/dau.webp',1,330000,'Bộ sản phẩm vệ sinh kính chuyên dụng và tiện lợi',5,'active'),
-('Duo Sac Hot Chocolate',3,'../glasses_accessories/nau.webp',1,250000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active');
+('Moriyama', 1, 'moriyama.webp', 1, 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ Nhật', 5,'active'),
+('Graph Belle', 1, 'Graph Belle.webp', 0, 2580000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
+('AIR FIT', 1, 'AIR FIT.webp', 1, 2780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Chữ Nhật', 5,'active'),
+('OWNDAYS', 1, 'OWNDAYS.webp', 1, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ Nhật',6, 'active'),
+('AIR Ultem', 1, 'AIR Ultem.webp', 0, 2350000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông', 10,'active'),
+('John Dillinger', 1, 'John Dillinger.webp', 1, 2700000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 4,'active'),
+('OWNDAYS SNAP', 1, 'OWNDAYS SNAP.webp', 0, 2780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông', 5,'active'),
+('SKY', 1, 'sky.webp', 0, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Bầu dục',5, 'active'),
+('Model', 1, 'Model.webp', 1, 2590000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Nhựa dẻo Thép không rỉ', 5,'active'),
+('UFO', 1, 'UFO.webp', 1, 2600000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('NICHE', 1, 'NICHE.webp', 0, 3500000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Nhựa trong', 5,'active'),
+('White', 1, 'White.webp', 0, 1500000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 5,'active'),
+('Teen', 1, 'Teen.webp', 1, 1450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Tròn', 5,'active'),
+('lillybell', 1, 'lillybell.webp', 0, 2450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('lilly', 1, 'lilly.webp', 1, 1450000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
+('Sun', 1, 'Sun.webp', 0, 1980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Đa giác', 5,'active'),
+('Monday', 1, 'Monday.webp', '0', 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Mắt mèo', 5,'active'),
+('Cute', 1, 'Cute.webp', 0, 2980000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('Junni', 1, 'Junni.webp', 1, 1880000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Vuông-Chữ nhật', 5,'active'),
+('BlackPink', 1, 'BlackPink.webp', 0, 1780000, 'Sản phẩm được gia công bằng tay, nguyên liệu 100% bằng thép không gỉ, bền bỉ, Bầu dục',5,'active'),
+('Chemi U2 ASP Photogray',2,'Chemi.jpg',1,660000,'Khi tiếp xúc với tia UV, tròng kính sẽ chuyển từ trong suốt sang màu tối',5,'active'),
+('Chemi Perfect UV Crystal U6',2,'crytal.jpg',1,700000,'Ngăn ánh sáng xanh có hại, Phản quang, hạn chế chói',5,'active'),
+('Essilor Crizal Rock',2,'Rock.jpg',1,1200000,'Lọc ánh sáng xanh, Siêu mỏng',5,'active'),
+('Chemi Tint',2,'Tint.jpg',1,650000,'Siêu mỏng, Tròng kính mát',5,'active'),
+('Essilor Transitions Classic',2,'classic.jpg',1,1780000,'trong suốt trong nhà và tự động đổi màu khi tiếp xúc với ánh nắng',5,'active'),
+('Essilor Crizal Sapphire 360 UV',2,'sapphire.jpg',1,2550000,'giảm tối đa độ chói do ánh sáng gây ra từ mọi hướng',5,'active'),
+('Chemi A-One Plus Rx',2,'RX.jpg',1,1800000,'Tầm nhìn rõ nét ở mọi khoảng cách, Thiết kế độc đáo và thoải mái',5,'active'),
+('ZEISS Office Superb',2,'office.jpg',1,4590000,'Lọc ánh sáng xanh, Siêu mỏng, Tròng đặt đánh',5,'active'),
+('PARFOIS',3,'parfois.jpg',1,250000,'Body: 5% Rubber, 95% Iron',10,'active'),
+('RAINBOW',3,'rainbow.jpg',1,300000,'General: 20% Brass, 80% Thermoplastic Polyurethane',10,'active'),
+('CASE002',3,'002.webp',1,200000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
+('CASE003',3,'003.jpg',1,220000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active'),
+('CLOTH004',3,'004.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
+('CLOTH005',3,'005.jpg',1,150000,'Sản phẩm được làm từ chất liệu Polyester',5,'active'),
+('Strawberry',3,'dau.webp',1,330000,'Bộ sản phẩm vệ sinh kính chuyên dụng và tiện lợi',5,'active'),
+('Duo Sac Hot Chocolate',3,'nau.webp',1,250000,'Sản phẩm được gia công và sản xuất taị Nhật Bản',5,'active');
 
 
 INSERT INTO `discounts` (`name`, `discount_percent`, `start_day`, `end_day`,`product_id`) VALUES
@@ -103,12 +103,21 @@ INSERT INTO `import_items` (`import_id`, `product_id`, `quantity`, `price`) VALU
 (5, 5, 10, 23500000);
 
 
-INSERT INTO `orders` (`user_id`, `order_date`, `total_price`,`points_earned`,`points_used`,`address`,`name_received`,`phone_received`,`status`) VALUES
-(1, '2024-02-26 15:20:24', 1000000,10000,0,'TPHCM','Teo','0974254189','ordered'),
-(2, '2024-02-26 16:24:37', 2000000,20000,0,'TPHCM','Teo','0974254189','ordered'),
-(3, '2024-02-27 09:21:09', 3000000,30000,0,'TPHCM','Teo','0974254189','ordered'),
-(4, '2024-02-27 11:34:16', 4000000,40000,0,'TPHCM','Teo','0974254189','ordered'),
-(5, '2024-02-28 14:37:06', 5000000,50000,0,'TPHCM','Teo','0974254189','ordered');
+INSERT INTO `address` (`user_id`,`address_received`,`name_received`,`phone_received`) values
+(1,'273 An Duong Vuong','Teo','0981726361'),
+(2,'123 Hai Ba Trung Q1','Hung','0981726362'),
+(3,'274 An Duong Vuong','Tam','0981726363'),
+(4,'275 An Duong Vuong','Tommy Teo','0981726364'),
+(5,'276 An Duong Vuong','Bao ve','0981726365');
+
+
+INSERT INTO `orders` (`user_id`, `order_date`, `total_price`,`points_earned`,`points_used`,`address_id`,`status`) VALUES
+(1, '2024-02-26 15:20:24', 1000000,10000,0,1,'ordered'),
+(2, '2024-02-26 16:24:37', 2000000,20000,0,2,'ordered'),
+(3, '2024-02-27 09:21:09', 3000000,30000,0,3,'ordered'),
+(4, '2024-02-27 11:34:16', 4000000,40000,0,4,'ordered'),
+(5, '2024-02-28 14:37:06', 5000000,50000,0,5,'ordered');
+
 
 INSERT INTO `order_items` (`order_id`, `product_id`, `discount_id`,`quantity`, `price`) VALUES
 (1, 4, 1,1, 2580000),

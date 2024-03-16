@@ -70,6 +70,10 @@ if (!isset($_SESSION['currentUser'])) {
         }
     }
 
+    exitBtn.onclick = function() {
+        paymentIframe.style.display = 'none';
+    }
+
     var productList = <?php echo json_encode($productList); ?>;
 
     payBtn.addEventListener('click', () => {
