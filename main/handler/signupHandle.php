@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, 1, "../../icons/whiteUser.png", 2, $address, UserStatus::ACTIVE);
+    $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, null, "../../icons/whiteUser.png", 3, $address, UserStatus::ACTIVE);
     $userBus = userBUS::getInstance()->addUser($newUser);
     if ($userBus) {
         $response['check'] = true;
