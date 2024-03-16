@@ -1,1 +1,0 @@
-// console.log(document.getElementById('product-detail').style.display);
