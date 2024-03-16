@@ -34,20 +34,6 @@
         }
     }
 
-    public function pageProducts($limit, $offset)
-    {
-        try {
-            $query = "SELECT * FROM products ORDER BY id ASC LIMIT $limit OFFSET $offset";
-            $statement = $this->connection->prepare($query);
-            $statement->execute();
-            $listProduct = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return $listProduct;;
-        } catch (PDOException $e) {
-            echo "Query failed: " . $e->getMessage();
-            return false;
-        }
-    }
-
 
     public function addProduct(Product $product)
     {
@@ -155,7 +141,7 @@
                 $conditions[] = "gender = :gender";
             }
             if ($min !== null && $max !== null) {
-                $conditions[] = "price BETWEEN :min AND :max";
+                $conditions[] = "price >= :min AND price <= :max";
             }
     
             $query .= implode(" AND ", $conditions);
@@ -163,7 +149,7 @@
             if (empty(trim($query))) {
                 throw new InvalidArgumentException("Invalid information");
             }
-    
+ 
             $statement = $this->connection->prepare($query);
     
             if ($searchValue !== null) {
@@ -186,6 +172,7 @@
             foreach ($result as $product) {
                 $product1 = $this->createProductFromRow($product);
                 $productList[] = $product1;
+                
             }
     
             return $productList;

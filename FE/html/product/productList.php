@@ -37,7 +37,8 @@ $productList = json_decode($_GET['data'], true);
                 }
 
                 pageProducts('../../../main/handler/pageProduct.php', 'POST', {
-                    page: currentPage
+                    page: currentPage,
+                    data: <?php echo json_encode($productList) ?>
                 })
 
                 var switchIDs = document.querySelectorAll('.switchID');
@@ -45,7 +46,8 @@ $productList = json_decode($_GET['data'], true);
                     switchID.addEventListener('click', () => {
                         currentPage = parseInt(switchID.getAttribute('page'));
                         pageProducts('../../../main/handler/pageProduct.php', 'POST', {
-                            page: currentPage
+                            page: currentPage,
+                            data: <?php echo json_encode($productList) ?>
                         })
                     })
                 })
@@ -81,7 +83,6 @@ $productList = json_decode($_GET['data'], true);
             }
         })
     }
-
 
     // search product
     function selectHandle(url, method, data) {

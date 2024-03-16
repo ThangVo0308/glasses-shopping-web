@@ -53,10 +53,6 @@
             return $max + 1;
         }
 
-        public function getPage($limit,$offset) {
-            return productDAL::getInstance()->pageProducts($limit,$offset);
-        }
-
         public function addProduct(product $product) {
             if(empty($product->getName() || $product->getName() === null) 
                 || $product->getCategoryID() <= 0

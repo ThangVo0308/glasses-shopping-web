@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $data[] = $result;
     }
+
     echo json_encode(['result' => $data]);
 
 }

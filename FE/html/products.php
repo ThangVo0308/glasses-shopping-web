@@ -88,7 +88,9 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
+    
     function selectHandle(url, method, data) {
+        console.log("test: "+JSON.stringify(data));
         $.ajax({
             type: method,
             url: url,
@@ -121,7 +123,7 @@
     document.getElementById('myRange').addEventListener('input', function() {
         sendAjaxRequest();
     });
-    
+
     var searchValue = getParameterByName('searchValue');
     if (searchValue) {
         sendAjaxRequest();
