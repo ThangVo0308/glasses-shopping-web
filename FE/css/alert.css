@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+
+}
+#alertForm {
+    background-color: rgb(244, 89, 133);
+    width: 300px;
+    position: fixed;
+    right: 50%;
+    transform: translate(50%, 0);
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 15px;
+    max-width: 400px;
+    top: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation-name: alert;
+    animation-duration: 0.8s;
+}
+@keyframes alert {
+    0%   {top:-40px;}
+    100%  {top:40px;}
+}
+#btnClose {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    top: 3px;
+    right: 4px;
+    cursor: pointer;
+}
+#alertForm div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+#alertForm div span {
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 20px;
+}
+#alertForm span {
+    font-weight: 550;
+    color: rgb(193, 42, 42);
+    font-size: 14px;
+}
+#alertForm div img {
+    padding-right: 5px;
+}

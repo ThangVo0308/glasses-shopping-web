@@ -60,6 +60,8 @@ if (!isset($_SESSION['currentUser'])) {
     var paymentForm = document.getElementById('paymentForm');
     var exitBtn = document.getElementById('btnExit');
     var payBtn = document.getElementById('btnPay');
+    var alert = parent.document.getElementById('alert');
+
 
     var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
 
@@ -110,10 +112,28 @@ if (!isset($_SESSION['currentUser'])) {
             dataType: 'json',
             success: function(res) {
                 if (res.success == true) {
-                    alert("Thanh toán thành công");
-                    parent.document.location.reload();
+
+                    <?php
+                    $data = [
+                        'value' => 'Thanh toán thành công',
+                        'status' => 'success',
+                        'reload' => 2000,
+                    ];
+                    ?>
+                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+                    alert.style.display = 'flex';
+
                 } else {
-                    alert("Thanh toán thất bại");
+                    <?php
+                    $data = [
+                        'value' => 'Thanh toán thất bại',
+                        'status' => 'error',
+                        'reload' => 2000,
+                    ];
+                    ?>
+                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+                    alert.style.display = 'flex';
+
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -122,5 +142,4 @@ if (!isset($_SESSION['currentUser'])) {
             }
         })
     }
-
 </script>

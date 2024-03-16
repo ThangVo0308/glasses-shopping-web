@@ -66,7 +66,16 @@ if (!isset($_SESSION['currentUser'])) {
         })
 
         $('#btnCart').click(function() {
-            alert('Vui lòng dăng nhập để mua hàng')
+            var alert = parent.document.getElementById('alert');
+            <?php
+            $data = [
+                'value'=>'Vui lòng đăng nhập',
+                'status' => 'error',
+                'reload' => 0,
+            ];
+            ?>
+            alert.src ='../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+            alert.style.display = 'flex';
         })
     }
 

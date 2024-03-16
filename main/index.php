@@ -25,6 +25,7 @@ session_start();
         <span onclick="changeIframeHistoryCart()">Lịch sử đơn hàng</span>
         <span onclick="logout()">Đăng xuất</span>
     </div>
+    <iframe src="../FE/html/alert.php" frameborder="0" id="alert" ></iframe>
 </body>
 
 </html>

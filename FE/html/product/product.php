@@ -3,16 +3,8 @@
 ?>
 
 <div class="product">
-    <!-- <img src="../../../images/glasses/<?php echo $product['image']; ?>" alt="" class="image"> -->
     <?php 
-        if($product['category_id'] == 1){
-            echo "<img src='../../../images/glasses/" .$product['image']. "' alt='' class='image'>";
-        }else if($product['category_id'] == 2) {
-            echo "<img src='../../../images/lens/" .$product['image']. "' alt='' class='image'>";
-        }else {
-            echo "<img src='../../../images/glasses_accessories/" .$product['image']. "' alt='' class='image'>";
-
-        }
+            echo "<img src='../../../images/" .$product['image']. "' alt='' class='image'>";
     ?>
     <h3 class="id"><?php echo $product['id']; ?></h3>
     <h3 class="name"><?php echo $product['name']; ?></h3>
@@ -23,6 +15,7 @@
 <link rel="stylesheet" href="../../css/productStyle/product.css">
 <script src="../../controller/product/product.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     var productDetail = parent.parent.document.getElementById('product-detail');
     $(document).ready(function() {

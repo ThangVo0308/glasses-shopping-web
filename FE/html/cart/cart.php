@@ -86,13 +86,7 @@ if (!empty($_SESSION['productList'])) {
                         <input type="checkbox" name="checked" id="checkBox" value="<?= $product['id'] ?>">
                         <span><?php echo $product['name']; ?></span>
                         <?php
-                        if ($product['category_id'] == 1) {
-                            echo "<img src='../../../images/glasses/" . $product['image'] . "' alt=''>";
-                        } else if ($product['category_id'] == 2) {
-                            echo "<img src='../../../images/lens/" . $product['image'] . "' alt=''>";
-                        } else {
-                            echo "<img src='../../../images/glasses_accessories/" . $product['image'] . "' alt=''>";
-                        }
+                            echo "<img src='../../../images/" . $product['image'] . "' alt=''>";
                         ?>
                     </div>
                     <div class="item">

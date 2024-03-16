@@ -1,9 +1,16 @@
 <?php
 session_start();
-$product = json_decode($_GET['data'], true);
+
+if (isset($_GET['data'])) {
+    $product = json_decode($_GET['data'], true);
+} else {
+    $product = array(); 
+}
+
 if (!isset($_SESSION['currentUser'])) {
     $_SESSION['currentUser'] = array();
 }
+
 require_once("../../../BE/BUS/productBUS.php");
 require_once("../../../BE/BUS/discountItemBUS.php");
 require_once("../../../BE/BUS/discountBUS.php");
@@ -11,13 +18,7 @@ require_once("../../../BE/BUS/discountBUS.php");
 
 <div id="product-detail">
     <?php 
-        if($product['category_id'] == 1){
-            echo "<img src='../../../images/glasses/" .$product['image']. "' alt=''>";
-        }else if($product['category_id'] == 2) {
-            echo "<img src='../../../images/lens/" .$product['image']. "' alt=''>";
-        }else {
-            echo "<img src='../../../images/glasses_accessories/" .$product['image']. "' alt=''>";
-        }
+        echo "<img src='../../../images/" .$product['image']. "' alt=''>";
     ?>
     <div id="infor">
         <h3 id="name-product"><?php echo $product['name']; ?></h3>
@@ -81,9 +82,7 @@ require_once("../../../BE/BUS/discountBUS.php");
         <textarea name="" id="" cols="30" rows="10" disabled><?php echo $product['description']; ?></textarea>
         <div class="quantity-form">
             <button id="decrease">-</button>
-            <?php
-            echo '<input id="quantity" type="text" value="' . $product['quantity'] . '">'
-            ?>
+            <input id="quantity" type="text" value="1">
             <button id="increase">+</button>
             <img src="../../../icons/tick.png" alt="">
             <span class="status">
@@ -198,4 +197,3 @@ require_once("../../../BE/BUS/discountBUS.php");
         });
     }
 </script>
-<script src="../../controller/product/productDetail.js"></script>

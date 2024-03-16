@@ -28,3 +28,10 @@ iframe {
     position: absolute;
     display: none;
 }
+#alert {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+}

@@ -7,7 +7,6 @@
 </body>
 
 <link rel="stylesheet" href="../css/path.css">
-<script src="../controller/path.js"></script>
 
 <script>
     var currentPath =document.getElementById('current-path');
