@@ -3,6 +3,8 @@ header('Content-Type: application/json');
 require_once("../../BE/BUS/userBUS.php");
 require_once("../../model/users.php");
 require_once("../../enum/UserStatus.php");
+require_once("../../validation/validate.php");
+
 
 // $auth = $_SERVER['REQUEST_METHOD'] === 'POST';
 
@@ -24,6 +26,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'address' => $address,
     ];
 
+    $validate = new Validate();
+
+    if(!$validate->isValidPhoneNumber($phone)) {
+        echo json_encode(['phoneValidate' => false]);
+        return;
+    }else if(!$validate->isValidEmail($email)) {
+        echo json_encode(['emailValidate' => false]);
+        return;
+    }
+
+    foreach (userBUS::getInstance()->getAlluser() as $user) {
+        if($user['username'] == $username) {
+            echo json_encode(['usernameResponse' => false]);
+            return;
+        }else if($user['email'] == $email) {
+            echo json_encode(['emailResponse' => false]);
+            return;
+        }else if($user['name'] == $name) {
+            echo json_encode(['nameResponse' => false]);
+            return;
+        }else if($user['phone'] == $phone) {
+            echo json_encode(['phoneResponse' => false]);
+            return;
+        }
+    }
     
     $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, 1, "../../icons/whiteUser.png", 2, $address, UserStatus::ACTIVE);
     $userBus = userBUS::getInstance()->addUser($newUser);

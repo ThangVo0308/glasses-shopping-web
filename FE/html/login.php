@@ -94,6 +94,21 @@
                 data: data1,
                 dataType: "json",
                 success: function(res) {
+                    if(res.usernameResponse == false) {
+                        alert("Tên tài khoản đã được sử dụng, hãy dùng tên tài khoản khác");
+                    }else if(res.emailResponse == false) {
+                        alert("Email đã tồn tại, hãy dùng email khác");
+                    }else if(res.nameResponse == false) {
+                        alert("Tên đã được sử dụng, hãy dùng tên khác");
+                    }else if(res.phoneResponse == false) {
+                        alert("Số điện thoại đã được sử dụng, vui lòng đổi số điện thoại khác");
+                    }else if(res.phoneValidate == false) {
+                        alert("Số điện thoại không hợp lệ");
+                    }else if(res.emailValidate == false) {
+                        alert("Email không hợp lệ");
+                    }
+
+                    // pass all validate upon
                     if (res.response.check == true) {
                         alert("Xin chào: " + res.response.username);
                     } else if (res.response.check == false) {

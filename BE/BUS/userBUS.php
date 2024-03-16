@@ -56,37 +56,7 @@
             ){
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
-
-            foreach($this->userList as $curUser) {
-                // echo "<script>console.log(" . json_encode($curUser) . ")</script>";
-                $jsonUser = json_decode(json_encode($curUser));
-                if ($user->getUsername() === $jsonUser->username) {
-                    throw new InvalidArgumentException('Username existed');
-                }
             
-                if($user->getEmail() === $jsonUser->email) {
-                    throw new InvalidArgumentException('Email existed');          
-                }
-            
-                if($user->getPhone() === $jsonUser->phone) {
-                    throw new InvalidArgumentException('Phone existed');          
-                }
-            }
-            
-            $validPhone = $user->getPhone() != null && !empty($user->getPhone());
-            $validEmail = $user->getEmail() != null && !empty($user->getEmail());
-
-            $validate = new Validate();
-
-            if ($validPhone && !$validate->isValidPhoneNumber($user->getPhone())) {
-                throw new InvalidArgumentException('Invalid phone number ');
-            }
-
-            
-            if ($validEmail && !$validate->isValidEmail($user->getEmail())) {
-                throw new InvalidArgumentException('Invalid email');
-            }
-
             $newuser = userDAL::getInstance()->addUser($user);
 
             if($newuser) {
