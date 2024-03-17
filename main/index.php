@@ -20,7 +20,7 @@ session_start();
     <iframe src="../FE/html/login.php" frameborder="0" id="login" name="login"></iframe>
     <div id="userOptions">
         <div class="ic"></div>
-        <span>Tài khoản của tao</span>
+        <span onclick="changeIframeAccount()">Tài khoản của tao</span>
         <span>Đơn hàng</span>
         <span onclick="changeIframeHistoryCart()">Lịch sử đơn hàng</span>
         <span onclick="logout()">Đăng xuất</span>

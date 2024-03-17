@@ -23,3 +23,9 @@ function changeIframeHistoryCart() {
     homeScreen.src = '../FE/html/historyCart.php'
     homeScreen.name = 'cart'
 }
+function changeIframeAccount() {
+    var homeScreen = parent.parent.document.getElementById("homeScreen");
+    homeScreen.src = '../FE/html/account.php'
+    homeScreen.name = 'cart'
+}
+

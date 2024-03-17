@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+#contact {
+    display: flex;
+    margin-left: 16%;
+    margin-right: 16%;
+    margin-top: 30px;
+    background-color: white;
+    padding: 10px;
+}
+#information {
+    width: 40%;
+    height: 315px;
+    margin-right: 15px;
+    background: rgba(238, 238, 238, 1);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+}
+#information span:nth-child(1){
+    color: red;
+    transition: all 0.8s ease;
+}
+#information span:nth-child(1):hover {
+    color:#8ddad3;
+}
+#information span:nth-child(2){
+    font-size: 13px;
+    color: rgba(139, 145, 152, 1);
+}
+#information img {
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+}
+.section {
+    display: flex;
+    border-bottom: rgba(221, 221, 221, 1) 1px solid;
+    height: 80px;
+    align-items: center;
+    padding-left: 45px;
+    cursor: pointer;
+}
+.section div {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+
+.header {
+    border-bottom: 0.0625rem solid #efefef;
+    padding: 1.125rem 0;
+    margin: 40px;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.625rem;
+}
+
+.title-under {
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+}
+
+.form-account {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.form-account form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-account label {
+    margin-bottom: 5px;
+}
+
+.form-account input[type="text"],
+.form-account input[type="password"],
+.form-account input[type="email"],
+.form-account input[type="tel"],
+.form-account textarea,
+.form-account button[type="submit"] {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-account textarea {
+    resize: vertical;
+}
+
+.form-account button[type="submit"] {
+    background-color:#8ddad3;;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.form-account button[type="submit"]:hover {
+    background-color: #2a5754;;
+}
+
+
+.form-account input[type="file"] {
+    margin-bottom: 15px;
+}
+
+
+.form-account label[for="image"] {
+    display: block;
+    margin-bottom: 5px;
+  
+}
