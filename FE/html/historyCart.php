@@ -20,13 +20,14 @@
             <button type="submit">Tìm đơn hàng</button>
         </div>
         <div class="header section">
-            <div>
-                <span>Mã hóa đơn</span>
-            </div>
             <div class="item">
-                <span>Nhân viên</span>
+                <span>Mã hóa đơn</span>
                 <span>Ngày đặt</span>
                 <span>Số tiền</span>
+                <span>Địa chỉ</span>
+                <span>Người nhận</span>
+                <span>Số điện thoại</span>
+                <span>Tình trạng</span>
                 <span>Thao tác</span>
             </div>
         </div>
@@ -37,13 +38,14 @@
         <div id="products">
             <?php foreach ($orderList as $order) : ?>
                 <div class="product section">
-                    <div>
+                    <div class="item">  
                         <span><?php echo $order['id']; ?></span>
-                    </div>
-                    <div class="item">
-                        <span class="user"><?php echo $order['user_id']; ?></span>
                         <span class="date"><?php echo $order['order_date']; ?></span>
-                        <span id="totalPrice"><?php echo number_format('total_price'); ?></span>
+                        <span id="totalPrice"><?php echo $order['total_price']; ?></span>
+                        <span class="address"><?php echo $order['address']; ?></span>
+                        <span class="name_received"><?php echo $order['name_received']; ?></span>
+                        <span class="phone_received"><?php echo $order['phone_received']; ?></span>
+                        <span class="status"><?php echo $order['status']; ?></span>
                         <span id="deleteBtn">Xem chi tiết</span>
                     </div>
                 </div>
@@ -98,8 +100,12 @@ if (empty($orderList)) {
 ?>
 
 <script>
-    var detailsForm = document.getElementById('deleteBtn');
-        detailsForm.onclick = function() {
-            document.getElementById('details-history').style.display = 'block';
-            }
+  var deleteButtons = document.querySelectorAll('.item #deleteBtn');
+
+for (var i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].onclick = function() {
+        document.getElementById('details-history').style.display = 'block';
+    };
+}
+
 </script>
