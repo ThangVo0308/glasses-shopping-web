@@ -14,6 +14,9 @@ if (!isset($_SESSION['currentUser'])) {
 require_once("../../../BE/BUS/productBUS.php");
 require_once("../../../BE/BUS/discountItemBUS.php");
 require_once("../../../BE/BUS/discountBUS.php");
+//lấy discoutModel dựa vào product id
+// có product id -> list các discout item của product id -> từ các discout item truy xuất discout và kt còn hoạt động trả về $discout = discoutModel
+$discountModel = null;
 ?>
 
 <div id="product-detail">
@@ -160,7 +163,7 @@ require_once("../../../BE/BUS/discountBUS.php");
                 var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
                 var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0 ?>)
                 var firstQuantity = parseInt(<?php echo $product['quantity'] ?>);
-                var category_id = parseInt(<?php echo $product['category_id']?>)
+                var category_id = parseInt(<?php echo $product['category_id']?>);
 
                 if (quantityValue.value == 0) {
                     alert('Sản phẩm đã hết hàng');
@@ -170,16 +173,9 @@ require_once("../../../BE/BUS/discountBUS.php");
                 }
 
                 var data = {
-                    id: idProduct,
-                    name: nameProduct,
-                    image: imageProduct,
-                    currentPrice: currentPrice,
-                    discountPrice: discountPrice,
-                    discountAmount: discountAmount,
-                    discountID: discountID,
-                    firstQuantity: firstQuantity,
+                    product: <?php echo json_encode($product)?>,
                     quantity: quantity,
-                    category_id: category_id
+                    discount : <?php echo json_encode($discountModel)?>,
                 }
 
                 $.ajax({

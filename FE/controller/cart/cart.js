@@ -1,6 +1,7 @@
-var newAddressContainer = document.getElementById('newAddessContainer');
-newAddressContainer.onclick = function(e) {
-    if (e.target == newAddressContainer) {
-        newAddressContainer.style.display = 'none';
-    }
+var btnEditAddress = document.getElementById('btnChangeAddress');
+var addressIframe = document.getElementById('addressIframe');
+
+
+btnEditAddress.onclick = function () {
+    addressIframe.style.display = 'flex';
 }

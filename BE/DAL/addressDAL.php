@@ -42,12 +42,24 @@
             }
         }
 
-        public function getAddressByUserID($id,$user_id) {
+        public function getAddressByID($id) {
             try {
-                $query = "select * from address where id = ? and user_id=?";
+                $query = "select * from address where id = ?";
                 $statement = $this->connection->prepare($query);
                 $statement->bindParam(1,$id);
-                $statement->bindParam(2,$user_id);
+                $statement->execute();
+                $listAddress = $statement->fetchAll(PDO::FETCH_ASSOC);
+                return $listAddress;
+            }catch(PDOException $e) {
+                echo "Query failed: ".$e->getMessage();
+                return false;
+            }
+        }
+        public function getAddressByUserID($user_id) {
+            try {
+                $query = "select * from address where user_id = ?";
+                $statement = $this->connection->prepare($query);
+                $statement->bindParam(1,$user_id);
                 $statement->execute();
                 $listAddress = $statement->fetchAll(PDO::FETCH_ASSOC);
                 return $listAddress;
@@ -98,13 +110,12 @@
             }
         }
 
-        public function deleteAddress($id,$user_id) {
+        public function deleteAddress($id) {
             try {
-                $query = "delete from address where id = ? and user_id = ?";
+                $query = "delete from address where id = ?";
                 $statement = $this->connection->prepare($query);
 
                 $statement->bindValue(1, $id, PDO::PARAM_INT);
-                $statement->bindValue(2, $user_id, PDO::PARAM_INT);
                 $statement->execute();
 
                 return true;

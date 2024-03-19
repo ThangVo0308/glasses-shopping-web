@@ -1,0 +1,168 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+}
+#ship-address {
+    position: absolute;
+    background-color: white;
+    right: 50%;
+    transform: translate(50%,0);
+    top: 68px;
+    width: 423px;
+    height: 462px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+}
+.title {
+    font-size: 20px;
+}
+#addressForm{
+    height: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.address-infor {
+    display: flex;
+    border-bottom: rgb(126, 126, 126) 0.8px dashed;
+    justify-content: space-between;
+    margin: 15px;
+    padding-bottom: 10px;
+
+}
+.infor {
+    display: flex;
+}
+.infor span {
+    padding-bottom: 5px;
+    padding-right: 15px;
+    display: flex;
+    align-items: end;
+}
+.name-user {
+    color: #11c4b4;
+    font-size: 17.5px;
+}
+.phone-user, .address {
+    color: rgba(0, 0, 0, .54);
+    font-size: 15px;
+
+}
+.btn-Address {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    align-items: end;
+}
+.btn-Address span {
+    background: none;
+    border: 0;
+    outline: none;
+    padding: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+}
+#btnDelete {
+    color: rgb(159 159 159);
+}
+#btnUpdate {
+    color: #4e77d1;
+}
+#btnAccept {
+    color: #11c4b4;
+}
+.buttons {
+    display: flex;
+    justify-content: end;
+    padding: 5px
+}
+.buttons span {
+    cursor: pointer;
+}
+#btnNewAddress {
+    color: red;
+}
+#btnClose {
+    padding-left: 22px;
+    color: gray;
+}
+
+
+#newAddessContainer {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#newAddressForm {
+    display: flex;
+    height: 211px;
+    width: 400px;
+    background-color: white;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+#newAddressForm div {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+#newAddressForm span:nth-child(1) {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+}
+#newAddressForm .ip {
+    box-sizing: border-box;
+    color: #222;
+    font-size: 14px;
+    height: 38px;
+    padding: 10px;
+    margin-top: 10px;
+    border: rgba(0, 0, 0, 0.425) 1px solid;
+}
+#newName {
+    width: 40%;
+    margin-right: 5px;
+}
+#newPhone {
+    width: 60%;
+}
+#newAddress {
+    width: 100%;
+}
+.btn-newAddres {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.btn-newAddres button {
+    height: 36px;
+    width: 116px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+#buttonAccept {
+    border: none;
+    background-color: #00979e;
+    color: #fff;
+}
+#buttonExit {
+    color: black;
+    border: none;
+    background-color: white;
+}

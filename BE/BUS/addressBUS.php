@@ -25,8 +25,17 @@
             $this->addressList = array_merge($this->addressList, addressDAL::getInstance()->getAllAddress());
         }
 
-        public function getAddressByUserID($id,$user_id) {
-            return addressDAL::getInstance()->getAddressByUserID($id,$user_id);
+        public function getAddressByID($id) {
+            $this->refreshData();
+            foreach($this->addressList as $address) {
+                if($address['id'] == $id) {
+                    return $address;
+                }
+            }
+            return null;
+        }
+        public function getAddressByUserID($user_id) {
+            return addressDAL::getInstance()->getAddressByUserID($user_id);
         }
         
         public function getTotal() {
@@ -69,10 +78,10 @@
             return $result;
         }
 
-        public function deleteAddress($id,$user_id) {
-            $address = $this->getAddressByUserID($id,$user_id);
+        public function deleteAddress($id) {
+            $address = $this->getAddressByID($id);
 
-            $check = addressDAL::getInstance()->deleteaddress($address['id'],$address['user_id']);
+            $check = addressDAL::getInstance()->deleteaddress($address['id']);
 
             if($check) {
                 $addressId = $address['id'];

@@ -13,62 +13,46 @@ require_once("../../model/points.php");
 require_once("../../enum/OrderStatus.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $productList = $_POST['productList'] ?? null;
-    $productListArray = array_map('json_decode', $productList);
+    $data = $_POST['data'];
 
-    $userID = $productListArray[0]->userID ?? null;
-    $allTotal = $productListArray[0]->allTotal ?? null;
-    $pointEarned = $productListArray[0]->pointEarned ?? null;
-    $pointUsed = $productListArray[0]->pointUsed ?? null;
-    $address = $productListArray[0]->address ?? null;
-    $nameReceived = $productListArray[0]->name_received ?? null;
-    $phoneReceived = $productListArray[0]->phone_received ?? null;
 
+    $userID =  $_SESSION['currentUser']['id'] ?? null;
     $currentDate = date('Y-m-d H:i:s');
+    $allTotal = $data['total'] ?? null;
+    $pointEarned = 10 ;
+    $pointUsed = $data['pointUsed'] ?? 0;
+    $address_id = $data['address']['id'] ?? null;
 
-    $order = new orders(orderBUS::getInstance()->getMax(), $userID, $currentDate, $allTotal, $pointEarned, $pointUsed, $address, $nameReceived, $phoneReceived, OrderStatus::PENDING);
-    $newOrder = orderBUS::getInstance()->addOrder($order);
+    
+    $order_model = new orders(orderBUS::getInstance()->getMax(), $userID, $currentDate, $allTotal, $pointEarned, $pointUsed, $address_id, OrderStatus::PENDING);
+    $newOrder = orderBUS::getInstance()->addOrder($order_model);
 
-    $newPointUsed = 0;
-    $newPointEarned = 0;
-    $updateProduct = 0;
-    $updatePoint = 0;
-
-    foreach ($productListArray as $product) {
-        $id = $product->id ?? null;
-        $name = $product->name ?? null;
-        $quantity = $product->quantity ?? null;
-        $price = $product->price ?? null;
-        $totalProduct = $product->totalProduct ?? null;
-        $discountID = $product->discountID ?? null;
-
+    $productList = $data['productList'];
+    foreach ($productList as $product) {
+        // $id = $product->id ?? null;
+        // $name = $product->name ?? null;
+        // $quantity = $product->quantity ?? null;
+        // $price = $product->price ?? null;
+        // $totalProduct = $product->totalProduct ?? null;
+        $discountID = $product['discount']['id'] ?? null;
 
         if ($newOrder) {
-            $orderItem = new order_items(orderItemBUS::getInstance()->getMax(), $order->getId(), $id, $discountID, $quantity, $totalProduct);
-            $newOrderItem = orderItemBUS::getInstance()->addOrderItem($orderItem);
+            $orderItem_model = new order_items(orderItemBUS::getInstance()->getMax(), $order_model->getId(),$product['product']['id'] , $discountID , $product['quantity'], 110);
+            $newOrderItem = orderItemBUS::getInstance()->addOrderItem($orderItem_model);
+                        
+            $newQuantity = $product['product']['quantity'] - $product['quantity'];
 
-            $productList = productBUS::getInstance()->getAllProduct();
-            foreach ($productList as $product) {
-                if ($product['id'] == $id) {
-                    $newQuantity = $product['quantity'] - $quantity;
-                    $updateValueProduct = new product($product['id'], $product['name'], $product['category_id'], $product['image'], $product['gender'], $product['price'], $product['description'], $newQuantity, ProductStatus::ACTIVE);
-                    $updateProduct = productBUS::getInstance()->updateProduct($updateValueProduct);
-                    break;
-                }
-            }
+            $updateValueProduct = new product($product['product']['id'], $product['product']['name'], $product['product']['category_id'], $product['product']['image'], $product['product']['gender'], $product['product']['price'], $product['product']['description'], $newQuantity, ProductStatus::ACTIVE);
+            $updateProduct = productBUS::getInstance()->updateProduct($updateValueProduct);
         }
     }
 
-    $pointList = pointBUS::getInstance()->getAllpoint();
-    foreach ($pointList as $point) {
-        if ($point['user_id'] == $userID) {
-            $newPointUsed += intval($pointEarned);
-            $newPointEarned = intval($point['points_earned'] - $pointEarned) + (1 / 100) * intval($allTotal);
-            $updateValuePoint = new points($point['id'], $point['user_id'], $newPointEarned, $newPointUsed);
-            $updatePoint = pointBUS::getInstance()->updatePoint($updateValuePoint);
-            break;
-        }
-    }
+    $point = pointBUS::getInstance()->getPointByUserID($_SESSION['currentUser']['id']);
+    $newPointUsed = $point['points_used'] + intval($pointUsed);
+    $newPointEarned = $pointUsed > 0 ? intval($pointEarned) : intval($point['points_earned'] + $pointEarned) ;
+    $updateValuePoint = new points($point['id'], $point['user_id'], $newPointEarned, $newPointUsed);
+    $updatePoint = pointBUS::getInstance()->updatePoint($updateValuePoint);
+
 
     if ($newOrder) {
         unset($_SESSION['productList']);

@@ -1,9 +1,17 @@
 <?php
-$productList = json_decode($_GET['data'], true);
+$data = json_decode($_GET['data'], true);
 session_start();
 if (!isset($_SESSION['currentUser'])) {
     $_SESSION['currentUser'] = array();
 }
+
+$productList = $data['productList'];
+$pointUsed = $data['pointUsed'];
+$pointEarned = $data['pointEarned'];
+$address = $data['address'];
+$discount = $data['discount'];
+$total = $data['total'];
+
 ?>
 <div id="paymentForm">
     <h3>Xác nhận thanh toán</h3>
@@ -18,18 +26,19 @@ if (!isset($_SESSION['currentUser'])) {
         </div>
     </div>
     <div id="products">
-        <?php foreach ($productList as $product) : ?>
+        <?php foreach ($productList as $product) :  ?>
+            <?php $discountPrice = isset($product['discout']) ? number_format(intval($product['discout'])) : 0 ?>
             <div class="product section">
                 <div class="name-product">
-                    <span id="name"><?php echo $product['name']; ?></span>
+                    <span id="name"><?php echo $product['product']['name']; ?></span>
                 </div>
                 <div class="item">
                     <span id="quantity"><?php echo $product['quantity']; ?></span>
                     <div>
-                        <span id="price"><?php echo number_format($product['currentPrice']) ?> đ</span>
-                        <span id="price-real"><?php echo number_format($product['discountPrice']) ?> đ</span>
+                        <span id="price"><?php echo $discountPrice > 0 ? number_format($product['product']['price'] - $discountPrice ) : number_format($product['product']['price']) ?> đ</span>
+                        <span id="price-real"><?php echo $discountPrice > 0 ? number_format($product['product']['price']).' đ' : '' ?></span>
                     </div>
-                    <span id="total"><?php echo number_format(intval(str_replace('.', '', $product['discountPrice'])) * $product['quantity']); ?> đ</span>
+                    <span id="total"><?php echo number_format($product['quantity'] * $product['product']['price']); ?> đ</span>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -37,15 +46,8 @@ if (!isset($_SESSION['currentUser'])) {
     <div class="total">
         <span>Tổng thanh toán:</span>
         <div>
-            <?php
-            if (isset($product['total'])) {
-                echo '<span>' . number_format($product['total']) . ' đ</span>';
-                echo '<span id="valueReal">' . number_format($product['total']) . ' đ</span>';
-            } else {
-                echo '<span>0 đ</span>';
-                echo '<span id="valueReal">0 đ</span>';
-            }
-            ?>
+            <span><?php echo number_format($total) ?></span>
+            <span id="valueReal"><?php echo $discount > 0 ? number_format($total + $discount) : '' ?></span>
         </div>
     </div>
     <div class="buttons">
@@ -76,31 +78,12 @@ if (!isset($_SESSION['currentUser'])) {
         paymentIframe.style.display = 'none';
     }
 
-    var productList = <?php echo json_encode($productList); ?>;
+    var data = <?php echo json_encode($data); ?>;
 
     payBtn.addEventListener('click', () => {
-        var list = [];
-        productList.forEach(product => {
-            let hihi = {
-                id: parseInt(product.id),
-                name: "<?php echo isset($product['name']) ? addslashes($product['name']) : ''; ?>",
-                quantity: parseInt(product.quantity),
-                price: parseInt(product.discountPrice),
-                totalProduct: parseInt(parseInt(product.discountPrice) * parseInt(product.quantity)),
-                allTotal: parseInt(product.total),
-                pointEarned: parseInt(product.pointEarned),
-                pointUsed: parseInt(product.pointUsed),
-                userID: parseInt(product.userID),
-                address: product.address,
-                name_received: product.name_received,
-                phone_received: product.phone_received,
-                discountID: <?php echo isset($product['discountID']) && is_numeric($product['discountID']) ? $product['discountID'] : 'null'; ?>,
-            };
-            list.push(JSON.stringify(hihi));
-        });
-
+        console.log(data);
         cartHandle('../../../main/handler/cartHandle.php', 'POST', {
-            productList: list,
+            data: data,
         });
     });
 
@@ -113,26 +96,10 @@ if (!isset($_SESSION['currentUser'])) {
             success: function(res) {
                 if (res.success == true) {
 
-                    <?php
-                    $data = [
-                        'value' => 'Thanh toán thành công',
-                        'status' => 'success',
-                        'reload' => 2000,
-                    ];
-                    ?>
-                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
-                    alert.style.display = 'flex';
+                    
 
                 } else {
-                    <?php
-                    $data = [
-                        'value' => 'Thanh toán thất bại',
-                        'status' => 'error',
-                        'reload' => 2000,
-                    ];
-                    ?>
-                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
-                    alert.style.display = 'flex';
+                    
 
                 }
             },
