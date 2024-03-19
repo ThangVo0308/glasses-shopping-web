@@ -129,7 +129,6 @@ CREATE TABLE
         `discount_percent` INT,
         `start_day` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `end_day` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `product_id` integer,
         PRIMARY KEY (`id`)
     );
 
@@ -217,10 +216,6 @@ ADD
     FOREIGN KEY (`import_id`) REFERENCES `imports` (`id`);
 
 ALTER TABLE `import_items`
-ADD
-    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
-ALTER TABLE `discounts`
 ADD
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 

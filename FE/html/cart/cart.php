@@ -164,6 +164,7 @@ if (!isset($_GET['address'])) {
     var quantityValues = document.querySelectorAll('.quantity');
     var totalPrices = document.querySelectorAll('.totalPrice');
     var checkedBoxes = document.querySelectorAll('.checkBox');
+    var allChecked = document.getElementById('allChecked');
 
     var valueReal = document.getElementById('valueReal');
     var valuePay = document.getElementById('valuePay');
@@ -181,7 +182,11 @@ if (!isset($_GET['address'])) {
 
     decreaseBtns.forEach((decreaseBtn, index) => {
         decreaseBtn.addEventListener('click', () => {
-            $.ajax({
+            var quantity = productList[index]['product']['quantity'];
+            if (productList[index]['quantity'] == 1) {
+                productList[index]['quantity'] = 1;
+            } else {
+                $.ajax({
                 type: 'POST',
                 url: '../../../main/handler/changeQuantityHandle.php',
                 data: {
@@ -191,7 +196,7 @@ if (!isset($_GET['address'])) {
                 dataType: 'json',
                 success: function(res) {
                     productList = res.result;
-                    reload(index);
+                    reload(index)
 
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -199,11 +204,16 @@ if (!isset($_GET['address'])) {
                     console.error("AJAX request failed:", textStatus, errorThrown);
                 }
             })
+            }
         });
     });
     increaseBtns.forEach((increaseBtns, index) => {
         increaseBtns.addEventListener('click', () => {
-            $.ajax({
+            var quantity = productList[index]['product']['quantity'];
+            if (productList[index]['quantity'] == parseInt(quantity)) {
+                productList[index]['quantity'] = parseInt(quantity);
+            } else {
+                $.ajax({
                 type: 'POST',
                 url: '../../../main/handler/changeQuantityHandle.php',
                 data: {
@@ -221,15 +231,26 @@ if (!isset($_GET['address'])) {
                     console.error("AJAX request failed:", textStatus, errorThrown);
                 }
             })
+            }
+
+
+            
         });
     });
 
     checkedBoxes.forEach((checkBox, index) => {
         checkBox.addEventListener('click', () => {
-            reload(index)
-        });
 
+            reload(index);
+        });
     });
+
+    allChecked.addEventListener('click', () => {
+        checkedBoxes.forEach((checkBox, index) => {
+            checkBox.checked = allChecked.checked;
+            reload(0);
+        })
+    })
 
     function reload(index) {
         var discountValue = productList[index]['discount'] ? productList[index]['discount']['discount_percent'] * productList[index]['product']['price'] : 0;
@@ -268,23 +289,28 @@ if (!isset($_GET['address'])) {
 
 
     payBtn.onclick = function() {
-        newProductList = [];
+        var newProductList = [];
         checkedBoxes.forEach((checkBox, id) => {
             if (checkBox.checked == true) {
                 newProductList.push(productList[id]);
             }
         });
-        data = {
-            productList: newProductList,
-            pointEarned: (total * 1) / 100,
-            pointUsed: pointUsed,
-            total: total,
-            discount: discount,
-            address: address,
+        if(newProductList.length == 0) {
+            alert("Chọn sản phẩm để thanh toán");
+            return;
+        }else {
+            data = {
+                productList: newProductList,
+                pointEarned: (total * 1) / 100,
+                pointUsed: pointUsed,
+                total: total,
+                discount: discount,
+                address: address,
+            }
+            var dataJSON = JSON.stringify(data);
+            document.getElementById('payment').src = './payment.php?data=' + encodeURIComponent(dataJSON);
+    
+            document.getElementById('payment').style.display = 'flex';
         }
-        var dataJSON = JSON.stringify(data);
-        document.getElementById('payment').src = './payment.php?data=' + encodeURIComponent(dataJSON);
-
-        document.getElementById('payment').style.display = 'flex';
     };
 </script>
