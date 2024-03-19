@@ -5,6 +5,7 @@ if (!isset($_SESSION['currentUser'])) {
     $_SESSION['currentUser'] = array();
 }
 
+
 $productList = $data['productList'];
 $pointUsed = $data['pointUsed'];
 $pointEarned = $data['pointEarned'];
@@ -35,8 +36,8 @@ $total = $data['total'];
                 <div class="item">
                     <span id="quantity"><?php echo $product['quantity']; ?></span>
                     <div>
-                        <span id="price"><?php echo $discountPrice > 0 ? number_format($product['product']['price'] - $discountPrice ) : number_format($product['product']['price']) ?> đ</span>
-                        <span id="price-real"><?php echo $discountPrice > 0 ? number_format($product['product']['price']).' đ' : '' ?></span>
+                        <span id="price"><?php echo $discountPrice > 0 ? number_format($product['product']['price'] - $discountPrice) : number_format($product['product']['price']) ?> đ</span>
+                        <span id="price-real"><?php echo $discountPrice > 0 ? number_format($product['product']['price']) . ' đ' : '' ?></span>
                     </div>
                     <span id="total"><?php echo number_format($product['quantity'] * $product['product']['price']); ?> đ</span>
                 </div>
@@ -62,7 +63,7 @@ $total = $data['total'];
     var paymentForm = document.getElementById('paymentForm');
     var exitBtn = document.getElementById('btnExit');
     var payBtn = document.getElementById('btnPay');
-    var alert = parent.document.getElementById('alert');
+    var alert = parent.parent.document.getElementById('alert');
 
 
     var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
@@ -96,10 +97,27 @@ $total = $data['total'];
             success: function(res) {
                 if (res.success == true) {
 
-                    
+                    <?php
+                    $data = [
+                        'value' => 'Thanh toán thành công',
+                        'status' => 'success',
+                        'reload' => 2000,
+                        'link' => '../FE/html/historyCart.php',
+                    ];
+                    ?>
+                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+                    alert.style.display = 'flex';
 
                 } else {
-                    
+                    <?php
+                    $data = [
+                        'value' => 'Thanh toán thất bại',
+                        'status' => 'error',
+                        'reload' => 2000,
+                    ];
+                    ?>
+                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+                    alert.style.display = 'flex';
 
                 }
             },

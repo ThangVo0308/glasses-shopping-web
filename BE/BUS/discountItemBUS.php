@@ -34,8 +34,11 @@
             return null;
         }
 
+        public function getdiscountItemByProductId($id) {
+            return DiscountItemDAL::getInstance()->getDiscountItemByProductId($id);
+        }
         public function adddiscountItem(discount_item $discountItem) {
-            if($discountItem->getCategoryid() <= 0 ||
+            if($discountItem->getProductID() <= 0 ||
                 $discountItem->getDiscountid() <= 0
             )
             {
@@ -84,11 +87,6 @@
                             return true;
                         }
                         break;
-                    case 'category_id':
-                        if(intval($value) == $discountItem->getCategoryid()) {
-                            return true;
-                        }
-                        break;
                     case 'discount_id':
                         if(intval($value) == $discountItem->getDiscountid()) {
                             return true;
@@ -107,11 +105,9 @@
         public function checkAllColumns(discount_item $discountItem,$value) {
             return (
                 $discountItem->getId() === intval($value) ||
-                $discountItem->getCategoryid() === intval($value) ||
                 $discountItem->getDiscountid() === intval($value)
             );
         }
-
         public function searchdiscountItem($value,$column) {
             $result = array();
             $columnString = implode(",", $column);

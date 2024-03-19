@@ -19,9 +19,6 @@
         public function getAlldiscount() {
             return $this->discountList;
         }
-        public function getDiscountByProductID($product_id) {
-            return discountBUS::getInstance()->getDiscountByProductID($product_id);
-        }
 
         public function refreshData() {
             $this->discountList = array_merge($this->discountList,DiscountDAL::getInstance()->getAllDiscount());
@@ -30,8 +27,8 @@
         public function getdiscountById($id) {
             $this->refreshData();
             foreach($this->discountList as $discount) {
-                if($discount->getId() == $id) {
-                    return $id;
+                if($discount['id'] == $id) {
+                    return $discount;
                 }
             }
             return null;

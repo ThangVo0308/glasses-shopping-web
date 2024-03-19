@@ -17,9 +17,11 @@ $data = json_decode($_GET['data'], true);
     if (isset($data['status'])) {
         $status = json_encode($data['status']);
         $reload = json_encode($data['reload']);
+        $link = json_encode($data['link']);
     } else {
         $status = json_encode('');
         $reload = json_encode('');
+        $link = json_encode('');
     }
     ?>
 
@@ -62,11 +64,19 @@ $data = json_decode($_GET['data'], true);
             break;
     }
     var reloadTime = <?php echo $reload ?>;
+    var link = <?php echo $link ?>;
+
 
     if(reloadTime > 0){
         setTimeout(() => {
-            alertIframe.style.display='none'
-            parent.location.reload();
+            alertIframe.style.display='none';
+            if(link != ''){
+                var homeScreen = parent.document.getElementById('homeScreen');
+                homeScreen.src = link;
+            }
+            else {
+                parent.document.location.reload();
+            }
         }, reloadTime);
     }
 </script>

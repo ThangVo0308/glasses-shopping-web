@@ -1,4 +1,8 @@
 <?php
+require_once("../../../BE/BUS/discountBUS.php");
+require_once("../../../BE/BUS/discountItemBUS.php");
+require_once("../../../BE/BUS/productBUS.php");
+
 session_start();
 
 if (isset($_GET['data'])) {
@@ -14,9 +18,16 @@ if (!isset($_SESSION['currentUser'])) {
 require_once("../../../BE/BUS/productBUS.php");
 require_once("../../../BE/BUS/discountItemBUS.php");
 require_once("../../../BE/BUS/discountBUS.php");
-//lấy discoutModel dựa vào product id
-// có product id -> list các discout item của product id -> từ các discout item truy xuất discout và kt còn hoạt động trả về $discout = discoutModel
+
 $discountModel = null;
+
+$listDiscountItem = discountItemBUS::getInstance()->getdiscountItemByProductId($product['id']);
+foreach ($listDiscountItem as $item) {
+    $discount = discountBUS::getInstance()->getdiscountById($item['discount_id']);
+    if(strtotime($discount['end_day']) <= Date('Y-m-d HH:mm:ss')) {
+        $discountModel = discountBUS::getInstance()->getdiscountById($item['discount_id']);
+    }
+}
 ?>
 
 <div id="product-detail">
@@ -90,7 +101,13 @@ $discountModel = null;
             <img src="../../../icons/tick.png" alt="">
             <span class="status">
                 <?php
-                echo 'Còn ' . $product['quantity'] . ' sản phẩm';
+                    if($product['quantity'] == 0) {
+                        echo "Hết hàng";
+                    }else {
+                        echo 'Còn ' . $product['quantity'] . ' sản phẩm';
+                    }
+
+
                 ?>
             </span>
         </div>
@@ -106,6 +123,7 @@ $discountModel = null;
 <script>
     var productDetailIframe = parent.document.getElementById('product-detail');
     var productDetailForm = document.getElementById('product-detail');
+    var product = <?php echo json_encode( $product)?>
 
     var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
 
@@ -142,48 +160,38 @@ $discountModel = null;
 
         $(document).ready(function() {
             addToCartBtn.addEventListener('click', () => {
-                var idProduct = parseInt(<?php echo $product['id']; ?>);
-                var checkName = "<?php echo addslashes($product['name']); ?>";
+                var checkName = <?php echo json_encode($product['name'])?>;
                 var productList = <?php echo empty($_SESSION['productList']) ? '[]' : json_encode($_SESSION['productList']); ?>;
-                var nameProduct = "<?php echo addslashes($product['name']); ?>";
-                if (productList.length == 0) {
-                    productList.length++;
-                } else {
+                var success = 0;
+                if(product['quantity'] == 0){
+                    alert('Sản phẩm đã hết hàng');
+                    success = 1;
+                }
+                else{
                     productList.forEach((product) => {
-                        if (checkName.localeCompare(product.name) === 0) {
+                        if (checkName.localeCompare(product['product']['name']) === 0) {
                             alert('Sản phẩm đã có trong giỏ hàng');
-                            return;
+                            success = 1;
                         }
                     })
                 }
 
-                var imageProduct = "<?php echo addslashes($product['image']); ?>";
-                var currentPrice = parseInt(<?php echo $product['price'] ?>);
-                var discountID = <?php echo (is_numeric($discountID)) ? $discountID : 'null'; ?>;
-                var discountPrice = parseInt(<?php echo ($discountedPrice !== null) ? $discountedPrice : $product['price'] ?>);
-                var discountAmount = parseInt(<?php echo ($discountAmount !== null) ? $discountAmount : 0 ?>)
-                var firstQuantity = parseInt(<?php echo $product['quantity'] ?>);
-                var category_id = parseInt(<?php echo $product['category_id']?>);
-
-                if (quantityValue.value == 0) {
-                    alert('Sản phẩm đã hết hàng');
-                    return;
-                } else {
-                    var quantity = parseInt(quantityValue.value);
+                if(success == 0){
+                    var data = {
+                        product: <?php echo json_encode($product)?>,
+                        quantity: quantityValue.value,
+                        discount : <?php echo json_encode($discountModel)?>,
+                    }
+    
+                    $.ajax({
+                        type: 'POST',
+                        url: '../cart/cart.php',
+                        data: data,
+                    });
+                    productDetailIframe.style.display = 'none';
                 }
 
-                var data = {
-                    product: <?php echo json_encode($product)?>,
-                    quantity: quantity,
-                    discount : <?php echo json_encode($discountModel)?>,
-                }
 
-                $.ajax({
-                    type: 'POST',
-                    url: '../cart/cart.php',
-                    data: data,
-                });
-                productDetailIframe.style.display = 'none';
             });
         })
     } else {

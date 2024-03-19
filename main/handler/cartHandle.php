@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userID =  $_SESSION['currentUser']['id'] ?? null;
     $currentDate = date('Y-m-d H:i:s');
     $allTotal = $data['total'] ?? null;
-    $pointEarned = 10 ;
+    $pointEarned = $data['pointEarned'];
     $pointUsed = $data['pointUsed'] ?? 0;
-    $address_id = $data['address']['id'] ?? null;
+    $address_id = $data['address'] ?? null;
 
     
     $order_model = new orders(orderBUS::getInstance()->getMax(), $userID, $currentDate, $allTotal, $pointEarned, $pointUsed, $address_id, OrderStatus::PENDING);
@@ -37,10 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $discountID = $product['discount']['id'] ?? null;
 
         if ($newOrder) {
-            $orderItem_model = new order_items(orderItemBUS::getInstance()->getMax(), $order_model->getId(),$product['product']['id'] , $discountID , $product['quantity'], 110);
+            $discountPrice = $product['discount'] != null ? intval($product['discount']['discount_percent']) : 0;
+            $total = $discountPrice > 0 ? $product['product']['price'] - ($discountPrice/100)*$product['product']['price'] : $product['product']['price']; 
+
+            $orderItem_model = new order_items(orderItemBUS::getInstance()->getMax(), $order_model->getId(),$product['product']['id'] , $discountID , $product['quantity'], $total);
             $newOrderItem = orderItemBUS::getInstance()->addOrderItem($orderItem_model);
                         
             $newQuantity = $product['product']['quantity'] - $product['quantity'];
+
+            if($newQuantity == 0) {
+                $updateValueProduct = new product($product['product']['id'], $product['product']['name'], $product['product']['category_id'], $product['product']['image'], $product['product']['gender'], $product['product']['price'], $product['product']['description'], $newQuantity, ProductStatus::SOLDOUT);
+                $updateProduct = productBUS::getInstance()->updateProduct($updateValueProduct);
+            }
 
             $updateValueProduct = new product($product['product']['id'], $product['product']['name'], $product['product']['category_id'], $product['product']['image'], $product['product']['gender'], $product['product']['price'], $product['product']['description'], $newQuantity, ProductStatus::ACTIVE);
             $updateProduct = productBUS::getInstance()->updateProduct($updateValueProduct);

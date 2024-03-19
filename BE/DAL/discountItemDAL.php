@@ -38,6 +38,20 @@
             }
         }
 
+        public function getDiscountItemByProductId($id) {
+            try {
+                $query = "select * from discount_items where product_id = ?";
+                $statement = $this->connection->prepare($query);
+                $statement->bindParam(1,$id);
+                $statement->execute();
+                $listDiscountItem = $statement->fetchAll(PDO::FETCH_ASSOC);
+                return $listDiscountItem;
+            }catch(PDOException $e) {
+                echo "Query failed asdasdasd: ".$e->getMessage();
+                return false;
+            }
+        }
+
         public function addDiscountItem(discount_item $discountItem) {
             try{
                 $query = "insert into discount_items (product_id,discount_id) 

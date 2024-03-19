@@ -74,7 +74,7 @@
 
         <?php
         require_once("../../BE/BUS/productBUS.php");
-        $productList = productBUS::getInstance()->getAllProduct(); ?>
+        $productList = productBUS::getInstance()->getActiveProduct(); ?>
         <div id="products">
             <iframe src="./product/productList.php?data=<?php echo urlencode(json_encode($productList)); ?>" id="productForm" frameborder="0"></iframe>
         </div>
@@ -90,7 +90,6 @@
 <script>
     
     function selectHandle(url, method, data) {
-        console.log("test: "+JSON.stringify(data));
         $.ajax({
             type: method,
             url: url,

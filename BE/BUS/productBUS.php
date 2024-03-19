@@ -1,7 +1,7 @@
 <?php
     require_once(__DIR__ . '/../DAL/productDAL.php');
     require_once(__DIR__ . '/../DAL/orderItemDAL.php');
-
+    require_once(__DIR__ . '/../../enum/ProductStatus.php');
     class productBUS {
         private $productList = array();
 
@@ -33,6 +33,16 @@
                 }
             }  
             return null;
+        }
+
+        public function getActiveProduct() {
+            $activeProduct = [];
+            foreach ($this->productList as $product) {
+                if($product['status'] == ProductStatus::ACTIVE) {
+                    $activeProduct[] = $product;
+                }
+            }
+            return $activeProduct;
         }
         
         public function getTotal() {

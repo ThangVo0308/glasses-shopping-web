@@ -49,11 +49,10 @@ if (!empty($_SESSION['productList'])) {
 $addressList = addressBUS::getInstance()->getAddressByUserID($_SESSION['currentUser']['id']);
 
 if (!isset($_GET['address'])) {
-    $address = $addressList[0];
+    $address = $addressList[0]['id'];
 } else {
-    $address = addressBUS::getInstance()->getAddressByID(json_decode($_GET['address'], true));
+    $address = json_decode($_GET['address'], true);
 }
-
 ?>
 
 <div id="cartForm">
@@ -77,7 +76,7 @@ if (!isset($_GET['address'])) {
         </div>
         <div id="products">
             <?php foreach ($productList as $product) : ?>
-                <?php $discountPrice = isset($product['discout']) ? number_format(intval($product['discout'])) : 0 ?>
+                <?php $discountPrice = $product['discount'] != null ? number_format(intval($product['discount']['discount_percent'])) : 0 ?>
                 <div class="product section">
                     <div>
                         <input type="checkbox" name="checked" class="checkBox" value="<?= $product['product']['id'] ?>">
@@ -88,8 +87,8 @@ if (!isset($_GET['address'])) {
                     </div>
                     <div class="item">
                         <div id="valueForm">
-                            <span><?php echo number_format($product['product']['price']) ?></span>
-                            <span id="discountPrice"><?php echo $discountPrice > 0 ? $discountPrice : ''; ?></span>
+                            <span><?php echo $discountPrice > 0 ? number_format($product['product']['price'] - ($discountPrice / 100) * $product['product']['price']) : number_format($product['product']['price']); ?></span>
+                            <span id="discountPrice"><?php echo $discountPrice > 0 ? number_format($product['product']['price']) : ''; ?></span>
                         </div>
                         <div>
                             <button id="decrease" class="decrease">-</button>
@@ -97,7 +96,7 @@ if (!isset($_GET['address'])) {
                             <button id="increase" class="increase">+</button>
                         </div>
                         <?php
-                        $totalPrice = intval(str_replace('.', '', $product['product']['price'] - $discountPrice)) * $product['quantity'];
+                        $totalPrice = intval($discountPrice > 0 ? ($product['product']['price'] - ($discountPrice / 100) * $product['product']['price']) : $product['product']['price']) * $product['quantity'];
                         ?>
                         <span class="totalPrice"><?php echo number_format($totalPrice) ?></span>
                         <span class="deleteBtn">Xóa</span>
@@ -165,6 +164,7 @@ if (!isset($_GET['address'])) {
     var totalPrices = document.querySelectorAll('.totalPrice');
     var checkedBoxes = document.querySelectorAll('.checkBox');
     var allChecked = document.getElementById('allChecked');
+    var allDeleteBtn = document.querySelectorAll('.deleteBtn');
 
     var valueReal = document.getElementById('valueReal');
     var valuePay = document.getElementById('valuePay');
@@ -179,6 +179,7 @@ if (!isset($_GET['address'])) {
     var discount = 0;
     var pointUsed = 0;
     var pointEarned = 0;
+    var address = <?php echo $address ?>
 
     decreaseBtns.forEach((decreaseBtn, index) => {
         decreaseBtn.addEventListener('click', () => {
@@ -187,23 +188,23 @@ if (!isset($_GET['address'])) {
                 productList[index]['quantity'] = 1;
             } else {
                 $.ajax({
-                type: 'POST',
-                url: '../../../main/handler/changeQuantityHandle.php',
-                data: {
-                    index: index,
-                    status: 'decrease'
-                },
-                dataType: 'json',
-                success: function(res) {
-                    productList = res.result;
-                    reload(index)
+                    type: 'POST',
+                    url: '../../../main/handler/changeQuantityHandle.php',
+                    data: {
+                        index: index,
+                        status: 'decrease'
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        productList = res.result;
+                        reload(index)
 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR.responseText);
-                    console.error("AJAX request failed:", textStatus, errorThrown);
-                }
-            })
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.responseText);
+                        console.error("AJAX request failed:", textStatus, errorThrown);
+                    }
+                })
             }
         });
     });
@@ -214,27 +215,27 @@ if (!isset($_GET['address'])) {
                 productList[index]['quantity'] = parseInt(quantity);
             } else {
                 $.ajax({
-                type: 'POST',
-                url: '../../../main/handler/changeQuantityHandle.php',
-                data: {
-                    index: index,
-                    status: 'increase'
-                },
-                dataType: 'json',
-                success: function(res) {
-                    productList = res.result;
-                    reload(index)
+                    type: 'POST',
+                    url: '../../../main/handler/changeQuantityHandle.php',
+                    data: {
+                        index: index,
+                        status: 'increase'
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        productList = res.result;
+                        reload(index)
 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR.responseText);
-                    console.error("AJAX request failed:", textStatus, errorThrown);
-                }
-            })
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.responseText);
+                        console.error("AJAX request failed:", textStatus, errorThrown);
+                    }
+                })
             }
 
 
-            
+
         });
     });
 
@@ -252,26 +253,49 @@ if (!isset($_GET['address'])) {
         })
     })
 
-    function reload(index) {
-        var discountValue = productList[index]['discount'] ? productList[index]['discount']['discount_percent'] * productList[index]['product']['price'] : 0;
+    allDeleteBtn.forEach((deleteBtn, index) => {
+        deleteBtn.addEventListener('click', () => {
+            $.ajax({
+                type: 'POST',
+                url: '../../../../main/handler/deleteHandler.php',
+                data: {
+                    id: productList[index]['product']['id']
+                },
+                dataType: 'json',
+                success: function(res) {
+                    productList = res.result;
+                    reload(0);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                    console.error("AJAX request failed:", textStatus, errorThrown);
+                }
+            })
+        })
+    })
 
-        totalPrices[index].textContent = (productList[index]['quantity'] * (productList[index]['product']['price'] - discountValue)).toLocaleString('en-US');
+    function reload(index) {
+        var discountValue = productList[index]['discount'] != '' ? productList[index]['discount']['discount_percent'] : 0;
+
+        totalPrices[index].textContent = (productList[index]['discount'] != '' ? (productList[index]['quantity'] * (productList[index]['product']['price'] - (discountValue / 100) * productList[index]['product']['price'])) : productList[index]['product']['price'] * productList[index]['quantity']).toLocaleString('en-US')
         quantityValues[index].value = productList[index]['quantity'];
 
-        total = 0
+        total = 0;
+        discount = 0;
         checkedBoxes.forEach((checkBox, id) => {
             if (checkBox.checked == true) {
-                var discountValue = productList[id]['discount'] ? productList[id]['discount']['discount_percent'] * productList[id]['product']['price'] : 0;
+                var discountValue = productList[id]['discount'] != '' ? productList[id]['discount']['discount_percent'] : 0;
 
-                total = total + (productList[id]['quantity'] * (productList[id]['product']['price'] - discountValue));
-                discount = discount + discountValue;
+                total = total + (productList[id]['discount'] != '' ? (productList[id]['quantity'] * (productList[id]['product']['price'] - (discountValue / 100) * productList[id]['product']['price'])) : productList[id]['product']['price'] * productList[id]['quantity']);
+                discount += discountValue > 0 ? (discountValue / 100) * productList[id]['product']['price'] : 0;
             }
         });
         if (pointCb.checked) {
             total = total - pointUsed;
+        } else {
+            valueReal.innerText = (discount > 0 ? total + discount : '').toLocaleString('en-US');
         }
         valuePay.innerText = (total > 0 ? total : 0).toLocaleString('en-US');
-        valueReal.innerText = (discount > 0 ? total + discount : '').toLocaleString('en-US');
     }
 
     pointCb.addEventListener('change', () => {
@@ -295,10 +319,10 @@ if (!isset($_GET['address'])) {
                 newProductList.push(productList[id]);
             }
         });
-        if(newProductList.length == 0) {
+        if (newProductList.length == 0) {
             alert("Chọn sản phẩm để thanh toán");
             return;
-        }else {
+        } else {
             data = {
                 productList: newProductList,
                 pointEarned: (total * 1) / 100,
@@ -309,7 +333,7 @@ if (!isset($_GET['address'])) {
             }
             var dataJSON = JSON.stringify(data);
             document.getElementById('payment').src = './payment.php?data=' + encodeURIComponent(dataJSON);
-    
+
             document.getElementById('payment').style.display = 'flex';
         }
     };
