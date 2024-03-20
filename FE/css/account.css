@@ -13,37 +13,44 @@ body {
 
 #contact {
     display: flex;
-    margin-left: 16%;
-    margin-right: 16%;
+    margin-left: 10%;
+    margin-right: 13%;
     margin-top: 30px;
     background-color: white;
     padding: 10px;
 }
+
 #information {
     width: 40%;
-    height: 315px;
+    height: 300px;
     margin-right: 15px;
     background: rgba(238, 238, 238, 1);
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 5px;
+    margin-right: 10%;
 }
-#information span:nth-child(1){
+
+#information span:nth-child(1) {
     color: red;
     transition: all 0.8s ease;
 }
+
 #information span:nth-child(1):hover {
-    color:#8ddad3;
+    color: #8ddad3;
 }
-#information span:nth-child(2){
+
+#information span:nth-child(2) {
     font-size: 13px;
     color: rgba(139, 145, 152, 1);
 }
+
 #information img {
     height: 30px;
     width: 30px;
     margin-right: 20px;
 }
+
 .section {
     display: flex;
     border-bottom: rgba(221, 221, 221, 1) 1px solid;
@@ -52,6 +59,7 @@ body {
     padding-left: 45px;
     cursor: pointer;
 }
+
 .section div {
     display: flex;
     flex-direction: column;
@@ -78,7 +86,7 @@ body {
 }
 
 .form-account {
-    width: 400px;
+    width: 500px;
     margin: 0 auto;
 }
 
@@ -91,35 +99,69 @@ body {
     margin-bottom: 5px;
 }
 
+.header-image {
+    height: 6.25rem;
+    margin: 1.25rem 0;
+    position: relative;
+    width: 6.25rem;
+
+}
+
+.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10%;
+}
+
+#image-input {
+    display: none;
+}
+
+.url-image {
+    border-radius: 60%;
+}
+
+.url-image {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    background-image: url('http://nld.mediacdn.vn/2019/1/28/linh-7-15486326465131429726482-15486326803381550820805.png');
+}
+
+input[type="file" i] {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    text-align: start !important;
+    padding: initial;
+    border: initial;
+    white-space: pre;
+    overflow: hidden !important;
+}
+
 .form-account input[type="text"],
 .form-account input[type="password"],
 .form-account input[type="email"],
 .form-account input[type="tel"],
 .form-account textarea,
 .form-account button[type="submit"] {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 400px;
 }
 
 .form-account textarea {
     resize: vertical;
 }
-
-.form-account button[type="submit"] {
-    background-color:#8ddad3;;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.form-account button[type="submit"]:hover {
-    background-color: #2a5754;;
-}
-
 
 .form-account input[type="file"] {
     margin-bottom: 15px;
@@ -129,5 +171,52 @@ body {
 .form-account label[for="image"] {
     display: block;
     margin-bottom: 5px;
-  
+
+}
+
+.gender{
+    margin-bottom: 10px;
+}
+
+.title-credits {
+    text-align: center;
+    margin: 10px;
+    color: #999;
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+button {
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color:  #4FD1C5;;
+    color: #ffffff;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+button:hover {
+    background-color:  #38aea2;;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(0.98);
+}
+
+button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.88);
+}
+.line-left{
+    border-left: .0625rem solid #efefef;
+    overflow: hidden;
+    width: 17.5rem;
+    width: 10%;
+}
+.line-right{
+    border-right: .0625rem solid #efefef;
+    overflow: hidden;
+    width: 10%;
 }

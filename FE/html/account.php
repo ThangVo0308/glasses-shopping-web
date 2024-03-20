@@ -27,41 +27,46 @@
                 </div>
             </div>
         </div>
+        <div class="line-left"></div>
         <div class="form-account">
             <form action="">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Username">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" placeholder="Tên đăng nhập">
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Password">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" placeholder="Mật khẩu">
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Email">
 
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Name">
+                <label for="name">Họ tên:</label>
+                <input type="text" id="name" name="name" placeholder="Họ tên">
 
-                <label for="phone">Phone:</label>
-                <input type="text" id="phone" name="phone" placeholder="Phone">
+                <label for="phone">Số điện thoại:</label>
+                <input type="text" id="phone" name="phone" placeholder="Số điện thoại">
 
                 <div class="gender">
-                    <label>Gender:</label>
+                    <label>Giới tính:</label>
                     <input type="radio" id="male" name="gender" value="male">
                     <label for="male">Nam</label>
-
                     <input type="radio" id="female" name="gender" value="female">
                     <label for="female">Nữ</label>
                 </div>
+                <label for="address">Địa chỉ:</label>
+                <textarea id="address" name="address" placeholder="Địa chỉ"></textarea>
 
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image" accept="image/*">
-
-                <label for="address">Address:</label>
-                <textarea id="address" name="address" placeholder="Address"></textarea>
-
-                <button type="submit">Submit</button>
+                <button class="button" type="submit">Lưu thông tin</button>
             </form>
-
+        </div>
+        <div class="line-right"></div>
+        <div class="image">
+            <label for="image">Ảnh:</label>
+            <div class="header-image">
+                <div class="url-image" style=""></div>
+            </div>
+            <input type="file" id="image-input" name="image" accept=".jpg,.jpeg,.png">
+            <button class="button" type="button">Chọn ảnh</button>
+            <div class="title-credits">Chỉ được chọn file có đuôi .jpg, .jpeg, .png</div>
         </div>
 
 </body>
