@@ -94,7 +94,7 @@
 }
 
 
-#newAddessContainer {
+#newAddessContainer,#updateAddressContainer {
     display: none;
     position: fixed;
     justify-content: center;
@@ -105,7 +105,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#newAddressForm {
+#newAddressForm,#updateAddressForm {
     display: flex;
     height: 211px;
     width: 400px;
@@ -115,17 +115,17 @@
     border-radius: 3px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 }
-#newAddressForm div {
+#newAddressForm div,#updateAddressForm div {
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
-#newAddressForm span:nth-child(1) {
+#newAddressForm span:nth-child(1),#updateAddressForm span:nth-child(1) {
     align-items: center;
     display: flex;
     font-size: 20px;
 }
-#newAddressForm .ip {
+#newAddressForm .ip,#updateAddressForm .ip {
     box-sizing: border-box;
     color: #222;
     font-size: 14px;
@@ -134,34 +134,34 @@
     margin-top: 10px;
     border: rgba(0, 0, 0, 0.425) 1px solid;
 }
-#newName {
+#newName,#updateName {
     width: 40%;
     margin-right: 5px;
 }
-#newPhone {
+#newPhone,#updatePhone {
     width: 60%;
 }
-#newAddress {
+#newAddress,#updateAddress {
     width: 100%;
 }
-.btn-newAddres {
+.btn-newAddres,.btn-updateAddres {
     display: flex;
     align-items: center;
     justify-content: right;
 }
-.btn-newAddres button {
+.btn-newAddres button,.btn-updateAddres button {
     height: 36px;
     width: 116px;
     font-size: 14px;
     cursor: pointer;
     border-radius: 3px;
 }
-#buttonAccept {
+#buttonAccept,#butUpdateAccept {
     border: none;
     background-color: #00979e;
     color: #fff;
 }
-#buttonExit {
+#buttonExit,#butUpdateExit {
     color: black;
     border: none;
     background-color: white;

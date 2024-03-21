@@ -114,9 +114,9 @@ if (!isset($_GET['address'])) {
                         <span>Địa chỉ giao hàng</span>
                     </div>
                     <div id="detail">
-                        <span><?php echo userBUS::getInstance()->getUserById($_SESSION['currentUser']['id'])['name'] ?>,</span> <!-- 4: will be user_id when users login, will replace with $_SESSION['userID']-->
-                        <span><?php echo userBUS::getInstance()->getUserById($_SESSION['currentUser']['id'])['phone'] ?>,</span>
-                        <span id="address"><?php echo userBUS::getInstance()->getUserById($_SESSION['currentUser']['id'])['address'] ?></span>
+                        <span><?php echo addressBUS::getInstance()->getAddressByID($address)['name_received'] ?>,</span>
+                        <span><?php echo addressBUS::getInstance()->getAddressByID($address)['phone_received'] ?>,</span>
+                        <span><?php echo addressBUS::getInstance()->getAddressByID($address)['address_received'] ?></span>
                     </div>
                 </div>
                 <span id="btnChangeAddress">Thay đổi</span>
@@ -156,7 +156,7 @@ if (!isset($_GET['address'])) {
 
 <script>
     var currentUser = <?php echo json_encode($_SESSION['currentUser']['id']); ?>;
-    var productList = <?php echo json_encode($_SESSION['productList']) ?>;
+    var productList = <?php echo isset($_SESSION['productList']) ? json_encode($_SESSION['productList']) : '[]' ?>;
 
     var decreaseBtns = document.querySelectorAll('.decrease');
     var increaseBtns = document.querySelectorAll('.increase');

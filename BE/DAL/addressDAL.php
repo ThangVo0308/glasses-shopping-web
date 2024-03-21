@@ -1,5 +1,6 @@
 <?php
     require_once(__DIR__ . '/../DAL/database.php');
+
     class addressDAL {
         private $connection;
 
@@ -74,41 +75,51 @@
                 $query = "insert into address (user_id,address_received,name_received,phone_received) 
                          values (:user_id,:address_received,:name_received,:phone_received)";
                 $statement = $this->connection->prepare($query);
-                $statement->bindParam(':user_ud',$address->getUserId());
-                $statement->bindParam(':address_received',$address->getAddress());
-                $statement->bindParam(':name_received',$address->getNameReceived());
-                $statement->bindParam(':phone_received',$address->getPhoneReceived());
-
+                
+                $userId = $address->getUserId();
+                $addressReceived = $address->getAddress();
+                $nameReceived = $address->getNameReceived();
+                $phoneReceived = $address->getPhoneReceived();
+                
+                $statement->bindParam(':user_id', $userId);
+                $statement->bindParam(':address_received', $addressReceived);
+                $statement->bindParam(':name_received', $nameReceived);
+                $statement->bindParam(':phone_received', $phoneReceived);
+        
                 $statement->execute();
                 return true;
-            }catch(PDOException $e) {
+            } catch(PDOException $e) {
                 echo "Add failed: ".$e->getMessage();
                 return false;
             }
         }
+        
 
         public function updateAddress(address $address) {
             try {
-                $query = "update address set address_received=?, name_received=?, phone_received where id=?";
+                $query = "UPDATE address SET address_received=?, name_received=?, phone_received=?, user_id=? WHERE id=?";
                 $statement = $this->connection->prepare($query);
-
-                $address = $address->getAddress();
-                $name_received = $address->getNameReceived();
-                $phone_received = $address->getPhoneReceived();
-                $id = $address->getID();
-
-                $statement->bindParam(1,$address);
-                $statement->bindParam(2,$name_received);
-                $statement->bindParam(3,$phone_received);
-                $statement->bindParam(4,$id);
-
+        
+                $addressReceived = $address->getAddress();
+                $nameReceived = $address->getNameReceived();
+                $phoneReceived = $address->getPhoneReceived();
+                $userId = $address->getUserId();
+                $addressId = $address->getId();
+        
+                $statement->bindParam(1, $addressReceived);
+                $statement->bindParam(2, $nameReceived);
+                $statement->bindParam(3, $phoneReceived);
+                $statement->bindParam(4, $userId);
+                $statement->bindParam(5, $addressId);
+        
                 $statement->execute();
                 return true;
-            }catch(PDOException $e) {
+            } catch(PDOException $e) {
                 echo "Update failed: ".$e->getMessage();
                 return false;
             }
         }
+        
 
         public function deleteAddress($id) {
             try {

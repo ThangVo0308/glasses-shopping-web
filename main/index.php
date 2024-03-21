@@ -66,7 +66,7 @@ session_start();
                 } else {
                     console.log("Đã có lỗi khi đăng xuất");
                 }
-            },
+            },  
             error: function() {
                 console.log("Có lỗi khi gửi yêu cầu đến máy chủ");
             }

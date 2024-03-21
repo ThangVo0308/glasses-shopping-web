@@ -81,7 +81,7 @@
         public function deleteAddress($id) {
             $address = $this->getAddressByID($id);
 
-            $check = addressDAL::getInstance()->deleteaddress($address['id']);
+            $check = addressDAL::getInstance()->deleteAddress($address['id']);
 
             if($check) {
                 $addressId = $address['id'];
