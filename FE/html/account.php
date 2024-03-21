@@ -62,12 +62,29 @@
         <div class="image">
             <label for="image">Ảnh:</label>
             <div class="header-image">
-                <div class="url-image" style=""></div>
+                <div class="url-image"></div>
             </div>
             <input type="file" id="image-input" name="image" accept=".jpg,.jpeg,.png">
-            <button class="button" type="button">Chọn ảnh</button>
+            <button class="button" type="button" onclick="openFileExplorer()">Chọn ảnh</button>
             <div class="title-credits">Chỉ được chọn file có đuôi .jpg, .jpeg, .png</div>
         </div>
 
 </body>
 <link rel="stylesheet" href="../css/account.css">
+<script>
+    function openFileExplorer() {
+        document.getElementById("image-input").click();
+    }
+
+    document.getElementById("image-input").addEventListener("change", function() {
+        var selectedFile = this.files[0];
+        console.log("Selected file:", selectedFile);
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var image = document.querySelector('.url-image');
+            image.style.backgroundImage = "url(" + e.target.result + ")";
+        };
+        reader.readAsDataURL(selectedFile);
+    });
+</script>

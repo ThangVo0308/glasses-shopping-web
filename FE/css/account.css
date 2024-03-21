@@ -14,16 +14,16 @@ body {
 #contact {
     display: flex;
     margin-left: 10%;
-    margin-right: 13%;
+    margin-right: 15%;
     margin-top: 30px;
     background-color: white;
     padding: 10px;
 }
 
 #information {
-    width: 40%;
+    width: 50%;
     height: 300px;
-    margin-right: 15px;
+    margin-right: 10px;
     background: rgba(238, 238, 238, 1);
     padding-left: 20px;
     padding-right: 20px;
@@ -76,7 +76,7 @@ body {
 .title {
     font-size: 1.5rem;
     font-weight: 500;
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.525rem;
 }
 
 .title-under {
@@ -219,4 +219,40 @@ button:active {
     border-right: .0625rem solid #efefef;
     overflow: hidden;
     width: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        text-align: center;
+    }
+
+    .header .title {
+        font-size: 24px;
+    }
+
+    .header .title-under {
+        font-size: 14px;
+    }
+
+    #contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #contact .form-account {
+        width: 100%;
+    }
+
+    #contact .image {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    #contact .image .url-image {
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
 }
