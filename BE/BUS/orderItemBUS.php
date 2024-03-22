@@ -33,6 +33,16 @@
             } 
             return null;
         }
+
+        public function getorderItemByOrderId($id) {
+            $list = array();
+            foreach ($this->orderItemList as $orderItem) {
+                if ($orderItem['order_id'] == $id) {
+                    $list[] = $orderItem;
+                }
+            } 
+            return $list;
+        }
         
 
         public function getMax() {

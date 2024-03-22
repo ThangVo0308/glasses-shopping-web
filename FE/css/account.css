@@ -129,7 +129,7 @@ body {
     cursor: pointer;
     height: 100%;
     width: 100%;
-    background-image: url('http://nld.mediacdn.vn/2019/1/28/linh-7-15486326465131429726482-15486326803381550820805.png');
+    background-image: url('../../images/login.png');
 }
 
 input[type="file" i] {

@@ -32,6 +32,16 @@
             } 
             return null;
         }
+
+        public function getOrderByUserId($id) {
+            $listOrder = array();
+            foreach ($this->orderList as $order) {
+                if ($order['user_id'] == $id) {
+                    $listOrder[] = $order;
+                }
+            } 
+            return $listOrder;
+        }
         
 
         public function getMax() {

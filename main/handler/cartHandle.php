@@ -15,6 +15,7 @@ require_once("../../enum/OrderStatus.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = $_POST['data'];
 
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
 
     $userID =  $_SESSION['currentUser']['id'] ?? null;
     $currentDate = date('Y-m-d H:i:s');

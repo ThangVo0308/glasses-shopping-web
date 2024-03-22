@@ -1,12 +1,12 @@
 <?php
 header('Content-Type: application/json');
+session_start();
 require_once("../../BE/BUS/userBUS.php");
 require_once("../../model/users.php");
 require_once("../../enum/UserStatus.php");
 require_once("../../validation/validate.php");
-
-
-// $auth = $_SERVER['REQUEST_METHOD'] === 'POST';
+require_once("../../BE/BUS/addressBUS.php");
+require_once("../../model/address.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '';
@@ -52,9 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, null, "../../icons/whiteUser.png", 3, $address, UserStatus::ACTIVE);
+    $newUser = new users(userBUS::getInstance()->getMax(), $username, $password, $email, $name, $phone, null, null, 3, $address, UserStatus::ACTIVE);
     $userBus = userBUS::getInstance()->addUser($newUser);
-    if ($userBus) {
+    $address = new Address(addressBUS::getInstance()->getMax(),$_SESSION['currentUser']['id'],$address,$name,$phone);
+    $addressBus = addressBUS::getInstance()->addAddress($address);
+
+    if ($userBus && $addressBus) {
         $response['check'] = true;
     } else {
         $response['check'] = false;

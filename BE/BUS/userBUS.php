@@ -77,34 +77,6 @@
                 throw new InvalidArgumentException('Invalid information, check your input again!!');          
             }
 
-            foreach($this->userList as $curUser) {
-                if(strcmp($curUser->getUsername(),$user->getUsername()) == 0) {
-                    throw new InvalidArgumentException('Username existed');          
-                }
-
-                if(strcmp($curUser->getEmail(),$user->getEmail()) == 0 ) {
-                    throw new InvalidArgumentException('Email existed');          
-                }
-
-                if(strcmp($curUser->getPhone(),$user->getPhone()) == 0) {
-                    throw new InvalidArgumentException('Phone existed');          
-                }
-            }
-            
-            $validPhone = $user->getPhone() != null && !empty($user->getPhone());
-            $validEmail = $user->getEmail() != null && !empty($user->getEmail());
-
-            $validate = new Validate();
-
-            if ($validPhone && !$validate->isValidPhoneNumber($user->getPhone())) {
-                throw new InvalidArgumentException('Invalid phone number ');
-            }
-
-            
-            if ($validEmail && !$validate->isValidEmail($user->getEmail())) {
-                throw new InvalidArgumentException('Invalid email');
-            }
-
             $result = userDAL::getInstance()->updateUser($user);
             if($result) {
                 $index = array_search($user,$this->userList,true);

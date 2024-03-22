@@ -88,7 +88,7 @@
 
         public function updateUser(users $user) {
             try {
-                $query = "update payments set username=?, password = ?, email=?, name=?, phone=?, gender=?, image=?, role_id=?, address=?, status=? where id=?";
+                $query = "update users set username=?, password = ?, email=?, name=?, phone=?, gender=?, image=?, role_id=?, address=?, status=? where id=?";
                 $statement = $this->connection->prepare($query);
 
                 $username = $user->getUsername();

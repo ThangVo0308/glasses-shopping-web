@@ -1,3 +1,10 @@
+<?php
+require_once("../../BE/BUS/orderBUS.php");
+require_once("../../BE/BUS/addressBUS.php");
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +40,7 @@
         </div>
         <?php
         require_once("../../BE/BUS/orderBUS.php");
-        $orderList = orderBUS::getInstance()->getAllorder();
+        $orderList = orderBUS::getInstance()->getOrderByUserId($_SESSION['currentUser']['id']);
         ?>
         <div id="products">
             <?php foreach ($orderList as $order) : ?>
@@ -41,12 +48,12 @@
                     <div class="item">  
                         <span><?php echo $order['id']; ?></span>
                         <span class="date"><?php echo $order['order_date']; ?></span>
-                        <span id="totalPrice"><?php echo $order['total_price']; ?></span>
-                        <span class="address"><?php echo $order['address']; ?></span>
-                        <span class="name_received"><?php echo $order['name_received']; ?></span>
-                        <span class="phone_received"><?php echo $order['phone_received']; ?></span>
+                        <span id="totalPrice"><?php echo number_format($order['total_price']); ?></span>
+                        <span class="address"><?php echo addressBUS::getInstance()->getAddressByID($order['address_id'])['address_received']; ?></span>
+                        <span class="name_received"><?php echo addressBUS::getInstance()->getAddressByID($order['address_id'])['name_received']; ?></span>
+                        <span class="phone_received"><?php echo addressBUS::getInstance()->getAddressByID($order['address_id'])['phone_received']; ?></span>
                         <span class="status"><?php echo $order['status']; ?></span>
-                        <span id="deleteBtn">Xem chi tiết</span>
+                        <span id="deleteBtn" order-id="<?php echo $order['id']; ?>">Xem chi tiết</span>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -55,7 +62,7 @@
     </div>
     </div>
 
-    <iframe src="./detailsHistory.php?data=<?php echo urlencode(json_encode($orderList)); ?>" frameborder="0" id="details-history"></iframe>
+    <iframe src="./detailsHistory.php?data=<?php echo urlencode(json_encode($order['id'])); ?>" frameborder="0" id="details-history"></iframe>
 
 </body>
 
@@ -98,14 +105,18 @@ if (empty($orderList)) {
     echo '</div>';
 }
 ?>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-  var deleteButtons = document.querySelectorAll('.item #deleteBtn');
+  var deleteButtons = document.querySelectorAll('#deleteBtn');
 
-for (var i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].onclick = function() {
+  deleteButtons.forEach((deleteButton) => {
+    deleteButton.addEventListener('click',() => {
         document.getElementById('details-history').style.display = 'block';
-    };
-}
+
+        var idOrder =deleteButton.getAttribute('order-id');
+        var iframe = document.getElementById('details-history');
+        iframe.src = "./detailsHistory.php?data=" +encodeURIComponent(idOrder);
+    })
+  })
 
 </script>
