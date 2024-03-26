@@ -1,6 +1,6 @@
 <?php
-require_once("../../BE/BUS/orderBUS.php");
-require_once("../../BE/BUS/addressBUS.php");
+require_once("../../../BE/BUS/orderBUS.php");
+require_once("../../../BE/BUS/addressBUS.php");
 session_start();
 
 ?>
@@ -12,7 +12,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch sử mua hàng</title>
-    <link rel="stylesheet" href="../css/historyCart.css">
+    <link rel="stylesheet" href="../../css/historyCart.css">
 
 </head>
 
@@ -39,7 +39,7 @@ session_start();
             </div>
         </div>
         <?php
-        require_once("../../BE/BUS/orderBUS.php");
+        require_once("../../../BE/BUS/orderBUS.php");
         $orderList = orderBUS::getInstance()->getOrderByUserId($_SESSION['currentUser']['id']);
         ?>
         <div id="products">
