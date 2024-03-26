@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['currentUser'])) {
+    $_SESSION['currentUser'] = array();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,3 +22,21 @@ session_start();
 </body>
 
 </html>
+<script>
+    var currentUser = <?php echo json_encode($_SESSION['currentUser']); ?>;
+    var index = document.getElementById('index');
+    switch (currentUser['role_id']) {
+        case 1:
+            index.src = '../FE/html/admin.php';
+            break;
+        case 2:
+            index.src = '../FE/html/homeScreen.php';
+            break;
+        case 3:
+            index.src = '../FE/html/homeScreen.php';
+            break;
+        case 4:
+
+            break;
+    }
+</script>

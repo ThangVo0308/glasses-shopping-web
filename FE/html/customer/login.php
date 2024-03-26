@@ -131,7 +131,21 @@
                 success: function(res) {
                     if (res.response.check == true) {
                         alert("Xin chào: " + res.response.username);
-                        parent.window.location.reload();
+                        switch (parseInt(res.response.role_id)) {
+                            case 1:
+                                var index = parent.parent.document.getElementById('index');
+                                index.src ='../FE/html/admin.php';
+                                break;
+                            case 2:
+                                
+                                break;
+                            case 3:
+                                parent.document.location.reload();
+                                break;
+                            case 4:
+                                
+                                break;
+                        }
 
                     } else if (res.response.check == false) {
                         alert("Sai tài khoản hoặc mật khẩu");
