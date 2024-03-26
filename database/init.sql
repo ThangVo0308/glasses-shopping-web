@@ -16,7 +16,7 @@ CREATE TABLE
         `name` VARCHAR(50) NOT NULL,
         `phone` VARCHAR(10) NOT NULL,
         `gender` INT,
-        `image` VARCHAR(255) NOT NULL,
+        `image` longtext NOT NULL,
         `role_id` INT,
         `address` VARCHAR(100) NOT NULL,
         `status` ENUM ('active', 'inactive') NOT NULL DEFAULT "active",
