@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../../BE/BUS/addressBUS.php");
+require_once("../../../../BE/BUS/addressBUS.php");
 
 $addressModel = addressBUS::getInstance()->getAlladdress();
 ?>
@@ -65,8 +65,8 @@ $addressModel = addressBUS::getInstance()->getAlladdress();
 </div>
 
 
-<link rel="stylesheet" href="../../css/cart/address.css">
-<script src="../../controller//cart/address.js"></script>
+<link rel="stylesheet" href="../../../css/cart/address.css">
+<script src="../../../controller//cart/address.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
     function chooseAddress(addressId) {
@@ -106,7 +106,7 @@ $addressModel = addressBUS::getInstance()->getAlladdress();
 
         $.ajax({
             type: "POST",
-            url: "../../../main/handler/addressHandle.php",
+            url: "../../../../main/handler/addressHandle.php",
             data: data,
             dataType: 'json',
             success: function(res) {
@@ -132,7 +132,7 @@ $addressModel = addressBUS::getInstance()->getAlladdress();
             addressId = btnUpdate.getAttribute('address-id');
             $.ajax({
                 type: "POST",
-                url: "../../../../main/handler/showUpdateAddress.php",
+                url: "../../../../../main/handler/showUpdateAddress.php",
                 data: {
                     id: addressId
                 },
@@ -154,7 +154,7 @@ $addressModel = addressBUS::getInstance()->getAlladdress();
     updateBtn.addEventListener('click', () => {
         $.ajax({
             type: "POST",
-            url: "../../../../main/handler/updateAddress.php",
+            url: "../../../../../main/handler/updateAddress.php",
             data: {
                 id: addressId,
                 userID: <?php echo $_SESSION['currentUser']['id'] ?>,
@@ -187,7 +187,7 @@ $addressModel = addressBUS::getInstance()->getAlladdress();
             if (confirm("Bạn có chắc chắn muốn xóa địa chỉ này?")) {
                 $.ajax({
                     type: "POST",
-                    url: '../../../../main/handler/deleteAddress.php',
+                    url: '../../../../../main/handler/deleteAddress.php',
                     data: {
                         id: addressId,
                     },

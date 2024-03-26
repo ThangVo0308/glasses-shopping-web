@@ -42,7 +42,7 @@ var interval = setInterval(() => {
 
         mainImage.src = nextImage.src;
         currentIndex = (currentIndex + 1) % data.length; 
-        nextImage.src = '../../images/' + data[currentIndex];
+        nextImage.src = '../../../images/' + data[currentIndex];
     }
 
 }, 4000);

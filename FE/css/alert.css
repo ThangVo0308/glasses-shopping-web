@@ -16,13 +16,14 @@
     padding: 15px;
     max-width: 400px;
     top: 40px;
+    right: 169px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     animation-name: alert;
     animation-duration: 0.8s;
 }
 @keyframes alert {
-    0%   {top:-40px;}
-    100%  {top:40px;}
+    0%   {right:-100px;}
+    100%  {right:169px;}
 }
 #btnClose {
     position: absolute;

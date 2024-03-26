@@ -62,7 +62,7 @@
                 <div class="toggle">
                     <div class="toggle-panel toggle-left">
                         <h1>Chào mừng đến với PreVision</h1>
-                        <img src="../../images/logo.png" alt="" class="imgLogo">
+                        <img src="../../../images/logo.png" alt="" class="imgLogo">
                         <p>Nhập thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
                         <button class="hidden" id="login">Đăng nhập</button>
                     </div>
@@ -71,7 +71,7 @@
                         <div class="wc-box">
                             <div class="close" id="closeButton-1"></div>
                         </div>
-                        <img src="../../images/logo.png" alt="" class="imgLogo">
+                        <img src="../../../images/logo.png" alt="" class="imgLogo">
                         <p>Bạn chưa có tài khoản hãy đăng ký ngay</p>
                         <button class="hidden" id="register">Đăng ký</button>
                     </div>
@@ -82,8 +82,8 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link rel="stylesheet" href="../css/login/login.css">
-<script src="../controller/login.js"></script>
+<link rel="stylesheet" href="../../css/login/login.css">
+<script src="../../controller/login.js"></script>
 <script>
     $(document).ready(function() {
         function signupHandle(url, method, data1) {
@@ -131,7 +131,7 @@
                 success: function(res) {
                     if (res.response.check == true) {
                         alert("Xin chào: " + res.response.username);
-                        parent.window.location.reload();
+                        // parent.window.location.reload();
 
                     } else if (res.response.check == false) {
                         alert("Sai tài khoản hoặc mật khẩu");

@@ -1,12 +1,12 @@
 <body>
     <div id="path">
         <a>Trang chủ</a>
-        <img src="../../icons/next.png" alt="" srcset="">
+        <img src="../../../icons/next.png" alt="" srcset="">
         <a id="current-path" >Sản Phẩm</a>
     </div>
 </body>
 
-<link rel="stylesheet" href="../css/path.css">
+<link rel="stylesheet" href="../../css/path.css">
 
 <script>
     var currentPath =document.getElementById('current-path');

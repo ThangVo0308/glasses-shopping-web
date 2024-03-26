@@ -2,15 +2,15 @@
 $data = json_decode($_GET['data'], true);
 ?>
 <div id="alertForm">
-    <img id="btnClose" src="../../icons/close.png" alt="">
+    <img id="btnClose" src="../../../icons/close.png" alt="">
     <div>
-        <img id="icon-alert" src="../../icons/eyeglasses.png" alt="">
+        <img id="icon-alert" src="../../../icons/eyeglasses.png" alt="">
         <span id="title-alert" class="section">Opps!</span>
     </div>
     <span class="section" ><?php echo $data['value'] ?></span>
 </div>
-<link rel="stylesheet" href="../css/alert.css">
-<script src="../controller/alert.js"></script>
+<link rel="stylesheet" href="../../css/alert.css">
+<script src="../../controller/alert.js"></script>
 
 <script>
     <?php
@@ -39,7 +39,7 @@ $data = json_decode($_GET['data'], true);
             sections.forEach(function(section) {
                 section.style.color = 'rgb(193, 42, 42)';
             });
-            icon.src = '../../icons/error_alert.png';
+            icon.src = '../../../icons/error_alert.png';
             titleAlert.textContent = 'Oops!'
             break;
 
@@ -49,7 +49,7 @@ $data = json_decode($_GET['data'], true);
             sections.forEach(function(section) {
                 section.style.color = 'rgb(15, 83, 138)';
             });
-            icon.src = '../../icons/warning_alert.png';
+            icon.src = '../../../icons/warning_alert.png';
             titleAlert.textContent = 'Warning!'
             break;
 
@@ -59,7 +59,7 @@ $data = json_decode($_GET['data'], true);
             sections.forEach(function(section) {
                 section.style.color = 'rgb(40, 140, 42)';
             });
-            icon.src = '../../icons/tick_alert.png';
+            icon.src = '../../../icons/tick_alert.png';
             titleAlert.textContent = 'Nice!'
             break;
     }

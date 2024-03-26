@@ -1,7 +1,7 @@
 <?php
-require_once("../../../BE/BUS/discountBUS.php");
-require_once("../../../BE/BUS/discountItemBUS.php");
-require_once("../../../BE/BUS/productBUS.php");
+require_once("../../../../BE/BUS/discountBUS.php");
+require_once("../../../../BE/BUS/discountItemBUS.php");
+require_once("../../../../BE/BUS/productBUS.php");
 
 session_start();
 
@@ -15,9 +15,9 @@ if (!isset($_SESSION['currentUser'])) {
     $_SESSION['currentUser'] = array();
 }
 
-require_once("../../../BE/BUS/productBUS.php");
-require_once("../../../BE/BUS/discountItemBUS.php");
-require_once("../../../BE/BUS/discountBUS.php");
+require_once("../../../../BE/BUS/productBUS.php");
+require_once("../../../../BE/BUS/discountItemBUS.php");
+require_once("../../../../BE/BUS/discountBUS.php");
 
 $discountModel = null;
 
@@ -32,7 +32,7 @@ foreach ($listDiscountItem as $item) {
 
 <div id="product-detail">
     <?php 
-        echo "<img src='../../../images/" .$product['image']. "' alt=''>";
+        echo "<img src='../../../../images/" .$product['image']. "' alt=''>";
     ?>
     <div id="infor">
         <h3 id="name-product"><?php echo $product['name']; ?></h3>
@@ -98,7 +98,7 @@ foreach ($listDiscountItem as $item) {
             <button id="decrease">-</button>
             <input id="quantity" type="text" value="1">
             <button id="increase">+</button>
-            <img src="../../../icons/tick.png" alt="">
+            <img src="../../../../icons/tick.png" alt="">
             <span class="status">
                 <?php
                     if($product['quantity'] == 0) {
@@ -116,7 +116,7 @@ foreach ($listDiscountItem as $item) {
             <button id="addToCart">Thêm vào giỏ hàng</button>
         </div>
     </div>
-    <link rel="stylesheet" href="../../css/productStyle/productDetail.css">
+    <link rel="stylesheet" href="../../../css/productStyle/productDetail.css">
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 

@@ -9,12 +9,12 @@ $productList = json_decode($_GET['data'], true);
 
 </div>
 
-<link rel="stylesheet" href="../../css/productStyle/product.css">
+<link rel="stylesheet" href="../../../css/productStyle/product.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
     // show total page of products
-    pagination('../../../main/handler/pagination.php', 'POST', {
+    pagination('../../../../main/handler/pagination.php', 'POST', {
         data: <?php echo json_encode($productList) ?>
     })
 
@@ -36,7 +36,7 @@ $productList = json_decode($_GET['data'], true);
                     switchPage.append(switchContent);
                 }
 
-                pageProducts('../../../main/handler/pageProduct.php', 'POST', {
+                pageProducts('../../../../main/handler/pageProduct.php', 'POST', {
                     page: currentPage,
                     data: <?php echo json_encode($productList) ?>
                 })
@@ -45,7 +45,7 @@ $productList = json_decode($_GET['data'], true);
                 switchIDs.forEach((switchID) => {
                     switchID.addEventListener('click', () => {
                         currentPage = parseInt(switchID.getAttribute('page'));
-                        pageProducts('../../../main/handler/pageProduct.php', 'POST', {
+                        pageProducts('../../../../main/handler/pageProduct.php', 'POST', {
                             page: currentPage,
                             data: <?php echo json_encode($productList) ?>
                         })

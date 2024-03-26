@@ -1,6 +1,6 @@
 <?php
-require_once("../../BE/BUS/orderItemBUS.php");
-require_once("../../BE/BUS/productBUS.php");
+require_once("../../../BE/BUS/orderItemBUS.php");
+require_once("../../../BE/BUS/productBUS.php");
 if (isset($_GET['data'])) {
     $id = $_GET['data'];
 }
@@ -40,7 +40,7 @@ $orderItemList = orderItemBUS::getInstance()->getorderItemByOrderId($id);
                             <span class="order"><?php echo $orderItem['order_id']; ?></span>
                             <span id="product"><?php echo productBUS::getInstance()->getProductById($orderItem['product_id'])['name'] ?></span>
                             <?php
-                            echo "<img src='../../../images/" . productBUS::getInstance()->getProductById($orderItem['product_id'])['image'] . "' alt='' class='image'>";
+                            echo "<img src='../../../../images/" . productBUS::getInstance()->getProductById($orderItem['product_id'])['image'] . "' alt='' class='image'>";
                             ?>
                             <span class="quantity"><?php echo $orderItem['quantity']; ?></span>
                             <span class="price"><?php echo number_format($orderItem['price']); ?></span>
@@ -50,7 +50,7 @@ $orderItemList = orderItemBUS::getInstance()->getorderItemByOrderId($id);
             </div>
         </div>
     </div>
-    <link rel="stylesheet" href="../css/detailsHistory.css">
+    <link rel="stylesheet" href="../../css/detailsHistory.css">
 
     <script>
         var detailsIframe = parent.document.getElementById('details-history');

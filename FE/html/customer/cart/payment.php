@@ -56,7 +56,7 @@ $total = $data['total'];
         <button id="btnPay">Thanh toán</button>
     </div>
 </div>
-<link rel="stylesheet" href="../../css/cart/payment.css">
+<link rel="stylesheet" href="../../../css/cart/payment.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
     var paymentIframe = parent.document.getElementById('payment');
@@ -83,7 +83,7 @@ $total = $data['total'];
 
     payBtn.addEventListener('click', () => {
         console.log(data);
-        cartHandle('../../../main/handler/cartHandle.php', 'POST', {
+        cartHandle('../../../../main/handler/cartHandle.php', 'POST', {
             data: data,
         });
     });
@@ -102,10 +102,10 @@ $total = $data['total'];
                         'value' => 'Thanh toán thành công',
                         'status' => 'success',
                         'reload' => 2000,
-                        'link' => '../FE/html/historyCart.php',
+                        'link' => './customer/historyCart.php',
                     ];
                     ?>
-                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+                    alert.src = '../../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
                     alert.style.display = 'flex';
 
                 } else {
@@ -116,7 +116,7 @@ $total = $data['total'];
                         'reload' => 2000,
                     ];
                     ?>
-                    alert.src = '../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
+                    alert.src = '../../FE/html/alert.php?data=<?php echo json_encode($data) ?>';
                     alert.style.display = 'flex';
 
                 }

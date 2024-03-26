@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once("../../../BE/BUS/userBUS.php");
-require_once("../../../BE/BUS/pointBUS.php");
-require_once("../../../BE/BUS/discountBUS.php");
-require_once("../../../BE/BUS/addressBUS.php");
+require_once("../../../../BE/BUS/userBUS.php");
+require_once("../../../../BE/BUS/pointBUS.php");
+require_once("../../../../BE/BUS/discountBUS.php");
+require_once("../../../../BE/BUS/addressBUS.php");
 $productList = [];
 
 if (!isset($_SESSION['currentUser'])) {
@@ -82,7 +82,7 @@ if (!isset($_GET['address'])) {
                         <input type="checkbox" name="checked" class="checkBox" value="<?= $product['product']['id'] ?>">
                         <span><?php echo $product['product']['name']; ?></span>
                         <?php
-                        echo "<img src='../../../images/" . $product['product']['image'] . "' alt=''>";
+                        echo "<img src='../../../../images/" . $product['product']['image'] . "' alt=''>";
                         ?>
                     </div>
                     <div class="item">
@@ -106,11 +106,11 @@ if (!isset($_GET['address'])) {
         </div>
 
         <div id="statistical">
-            <img class="pinImage" src="../../../icons/pin.png" alt="">
+            <img class="pinImage" src="../../../../icons/pin.png" alt="">
             <div id="addressForm">
                 <div>
                     <div>
-                        <img src="../../../icons/address.png" alt="">
+                        <img src="../../../../icons/address.png" alt="">
                         <span>Địa chỉ giao hàng</span>
                     </div>
                     <div id="detail">
@@ -122,7 +122,7 @@ if (!isset($_GET['address'])) {
                 <span id="btnChangeAddress">Thay đổi</span>
             </div>
             <div id="voucherForm">
-                <img src="../../../icons/coupon.png" alt="">
+                <img src="../../../../icons/coupon.png" alt="">
                 <span id="selectStatus">Bạn đã chọn 0 sản phẩm</span>
                 <span id="valueVoucher">0đ</span>
             </div>
@@ -149,8 +149,8 @@ if (!isset($_GET['address'])) {
     <iframe src="./address.php" id="addressIframe" frameborder="0"></iframe>
 </div>
 
-<link rel="stylesheet" href="../../css/cart/cart.css">
-<script src="../../controller/cart/cart.js"></script>
+<link rel="stylesheet" href="../../../css/cart/cart.css">
+<script src="../../../controller/cart/cart.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
@@ -189,7 +189,7 @@ if (!isset($_GET['address'])) {
             } else {
                 $.ajax({
                     type: 'POST',
-                    url: '../../../main/handler/changeQuantityHandle.php',
+                    url: '../../../../main/handler/changeQuantityHandle.php',
                     data: {
                         index: index,
                         status: 'decrease'
@@ -216,7 +216,7 @@ if (!isset($_GET['address'])) {
             } else {
                 $.ajax({
                     type: 'POST',
-                    url: '../../../main/handler/changeQuantityHandle.php',
+                    url: '../../../../main/handler/changeQuantityHandle.php',
                     data: {
                         index: index,
                         status: 'increase'
@@ -257,7 +257,7 @@ if (!isset($_GET['address'])) {
         deleteBtn.addEventListener('click', () => {
             $.ajax({
                 type: 'POST',
-                url: '../../../../main/handler/deleteHandler.php',
+                url: '../../../../../main/handler/deleteHandler.php',
                 data: {
                     id: productList[index]['product']['id']
                 },

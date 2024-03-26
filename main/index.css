@@ -8,30 +8,13 @@ body, html {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background-image: url('../images/background.png');
     overflow: hidden;
+    background-image: url('../images/background.png');
 }
 
 iframe {
     padding: 0;
     margin: 0;
-}
-#header {
-    height: 90px;
-}
-#homeScreen {
-    height: 100%;
-}
-#login {
     height: 100%;
     width: 100%;
-    position: absolute;
-    display: none;
-}
-#alert {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    display: none;
-    background-color: rgba(0, 0, 0, 0.4);
 }

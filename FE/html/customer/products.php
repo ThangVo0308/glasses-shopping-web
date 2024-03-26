@@ -6,15 +6,15 @@
     <div id="signature">
         <div>
             <div class="item">
-                <img src="../../icons/premium.gif" alt="">
+                <img src="../../../icons/premium.gif" alt="">
                 <div>Hàng chính hãng, chất lượng cao</div>
             </div>
             <div class="item">
-                <img src="../../icons/cart.gif" alt="">
+                <img src="../../../icons/cart.gif" alt="">
                 <div>Miễn phí giao hàng với đơn 200k</div>
             </div>
             <div class="item">
-                <img src="../../icons/change.gif" alt="">
+                <img src="../../../icons/change.gif" alt="">
                 <div>Đổi hàng 7 ngày, thủ tục đơn giản</div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div id="type" class="option-filter">
                 <div class="btn" onclick="toggleDropdown('type-value',0)">
                     <h3>Danh mục</h3>
-                    <img src="../../icons/menu_on.png" class="icon-menu" alt="">
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="type-value" class="value-filter">
                     <label>
@@ -47,7 +47,7 @@
             <div id="gender" class="option-filter">
                 <div class="btn" onclick="toggleDropdown('gender-value',1)">
                     <h3>Giới tính</h3>
-                    <img src="../../icons/menu_on.png" class="icon-menu" alt="">
+                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="gender-value" class="value-filter">
                     <label>
@@ -62,7 +62,7 @@
             <div id="price" class="option-filter">
                 <div class="btn" onclick="toggleDropdown('price-value',2)">
                     <h3>Giá tiền</h3>
-                    <img src="../../../icons/menu_on.png" class="icon-menu" alt="">
+                    <img src="../../../../icons/menu_on.png" class="icon-menu" alt="">
                 </div>
                 <div id="price-value" class="value-filter">
                     <input type="range" min="0" max="5000000" step="250000" value="0" id="myRange" name="price">
@@ -73,7 +73,7 @@
         </div>
 
         <?php
-        require_once("../../BE/BUS/productBUS.php");
+        require_once("../../../BE/BUS/productBUS.php");
         $productList = productBUS::getInstance()->getActiveProduct(); ?>
         <div id="products">
             <iframe src="./product/productList.php?data=<?php echo urlencode(json_encode($productList)); ?>" id="productForm" frameborder="0"></iframe>
@@ -82,9 +82,9 @@
     <iframe src="./product/productDetail.php" frameborder="0" id="product-detail"></iframe>
 </body>
 
-<link rel="stylesheet" href="../css/products.css">
-<script src="../controller/product/productList.js"></script>
-<script src="../controller/product/product.js"></script>
+<link rel="stylesheet" href="../../css/products.css">
+<script src="../../controller/product/productList.js"></script>
+<script src="../../controller/product/product.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>

@@ -16,7 +16,7 @@
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     animation-name: product-detail;
-    animation-duration: 1s;
+    animation-duration: 0.6s;
 }
 @keyframes product-detail {
     0%   {top: 0%;}
@@ -43,13 +43,11 @@ img {
     padding-top: 6px;
     bottom: -3;
     animation-name: product-infor;
-    animation-duration: 1.2s;
+    animation-duration: 0.65s;
 }
 
 @keyframes product-infor {
-    0% {bottom: 1000;}
-    40% {bottom: -3;}
-    65% {bottom: 55;}
+    0% {bottom: 500;}
     100% {bottom: -3;}
 }
 #name-product {
