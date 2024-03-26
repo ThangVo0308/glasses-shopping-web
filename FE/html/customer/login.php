@@ -131,7 +131,7 @@
                 success: function(res) {
                     if (res.response.check == true) {
                         alert("Xin chào: " + res.response.username);
-                        // parent.window.location.reload();
+                        parent.window.location.reload();
 
                     } else if (res.response.check == false) {
                         alert("Sai tài khoản hoặc mật khẩu");
@@ -147,7 +147,7 @@
 
             var formData = $(this).serialize();
 
-            signupHandle('../../main/handler/signupHandle.php', 'POST', formData);
+            signupHandle('../../../main/handler/signupHandle.php', 'POST', formData);
         });
 
         $('form[name="signin"]').submit(function(e) {
@@ -155,7 +155,7 @@
 
             var formData = $(this).serialize();
 
-            signinHandle('../../main/handler/signinHandle.php', 'POST', formData);
+            signinHandle('../../../main/handler/signinHandle.php', 'POST', formData);
         });
     });
 

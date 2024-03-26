@@ -139,7 +139,7 @@
         var selectedGender = genderValue ? genderValue.value : 'defaultGender';
 
 
-        selectHandle('../../main/handler/searchAjax.php', 'POST', {
+        selectHandle('../../../main/handler/searchAjax.php', 'POST', {
             searchValue: searchValue,
             type: selectedType,
             gender: selectedGender,

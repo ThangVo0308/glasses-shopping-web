@@ -21,6 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $users[] = $jsonUser;
 
         if ($username === $jsonUser['username'] && $password === $jsonUser['password']) {
+            $response['role_id'] = $jsonUser['role_id'];
             $_SESSION['currentUser'] = $jsonUser;
             $response['check'] = true;
             break; 
