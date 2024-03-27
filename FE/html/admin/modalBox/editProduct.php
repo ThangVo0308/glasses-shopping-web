@@ -1,68 +1,34 @@
 <?php
 session_start();
 if(isset($_POST['id'])) {
-    $id = intval($_POST['id'])-1;
+    $id = intval($_POST['id']);
 }   
-echo $id;
-$product = [
+require_once("../../../BE/BUS/categoryBUS.php");
+require_once("../../../BE/BUS/productBUS.php");
+$product = productBUS::getInstance()->getProductById($id);
+$category = categoryBUS::getInstance()->getAllCategory();
+$gender=[
     [
-        'id' => 1,
-        'name' => 'Sản phẩm 1',
-        'category' => 'Gọng kính',
-        'gender' => 'Nam',
-        'price' => 15000,
-        'quantity' => 100,
-        'status' => 'Active',
-        'image'=>'productDemo.png',
-        'describe'=>'tròn',
+    'id'=>1,
+    'name'=>"Nam"
     ],
     [
-        'id' => 2,
-        'name' => 'Sản phẩm 2',
-        'category' => 'Kính mát',
-        'gender' => 'Nữ',
-        'price' => 30000,
-        'quantity' => 75,
-        'status' => 'Inactive',
-        'image'=>'productDemo.png',
-        'describe'=>'tròn',
-    ],
-
-];
-$category = [
-    [
-        'category_id' => 1,
-        'category_name' =>'Gọng kính',
+        'id'=>0,
+        'name'=>"Nữ"
     ],
     [
-        'category_id' => 2,
-        'category_name' =>'Kính mát',
-    ],
-];
-$gender = [
+        'id'=>2,
+        'name'=>"Unisex"
+        ]
+    ];
+$status=[
     [
-        'gender_id' => 0,
-        'gender_name' =>'Tất cả',
-    ],
-    [
-        'gender_id' => 1,
-        'gender_name' =>'Nam',
+        'id'=>"active",
     ],
     [
-        'gender_id' => 2,
-        'gender_name' =>'Nữ',
+        'id'=>"soldout",
     ],
-];
-$status = [
-    [
-        'status_id' => 1,
-        'status_name' =>'Active',
-    ],
-    [
-        'status_id' => 2,
-        'status_name' =>'Inactive',
-    ],
-];
+    ];
 ?>
 <div class="modal-placeholder" id="edit-product">
     <div class="modal-box">
@@ -73,22 +39,24 @@ $status = [
         <div class="modal-info">
                 <div class="modal-item">
                     <div class="item-header">Mã sản phẩm</div>
-                    <div class="item-input"><input type="text" class="product_id" value="<?= $product[$id]['id']?>" disabled></div>
+                    <div class="item-input"><input type="text" class="product_id" value="<?= $product['id']?>" disabled></div>
                 </div> 
                 <div class="modal-item">
                     <div class="item-header">Tên sản phẩm</div>
-                    <div class="item-input"><input type="text" class="product_name" value="<?= $product[$id]['name']?>" ></div>
+                    <div class="item-input"><input type="text" class="product_name" value="<?= $product['name']?>" ></div>
                 </div>
                 <div class="modal-item">
                 <div class="item-header">Loại sản phẩm</div>
                 <div class="item-input"><select class="product_kind" name="" id="" >
-                    <option value="<?= $product[$id]['category'] ?>"><?= $product[$id]['category']?></option>
+                    <option value="<?= $product['category_id'] ?>"><?php $categoryInfo = CategoryBUS::getInstance()->getCategoryById(intval($product['category_id']));
+                        echo $categoryInfo['name'];
+                        ?></option>
                     <?php foreach ($category as $cat): ?>
-                        <?php if ($cat['category_name'] ==$product[$id]['category']){
+                        <?php if ($cat['id']==$product['category_id']){
                             continue;
                         }
                         ?>
-                        <option value="<?= $cat['category_id']?>"><?=$cat['category_name']?></option>
+                        <option value="<?= $cat['id']?>"><?=$cat['name']?></option>
                         <?php endforeach ?>
                 </select>
                 </div>
@@ -96,37 +64,41 @@ $status = [
                 <div class="modal-item">
                 <div class="item-header">Giới tính</div>
                 <div class="item-input"><select class="product_gender" name="" id="">
-                    <option value="<?= $product[$id]['gender'] ?>"><?= $product[$id]['gender']?></option>
+                    <option value="<?= $product['gender'] ?>"><?php if($product['gender']==1){
+                            echo "Nam";
+                        } else if($product['gender']==0){
+                            echo "Nữ";
+                        } else {echo "Unisex";}?></option>
                     <?php foreach ($gender as $g): ?>
-                        <?php if($g['gender_name']==$product[$id]['gender']){
+                        <?php if($g['id']==$product['gender']){
                             continue;
                         }
                         ?>
-                        <option value="<?=$g['gender_id']?>"><?=$g['gender_name']?></option>
+                        <option value="<?=$g['id']?>"><?=$g['name']?></option>
                         <?php endforeach ?>
                 </select>
                 </div>
                 </div>
                 <div class="modal-item">
                     <div class="item-header">Giá</div>
-                    <div class="item-input"><input type="text" class="product_price" value="<?= $product[$id]['price'] ?>" >
+                    <div class="item-input"><input type="text" class="product_price" value="<?= $product['price'] ?>" >
                     </div>
                 </div>
                 <div class="modal-item">
                     <div class="item-header">Số lượng</div>
-                    <div class="item-input"><input type="text" class="product_quantity" value="<?= $product[$id]  ['quantity'] ?>"
+                    <div class="item-input"><input type="text" class="product_quantity" value="<?= $product  ['quantity'] ?>"
                             disabled></div>
                 </div>
                 <div class="modal-item">
                 <div class="item-header">Trạng thái</div>
                 <div class="item-input"><select class="product_status" name="" id="" >
-                    <option value="<?= $product[$id]['status'] ?>"><?= $product[$id]['status']?></option>
+                    <option value="<?= $product['status'] ?>"><?= $product['status']?></option>
                     <?php foreach ($status as $s): ?>
-                        <?php if($s['status_name']==$product[$id]['status']){
+                        <?php if($s['id']==$product['status']){
                             continue;
                         }
                         ?>
-                        <option value="<?=$s['status_id']?>"><?=$s['status_name']?></option>
+                        <option value="<?=$s['id']?>"><?=$s['id']?></option>
                         <?php endforeach ?>
                 </select>
                 </div>
@@ -138,14 +110,14 @@ $status = [
             <div class="modal-item">
                 <div class="item-header" style="font-size:calc(10px + 1vw);margin-left:10px">Hình ảnh</div>
                 <div class="item-input img-container">
-                    <img width="100%" src="../../../images/products/<?=$product[$id]['image']?>" alt="img" style="height: 200px;width:auto;margin-left:40px;">
+                    <img width="100%" name="product_image" src="../images/<?=$product['image']?>" alt="img" style="height: 200px;width:auto;margin-left:40px;">
                     <input type="button" value="Change" onclick="uploadImg()">
                     <input type="button" value="Delete" onclick="deleteImg()">
                 </div>
                 <div class="modal-item">
                     <div class="item-header" style="font-size:calc(10px + 1vw);margin-left:10px">Mô tả</div>
-                    <div class="item-input"><textarea cols="30" class="product_describe" rows="6"
-                            ><?= $product[$id]['describe'] ?></textarea>
+                    <div class="item-input"><textarea cols="30" class="product_description" rows="6"
+                            ><?= $product['description'] ?></textarea>
                     </div>
                 </div> 
         </div>
@@ -153,11 +125,11 @@ $status = [
         <div class="modal-button">
             <div class="button-layout"></div>
             <div class="button-layout">
-                <div class="edit-button">
+                <div class="edit-button" onclick="updateProduct(<?=$product['id']?>)">
                 <div class="icon-placeholder"><i class="fa-solid fa-pen-to-square"></i></div>
                 <div class="info-placeholder">Lưu</div>
                 </div>
-                <div class="back-button" onclick="loadModalBoxByAjax('detailProduct',<?=$product[$id]['id']?>)">
+                <div class="back-button" onclick="loadModalBoxByAjax('detailProduct',<?=$product['id']?>)">
                 <div class="icon-placeholder"><i class="fa-solid fa-angle-left"></i></div>
                 <div class="info-placeholder">Hủy</div>
                 </div>

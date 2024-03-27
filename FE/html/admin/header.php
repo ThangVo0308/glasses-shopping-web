@@ -1,5 +1,4 @@
 <?php
-require ("../../../BE/DAL/database.php");
 session_start();
 $function = getFunction();
 ?>
@@ -7,7 +6,7 @@ $function = getFunction();
 <div class="background">
     <div class="top">
         <div class="logo-placeholder">
-            <img src="../../../images/logo.png" alt="logo">
+            <img src="../images/logo.png" alt="logo">
         </div>
         <div class="top-menu">
             <?php foreach ($function as $f): ?>          
@@ -30,31 +29,6 @@ $function = getFunction();
     </div>
 </div>
 <?php
-// Dùng database
-// function getFunction()
-// {
-//     $servername = 'localhost';
-//     $username = 'root';
-//     $password = '';
-//     $dbname = 'web2';
-
-//     try {
-//         $dp = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-//         $dp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     } catch (PDOException $e) {
-//         echo "Connection failed: " . $e->getMessage();
-//     }
-//     $sql = "SELECT tenChucNang, icon FROM chucnang ORDER BY maChucNang;";
-//     $stmt = $dp->prepare($sql);
-//     $stmt->execute();
-//     $functions= array();
-    
-//         while($row= $stmt->fetch(PDO::FETCH_ASSOC)){
-//             array_push($functions,$row);
-//         }
-//     return $functions;
-// }
-// Dùng array
 function getFunction()
  {
     $functions = [

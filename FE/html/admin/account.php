@@ -1,24 +1,9 @@
 <?php
 session_start();
-$account = [
-    [
-        'id' => 1,
-        'username' => 'account1',
-        'name' => 'nguyen van A',
-        'phone' => '091234567',
-        'role' => 1,
-        'status' => 'Active',
-    ],
-    [
-        'id' => 2,
-        'username' => 'account2',
-        'name' => 'nguyen van B',
-        'phone' => '097654321',
-        'role' => 1,
-        'status' => 'Inactive',
-    ],
-];
-$c=count($account);
+require_once("../../../BE/BUS/userBUS.php");
+require_once("../../../BE/BUS/roleBUS.php");
+$user = userBUS::getInstance()->getAlluser();
+
 ?>
 <div id="account">
     <div class="header">
@@ -35,39 +20,40 @@ $c=count($account);
     <div class="title" >Mã tài khoản</div>
     <div class="title">Tài khoản</div>
     <div class="title">Tên người dùng</div>
-    <div class="title">Số điện thoại</div>
+    <div class="title">Số điện thoại</div>  
     <div class="title">Vai trò</div>
     <div class="title">Trạng thái</div>
     </div>
 </div>
 <div class="list">
-    <?php for ($i=0;$i < count($account);$i++):?>
+    <?php foreach ($user as $u):?>
         <div class="placeholder">
             <div class="info">
                 <div class="item">
-                    <?= $account[$i]['id']?>
+                    <?= $u['id']?>
                 </div>
                 <div class="item">
-                    <?= $account[$i]['username']?>
+                    <?= $u['username']?>
                 </div>
                 <div class="item">
-                    <?= $account[$i]['name']?>
+                    <?= $u['name']?>
                 </div>
                 <div class="item">
-                    <?= $account[$i]['phone']?>
+                    <?= $u['phone']?>
                 </div>
                 <div class="item">
-                    <?= $account[$i]['role']?>
+                    <?php $role = roleBUS::getInstance()->getRoleById($u['role_id']);
+                          echo $role['name']; ?>
                 </div>
                 <div class="item">
-                    <?= $account[$i]['status']?>
+                    <?= $u['status']?>
                 </div>
-                <div class="item"onclick="loadModalBoxByAjax('detailAccount',<?=$i?>)">
+                <div class="item"onclick="loadModalBoxByAjax('detailAccount',<?=$u['id']?>)">
                     <i class="fa-solid fa-circle-info"></i>
                 </div>
             </div>
         </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
 </div>
 <div id="modal-box"></div>
 </div>

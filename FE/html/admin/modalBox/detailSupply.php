@@ -1,31 +1,10 @@
 <?php
-$id=$_POST['id'];
-$supply=[
-    [
-        'id'=>1,
-        'user'=>'Nhân viên 1',
-        'date'=>'10/3/2024',
-        'total'=>200000,
-    ],
-    [
-        'id'=>2,
-        'user'=>'Nhân viên 2',
-        'date'=>'11/3/2024',
-        'total'=>750000,
-    ],
-];
-$detailSupply=[
-    [
-        'product_id'=>1,
-        'price'=>1,
-        'quantity'=>1
-    ],
-    [
-        'product_id'=>2,
-        'price'=>2,
-        'quantity'=>2
-    ],
-]
+$id=intval($_POST['id']);
+require_once("../../../BE/BUS/importBUS.php");
+require_once("../../../BE/BUS/importItemBUS.php");
+require_once("../../../BE/BUS/userBUS.php");
+$import = importBUS::getInstance()->getImportById($id);
+$item = importItemBUS::getInstance()->getimportItemById($id);
 ?>
 <div class="modal-placeholder" id="detail-supply">
     <div class="modal-box">
@@ -36,25 +15,32 @@ $detailSupply=[
             <div class="modal-info">
             <div class="modal-item">
                 <div class="item-header">Mã nhập hàng</div>
-                <div class="item-input"><input type="text" class="supply_id" value="<?=$supply[$id]['id']?>" disabled>
+                <div class="item-input"><input type="text" class="supply_id" value="<?=$import['id']?>" disabled>
                 </div>
             </div>
             <div class="modal-item">
-                <div class="item-header">Người nhập</div>
-                <div class="item-input"><input type="text" class="supply_user" value="<?=$supply[$id]['user']?>" disabled>
+                <div class="item-header">Mã nhân viên</div>
+                <div class="item-input"><input type="text" class="supply_user" value="<?=$import['user_id']?>" disabled>
                 </div>
             </div>
             <div class="modal-item">
-                    <div class="item-header">Ngày nhập</div>
-                    <div class="item-input"><input type="text" class="supply_date"
-                            value="<?= date("d/m/Y", strtotime($supply[$id]['date'])) ?> " disabled>
-                    </div>
+                <div class="item-header">Tên nhân viên</div>
+                <div class="item-input"><input type="text" class="supply_user" value="<?php $user =userBUS::getInstance()->getUserById($import['user_id']);
+                    echo $user['name']; ?>" disabled>
+                </div>
             </div>
             <div class="modal-item">
                 <div class="item-header">Tổng tiền</div>
-                <div class="item-input"><input type="text" class="supply_total" value="<?=$supply[$id]['total']?>" disabled>
+                <div class="item-input"><input type="text" class="supply_total" value="<?=$import['total_price']?>" disabled>
                 </div>
             </div>
+            <div class="modal-item" style=" grid-column: 1 / 3; width: 90%; margin: 0 5%;">
+                    <div class="item-header">Ngày nhập</div>
+                    <div class="item-input"><input type="text" class="supply_date"
+                            value="<?=$import['import_date']?> " disabled>
+                    </div>
+            </div>
+            
         </div>
         </div>
     <div class="modal-right">
@@ -67,24 +53,25 @@ $detailSupply=[
             </div>
         </div>
         <div class="list">
-            <?php for ($i =0;$i <count($detailSupply);$i++): ?>
+            <?php $a=1;foreach ($item as $i): ?>
                 <div class="placeholder">
                     <div class="info">
                         <div class="item" style="padding: right 1px;">
-                        1
+                        <?=$a?>
                         </div>
                         <div class="item" style="padding: right 5px;">
-                            3
+                            <?=$item['product_id']?>
                         </div>
                         <div class="item">
-                            23333
+                            <?=$item['price']?>
                         </div>
                         <div class="item">
-                            50
+                            <?=$item['quantity']?>
                         </div>
                     </div>
                 </div>
-                <?php endfor;?>
+                <?php $a+=1;
+            endforeach;?>
         </div>
     </div>
     <div class="modal-button">

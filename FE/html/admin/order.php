@@ -1,23 +1,10 @@
 <?php 
 session_start();
-$order=[
-    [
-        'id'=>1,
-        'name'=> 'Nguyen van A',
-        'date'=>'27/02/2024',
-        'total'=>100000,
-        'discount'=>0,
-        'status'=>'Shipped'
-    ],
-    [
-        'id'=>2,
-        'name'=> 'Nguyen van B',
-        'date'=>'24/02/2024',
-        'total'=>50000,
-        'discount'=>0,
-        'status'=>'Pending'
-    ],
-    ];
+require_once("../../../BE/BUS/orderBUS.php");
+require_once("../../../BE/BUS/orderItemBUS.php");
+require_once("../../../BE/BUS/userBUS.php");
+$order = orderBUS::getInstance()->getAllorder();
+
 ?>
 <div id="order">
     <div class="header">
@@ -50,40 +37,45 @@ $order=[
             <div class="title">Mã đơn hàng</div>
             <div class="title">Tên khách hàng</div>
             <div class="title">Ngày mua hàng</div>
-            <div class="title">Giảm giá</div>
+            <div class="title">Điểm nhận</div>
+            <div class="title">Điểm dùng</div>
             <div class="title">Tổng tiền</div>
             <div class="title">Trạng thái</div>
         </div>
     </div>    
     <div class="list">
-        <?php for($i=0;$i <count($order);$i++): ?>
+        <?php foreach($order as $or): ?>
             <div class="placeholder">
                 <div class="info">
                     
                         <div class="item">
-                            <?=$order[$i]['id']?>
+                            <?=$or['id']?>
                         </div>
                         <div class="item">
-                            <?=$order[$i]['name']?>
+                            <?php $name= userBUS::getInstance()->getUserById($or['user_id']);
+                            echo $name['username'];?>
                         </div>
                         <div class="item">
-                            <?=$order[$i]['date']?>
+                            <?=$or['order_date']?>
                         </div>
                         <div class="item">
-                            <?=$order[$i]['discount']?>
+                            <?=$or['points_earned']?>
                         </div>
                         <div class="item">
-                            <?=$order[$i]['total']?>
+                            <?=$or['points_used']?>
                         </div>
                         <div class="item">
-                            <?=$order[$i]['status']?>
+                            <?=$or['total_price']?>
                         </div>
-                        <div class="item" onclick="loadModalBoxByAjax('detailOrder',<?=$i?>)">
+                        <div class="item">
+                            <?=$or['status']?>
+                        </div>
+                        <div class="item" onclick="loadModalBoxByAjax('detailOrder',<?=$or['id']?>)">
                             <i class="fa-solid fa-circle-info"></i>
                         </div>
                     </div>
                 </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </div>
             <div id="modal-box"></div>
     </div>

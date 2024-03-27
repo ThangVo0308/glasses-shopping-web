@@ -1,3 +1,13 @@
+<?php
+
+$id = intval($_POST['id']);
+require_once("../../../BE/BUS/discountBUS.php");
+require_once("../../../BE/BUS/productBUS.php");
+require_once("../../../BE/BUS/discountItemBUS.php");
+$discount = discountBUS::getInstance()->getdiscountById($id);
+$discountItem = discountItemBUS::getInstance()-> getProductsFromDiscountItem($id);
+
+?>
 <div class="modal-placeholder" id="edit-discount">
     <div class="modal-box">
         <div class="modal-header">
@@ -8,23 +18,23 @@
         <div class="modal-info">
             <div class="modal-item">
                 <div class="item-header">Mã giảm giá</div>
-                <div class="item-input"><input type="text" class="discount_id" value="1" disabled></div>
+                <div class="item-input"><input type="text" class="discount_id" value="<?=$discount['id']?>" disabled></div>
             </div>
             <div class="modal-item">
                 <div class="item-header">% Giảm giá</div>
-                <div class="item-input"><input type="text" class="discount_value" value="15" ></div>
+                <div class="item-input"><input type="text" class="discount_value" value="<?=$discount['discount_percent']?>" ></div>
             </div>
             <div class="modal-item" style=" grid-column: 1 / 3; width: 90%; margin: 0 5%;">
                 <div class="item-header">Tên chương trình</div>
-                <div class="item-input"><input type="text" class="discount_name" value="Khai xuân" ></div>
+                <div class="item-input"><input type="text" class="discount_name" value="<?=$discount['name']?>" ></div>
             </div>
             <div class="modal-item">
                 <div class="item-header">Ngày bắt đầu</div>
-                <div class="item-input"><input type="date" class="discount_start" value="<?php formatdate('2024/01/01')?>" ></div>
+                <div class="item-input"><input type="datetime" class="discount_start" value="<?=date('Y-m-d H:i:s', strtotime($discount['start_day']))?>" ></div>
             </div>
             <div class="modal-item">
                 <div class="item-header">Ngày kết thúc</div>
-                <div class="item-input"><input type="date" class="discount_end" value="<?php formatdate('2024/03/31')?>" ></div>
+                <div class="item-input"><input type="datetime" class="discount_end" value="<?=date('Y-m-d H:i:s', strtotime($discount['end_day']))?>" ></div>
             </div>
                     </div>
     </div>
@@ -38,27 +48,23 @@
             </div>
         </div>
     <div class="list">
-        <?php for ($i = 0;$i < 1;$i++):?>
+    <?php foreach ($discountItem as $ds):?>
             <div class="placeholder">
                 <div class="info">
                     <div class="item" value="">
-                        1
+                    <?=$ds['product_id']?>
                     </div>
                     <div class="item">
-                        Kính tròn
-                    </div>
-                    <div class="item">
-                        1000000
-                    </div>
-                    <div class="item">
-                        1
+                    <?php $product= productBUS::getInstance()->getProductById($ds['product_id']);
+                              echo $product['name'];
+                        ?>
                     </div>
                     <div class="item">
                         <i class="fa-solid fa-x" style="color:red"></i>
                     </div>
                 </div>
             </div>
-            <?php endfor; ?>
+            <?php endforeach; ?>
             
     </div>
     <div class="btnAdd">
@@ -72,7 +78,7 @@
                 <div class="icon-placeholder"><i class="fa-solid fa-pen-to-square"></i></div>
                 <div class="info-placeholder">Lưu</div>
             </div>
-                <div class="back-button" onclick="loadModalBoxByAjax('detailDiscount')">
+                <div class="back-button" onclick="loadModalBoxByAjax('detailDiscount',<?=$discount['id']?>)">
                 <div class="icon-placeholder"><i class="fa-solid fa-angle-left"></i></div>
                 <div class="info-placeholder">Back</div>
                 </div>
@@ -94,9 +100,4 @@
     </div>
 </div>
 <?php
-function formatdate($date) {
-    $arr = explode('/', $date);
-    $Date = $arr[0] . '-' . $arr[1] . '-' . $arr[2];
-    echo $Date;
-} 
 ?>

@@ -1,3 +1,8 @@
+<?php
+require_once("../../../BE/BUS/discountBUS.php");
+require_once("../../../BE/BUS/discountItemBUS.php");
+$discount=discountBUS::getInstance()->getAlldiscount();
+?>
 <div id="discount">
     <div class="header">
         <h2><i class="fa-solid fa-percent"></i> Giảm giá</h2>
@@ -18,28 +23,30 @@
             </div>
         </div>
         <div class="list">
+            <?php foreach($discount as $d):?>
         <div class="placeholder">
         <div class="info">
             <div class="item">
-                1
+                <?=$d['id']?>
             </div>
             <div class="item">
-                Khai Xuân
+                <?=$d['name']?>
             </div>
             <div class="item">
-                15
+            <?=$d['discount_percent']?>
             </div>
             <div class="item">
-                01/01/2024
+            <?=$d['start_day']?>
             </div>
             <div class="item">
-                31/03/2024
+            <?=$d['end_day']?>
             </div>
-            <div class="item" onclick="loadModalBoxByAjax('detailDiscount')">
+            <div class="item" onclick="loadModalBoxByAjax('detailDiscount',<?=$d['id']?>)">
             <i class="fa-solid fa-circle-info" ></i>
             </div>
         </div>
         </div>
+        <?php endforeach;?>
         </div>
         <div id="modal-box"></div></div>
     

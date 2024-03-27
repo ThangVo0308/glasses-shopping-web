@@ -1,64 +1,18 @@
 <?php
 session_start();
-$product = [
-    [
-        'id' => 1,
-        'name' => 'Sản phẩm 1',
-        'category' => 'Gọng kính',
-        'gender' => 'Nam',
-        'price' => 15000,
-        'quantity' => 100,
-        'status' => 'Active',
-        'image'=>'productDemo.png',
-        'describe'=>'tròn',
-    ],
-    [
-        'id' => 2,
-        'name' => 'Sản phẩm 2',
-        'category' => 'Kính mát',
-        'gender' => 'Nữ',
-        'price' => 30000,
-        'quantity' => 75,
-        'status' => 'Inactive',
-        'image'=>'productDemo.png',
-        'describe'=>'tròn',
-    ],
-    ];
-$category = [
-    [
-        'category_id' => 1,
-        'category_name' =>'Gọng kính',
-    ],
-    [
-        'category_id' => 2,
-        'category_name' =>'Kính mát',
-    ],
-];
-$gender = [
-    [
-        'gender_id' => 0,
-        'gender_name' =>'Tất cả',
-    ],
-    [
-        'gender_id' => 1,
-        'gender_name' =>'Nam',
-    ],
-    [
-        'gender_id' => 2,
-        'gender_name' =>'Nữ',
-    ],
-];
-$status = [
-    [
-        'status_id' => 1,
-        'status_name' =>'Active',
-    ],
-    [
-        'status_id' => 2,
-        'status_name' =>'Inactive',
-    ],
-];
-$c=count($product);
+require_once("../../../BE/BUS/productBUS.php");
+require_once("../../../BE/BUS/categoryBUS.php");
+$c= productBUS::getInstance()->getTotal();  
+    $product = productBUS::getInstance()->getAllProduct();
+    $cate = categoryBUS::getInstance()->getAllCategory();  
+if(isset($_POST['name']) )
+{
+    $name=$_POST['name'];
+    $product=productBUS::getInstance()->searchProduct($name,null,0,null,null);
+}   else {
+    $product = productBUS::getInstance()->getAllProduct();
+    
+}
 
 ?>
 <div id="product">
@@ -72,25 +26,25 @@ $c=count($product);
         </div>
         <div class="search-bar">
             <div class="search-input"><i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Bạn muốn tìm gì?">
+            <input type="text" placeholder="Bạn muốn tìm gì?" onchange="loadProductByAjax()">
             </div>
             <div class="filter-input">
                 <i class="fa-solid fa-filter"></i>
-                <select name="" id="">
+                <select name="" id="" onchange="">
                     <option value="0">All</option>
-                    <?php foreach ($category as $cat){
-                        echo "<option value='".$cat['category_id']."'>".$cat['category_name']."</option>";
+                    <?php foreach ($cate as $cat){
+                        echo "<option value='".$cat['id']."'>".$cat['name']."</option>";
                     }
                     ?>
                 </select>
         </div>
         <div class="date-begin price-begin">
-            <img src="../../../icons/coin.png">
-            <input type="text" name="" id="" placeholder="Giá bắt đầu" value="">
+            <img src="../icons/coin.png">
+            <input type="text" name="" id="" placeholder="Giá bắt đầu" value="" onchange="">
         </div>
         <div class="date-end price-end">
         <i class="fa-solid fa-coins"></i>
-            <input type="text" name="" id="" placeholder="Giá kết thúc" value="">
+            <input type="text" name="" id="" placeholder="Giá kết thúc" value="" onchange="">
         </div>        
     </div>
     </div>
@@ -98,7 +52,7 @@ $c=count($product);
         <div class="title-placeholder">
             <div class="title">Mã sản phẩm</div>
             <div class="title">Tên sản phẩm</div>
-            <div class="title">Loại kính</div>
+            <div class="title">Phân loại</div>
             <div class="title">Giới tính</div>
             <div class="title">Giá</div>
             <div class="title">Số lượng</div>
@@ -106,36 +60,45 @@ $c=count($product);
         </div>
     </div>
     <div class="list">
-        <?php for ($i = 0;$i < count($product);$i++): ?>
+        <?php foreach ($product as $p): ?>
             <div class="placeholder">
                 <div class="info">
                     <div class="item">
-                        <?=$product[$i]['id'] ?>
+                        <?=$p['id'] ?>    
                     </div>
                     <div class="item name">
-                        <?=$product[$i]['name'] ?>
+                        <?=$p['name'] ?>
                     </div>
                     <div class="item category">
-                        <?=$product[$i]['category'] ?>
+                        <?php         
+                        $categoryInfo = CategoryBUS::getInstance()->getCategoryById(intval($p['category_id']));
+                        echo $categoryInfo['name'];
+                        ?>
                     </div>
                     <div class="item">
-                        <?=$product[$i]['gender'] ?>
+                        <?php if($p['gender']==1){
+                            echo "Nam";
+                        } else if($p['gender']==0){
+                            echo "Nữ";
+                        } else {echo "Unisex";}?>
                     </div>
                     <div class="item">
-                        <?=$product[$i]['price'] ?>
+                        <?=$p['price'] ?>
                     </div>
                     <div class="item">
-                        <?=$product[$i]['quantity'] ?>
+                        <?=$p['quantity'] ?>
                     </div>
                     <div class="item">
-                        <?=$product[$i]['status'] ?>
+                        <?=$p['status'] ?>
                     </div>
-                    <div class="item" onclick="loadModalBoxByAjax('detailProduct',<?=$product[$i]['id']?>)">
+                    <div class="item" onclick="loadModalBoxByAjax('detailProduct',<?=$p['id']?>)">
                     <i class="fa-solid fa-circle-info" ></i>
                     </div>
                 </div>
         </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
     </div>
     <div id="modal-box"></div>
 </div>
+<?php 
+?>

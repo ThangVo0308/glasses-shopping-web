@@ -1,19 +1,8 @@
 <?php
-$supply=[
-    [
-        'id'=>1,
-        'user'=>'Nhân viên 1',
-        'date'=>'10/3/2024',
-        'total'=>200000,
-    ],
-    [
-        'id'=>2,
-        'user'=>'Nhân viên 2',
-        'date'=>'11/3/2024',
-        'total'=>750000,
-    ],
-];
-$c=count($supply);
+require_once("../../../BE/BUS/importBUS.php");
+require_once("../../../BE/BUS/userBUS.php");
+$import = importBUS::getInstance()->getAllImport();
+$c=count($import)+1;
 ?>
 <div id="supply">
     <div class="header">
@@ -28,34 +17,39 @@ $c=count($supply);
     <div class="title-list">
         <div class="title-placeholder">
             <div class="title">Mã phiếu nhập</div>
-            <div class="title">Người nhập</div>
+            <div class="title">ID nhân viên</div>
+            <div class="title">Tên nhân viên</div>
             <div class="title">Ngày nhập</div>
             <div class="title">Tổng tiền</div>
             <div class="title"></div>
         </div>
     </div>
     <div class="list">
-        <?php for ($i=0;$i<count($supply);$i++):?>
+        <?php foreach ($import as $i):?>
             <div class="placeholder">
                 <div class="info">
                     <div class="item">
-                        <?=$supply[$i]['id']?>
+                        <?=$i['id']?>
                     </div>
                     <div class="item">
-                    <?=$supply[$i]['user']?>
+                    <?=$i['user_id']?>
                     </div>
                     <div class="item">
-                    <?=date("d/m/Y",strtotime($supply[$i]['date']))?>
+                    <?php $user =userBUS::getInstance()->getUserById($i['user_id']);
+                    echo $user['name']; ?>
                     </div>
                     <div class="item">
-                    <?=$supply[$i]['total']?>
+                    <?=$i['import_date']?>
                     </div>
-                    <div class="item" onclick="loadModalBoxByAjax('detailSupply',<?=$i?>)">
+                    <div class="item">
+                    <?=$i['total_price']?>
+                    </div>
+                    <div class="item" onclick="loadModalBoxByAjax('detailSupply',<?=$i['id']?>)">
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
                 </div>
             </div>
-            <?php endfor;?>
+            <?php endforeach;?>
     </div>
     <div id="modal-box"></div>
 </div>

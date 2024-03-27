@@ -1,3 +1,8 @@
+<?php
+require_once("../../../BE/BUS/pointBUS.php");
+require_once("../../../BE/BUS/userBUS.php");
+$point= pointBUS::getInstance()->getAllpoint();
+?>
 <div id="point">
     <div class="header">
     <h2><i class="fa-solid fa-cart-shopping"></i><span> Điểm tích lũy </span></h2>
@@ -12,31 +17,32 @@
         </div>
     </div>    
     <div class="list">
-        <?php for($i=0;$i <1;$i++): ?>
+        <?php foreach($point as $p): ?>
             <div class="placeholder">
                 <div class="info">
                     
                         <div class="item">
-                            1
+                            <?=$p['user_id']?>
                         </div>
                         <div class="item">
-                            Nguyen van A
+                        <?php $user= userBUS::getInstance()->getUserById($p['user_id']);
+                              echo $user['name'];?>
                         </div>
                         <div class="item">
-                            0908123123
+                        <?=$user['phone']?>
                         </div>
                         <div class="item">
-                            1000
+                        <?=$p['points_earned']?>
                         </div>
                         <div class="item">
-                            250
+                        <?=$p['points_used']?>
                         </div>
-                        <div class="item" onclick="loadModalBoxByAjax('detailPoint',<?=$i?>)">
+                        <div class="item" onclick="loadModalBoxByAjax('detailPoint',<?=$p['user_id']?>)">
                             <i class="fa-solid fa-circle-info"></i>
                         </div>
                     </div>
                 </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </div>
             <div id="modal-box"></div>
     </div>
