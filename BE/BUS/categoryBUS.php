@@ -34,7 +34,7 @@ class CategoryBUS
     {
         $this->refreshData();
         foreach ($this->categoryList as $category) {
-            if ($category->getId() == $id) {
+            if ($category['id'] == $id) {
                 return $category;
             }
         }
