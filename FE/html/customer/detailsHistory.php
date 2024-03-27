@@ -10,12 +10,10 @@ $orderItemList = orderItemBUS::getInstance()->getorderItemByOrderId($id);
 
 <div class="modalPlus" id="modalPlus">
     <div class="modalContainer">
-
-        <div class="wc-box">
-            <div class="close" id="closeButton"></div>
-        </div>
-
         <header class="modal-header">
+            <div class="wc-box">
+                <div class="close" id="closeButton"></div>
+            </div>
             <div class="modal-param">
                 Chi tiết hóa đơn
             </div>
@@ -31,7 +29,7 @@ $orderItemList = orderItemBUS::getInstance()->getorderItemByOrderId($id);
                 <span>Số tiền</span>
             </div>
         </div>
-        <div id="products">
+        <div id="modal-products">
             <div id="products">
                 <?php foreach ($orderItemList as $orderItem) : ?>
                     <div class="product section">
@@ -49,6 +47,13 @@ $orderItemList = orderItemBUS::getInstance()->getorderItemByOrderId($id);
                 <?php endforeach; ?>
             </div>
         </div>
+        <div class="total">
+        <span>Tổng thanh toán:</span>
+        <div>
+            <span>100000</span>
+            <span id="valueReal">2000000</span>
+        </div>
+    </div>
     </div>
     <link rel="stylesheet" href="../../css/detailsHistory.css">
 

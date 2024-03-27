@@ -25,6 +25,12 @@ session_start();
         <div class="history-search">
             <input type="text" placeholder="Tìm đơn hàng theo Mã đơn hàng" />
             <button type="submit">Tìm đơn hàng</button>
+            <select name="" id="cbx-select">
+                <option value="">Tình trạng đơn hàng</option>
+                <option value="">Ordered</option>
+                <option value="">Pending</option>
+            </select>
+
         </div>
         <div class="header section">
             <div class="item">
@@ -45,7 +51,7 @@ session_start();
         <div id="products">
             <?php foreach ($orderList as $order) : ?>
                 <div class="product section">
-                    <div class="item">  
+                    <div class="item">
                         <span><?php echo $order['id']; ?></span>
                         <span class="date"><?php echo $order['order_date']; ?></span>
                         <span id="totalPrice"><?php echo number_format($order['total_price']); ?></span>
@@ -107,16 +113,15 @@ if (empty($orderList)) {
 ?>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-  var deleteButtons = document.querySelectorAll('#deleteBtn');
+    var deleteButtons = document.querySelectorAll('#deleteBtn');
 
-  deleteButtons.forEach((deleteButton) => {
-    deleteButton.addEventListener('click',() => {
-        document.getElementById('details-history').style.display = 'block';
+    deleteButtons.forEach((deleteButton) => {
+        deleteButton.addEventListener('click', () => {
+            document.getElementById('details-history').style.display = 'block';
 
-        var idOrder =deleteButton.getAttribute('order-id');
-        var iframe = document.getElementById('details-history');
-        iframe.src = "./detailsHistory.php?data=" +encodeURIComponent(idOrder);
+            var idOrder = deleteButton.getAttribute('order-id');
+            var iframe = document.getElementById('details-history');
+            iframe.src = "./detailsHistory.php?data=" + encodeURIComponent(idOrder);
+        })
     })
-  })
-
 </script>

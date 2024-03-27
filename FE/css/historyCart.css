@@ -41,14 +41,14 @@ body {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    height: 60px; 
+    height: 60px;
 }
 
 .history-search button:hover {
     background-color: #ccc;
 }
 
-.button-continue{
+.button-continue {
     margin-top: 10px;
     position: relative;
     display: inline-block;
@@ -64,14 +64,15 @@ body {
     z-index: 1;
 }
 
-.button-continue:hover{
+.button-continue:hover {
     color: #fff;
     border: 1px solid red;
     background-color: red;
 }
 
-a:hover{
-    color: red; /* Đổi màu khi di chuột qua */
+a:hover {
+    color: red;
+    /* Đổi màu khi di chuột qua */
     text-decoration: none;
     outline: none;
 }
@@ -81,7 +82,7 @@ a:hover{
     height: 38px;
 }
 
-#cart{
+#cart {
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -96,9 +97,9 @@ a:hover{
     margin-left: 10%;
 }
 
-.section-history{
+.section-history {
     width: 99%;
-    padding: 5px;   
+    padding: 5px;
 }
 
 .title {
@@ -125,7 +126,7 @@ a:hover{
 
 .header.section {
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .05);
     height: 50px;
     background-color: #e5eef9;
@@ -201,4 +202,38 @@ a:hover{
     width: 100%;
     top: 0;
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+#cbx-select {
+    padding: 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    height: 60px;
+    margin-left: 10px;
+}
+
+#cbx-select:after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+#cbx-select option {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+#cbx-select option:checked {
+    background-color: #f0f0f0;
+}
+
+#cbx-select option:hover {
+    background-color: #e0e0e0;
 }
