@@ -9,7 +9,7 @@ require_once("../../../BE/BUS/userBUS.php");
 require_once("../../../BE/BUS/productBUS.php");
 
 $order= orderBUS::getInstance()->getOrderById($id);
-$orderItem = orderItemBUS::getInstance()->getProductsFromOrderItem($id);
+$orderItem = orderItemBUS::getInstance()->getorderItemByOrderId($id);
 
 ?>
 <div class="modal-placeholder" id="edit-order">
