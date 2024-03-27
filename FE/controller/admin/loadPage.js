@@ -12,7 +12,7 @@ $(document).ready(async () => {
   };
   const loadPageByAjax = async (pageTarget) => {
     $.ajax({
-      url: "../../html/admin/content.php",
+      url: "../FE/html/admin/content.php",
       type: "POST",
       data: { page: pageTarget },
       dataType: "html",
@@ -28,7 +28,7 @@ $(document).ready(async () => {
   }
 const loadModalBoxByAjax = (modalBoxTarget, id) => {
     $.ajax({
-      url: "../../html/admin/modalBox.php",
+      url: "../FE/html/admin/modalBox.php",
       type: "POST",
       data: { modalBox: modalBoxTarget, id: id },
       dataType: "html",
@@ -37,3 +37,4 @@ const loadModalBoxByAjax = (modalBoxTarget, id) => {
       },
     });
   };
+  
