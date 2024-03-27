@@ -1,5 +1,5 @@
 <?php
-    require_once ("..\BE\DAL\importDAL.php");
+    require_once (__DIR__ . '/../DAL/importDAL.php');
     class importBUS {
         private $importList = array();
 
