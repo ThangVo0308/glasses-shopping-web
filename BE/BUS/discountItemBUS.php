@@ -123,6 +123,10 @@
             }
             return $result;
         }
+         public function getProductsFromDiscountItem($id){
+            $list= DiscountItemDAL::getInstance()->getProductsFromDiscountItemById($id);
+            return $list;
+        }
     }
 
 ?>
