@@ -137,7 +137,19 @@
                 return array();
            }
         }
-
+        public function getProductsFromDiscountItemById($id){
+            try{
+                $query="select * from discount_items where discount_id=?";
+                $statement = $this->connection->prepare($query);
+                $statement->bindValue(1, $id, PDO::PARAM_INT);
+                $statement->execute();
+                $discountitemlist = $statement->fetchAll(PDO::FETCH_ASSOC);
+                return $discountitemlist;
+            }catch(PDOException $e) {
+                echo "Query failed: ".$e->getMessage();
+                return false;
+            }
+        }
     }    
 
 
