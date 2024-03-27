@@ -1,6 +1,6 @@
 <?php
     // require("..\BE\DAL\importItemDAL.php");
-    require_once ("..\BE\DAL\importItemDAL.php");
+    require_once(__DIR__ . '/../DAL/importItemDAL.php');
     class importItemBUS {
         private $importItemList = array();
 
