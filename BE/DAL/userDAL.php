@@ -125,7 +125,7 @@
 
         public function deleteUser($id) {
             try {
-                $query = "update users set status = 'banned' where id = ?";
+                $query = "update users set status = 'inactive' where id = ?";
                 $statement = $this->connection->prepare($query);
 
                 $statement->bindValue(1, $id, PDO::PARAM_INT);
