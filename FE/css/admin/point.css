@@ -181,7 +181,7 @@
     height:100%;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 0.75fr 1.25fr 1fr 1fr;;
+    grid-template-columns: 0.5fr 1.5fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     margin: auto 20% auto 17%;;
@@ -214,7 +214,7 @@
     width: 100%;
     height: 100%;
     grid-template-rows:1fr ;
-    grid-template-columns: 0.75fr 1.25fr 1fr 1fr;;
+    grid-template-columns: 0.5fr 1.5fr 1fr 1fr;
     justify-content: center;
 }
 #point .modal-box .modal-right .list .info .item{

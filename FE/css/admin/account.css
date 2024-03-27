@@ -124,8 +124,8 @@
 #account .modal-box {
     background-color: white;
     border-radius: 10px;
-    width: 50%;
-    margin: 7vh auto;
+    width: 55%;
+    margin: 5vh auto;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 5fr 1fr;
@@ -133,7 +133,7 @@
     animation: loader 0.4s;
     animation-iteration-count: 1;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.7);
-    height: 85vh;
+    height: 93vh;
 }
 #account .modal-box .modal-header {
     text-align: center;
@@ -230,7 +230,7 @@
   
   #account .modal-box .button-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     width: 80%;
     color: white;
